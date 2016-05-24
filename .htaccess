@@ -1,0 +1,26 @@
+########## Compress text files ##########
+AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/javascript application/json
+
+
+########## Prevent html files cache ########## 
+<FilesMatch ".(html|htm)$">
+    FileETag None
+    <ifModule mod_headers.c>
+        Header unset ETag
+        Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "Fri, 31 Dec 1999 00:00:00 GMT"
+    </ifModule>
+</FilesMatch>
+
+
+########## Rewrite & Redirects ##########
+RewriteEngine On
+
+### Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R=301,L]
+
+
+########## Invalid URLs ##########
+ErrorDocument 404 /404.html

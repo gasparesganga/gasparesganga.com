@@ -1,0 +1,18 @@
+{% case include.demo %}
+
+{% when "quick_demo" %}
+<input id="quick_demo" type="button" value="Try jQuery MessageBox!">
+
+{% when "example1" %}
+<input id="example1" type="button" value="Example 1 - Alert">
+
+{% when "example2" %}
+<input id="example2" type="button" value="Example 2 - Confirm">
+
+{% when "example3" %}
+<input id="example3" type="button" value="Example 3 - Prompt">
+
+{% when "example4" %}
+<input id="example4" type="button" value="Example 4 - Custom input">
+  
+{% endcase %}

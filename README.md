@@ -1,2 +1,1 @@
-# gasparesganga.com
-http://gasparesganga.com website
+Source for my website http://gasparesganga.com

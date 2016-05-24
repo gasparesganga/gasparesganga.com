@@ -1,0 +1,51 @@
+title           : Gaspare Sganga
+description     : Software Developer. GIS & Web Mapping expert at Setin.
+author          : Gaspare Sganga
+production_url  : http://gasparesganga.com
+development_url : http://draft.gasparesganga.com
+github          : https://github.com/gasparesganga/
+disqus          : gasparesganga
+
+paginate        : 10
+paginate_path   : /posts/page:num
+permalink       : /posts/:title/
+
+markdown        : kramdown
+kramdown        :
+  input                 : GFM
+  hard_wrap             : true
+  syntax_highlighter    : rouge
+highlighter     : rouge
+
+include :
+  - .htaccess
+
+exclude :
+  - browserslist
+  - Gemfile
+  - Gemfile.lock
+  - key.enc
+  - LICENSE
+  - README.md
+  - vendor
+
+gems :
+  - jekyll-assets
+  - jekyll-paginate
+  - autoprefixer-rails
+  - uglifier
+
+assets : 
+  sources   : [_assets, labs]
+  assets    : ["[^_]*(?!_assets\\/).*"]
+  prefix    : /assets
+  cache     : false
+  digest    : true
+  compress  :
+    js  : false
+    css : false
+  features:
+    automatic_img_size  : false
+    automatic_img_alt   : false
+    liquid              : false
+    integrity           : false

@@ -1,0 +1,107 @@
+$(document).ready(function(){
+    /***** Quick Demo *****/
+    $("#quick_demo").SlideToggler();
+    
+    
+    /***** Example 1 *****/
+    $("#example1").SlideToggler({
+        title   : "Example 1"
+    }).on("beforeshow.slidetoggler beforehide.slidetoggler", function(event){
+        $("#example1_status").html("");
+    });
+    $("#example1_button").on("click", function(event){
+        $("#example1_status").html($("#example1").SlideToggler("status") ? "SlideToggler is <b>Open</b>" :  "SlideToggler is <b>Closed</b>");
+    });
+    
+    
+    /***** Example 2 *****/
+    $("#example2").SlideToggler({
+       autoHide   : false,
+       speed      : 2000,
+       title      : "Example 2"
+    })
+    .on("beforeshow.slidetoggler", function(event){
+        $("#example2_events").html("Event <b>BeforeShow</b> fired.....");
+    })
+    .on("aftershow.slidetoggler", function(event){
+        $("#example2_events").append(" Event <b>AfterShow</b> fired");
+    })
+    .on("beforehide.slidetoggler", function(event){
+        $("#example2_events").html("Event <b>BeforeHide</b> fired.....");
+    })
+    .on("afterhide.slidetoggler", function(event){
+        $("#example2_events").append(" Event <b>AfterHide</b> fired");
+    });
+    
+    
+    /***** Example 3 *****/
+    // Initialize SlideTogglers
+    $("#example3_content1").SlideToggler({title : "Title 1"});
+    $("#example3_content2").SlideToggler({title : "Title 2"});
+    $("#example3_content3").SlideToggler({title : "Title 3"});
+    $("#example3_content4").SlideToggler({title : "Title 4"});
+    // Use BeforeShow event to hide the other panels
+    $("#example3").on("beforeshow.slidetoggler", ".slidetoggler", function(event, data){
+        $("#example3").find(".slidetoggler").not(event.currentTarget).SlideToggler("hide", data.speed);
+    });
+    
+    
+    /***** Example 4 *****/
+    $("#example4").SlideToggler({
+        title     : "Example 4",
+        toggler   : false
+    });
+    
+    
+    /***** Example 3 *****/
+    $("#example5_content1").SlideToggler({
+        statusPosition  : "left",
+        title           : "Title 1",
+        titleAlign      : "left"
+    });
+    $("#example5_content2").SlideToggler({
+        statusPosition  : "right",
+        title           : "Title 2",
+        titleAlign      : "left"
+    });
+    $("#example5_content3").SlideToggler({
+        statusPosition  : "right",
+        title           : "Title 3",
+        titleAlign      : "right"
+    });
+    $("#example5_content4").SlideToggler({
+        statusHide      : "<img src='{% asset_path jquery-slide-toggler/_assets/hide.png %}'>",
+        statusPosition  : "both",
+        statusShow      : "<img src='{% asset_path jquery-slide-toggler/_assets/show.png %}'>",
+        title           : "Title 4",
+        titleAlign      : "center"
+    });
+    
+    
+    /***** Example 6 *****/
+    $("#example6_content").SlideToggler({
+        title : "Example 6"
+    });
+    $("#example6_button").on("click", function(event){
+        var wrapper = $("#example6_wrapper");
+        wrapper.animate({
+            width : "200px"
+        }, 3000, function(){
+            wrapper.animate({
+                width : "100%"
+            }, 3000);
+        });
+    });
+    
+    
+    /***** Example 7 *****/
+    $("#example7_create").on("click", function(event){
+        $("#example7").SlideToggler({
+            title : "Example 7"
+        });
+    });
+    $("#example7_remove").on("click", function(event){
+        $("#example7").SlideToggler("remove");
+    });
+    
+});

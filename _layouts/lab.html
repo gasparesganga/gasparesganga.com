@@ -1,0 +1,27 @@
+---
+layout    : default
+permalink : /labs/:title/
+---
+<article class="lab">
+    <section class="page_header">
+        <h1>{{ page.title }}</h1>
+        <h2>{{ page.description }}</h2>
+    </section>
+
+    <section class="page_actions">
+        <a href="{{ site.github }}{{ page.download }}">Download</a>
+        <a href="{{ site.github }}{{ page.source }}">View on GitHub</a>
+    </section>
+
+    <section class="page_content">
+        {{ content }}
+        
+        <h2 id="comments-and-ideas">Comments and Ideas</h2>
+        <p>
+            Want to leave a comment or give me an idea? <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#103;&#097;&#115;&#112;&#097;&#114;&#101;&#115;&#103;&#097;&#110;&#103;&#097;&#046;&#099;&#111;&#109;">Email me</a> or use the comments section below.
+        </p>
+    </section>
+</article>
+
+{% include social.html %}
+{% include comments.html %}
