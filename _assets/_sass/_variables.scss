@@ -1,0 +1,23 @@
+// Colors
+$color_main                 : #9bbb59;
+$color_main_light           : #a5c565;
+$color_white                : #ffffff;
+$color_background           : #f8f8f8;
+$color_text                 : #505050;
+$color_border               : #f0f0f0;
+$color_link                 : #8bab4b;
+$color_footer_text          : #707070;
+$color_footer_link_hover    : #505050;
+$color_alert                : #f6f6b6;
+$color_alert_text           : #808030;
+$color_code                 : #f6f6f6;
+
+// Transitions
+$transition_time    : 0.4s;
+
+// Mobile Sizes
+$mobile_width_1     : 960px;
+$mobile_width_2     : 660px;
+// Media Queries
+$query_mobile_width_1   : "max-width : #{$mobile_width_1}";
+$query_mobile_width_2   : "max-width : #{$mobile_width_2}";
