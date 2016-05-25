@@ -10,7 +10,7 @@ js          :
   - js/jquery-2.1.3.min.js
   - jquery-slide-toggler/_assets/slidetoggler.min.js
   - jquery-slide-toggler/_assets/demo.js
-download    : jquery-slide-toggler/archive/master.zip
+download    : jquery-slide-toggler/archive/v1.0.zip
 source      : jquery-slide-toggler
 ---
 

@@ -5,7 +5,7 @@ description : .htaccess/PHP solution to force browsers to reload (and re-cache!)
 updated     : 2014-11-06
 css         : []
 js          : []
-download    : file-version-name/archive/master.zip
+download    : file-version-name/archive/v1.0.zip
 source      : file-version-name
 ---
 

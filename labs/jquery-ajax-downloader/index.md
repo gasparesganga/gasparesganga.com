@@ -8,7 +8,7 @@ js          :
   - js/jquery-2.1.3.min.js
   - jquery-ajax-downloader/_assets/ajaxdownloader.min.js
   - jquery-ajax-downloader/_assets/demo.js
-download    : jquery-ajax-downloader/archive/master.zip
+download    : jquery-ajax-downloader/archive/v1.0.zip
 source      : jquery-ajax-downloader
 ---
 

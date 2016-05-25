@@ -9,7 +9,7 @@ js          :
   - js/jquery-2.1.3.min.js
   - jquery-message-box/_assets/messagebox.min.js
   - jquery-message-box/_assets/demo.js
-download    : jquery-message-box/archive/master.zip
+download    : jquery-message-box/archive/v1.1.zip
 source      : jquery-message-box
 ---
 

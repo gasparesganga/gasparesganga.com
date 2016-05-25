@@ -10,14 +10,16 @@ js          :
   - jquery-loading-overlay/_assets/loadingoverlay.min.js
   - jquery-loading-overlay/_assets/loadingoverlay_progress.min.js
   - jquery-loading-overlay/_assets/demo.js
-download    : jquery-loading-overlay/archive/master.zip
+download    : jquery-loading-overlay/archive/v1.3.zip
 source      : jquery-loading-overlay
 ---
 
 <div class="alert">
+    <b>25 May 2016 :</b> Version 1.3 released with explicit <code>`z-index`</code> support. See <a href="/posts/jquery-loading-overlay-version-1.3/">this post</a> where I explain why I hadn't included it before and why I decided to do it now.
+</div>
+<div class="alert">
     <b>22 April 2016 :</b> Time for another release, version 1.2. This plugin has become the most popular of mine and I started to get more feedbacks. Fade in/out capabilities have been added as well as the first <i>Extra</i>: <b>Progress</b>. Check <a href="/posts/jquery-loading-overlay-version-1.2/">this post</a> for a complete explaination of the changes.
 </div>
-
 <div class="alert">
     <b>31 December 2015 :</b> Version 1.1 released! After some feedback and requests from the users, I've added support for <a href="https://fortawesome.github.io/Font-Awesome/">Font Awesome</a> and custom elements inside the overlay. Check <a href="/posts/jquery-loading-overlay-version-1.1/">this post</a> for a complete explaination of the changes.
 </div>
@@ -77,6 +79,7 @@ maxSize         : "100px"                       // Integer/String
 minSize         : "20px"                        // Integer/String
 resizeInterval  : 0,                            // Integer
 size            : "50%"                         // Integer/String
+zIndex          : undefined                     // Integer
 ```
 
 ##### `color`
@@ -107,6 +110,9 @@ Use `0` or `false` to disable this feature.
 
 ##### `size`
 Size of image in **percentage**. Use `0` or `false` to disable image resizing.
+
+##### `zIndex`
+Use this to explicitly set a `z-index` for the overlay.
 
 
 
