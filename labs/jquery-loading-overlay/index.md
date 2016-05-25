@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery LoadingOverlay
 description : A flexible loading overlay jQuery Plugin
-updated     : 2016-04-22
+updated     : 2016-05-25
 css         :
   - jquery-loading-overlay/_assets/font-awesome-4.6.3/font-awesome.scss
 js          :
