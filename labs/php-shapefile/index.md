@@ -5,7 +5,7 @@ description : PHP Class to read any ESRI Shapefile and its associated DBF into a
 updated     : 2016-03-31
 css         : []
 js          : []
-download    : php-shapefile/archive/master.zip
+download    : php-shapefile/archive/v1.1.zip
 source      : php-shapefile
 ---
 

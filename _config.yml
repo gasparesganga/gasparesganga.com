@@ -24,7 +24,6 @@ exclude :
   - browserslist
   - Gemfile
   - Gemfile.lock
-  - key.enc
   - LICENSE
   - README.md
   - vendor
@@ -33,7 +32,6 @@ gems :
   - jekyll-assets
   - jekyll-paginate
   - autoprefixer-rails
-  - uglifier
 
 assets : 
   sources   : [_assets, labs]
