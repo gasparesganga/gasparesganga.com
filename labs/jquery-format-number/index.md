@@ -5,7 +5,7 @@ description : jQuery Plugin to output numbers as formatted strings
 updated     : 2015-01-18
 css         : []
 js          : []
-download    : jquery-format-number/archive/master.zip
+download    : jquery-format-number/archive/v1.0.zip
 source      : jquery-format-number
 ---
 
