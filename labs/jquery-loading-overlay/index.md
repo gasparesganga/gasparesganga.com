@@ -15,7 +15,7 @@ source      : jquery-loading-overlay
 ---
 
 <div class="alert">
-    <b>25 May 2016 :</b> Version 1.3 released with explicit `z-index` support. See <a href="/posts/jquery-loading-overlay-version-1.3/">this post</a> where I explain why I hadn't included it before and why I decided to do it now.
+    <b>25 May 2016 :</b> Version 1.3 released with explicit <code>`z-index`</code> support. See <a href="/posts/jquery-loading-overlay-version-1.3/">this post</a> where I explain why I hadn't included it before and why I decided to do it now.
 </div>
 <div class="alert">
     <b>22 April 2016 :</b> Time for another release, version 1.2. This plugin has become the most popular of mine and I started to get more feedbacks. Fade in/out capabilities have been added as well as the first <i>Extra</i>: <b>Progress</b>. Check <a href="/posts/jquery-loading-overlay-version-1.2/">this post</a> for a complete explaination of the changes.
