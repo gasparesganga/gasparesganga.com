@@ -1,0 +1,19 @@
+/*** Coffee ***/
+#coffee_buttons {
+    a {
+        @extend %button;
+        width   : 20rem;
+    }
+    svg {
+        width           : 2rem;
+        vertical-align  : bottom;
+        margin-right    : 0.3rem;
+    }
+}
+
+#coffee_credits {
+    font-size   : 0.9rem;
+    font-style  : italic;
+    text-align  : right;
+    margin-top  : 4rem;
+}

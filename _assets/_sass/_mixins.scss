@@ -2,7 +2,7 @@
     display                 : block;
     padding                 : 0.7rem 0;
     color                   : $color_white;
-    border-bottom           : 1px solid $color_main_light;
+    border-top              : 1px solid $color_main_light;
     transition              : background-color $transition_time;
     &:hover {
         background-color    : $color_main_light;
@@ -11,7 +11,38 @@
         background-color    : $color_main;
         transition          : none;
     }
-    @media ($query_mobile_width_2) {
-        border-bottom       : none;
+}
+
+%button {
+    display                 : inline-block;
+    font-size               : 1rem;
+    margin                  : 0.5rem;
+    padding                 : 0.5rem;
+    cursor                  : pointer;
+    text-align              : center;
+    vertical-align          : middle;
+    color                   : $color_main_light;
+    fill                    : $color_main;
+    background-color        : $color_white;
+    border                  : 2px solid $color_main_light;
+    border-radius           : 2px;
+    outline                 : none;
+    transition              : all $transition_time;
+    &:hover {
+        color               : $color_white;
+        fill                : $color_white;
+        background-color    : $color_main_light;
+        border              : 2px solid $color_main_light;
+    }
+    &:active {
+        color               : $color_white;
+        fill                : $color_white;
+        background-color    : $color_main;
+        border-color        : $color_main;
+        transition          : none;
+    }
+    &::-moz-focus-inner {
+        padding             : 0;
+        border              : 0;
     }
 }
