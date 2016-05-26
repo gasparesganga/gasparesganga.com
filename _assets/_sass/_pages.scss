@@ -1,0 +1,32 @@
+/*** Coffee ***/
+#coffee_buttons {
+    a {
+        @extend %button;
+        display         : block;
+        max-width       : 16rem;
+        text-align      : left;
+        padding         : 0.5rem 0.8rem;
+        margin-top      : 1.5rem;
+        margin-bottom   : 1.5rem;
+        margin-left     : 1.5rem;
+        @media ($query_mobile_width_2) {
+            margin      : 1.5rem auto;
+        }
+    }
+    svg {
+        width           : 2rem;
+        vertical-align  : bottom;
+    }
+}
+#coffee_other {
+    margin      : 3rem 1.5rem;
+    @media ($query_mobile_width_2) {
+        margin  : 3rem auto;
+    }
+}
+#coffee_credits {
+    font-size   : 0.9rem;
+    font-style  : italic;
+    text-align  : right;
+    margin-top  : 4rem;
+}

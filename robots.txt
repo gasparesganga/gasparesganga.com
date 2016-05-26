@@ -1,5 +1,6 @@
 ---
 ---
-Sitemap: {{ site.url }}/sitemap.xml
+{% if jekyll.environment == "production" %}{% assign site_url = site.production_url %}{% else %}{% assign site_url = site.development_url %}{% endif %}
+Sitemap: {{ site_url }}/sitemap.xml
 User-agent: *
 Disallow: /assets/

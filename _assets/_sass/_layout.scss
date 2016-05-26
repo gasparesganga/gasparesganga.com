@@ -15,7 +15,10 @@ body {
     width       : 100%;
 }
 
+
 header {
+    display             : flex;
+    flex-flow           : column nowrap;
     position            : fixed;
     top                 : 0px;
     width               : 17rem;
@@ -33,18 +36,24 @@ header {
     }
 }
     #profile {
-        padding         : 1.6rem 0.8rem;
-        color           : $color_white;
-        border-bottom   : 1px solid $color_main_light;
+        order       : 1;
+        padding     : 1.6rem 0.8rem;
+        color       : $color_white;
         @media ($query_mobile_width_2) {
-            padding     : 0.8rem;
+            padding : 0.8rem;
         }
     }
         #profile_pic {
+            padding : 0.8rem 0;
+            @media ($query_mobile_width_2) {
+                padding-top : 0;
+            }
             img {
-                width       : 100px;
+                display : block;
+                width   : 85px;
+                margin  : auto;
                 @media ($query_mobile_width_1) {
-                    width   : 80px;
+                    width   : 65px;
                 }
             }
         }
@@ -88,30 +97,52 @@ header {
             }
         }
     #menu {
-        &:after {
-            @media ($query_mobile_width_2) {
-                content : "";
-                display : table;
-                clear   : both;
-            }
+        order               : 2;
+        display             : flex;
+        flex-flow           : column nowrap;
+        border-bottom       : 1px solid $color_main_light;
+        @media ($query_mobile_width_2) {
+            order           : 3;
+            flex-flow       : row nowrap;
+            border-bottom   : none;
         }
         a {
-            display                 : block;
-            padding                 : 0.7rem 0;
-            color                   : $color_white;
-            border-bottom           : 1px solid $color_main_light;
-            transition              : background-color $transition_time;
-            &:hover {
-                background-color    : $color_main_light;
-            }
-            &:active {
-                background-color    : $color_main;
-                transition          : none;
-            }
+            @extend %header_button;
             @media ($query_mobile_width_2) {
-                float               : left;
-                width               : 33.333333%;
-                border-bottom       : none;
+                width   : 33.333333%;
+            }
+        }
+    }
+    #header_actions {
+        order               : 3;
+        flex                : 1 0 auto;
+        display             : flex;
+        flex-flow           : column nowrap;
+        justify-content     : flex-end;
+        border-bottom       : 1px solid $color_main_light;
+        margin-bottom       : 2rem;
+        @media ($query_mobile_width_2) {
+            order           : 2;
+            flex-flow       : row nowrap;
+            border-bottom   : none;
+            margin-bottom   : 0;
+        }
+        a {
+            @extend %header_button;
+            @media ($query_mobile_width_2) {
+                flex    : 1 0 auto;
+                //width   : 50%;
+            }
+        }
+        img {
+            width           : 1.5rem;
+            vertical-align  : bottom;
+        }
+        span {
+            margin-left     : 0.3rem;
+            @media ($query_mobile_width_2) {
+                font-size   : 0.85rem;
+                margin-left : 0.2rem;
             }
         }
     }
@@ -224,38 +255,14 @@ main {
     .page_actions {
         text-align  : center;
         a {
-            display                 : inline-block;
-            font-size               : 1rem;
-            width                   : 15rem;
-            margin                  : 0.5rem 0.9rem;
-            padding                 : 0.75rem 0;
-            cursor                  : pointer;
-            text-align              : center;
-            vertical-align          : middle;
-            color                   : $color_main_light;
-            background-color        : $color_white;
-            border                  : 2px solid $color_main_light;
-            border-radius           : 2px;
-            transition              : all $transition_time;
+            @extend %button;
+            width       : 15rem;
+            margin      : 0.5rem 0.9rem;
+            padding     : 0.75rem 0;
             @media ($query_mobile_width_1) {
-                width               : 11.5rem;
-                margin              : 0.4rem;
-                padding             : 0.6rem 0;
-            }
-            &:hover {
-                color               : $color_white;
-                background-color    : $color_main_light;
-                border              : 2px solid $color_main_light;
-            }
-            &:active {
-                color               : $color_white;
-                background-color    : $color_main;
-                border-color        : $color_main;
-                transition          : none;
-            }
-            &::-moz-focus-inner {
-                padding             : 0;
-                border              : 0;
+                width   : 11.5rem;
+                margin  : 0.4rem;
+                padding : 0.6rem 0;
             }
         }
     }
