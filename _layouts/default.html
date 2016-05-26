@@ -32,7 +32,7 @@
         <header>
             <div id="profile">
                 <div id="profile_pic">
-                    <a href="/"><object type="image/svg+xml" data="{% asset_path img/logo_no_bg.svg %}"></object></a>
+                    <a href="/">{% img img/logo_no_bg.svg %}</a>
                 </div>
                 <div id="profile_title">Gaspare Sganga</div>
                 <div id="profile_details">
@@ -47,14 +47,8 @@
                 <a href="/posts/">Posts</a>
             </nav>
             <div id="header_actions">
-                <a href="#">
-                    <object type="image/svg+xml" data="{% asset_path img/maptools.svg %}"></object>
-                    <label>MapTools</label>
-                </a>
-                <a href="coffee/">
-                    <object type="image/svg+xml" data="{% asset_path img/coffee.svg %}"></object>
-                    <label>Buy me a coffee?</label>
-                </a>
+                <a href="#">{% img img/maptools.svg %}<span>MapTools</span></a>
+                <a href="coffee/">{% img img/coffee.svg %}<span>Buy me a coffee?</span></a>
             </div>
         </header>
         

@@ -2,6 +2,7 @@
     display                 : block;
     padding                 : 0.7rem 0;
     color                   : $color_white;
+    border-bottom           : 1px solid $color_main_light;
     transition              : background-color $transition_time;
     &:hover {
         background-color    : $color_main_light;
@@ -9,5 +10,8 @@
     &:active {
         background-color    : $color_main;
         transition          : none;
+    }
+    @media ($query_mobile_width_2) {
+        border-bottom       : none;
     }
 }

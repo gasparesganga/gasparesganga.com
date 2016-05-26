@@ -47,7 +47,7 @@ header {
             @media ($query_mobile_width_2) {
                 padding-top : 0;
             }
-            object {
+            img {
                 display : block;
                 width   : 85px;
                 margin  : auto;
@@ -106,10 +106,8 @@ header {
         }
         a {
             @extend %header_button;
-            border-bottom       : 1px solid $color_main_light;
             @media ($query_mobile_width_2) {
-                width           : 33.333333%;
-                border-bottom   : none;
+                width   : 33.333333%;
             }
         }
     }
@@ -119,22 +117,25 @@ header {
         display             : flex;
         flex-flow           : column nowrap;
         justify-content     : flex-end;
+        border-top          : 1px solid $color_main_light;
+        margin-bottom       : 2rem;
         @media ($query_mobile_width_2) {
             order           : 2;
             flex-flow       : row nowrap;
+            margin-bottom   : 0;
         }
         a {
             @extend %header_button;
-            border-top  : 1px solid $color_main_light;
             @media ($query_mobile_width_2) {
                 flex    : 1 0 auto;
+                width   : 50%;
             }
         }
-        object {
+        img {
             width           : 1.5rem;
             vertical-align  : bottom;
         }
-        label {
+        span {
             margin-left     : 0.3rem;
             @media ($query_mobile_width_2) {
                 font-size   : 0.85rem;
