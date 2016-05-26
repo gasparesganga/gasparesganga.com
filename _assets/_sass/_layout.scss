@@ -33,18 +33,24 @@ header {
     }
 }
     #profile {
-        padding         : 1.6rem 0.8rem;
-        color           : $color_white;
-        border-bottom   : 1px solid $color_main_light;
+        padding     : 1.6rem 0.8rem;
+        color       : $color_white;
         @media ($query_mobile_width_2) {
-            padding     : 0.8rem;
+            padding : 0.8rem;
         }
     }
         #profile_pic {
-            img {
-                width       : 100px;
+            padding : 0.8rem 0;
+            @media ($query_mobile_width_2) {
+                padding-top : 0;
+            }
+            svg {
+                display : block;
+                width   : 85px;
+                margin  : auto;
+                fill    : $color_white;  
                 @media ($query_mobile_width_1) {
-                    width   : 80px;
+                    width   : 65px;
                 }
             }
         }
@@ -82,12 +88,19 @@ header {
         }
         #profile_feed {
             margin-top      : 0.8rem;
+            a {
+                &:active {
+                    margin-top      : 1px;
+                    margin-bottom   : -1px;
+                }
+            }
             img {
                 width           : 3rem;
                 border-radius   : 2px;
             }
         }
     #menu {
+        border-top  : 1px solid $color_main_light;
         &:after {
             @media ($query_mobile_width_2) {
                 content : "";
