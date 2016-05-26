@@ -30,4 +30,8 @@
 			<priority>1.0</priority>
 		</url>
 	{% endfor %}
+    <url>
+		<loc>{{ site.url }}/coffee/</loc>
+		<priority>1.0</priority>
+	</url>
 </urlset>
