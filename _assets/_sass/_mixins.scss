@@ -1,0 +1,13 @@
+%header_button {
+    display                 : block;
+    padding                 : 0.7rem 0;
+    color                   : $color_white;
+    transition              : background-color $transition_time;
+    &:hover {
+        background-color    : $color_main_light;
+    }
+    &:active {
+        background-color    : $color_main;
+        transition          : none;
+    }
+}

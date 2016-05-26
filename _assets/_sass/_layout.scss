@@ -16,6 +16,8 @@ body {
 }
 
 header {
+    display             : flex;
+    flex-flow           : column nowrap;
     position            : fixed;
     top                 : 0px;
     width               : 17rem;
@@ -33,6 +35,7 @@ header {
     }
 }
     #profile {
+        order       : 1;
         padding     : 1.6rem 0.8rem;
         color       : $color_white;
         @media ($query_mobile_width_2) {
@@ -44,11 +47,10 @@ header {
             @media ($query_mobile_width_2) {
                 padding-top : 0;
             }
-            svg {
+            object {
                 display : block;
                 width   : 85px;
                 margin  : auto;
-                fill    : $color_white;  
                 @media ($query_mobile_width_1) {
                     width   : 65px;
                 }
@@ -88,47 +90,58 @@ header {
         }
         #profile_feed {
             margin-top      : 0.8rem;
-            a {
-                &:active {
-                    margin-top      : 1px;
-                    margin-bottom   : -1px;
-                }
-            }
             img {
                 width           : 3rem;
                 border-radius   : 2px;
             }
         }
     #menu {
-        border-top  : 1px solid $color_main_light;
-        &:after {
-            @media ($query_mobile_width_2) {
-                content : "";
-                display : table;
-                clear   : both;
-            }
+        order           : 2;
+        display         : flex;
+        flex-flow       : column nowrap;
+        border-top      : 1px solid $color_main_light;
+        @media ($query_mobile_width_2) {
+            order       : 3;
+            flex-flow   : row nowrap;
         }
         a {
-            display                 : block;
-            padding                 : 0.7rem 0;
-            color                   : $color_white;
-            border-bottom           : 1px solid $color_main_light;
-            transition              : background-color $transition_time;
-            &:hover {
-                background-color    : $color_main_light;
-            }
-            &:active {
-                background-color    : $color_main;
-                transition          : none;
-            }
+            @extend %header_button;
+            border-bottom       : 1px solid $color_main_light;
             @media ($query_mobile_width_2) {
-                float               : left;
-                width               : 33.333333%;
-                border-bottom       : none;
+                width           : 33.333333%;
+                border-bottom   : none;
             }
         }
     }
-
+    #header_actions {
+        order               : 3;
+        flex                : 1 0 auto;
+        display             : flex;
+        flex-flow           : column nowrap;
+        justify-content     : flex-end;
+        @media ($query_mobile_width_2) {
+            order           : 2;
+            flex-flow       : row nowrap;
+        }
+        a {
+            @extend %header_button;
+            border-top  : 1px solid $color_main_light;
+            @media ($query_mobile_width_2) {
+                flex    : 1 0 auto;
+            }
+        }
+        object {
+            width           : 1.5rem;
+            vertical-align  : bottom;
+        }
+        label {
+            margin-left     : 0.3rem;
+            @media ($query_mobile_width_2) {
+                font-size   : 0.85rem;
+                margin-left : 0.2rem;
+            }
+        }
+    }
 
 main {
     background-color    : $color_white;
