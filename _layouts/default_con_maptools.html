@@ -8,10 +8,10 @@
         <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
         <meta name="author" content="{{ site.author }}">
         <meta name="generator">
-        {% if jekyll.environment == "production" %}{% assign site_url = site.production_url %}{% else %}{% assign site_url = site.development_url %}{% endif %}
+        {% include site_url.html %}
         <link rel="icon" href="{% asset_path img/favicon.ico %}">
         <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site_url }}/feed.xml">
-        <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site_url }}">
+        <link rel="canonical" href="{{ site_url }}{{ page.url | replace: 'index.html', '' }}">
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic">
         {% style css/style.scss %}
         {% for filename in page.css %}

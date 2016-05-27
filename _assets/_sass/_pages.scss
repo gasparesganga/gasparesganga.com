@@ -19,9 +19,10 @@
     }
 }
 #coffee_other {
-    margin      : 3rem 1.5rem;
+    margin          : 3rem 1.5rem;
+    text-align      : left;
     @media ($query_mobile_width_2) {
-        margin  : 3rem auto;
+        text-align  : center;
     }
 }
 #coffee_credits {
