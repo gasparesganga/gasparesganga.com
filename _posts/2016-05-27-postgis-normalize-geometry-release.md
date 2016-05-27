@@ -8,7 +8,7 @@ tags        : [PostGIS, PostgreSQL, PL/pgSQL]
 Ok, this is a good one, I promise!
 
 
-This is actually part of a more complex normalizing-framework I wrote for the [company](http://www.setinsnc.it) I work for.
+It is actually part of a more complex normalizing-framework I wrote for the [company](http://www.setinsnc.it) I work for.
 Until now it has been considered one of our *trade secrets* and I'm glad I can release it for the public.
 
 
