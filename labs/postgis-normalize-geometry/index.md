@@ -61,9 +61,12 @@ Considering 3 adjacent points <code>P<sub>n-1</sub></code>, <code>P<sub>n</sub><
 
 * The area obtained connecting those points *(ie. the area of the triangle formed by <code>P<sub>n-1</sub></code>, <code>P<sub>n</sub></code> and <code>P<sub>n+1</sub></code> points)* is equal or smaller than `PAR_area_threshold`.
 * The angle in <code>P<sub>n</sub></code> is equal or smaller than `PAR_angle_threshold` 
-  **OR** the distance between <code>P<sub>n-1</sub></code> and <code>P<sub>n</sub></code> is equal or smaller than `PAR_point_distance_threshold` and the angle in <code>P<sub>n+1</sub></code> is equal or smaller than `PAR_angle_threshold`
-  **OR** the distance between <code>P<sub>n</sub></code> and <code>P<sub>n+1</sub></code> is equal or smaller than `PAR_point_distance_threshold` and the angle in <code>P<sub>n-1</sub></code> is equal or smaller than `PAR_angle_threshold`
+  **OR**
+  the distance between <code>P<sub>n-1</sub></code> and <code>P<sub>n</sub></code> is equal or smaller than `PAR_point_distance_threshold` and the angle in <code>P<sub>n+1</sub></code> is equal or smaller than `PAR_angle_threshold`
+  **OR**
+  the distance between <code>P<sub>n</sub></code> and <code>P<sub>n+1</sub></code> is equal or smaller than `PAR_point_distance_threshold` and the angle in <code>P<sub>n-1</sub></code> is equal or smaller than `PAR_angle_threshold`
 
+<br>
 #### Case 2 - Removing point lying *almost* on the same straight line
 The area obtained connecting those points *(ie. the area of the triangle formed by <code>P<sub>n-1</sub></code>, <code>P<sub>n</sub></code> and <code>P<sub>n+1</sub></code> points)* is equal or smaller than `PAR_null_area`.
 
@@ -81,6 +84,7 @@ The function intentionally uses `ST_Collect()`, leaving to the user the freedom 
 
 ### But this `ST_Collect()` is annoying, I'd rather prefer `ST_Union()`...
 I strongly reccomend that you ***not*** do that and instead handle the normalized geometries according to your use case *(eg. you are working on a polygon table, so you want to filter only `POLYGON` and `MULTIPOLYGON`, leaving out the rest)*, but if you want to perform a [ST_Union](http://postgis.net/docs/ST_Union.html) on the normalized geometry and don't want to deal with nested `ST_Dump()`/subqueries/`LATERAL` stuff *(maybe you want to perform a straightforward `UPDATE`)*, then you can use this wrapper function:
+
 ```sql
 CREATE OR REPLACE FUNCTION normalize_geometry_union(
     PAR_geom                        geometry, 
@@ -110,11 +114,13 @@ SELECT normalize_geometry(t.geom, 0.5, 0.5, 0.005, 0.0001) FROM my_table;
 
 ### Example 2 - A more useful real-life case
 Remember that `normalize_geometry` output is coming from `ST_Collect()`, so a `ST_Dump()` is a good idea to start with:
+
 ```sql
 SELECT id, (ST_Dump(normalize_geometry(t.geom, 0.5, 0.5, 0.005, 0.0001))).geom FROM my_table;
 ```
 
 If you are on PostgreSQL 9.3+, here is what your average query would look like, taking advantage of `LATERAL`:
+
 ```sql
 SELECT t.id, ST_Union(l.geom) AS geom 
 FROM my_table AS t, 
@@ -123,6 +129,7 @@ GROUP BY t.id
 ```
 
 If you are on an older version of PostgreSQL, a subquery will do:
+
 ```sql
 SELECT id, ST_Union(geom) AS geom 
 FROM (
@@ -133,6 +140,7 @@ GROUP BY id;
 ```
 
 You most likely want to filter the geometries somehow, let's assume you only want Polygons/Multipolygons discarding all the *leftovers*:
+
 ```sql
 SELECT t.id, ST_Union(l.geom) AS geom 
 FROM my_table AS t, 
@@ -145,6 +153,7 @@ GROUP BY t.id
 ### Example 3 - Use the function to simplify the geometries
 Both [ST_Simplify()](http://postgis.net/docs/ST_Simplify.html) and [ST_SimplifyPreserveTopology()](http://postgis.net/docs/ST_SimplifyPreserveTopology.html) use the *Douglas-Peucker algorithm*. Who does really (I mean, *REALLY*) know how the `tolerance` parameter work and can use it in a predictable way?
 Using `normalize_geometry` with the first three parameters set to `0` and focusing on `PAR_null_area`, we have a pretty nice simplifying function, try it!
+
 ```sql
 -- Remove only points lying on the same straight line
 SELECT geometry normalize_geometry(geom, 0, 0, 0, 0) FROM my_table;
