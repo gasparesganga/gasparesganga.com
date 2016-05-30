@@ -2,7 +2,7 @@
 layout      : lab
 title       : PostGIS NormalizeGeometry
 description : PL/pgSQL function to normalize geometries and remove spikes with PostGIS
-updated     : 2016-05-28
+updated     : 2016-05-31
 css         : []
 js          : []
 download    : postgis-normalize-geometry/archive/v1.0.zip
@@ -54,6 +54,16 @@ Expressed in square `units`, the same as `PAR_area_threshold`.
 
 
 ## How normalization works
+
+The function analyzes all the adjacent points in the input geometry in groups of three. Now imagine a triangle is drawn connecting those three points.
+The **central** point of a group is removed in one of those cases:
+
+1. the area of the triangle is smaller than `PAR_area_threshold` and the angle corresponding to the central point is smaller than `PAR_angle_threshold`
+2. the area of the triangle is smaller than `PAR_area_threshold` and the angle corresponding to the first or the last point is smaller than `PAR_angle_threshold` while the distance between the other two points is smaller than `PAR_point_distance_threshold`
+3. the area of the triangle is smaller than `PAR_null_area`, regardless of the angles
+
+
+### A more *technical* explaination
 Considering 3 adjacent points <code>P<sub>n-1</sub></code>, <code>P<sub>n</sub></code> and <code>P<sub>n+1</sub></code>, the point <b><code>P<sub>n</sub></code></b> will be removed in one of these cases:
 
 #### Case 1 - Removing *spikes*
@@ -66,7 +76,6 @@ Considering 3 adjacent points <code>P<sub>n-1</sub></code>, <code>P<sub>n</sub><
   **OR**
   the distance between <code>P<sub>n</sub></code> and <code>P<sub>n+1</sub></code> is equal or smaller than `PAR_point_distance_threshold` and the angle in <code>P<sub>n-1</sub></code> is equal or smaller than `PAR_angle_threshold`
 
-<br>
 #### Case 2 - Removing point lying *almost* on the same straight line
 The area obtained connecting those points *(ie. the area of the triangle formed by <code>P<sub>n-1</sub></code>, <code>P<sub>n</sub></code> and <code>P<sub>n+1</sub></code> points)* is equal or smaller than `PAR_null_area`.
 
@@ -107,9 +116,25 @@ $$ LANGUAGE sql;
 
 ### Example 1 - Basic usage
 Those parameters are the ones I use most of the times
+
 ```sql
 SELECT normalize_geometry(t.geom, 0.5, 0.5, 0.005, 0.0001) FROM my_table;
 ```
+
+Those will successfully normalize geometries like 
+```sql
+LINESTRING(0 0, 2 2, 0 4, -5 4, 0 4.001, 2 6)
+POLYGON((0 0, 0 0.5, 0 1, 1 1, 1 0, 1 -3, 0.99 0, 0 0))
+```
+
+into
+
+```sql
+LINESTRING(0 0,2 2,0 4,2 6)
+POLYGON((0 0,1 1,2 1,3 0.5,0 0))
+```
+
+{% img postgis-normalize-geometry/_assets/example1.png %}
 
 
 ### Example 2 - A more useful real-life case
@@ -119,7 +144,7 @@ Remember that `normalize_geometry` output is coming from `ST_Collect()`, so a `S
 SELECT id, (ST_Dump(normalize_geometry(t.geom, 0.5, 0.5, 0.005, 0.0001))).geom FROM my_table;
 ```
 
-If you are on PostgreSQL 9.3+, here is what your average query would look like, taking advantage of `LATERAL`:
+If you are on PostgreSQL **9.3+**, here is what your average query would look like, taking advantage of `LATERAL`:
 
 ```sql
 SELECT t.id, ST_Union(l.geom) AS geom 
@@ -162,4 +187,4 @@ SELECT geometry normalize_geometry(geom, 0, 0, 0, 0) FROM my_table;
 SELECT geometry normalize_geometry(geom, 0, 0, 0, 0.01) FROM my_table;
 ```
 
---- qui un'immagine con originale, 0 e altri 2 settaggi sarebbe buona!
+{% img postgis-normalize-geometry/_assets/example3.png %}
