@@ -55,12 +55,12 @@ Expressed in square `units`, the same as `PAR_area_threshold`.
 
 ## How normalization works
 
-The function analyzes all the adjacent points in the input geometry in groups of three. Now imagine a triangle is drawn connecting those three points.
-The **central** point of a group is removed in one of those cases:
+The function analyzes all the adjacent points in the input geometry in groups of three.
+Now imagine a triangle is drawn connecting those three points. The **central** point of a group is removed in one of those cases:
 
-1. the area of the triangle is smaller than `PAR_area_threshold` and the angle corresponding to the central point is smaller than `PAR_angle_threshold`
-2. the area of the triangle is smaller than `PAR_area_threshold` and the angle corresponding to the first or the last point is smaller than `PAR_angle_threshold` while the distance between the other two points is smaller than `PAR_point_distance_threshold`
-3. the area of the triangle is smaller than `PAR_null_area`, regardless of the angles
+1. The area of the triangle is smaller than `PAR_area_threshold` and the angle corresponding to the central point is smaller than `PAR_angle_threshold`
+2. The area of the triangle is smaller than `PAR_area_threshold` and the angle corresponding to the first or the last point is smaller than `PAR_angle_threshold` while the distance between the other two points is smaller than `PAR_point_distance_threshold`
+3. The area of the triangle is smaller than `PAR_null_area`, regardless of the angles
 
 
 ### A more *technical* explaination
@@ -80,7 +80,7 @@ Considering 3 adjacent points <code>P<sub>n-1</sub></code>, <code>P<sub>n</sub><
 The area obtained connecting those points *(ie. the area of the triangle formed by <code>P<sub>n-1</sub></code>, <code>P<sub>n</sub></code> and <code>P<sub>n+1</sub></code> points)* is equal or smaller than `PAR_null_area`.
 
 ### Some considerations and uses of `PAR_null_area` parameter
-The value `0` for `PAR_null_area` means *exactly on the same straight line*, while providing any value greater than `0` the function can be used to *simplify* your geometries. Note that if you provide all-zero input parameters the function can be effectively used just to remove useless points lying on the same straight line. See [example3](#example-3---use-the-function-to-simplify-the-geometries).
+Setting the value `0` for `PAR_null_area` is like saying *exactly on the same straight line*, while with any value greater than `0` the function can be used to *simplify* your geometries. Note that if you provide all-zero input parameters the function can be effectively used just to remove useless points lying on the same straight line. See [example3](#example-3---use-the-function-to-simplify-geometries).
 If *(for any undisclosed reason)* you don't even want to remove the points lying on the same straight line, use a value **smaller** than `0` for `PAR_null_area` (ie. `-1`) and this feature will be disabled.
 
 
@@ -92,7 +92,7 @@ While in some cases a `ST_Union()` would be more convenient, there are other cas
 The function intentionally uses `ST_Collect()`, leaving to the user the freedom to further operate on the normalized geometries.
 
 ### But this `ST_Collect()` is annoying, I'd rather prefer `ST_Union()`...
-I strongly reccomend that you ***not*** do that and instead handle the normalized geometries according to your use case *(eg. you are working on a polygon table, so you want to filter only `POLYGON` and `MULTIPOLYGON`, leaving out the rest)*, but if you want to perform a [ST_Union](http://postgis.net/docs/ST_Union.html) on the normalized geometry and don't want to deal with nested `ST_Dump()`/subqueries/`LATERAL` stuff *(maybe you want to perform a straightforward `UPDATE`)*, then you can use this wrapper function:
+I strongly reccomend that you ***NOT*** do that and instead handle the normalized geometries according to your use case *(eg. you are working on a polygon table, so you want to filter only `POLYGON` and `MULTIPOLYGON`, leaving out the rest)*, but if you want to perform a [ST_Union](http://postgis.net/docs/ST_Union.html) on the normalized geometry and don't want to deal with nested `ST_Dump()`/subqueries/`LATERAL` stuff *(maybe you want to perform a straightforward `UPDATE`)*, then you can use this wrapper function:
 
 ```sql
 CREATE OR REPLACE FUNCTION normalize_geometry_union(
@@ -121,7 +121,8 @@ Those parameters are the ones I use most of the times
 SELECT normalize_geometry(t.geom, 0.5, 0.5, 0.005, 0.0001) FROM my_table;
 ```
 
-Those will successfully normalize geometries like 
+Those will successfully normalize geometries like
+
 ```sql
 LINESTRING(0 0, 2 2, 0 4, -5 4, 0 4.001, 2 6)
 POLYGON((0 0, 0 0.5, 0 1, 1 1, 1 0, 1 -3, 0.99 0, 0 0))
@@ -164,7 +165,7 @@ FROM (
 GROUP BY id;
 ```
 
-You most likely want to filter the geometries somehow, let's assume you only want Polygons/Multipolygons discarding all the *leftovers*:
+You most likely want to filter the geometries somehow. For example let's assume you only want Polygons discarding all the *leftovers* (beware that `ST_Union()` may produce some Multipolygons here, so tune the query to your needs):
 
 ```sql
 SELECT t.id, ST_Union(l.geom) AS geom 
@@ -175,9 +176,9 @@ GROUP BY t.id
 ```
 
 
-### Example 3 - Use the function to simplify the geometries
-Both [ST_Simplify()](http://postgis.net/docs/ST_Simplify.html) and [ST_SimplifyPreserveTopology()](http://postgis.net/docs/ST_SimplifyPreserveTopology.html) use the *Douglas-Peucker algorithm*. Who does really (I mean, *REALLY*) know how the `tolerance` parameter work and can use it in a predictable way?
-Using `normalize_geometry` with the first three parameters set to `0` and focusing on `PAR_null_area`, we have a pretty nice simplifying function, try it!
+### Example 3 - Use the function to simplify geometries
+Both [ST_Simplify()](http://postgis.net/docs/ST_Simplify.html) and [ST_SimplifyPreserveTopology()](http://postgis.net/docs/ST_SimplifyPreserveTopology.html) use the *Douglas-Peucker algorithm*. Who does really (I mean, *FOR REAL!*) know how the `tolerance` parameter works and is able use it in a predictable way? I've had some disastrous results with them.
+Using `normalize_geometry` with the first three parameters set to `0` and focusing on `PAR_null_area`, we have a pretty powerful geometry-simplifying function, try it!
 
 ```sql
 -- Remove only points lying on the same straight line
