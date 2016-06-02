@@ -7,6 +7,7 @@ github          : https://github.com/gasparesganga/
 paypal          : https://paypal.me/gasparesganga/
 disqus          : gasparesganga
 
+future          : true
 paginate        : 10
 paginate_path   : /posts/page:num
 permalink       : /posts/:title/

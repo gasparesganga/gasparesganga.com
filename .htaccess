@@ -15,11 +15,15 @@ AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css a
 
 
 ########## Rewrite & Redirects ##########
-RewriteEngine On
-
-### Redirect www to non-www
-RewriteCond %{HTTP_HOST} ^www\.
-RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R=301,L]
+# RewriteEngine On
+# 
+# ### Redirect https to http
+# RewriteCond %{HTTP:X-Forwarded-Proto} https
+# RewriteRule .* http://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+# 
+# ### Redirect non-www to www
+# RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+# RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
 
 ########## Invalid URLs ##########
