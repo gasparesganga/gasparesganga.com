@@ -178,3 +178,4 @@ FROM (
 ```
 
 <img src="{% asset_path postgis-normalize-geometry/_assets/example3.png %}" style="width:100%; max-width:1000px;">
+
