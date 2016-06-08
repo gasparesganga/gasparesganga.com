@@ -216,7 +216,7 @@ $(document).ajaxStop(function(){
 // Now try to make a few Ajax calls, a Loading Overlay will be shown until the last call is completed!
 ```
 
-Or, in case you need some more sophisticated control over/filter, you can use [.ajaxSend()](https://api.jquery.com/ajaxSend/) and [.ajaxComplete()](https://api.jquery.com/ajaxComplete/) in the same way. LoadingOverlay will take care of multiple calls thanks to its internal counter feature.
+Or, in case you need some more sophisticated control/filter, you can use [.ajaxSend()](https://api.jquery.com/ajaxSend/) and [.ajaxComplete()](https://api.jquery.com/ajaxComplete/) in the same way. LoadingOverlay will take care of multiple calls thanks to its internal counter feature.
 
 ```javascript
 $(document).ajaxSend(function(event, jqxhr, settings){
