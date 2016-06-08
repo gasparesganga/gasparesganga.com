@@ -203,7 +203,9 @@ var interval = setInterval(function(){
 {% include_relative _demo.html demo="example5" %}
 
 
-### Example 6 - Use the counter feature to hide the Loading Overlay only when all Ajax calls are completed
+### Example 6 - Display a LoadingOverlay during each Ajax request
+You can rely on [.ajaxStart()](https://api.jquery.com/ajaxStart/) and [.ajaxStop()](https://api.jquery.com/ajaxStop/) to show and hide the LoadingOverlay during every Ajax request:
+
 ```javascript
 $(document).ajaxStart(function(){
     $.LoadingOverlay("show");
@@ -214,6 +216,17 @@ $(document).ajaxStop(function(){
 // Now try to make a few Ajax calls, a Loading Overlay will be shown until the last call is completed!
 ```
 
+Or, in case you need some more sophisticated control/filter, you can use [.ajaxSend()](https://api.jquery.com/ajaxSend/) and [.ajaxComplete()](https://api.jquery.com/ajaxComplete/) in the same way. LoadingOverlay will take care of multiple calls thanks to its internal counter feature.
+
+```javascript
+$(document).ajaxSend(function(event, jqxhr, settings){
+    $.LoadingOverlay("show");
+});
+$(document).ajaxComplete(function(event, jqxhr, settings){
+    $.LoadingOverlay("hide");
+});
+// Now try to make a few Ajax calls, a Loading Overlay will be shown until the last call is completed!
+```
 
 ### Example 7 - Play with extreme fade durations
 ```javascript
