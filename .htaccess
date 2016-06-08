@@ -1,5 +1,5 @@
 ########## Compress text files ##########
-AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/javascript application/json
+AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/javascript application/json image/svg+xml
 
 
 ########## Prevent html files cache ########## 
