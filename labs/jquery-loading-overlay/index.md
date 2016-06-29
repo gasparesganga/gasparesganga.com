@@ -15,7 +15,7 @@ source      : jquery-loading-overlay
 ---
 
 <div class="alert">
-    <b>29 June 2016 :</b> Version 1.4.0 released: a new versioning system has been introduced, as well as <code>imagePosition</code> option. See the complete <a href="/posts/jquery-loading-overlay-version-1.4.0/">release notes</a>.
+    <b>29 June 2016 :</b> Version 1.4.0 released: a new versioning system has been introduced, as well as <code>imagePosition</code> option. See the complete <a href="/posts/jquery-loading-overlay-1.4.0/">release notes</a>.
 </div>
 <div class="alert">
     <b>25 May 2016 :</b> Version 1.3 released with explicit <code>z-index</code> support. See <a href="/posts/jquery-loading-overlay-version-1.3/">this post</a> where I explain why I hadn't included it before and why I decided to do it now.
