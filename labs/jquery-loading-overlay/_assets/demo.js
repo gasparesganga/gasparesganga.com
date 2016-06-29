@@ -7,9 +7,6 @@ $(document).ready(function(){
     $("#example5").on("click",          Demo.Example5);
     $("#example7").on("click",          Demo.Example7);
     $("#extraprogress1").on("click",    Demo.ExtraProgress1);
-    $.LoadingOverlaySetup({
-        image   : "{% asset_path jquery-loading-overlay/_assets/loading.gif %}"
-    });
 });
 
 var Demo = (function($, undefined){
