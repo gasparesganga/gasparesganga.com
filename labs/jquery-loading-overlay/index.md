@@ -303,17 +303,13 @@ var progressCustom = new LoadingOverlayProgress({
 
 ## History
 
-##### 29 June 2016
-Version 1.4.0 released: a new versioning system has been introduced, as well as `imagePosition` option. See the complete [release notes](/posts/jquery-loading-overlay-1.4.0/).
+*29 June 2016* - [Version 1.4.0](/posts/jquery-loading-overlay-1.4.0/)
 
-##### 25 May 2016
-Version 1.3 released with explicit `z-index` support. See [this post](/posts/jquery-loading-overlay-version-1.3/) where I explain why I hadn't included it before and why I decided to do it now.
+*25 May 2016* - [Version 1.3](/posts/jquery-loading-overlay-version-1.3/)
 
-##### 22 April 2016
-Time for another release, version 1.2. This plugin has become the most popular of mine and I started to get more feedbacks. Fade in/out capabilities have been added as well as the first *Extra*: **Progress**. Check [this post](/posts/jquery-loading-overlay-version-1.2/) for a complete explaination of the changes.
+*22 April 2016* - [Version 1.2](/posts/jquery-loading-overlay-version-1.2/)
 
-##### 31 December 2015
-Version 1.1 released! After some feedback and requests from the users, I've added support for [Font Awesome](https://fortawesome.github.io/Font-Awesome/) and custom elements inside the overlay. Check [this post](/posts/jquery-loading-overlay-version-1.1/) for a complete explaination of the changes.
+*31 December 2015* - [Version 1.1](/posts/jquery-loading-overlay-version-1.1/)
 
-##### 15 February 2015
-Version 1.0, first public release!
+*15 February 2015* - [Version 1.0](/posts/jquery-loading-overlay-release/)
+
