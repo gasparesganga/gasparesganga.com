@@ -91,19 +91,30 @@ header {
         }
         #profile_social {
             margin-top      : 0.8rem;
-            fill            : $color_white;
+            a {
+                margin          0 0.3rem;
+            }
             svg {
                 width           : 1.5rem;
                 border-radius   : 2px;
             }
-            #profile_social_feed:hover {
-                fill    : #f4b83e;
+            #profile_social_feed {
+                fill        : $color_main;
+                &:hover {
+                    fill    : #f4b83e;
+                }
             }
-            #profile_social_twitter:hover {
-                fill    : #55acee;
+            #profile_social_twitter {
+                fill        : $color_white;
+                &:hover {
+                    fill    : #55acee;
+                }
             }
-            #profile_social_github:hover {
-                fill    : #f4b83e;
+            #profile_social_github {
+                fill        : $color_white;
+                &:hover {
+                    fill    : #000000;
+                }
             }
         }
     #menu {
