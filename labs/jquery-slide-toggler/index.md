@@ -14,9 +14,6 @@ download    : jquery-slide-toggler/archive/v1.0.zip
 source      : jquery-slide-toggler
 ---
 
-<div class="alert">
-    <b>8 July 2015 :</b> Version 1.1 is here! A new <code>remove</code> action is now available.
-</div>
 
 ## Quick Demo
 {% include_relative _demo.html demo="quick_demo" %}
@@ -324,3 +321,11 @@ $.SlideTogglerSetup({
     toolTipShow   : "Show Me!"
 });
 ```
+
+
+## History
+
+*8 July 2015* - [Version 1.1](/posts/jquery-slide-toggler-version-1.1/)
+
+*3 July 2015* - [Version 1.0](/posts/jquery-slide-toggler-release/)
+
