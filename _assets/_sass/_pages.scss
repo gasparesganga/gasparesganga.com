@@ -2,24 +2,31 @@
 #about_contact {
     ul {
         margin-left     : 1rem;
+        margin-right    : 1rem;
         list-style      : none;
         li {
             display         : flex;
             flex-flow       : row nowrap;
+            justify-content : flex-start;
+            align-items     : center;
             margin-bottom   : 0.5rem;
         }
     }
     .about_contact_icon {
         margin-right    : 0.5rem;
-        a:hover {
-            border-bottom   : none;
-        }
         img {
             width           : 1.5rem;
             vertical-align  : middle;
         }
     }
 }
+main a.about_contact_icon {
+    border-bottom   : none;
+    &:hover {
+        border-bottom   : none;
+    }
+}
+
 
 
 /*** Coffee ***/

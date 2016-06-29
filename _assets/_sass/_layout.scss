@@ -89,11 +89,21 @@ header {
                 }
             }
         }
-        #profile_feed {
+        #profile_social {
             margin-top      : 0.8rem;
-            img {
-                width           : 3rem;
+            fill            : $color_white;
+            svg {
+                width           : 1.5rem;
                 border-radius   : 2px;
+            }
+            #profile_social_feed:hover {
+                fill    : #f4b83e;
+            }
+            #profile_social_twitter:hover {
+                fill    : #55acee;
+            }
+            #profile_social_github:hover {
+                fill    : #f4b83e;
             }
         }
     #menu {
