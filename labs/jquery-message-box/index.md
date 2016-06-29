@@ -13,10 +13,6 @@ download    : jquery-message-box/archive/v1.1.zip
 source      : jquery-message-box
 ---
 
-<div class="alert">
-    <b>7 January 2016 :</b> Version 1.1 released to accomodate some requests from the users. Check <a href="/posts/jquery-message-box-version-1.1/">this post</a> for an explaination of the changes.
-</div>
-
 
 ## Quick Demo
 {% include_relative _demo.html demo="quick_demo" %}
@@ -149,4 +145,12 @@ $.MessageBoxSetup({
 
 ## Why this name?
 My little personal tribute to Visual Basic 6 `MsgBox()` function.
+
+
+
+## History
+
+*7 January 2016* - [Version 1.1](/posts/jquery-message-box-version-1.1/)
+
+*29 April 2015* - [Version 1.0](/posts/jquery-message-box-release/)
 

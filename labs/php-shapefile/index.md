@@ -9,9 +9,6 @@ download    : php-shapefile/archive/v1.1.zip
 source      : php-shapefile
 ---
 
-<div class="alert">
-    <b>31 March 2016 :</b> Version 1.1 released with some minor improvements. Check <a href="/posts/php-shapefile-version-1.1/">this post</a> for an explaination of the changes.
-</div>
 
 ## Usage
 
@@ -256,4 +253,11 @@ If your system doesn't come with [dBase](http://php.net/manual/en/intro.dbase.ph
 In order to use the same syntax I've written a conversion module to expose his functions with a `dbase_` prefix instead of `xbase_`. 
 I've also made a tiny bugfix to the original code at line `78` of the `api_conversion.php` file for `xbase_get_record` declaration.
 Nothing else is different in the code, so all credits go to **Erwin Kooi** for that lib.
+
+
+## History
+
+*31 March 2016* - [Version 1.1](/posts/php-shapefile-version-1.1/)
+
+*13 November 2014* - [Version 1.0](/posts/php-shapefile-release/)
 
