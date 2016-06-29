@@ -92,7 +92,7 @@ header {
         #profile_social {
             margin-top      : 0.8rem;
             a {
-                margin          0 0.3rem;
+                margin          : 0 0.3rem;
             }
             svg {
                 width           : 1.5rem;
@@ -101,19 +101,19 @@ header {
             #profile_social_feed {
                 fill        : $color_main;
                 &:hover {
-                    fill    : #f4b83e;
+                    fill    : $color_feed;
                 }
             }
             #profile_social_twitter {
                 fill        : $color_white;
                 &:hover {
-                    fill    : #55acee;
+                    fill    : $color_twitter;
                 }
             }
             #profile_social_github {
                 fill        : $color_white;
                 &:hover {
-                    fill    : #000000;
+                    fill    : $color_github;
                 }
             }
         }
