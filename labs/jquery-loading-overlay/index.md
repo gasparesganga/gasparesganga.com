@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery LoadingOverlay
 description : A flexible loading overlay jQuery Plugin
-updated     : 2016-05-25
+updated     : 2016-06-29
 css         :
   - jquery-loading-overlay/_assets/font-awesome-4.6.3/font-awesome.scss
 js          :
@@ -10,10 +10,13 @@ js          :
   - jquery-loading-overlay/_assets/loadingoverlay.min.js
   - jquery-loading-overlay/_assets/loadingoverlay_progress.min.js
   - jquery-loading-overlay/_assets/demo.js
-download    : jquery-loading-overlay/archive/v1.3.zip
+download    : jquery-loading-overlay/archive/1.4.0.zip
 source      : jquery-loading-overlay
 ---
 
+<div class="alert">
+    <b>29 June 2016 :</b> Version 1.4.0 released: a new versioning system has been introduced, as well as <code>`imagePosition`</code> option. See the complete <a href="/posts/jquery-loading-overlay-version-1.4.0/">release notes</a>.
+</div>
 <div class="alert">
     <b>25 May 2016 :</b> Version 1.3 released with explicit <code>`z-index`</code> support. See <a href="/posts/jquery-loading-overlay-version-1.3/">this post</a> where I explain why I hadn't included it before and why I decided to do it now.
 </div>
@@ -74,7 +77,8 @@ color           : "rgba(255, 255, 255, 0.8)"    // String
 custom          : ""                            // String/DOM Element/jQuery Object
 fade            : true                          // Boolean/Integer/String/Array
 fontawesome     : ""                            // String
-image           : "loading.gif"                 // String
+image           : "data:image/gif;base64,..."   // String
+imagePosition   : "center center"               // String
 maxSize         : "100px"                       // Integer/String
 minSize         : "20px"                        // Integer/String
 resizeInterval  : 0,                            // Integer
@@ -96,6 +100,9 @@ Controls the *fade in* and *fade out* durations. It can be either `0` or `false`
 
 ##### `image`
 URL of the image to show. Use an empty string `""` or `false` to show no image.
+
+##### `imagePosition`
+This option is mapped directly to CSS `background-position` property to customize the position of the image.
 
 ##### `maxSize`
 Maximun size of image in **pixels**. Set it to `0` or `false` for no limit.
