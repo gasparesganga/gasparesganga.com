@@ -3,9 +3,12 @@ description     : Software Developer. GIS & Web Mapping expert at Setin.
 author          : Gaspare Sganga
 production_url  : http://gasparesganga.com
 development_url : http://draft.gasparesganga.com
-github          : https://github.com/gasparesganga/
-paypal          : https://paypal.me/gasparesganga/
-disqus          : gasparesganga
+social          :
+  disqus    : gasparesganga
+  feed      : /feed.xml
+  github    : https://github.com/gasparesganga
+  paypal    : https://paypal.me/gasparesganga
+  twitter   : https://twitter.com/gasparesganga
 
 future          : true
 paginate        : 10
@@ -42,9 +45,9 @@ assets :
   cache     : false
   digest    : true
   compress  :
-    js  : false
-    css : false
-  features:
+    js                  : false
+    css                 : false
+  features  :
     automatic_img_size  : false
     automatic_img_alt   : false
     liquid              : false

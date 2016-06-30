@@ -2,7 +2,7 @@
 layout      : post
 title       : jQuery LoadingOverlay 1.4.0
 description : CDN, imagePosition option and more
-tags        : [Javascript, jQuery, Plugin, LoadingOverlay]
+tags        : [Releases, Javascript, jQuery, Plugin, LoadingOverlay]
 ---
 
 

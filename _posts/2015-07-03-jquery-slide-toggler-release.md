@@ -2,7 +2,7 @@
 layout      : post
 title       : jQuery SlideToggler release
 description : First public release
-tags        : [Javascript, jQuery, Plugin]
+tags        : [Releases, Javascript, jQuery, Plugin]
 ---
 
 

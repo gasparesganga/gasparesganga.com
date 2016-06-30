@@ -2,7 +2,7 @@
 layout      : post
 title       : jQuery AjaxDownloader release
 description : First public release
-tags        : [Javascript, jQuery, Plugin, PHP]
+tags        : [Releases, Javascript, jQuery, Plugin, PHP]
 ---
 
 Sometimes your web app needs to download a file and you suddenly have to switch from your super modular Javascript code to an old school kludgy HTML form to simulate ad ajax-like user experience...

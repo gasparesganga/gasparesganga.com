@@ -2,7 +2,7 @@
 layout      : post
 title       : PHP ShapeFile release
 description : First public release
-tags        : [PHP, ShapeFile, GIS]
+tags        : [Releases, PHP, ShapeFile, GIS]
 ---
 
 Working on a system to import and process ESRI Shapefiles directly to PostGIS, I needed a library to read those files in PHP.

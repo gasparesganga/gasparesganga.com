@@ -89,11 +89,32 @@ header {
                 }
             }
         }
-        #profile_feed {
+        #profile_social {
             margin-top      : 0.8rem;
-            img {
-                width           : 3rem;
+            a {
+                margin          : 0 0.3rem;
+            }
+            svg {
+                width           : 1.5rem;
                 border-radius   : 2px;
+            }
+            #profile_social_feed {
+                fill        : $color_main;
+                &:hover {
+                    fill    : $color_feed;
+                }
+            }
+            #profile_social_twitter {
+                fill        : $color_white;
+                &:hover {
+                    fill    : $color_twitter;
+                }
+            }
+            #profile_social_github {
+                fill        : $color_white;
+                &:hover {
+                    fill    : $color_github;
+                }
             }
         }
     #menu {
@@ -277,7 +298,7 @@ main {
         margin              : 1rem 0;
     }
     
-    .social {
+    .share {
         text-align      : center;
         margin-top      : 2rem;
         padding-top     : 0.4rem;
@@ -288,10 +309,10 @@ main {
             border  : none;
         }
     }
-        .social_title {
+        .share_title {
             margin-bottom   : 0.3rem;
         }
-        .social_buttons {
+        .share_buttons {
             display         : inline-block;
         }
      

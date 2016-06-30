@@ -2,7 +2,7 @@
 layout      : post
 title       : jQuery MessageBox release
 description : First public release
-tags        : [Javascript, jQuery, Plugin]
+tags        : [Releases, Javascript, jQuery, Plugin]
 ---
 
 A pretty looking alternative to Javascript's window.alert(), window.confirm() and window.prompt() functions.
