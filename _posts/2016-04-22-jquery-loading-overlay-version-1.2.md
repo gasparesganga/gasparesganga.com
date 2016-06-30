@@ -2,7 +2,7 @@
 layout      : post
 title       : jQuery LoadingOverlay version 1.2
 description : New 1.2 release, with new features and extras
-tags        : [Javascript, jQuery, Plugin, LoadingOverlay]
+tags        : [Releases, Javascript, jQuery, Plugin, LoadingOverlay]
 ---
 
 My [jQuery LoadingOverlay plugin](/labs/jquery-loading-overlay/) continues be the most popular release of mine. It gets downloaded and I recieve feedback messages and emails almost daily, wow!

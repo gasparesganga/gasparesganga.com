@@ -2,7 +2,7 @@
 layout      : post
 title       : jQuery LoadingOverlay version 1.3
 description : You won, explicit zIndex option is now available
-tags        : [Javascript, jQuery, Plugin, LoadingOverlay]
+tags        : [Releases, Javascript, jQuery, Plugin, LoadingOverlay]
 ---
 
 Every now and then I get some requests to include an option to explicitly set `z-index` in my [jQuery LoadingOverlay plugin](/labs/jquery-loading-overlay/).

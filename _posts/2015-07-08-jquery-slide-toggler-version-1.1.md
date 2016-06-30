@@ -2,7 +2,7 @@
 layout      : post
 title       : jQuery SlideToggler version 1.1
 description : Version 1.1 is already here!
-tags        : [Javascript, jQuery, Plugin]
+tags        : [Releases, Javascript, jQuery, Plugin]
 ---
 
 

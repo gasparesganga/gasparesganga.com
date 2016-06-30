@@ -2,7 +2,7 @@
 layout      : post
 title       : jQuery MessageBox version 1.1
 description : Version 1.1 released, with some new features
-tags        : [Javascript, jQuery, Plugin]
+tags        : [Releases, Javascript, jQuery, Plugin]
 ---
 
 I use my **jQuery MessageBox** plugin in every single webapp I make, who doesn't need *some kind of alert* at one point or another?

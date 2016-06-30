@@ -2,7 +2,7 @@
 layout      : post
 title       : jQuery LoadingOverlay release
 description : First public release
-tags        : [Javascript, jQuery, Plugin]
+tags        : [Releases, Javascript, jQuery, Plugin]
 ---
 
 A simple and powerful Loading Overlay which can be used over the **whole page** or over **single DOM elements**.

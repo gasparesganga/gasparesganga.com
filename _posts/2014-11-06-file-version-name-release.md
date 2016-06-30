@@ -2,7 +2,7 @@
 layout      : post
 title       : FileVersionName release
 description : First public release of this .htaccess/PHP solution
-tags        : [PHP, .htaccess]
+tags        : [Releases, PHP, .htaccess]
 ---
 
 The first Lab release is a little .htaccess/PHP solution to force browsers to reload (*and re-cache!*) modified images, css, javascript and other resources.

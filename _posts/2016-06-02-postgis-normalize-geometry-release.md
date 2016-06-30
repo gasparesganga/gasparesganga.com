@@ -2,7 +2,7 @@
 layout      : post
 title       : PostGIS NormalizeGeometry release
 description : It works, for real!
-tags        : [PostGIS, PostgreSQL, PL/pgSQL]
+tags        : [Releases, PostGIS, PostgreSQL, PL/pgSQL]
 ---
 
 Ok, this is a good one, I promise!
