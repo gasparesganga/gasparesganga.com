@@ -1,5 +1,5 @@
 /*** About ***/
-#about_contact {
+#about_contacts {
     ul {
         margin-left     : 1rem;
         margin-right    : 1rem;
@@ -12,7 +12,7 @@
             margin-bottom   : 0.5rem;
         }
     }
-    .about_contact_icon {
+    .about_contacts_icon {
         margin-right    : 0.5rem;
         img {
             width           : 1.5rem;
@@ -20,7 +20,7 @@
         }
     }
 }
-main a.about_contact_icon {
+main a.about_contacts_icon {
     border-bottom   : none;
     &:hover {
         border-bottom   : none;
