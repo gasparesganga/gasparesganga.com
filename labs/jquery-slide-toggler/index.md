@@ -29,18 +29,18 @@ Initialize the SlideToggler on an element, providing some [options](#options-and
 #### *$(selector).SlideToggler(action [,customSpeed])*
 There are 4 ***actions*** available: `show`, `hide`, `status` and `remove`.
 
-##### Show & Hide
+**Show & Hide**
 `$(selector).SlideToggler("show" [,customSpeed])`
 `$(selector).SlideToggler("hide" [,customSpeed])`
-Use the actions `"show"` and `"hide"` to programmatically open and close the SlideToggler, optionally providing a `customSpeed` to override the [speed setting](#speed). A **chainable jQuery object/collection** will be returned.
+Use the actions `show` and `hide` to programmatically open and close the SlideToggler, optionally providing a `customSpeed` to override the [speed setting](#speed). A **chainable jQuery object/collection** is returned.
 
-##### Status
+**Status**
 `$(selector).SlideToggler("status")`
-Use the action `"status"` to get a boolean value representing the current open *(true)* or closed *(false)* status of the SlideToggler. The return value corresponds to the **first element** in the set of matched elements.
+Use the action `status` to get a boolean value representing the current open *(true)* or closed *(false)* status of the SlideToggler. The return value corresponds to the **first element** in the set of matched elements.
 
-##### Remove
+**Remove**
 `$(selector).SlideToggler("remove")`
-Use the action `"remove"` to revert the element back to its original condition, removing the SlideToggler. A **chainable jQuery object/collection** will be returned.
+Use the action `remove` to revert the element back to its original condition, removing the SlideToggler. A **chainable jQuery object/collection** is returned.
 
 
 #### *$.SlideTogglerSetup(options)*
@@ -99,19 +99,19 @@ See [Example 2](#example-2---events) for details, especially about `data` passed
 
 #### BeforeShow
 `$(selector).on("beforeshow.slidetoggler", function(event, data){})`
-Fired **before** the [show](#show-&-hide) action is performed. Actual `speed` *(default or custom one)* and `title` are passed as `data` to the event handler.
+Fired **before** the `show` action is performed. Actual `speed` *(default or custom one)* and `title` are passed as `data` to the event handler.
 
 #### AfterShow
 `$(selector).on("aftershow.slidetoggler", function(event, data){})`
-Fired **after** the [show](#show-&-hide) action is performed. `title` is passed as `data` to the event handler.
+Fired **after** the `show` action is performed. `title` is passed as `data` to the event handler.
 
 #### BeforeHide
 `$(selector).on("beforehide.slidetoggler", function(event, data){})`
-Fired **before** the [hide](#show-&-hide) action is performed. Actual `speed` *(default or custom one)* and `title` are passed as `data` to the event handler.
+Fired **before** the `hide` action is performed. Actual `speed` *(default or custom one)* and `title` are passed as `data` to the event handler.
 
 #### AfterHide
 `$(selector).on("afterhide.slidetoggler", function(event, data){})`
-Fired **after** the [hide](#show-&-hide) action is performed. `title` is passed as `data` to the event handler.
+Fired **after** the `hide` action is performed. `title` is passed as `data` to the event handler.
 
 
 

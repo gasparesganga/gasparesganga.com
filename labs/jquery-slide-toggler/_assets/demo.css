@@ -9,9 +9,9 @@
 
 #example2_events {
     margin-top          : 1rem;
-    text-align          : center;
+    text-align          : left;
     padding             : 0.3rem 1rem;
-    background-color    : #f6f6f6;
+    background-color    : #fafafa;
     border              : 1px solid #cccccc;
 }
 
