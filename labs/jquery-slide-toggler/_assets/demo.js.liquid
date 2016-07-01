@@ -19,18 +19,14 @@ $(document).ready(function(){
        autoHide   : false,
        speed      : 2000,
        title      : "Example 2"
-    })
-    .on("beforeshow.slidetoggler", function(event){
-        $("#example2_events").html("Event <b>BeforeShow</b> fired.....");
-    })
-    .on("aftershow.slidetoggler", function(event){
-        $("#example2_events").append(" Event <b>AfterShow</b> fired");
-    })
-    .on("beforehide.slidetoggler", function(event){
-        $("#example2_events").html("Event <b>BeforeHide</b> fired.....");
-    })
-    .on("afterhide.slidetoggler", function(event){
-        $("#example2_events").append(" Event <b>AfterHide</b> fired");
+    }).on("beforeshow.slidetoggler", function(event, data){
+        $("#example2_events").html("Event <b>BeforeShow</b> fired. Data: " + JSON.stringify(data, null, 4));
+    }).on("aftershow.slidetoggler", function(event, data){
+        $("#example2_events").append("<br><br>Event <b>AfterShow</b> fired. Data: " + JSON.stringify(data, null, 4));
+    }).on("beforehide.slidetoggler", function(event, data){
+        $("#example2_events").html("<br><br>Event <b>BeforeHide</b> fired. Data: " + JSON.stringify(data, null, 4));
+    }).on("afterhide.slidetoggler", function(event, data){
+        $("#example2_events").append("<br><br>Event <b>AfterHide</b> fired. Data: " + JSON.stringify(data, null, 4));
     });
     
     
@@ -53,7 +49,7 @@ $(document).ready(function(){
     });
     
     
-    /***** Example 3 *****/
+    /***** Example 5 *****/
     $("#example5_content1").SlideToggler({
         statusPosition  : "left",
         title           : "Title 1",

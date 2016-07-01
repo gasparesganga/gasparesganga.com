@@ -14,7 +14,7 @@ My bad I overlooked that with my first releases.
 ### CDN
 This subtle change in the versioning system has been made in order to use [jsDelivr](http://www.jsdelivr.com/) CDN. Further details will soon be available in the [documentation](/labs/jquery-loading-overlay/).
 
-### Default `loading.gif` image is now embedded ad Data URI
+### Default `loading.gif` image is now embedded as Data URI
 The original GIF image is still available in the repository, but it's not used by default.
 You can now use LoadingOverlay inlcuding a single file *(ie. loadingoverlay.min.js)* directly from the CDN.
 
