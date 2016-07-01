@@ -20,13 +20,13 @@ $(document).ready(function(){
        speed      : 2000,
        title      : "Example 2"
     }).on("beforeshow.slidetoggler", function(event, data){
-        $("#example2_events pre").append("Event <b>BeforeShow</b> fired. Data: \n" + JSON.stringify(data, null, 4) + "\n");
+        $("#example2_events pre").append("\nEvent <b>BeforeShow</b> fired. Data: " + JSON.stringify(data) + "\n");
     }).on("aftershow.slidetoggler", function(event, data){
-        $("#example2_events pre").append("Event <b>AfterShow</b> fired. Data: \n" + JSON.stringify(data, null, 4) + "\n");
+        $("#example2_events pre").append("Event <b>AfterShow</b> fired. Data: " + JSON.stringify(data) + "\n");
     }).on("beforehide.slidetoggler", function(event, data){
-        $("#example2_events pre").append("Event <b>BeforeHide</b> fired. Data: \n" + JSON.stringify(data, null, 4) + "\n");
+        $("#example2_events pre").append("\nEvent <b>BeforeHide</b> fired. Data: " + JSON.stringify(data) + "\n");
     }).on("afterhide.slidetoggler", function(event, data){
-        $("#example2_events pre").append("Event <b>AfterHide</b> fired. Data: \n" + JSON.stringify(data, null, 4) + "\n");
+        $("#example2_events pre").append("Event <b>AfterHide</b> fired. Data: " + JSON.stringify(data) + "\n");
     });
     $("#example2_clear").on("click", function(event){
         $("#example2_events pre").empty();

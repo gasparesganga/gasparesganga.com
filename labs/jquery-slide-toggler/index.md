@@ -22,23 +22,23 @@ source      : jquery-slide-toggler
 
 ## Methods
 
-#### *$(selector).SlideToggler([options])*
+### *$(selector).SlideToggler([options])*
 Initialize the SlideToggler on an element, providing some [options](#options-and-defaults-values).
 
 
-#### *$(selector).SlideToggler(action [,customSpeed])*
+### *$(selector).SlideToggler(action [,customSpeed])*
 There are 4 ***actions*** available: `show`, `hide`, `status` and `remove`.
 
-**Show & Hide**
+##### Show & Hide
 `$(selector).SlideToggler("show" [,customSpeed])`
 `$(selector).SlideToggler("hide" [,customSpeed])`
 Use the actions `show` and `hide` to programmatically open and close the SlideToggler, optionally providing a `customSpeed` to override the [speed setting](#speed). A **chainable jQuery object/collection** is returned.
 
-**Status**
+##### Status
 `$(selector).SlideToggler("status")`
 Use the action `status` to get a boolean value representing the current open *(true)* or closed *(false)* status of the SlideToggler. The return value corresponds to the **first element** in the set of matched elements.
 
-**Remove**
+##### Remove
 `$(selector).SlideToggler("remove")`
 Use the action `remove` to revert the element back to its original condition, removing the SlideToggler. A **chainable jQuery object/collection** is returned.
 

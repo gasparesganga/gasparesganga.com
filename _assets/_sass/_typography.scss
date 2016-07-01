@@ -20,7 +20,13 @@ h4, h5 {
 }
 h5 {
     border          : none;
-    margin-bottom   : 0.0rem;
+    margin-bottom   : 0;
+}
+h1+h2, h1+h3, h1+h4, h1+h5, 
+h2+h3, h2+h4, h2+h5, 
+h3+h4, h3+h5, 
+h4+h5 {
+    margin-top      : 0;
 }
 
 
