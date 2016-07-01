@@ -29,7 +29,7 @@ $(document).ready(function(){
         $("#example2_events pre").append("Event <b>AfterHide</b> fired. Data: " + JSON.stringify(data) + "\n");
     });
     $("#example2_clear").on("click", function(event){
-        $("#example2_events pre").empty();
+        $("#example2_events pre").html("Use the SlideToggler to log the events here");
     });
     
     /***** Example 3 *****/
