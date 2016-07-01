@@ -19,20 +19,18 @@ $(document).ready(function(){
        autoHide   : false,
        speed      : 2000,
        title      : "Example 2"
-    })
-    .on("beforeshow.slidetoggler", function(event){
-        $("#example2_events").html("Event <b>BeforeShow</b> fired.....");
-    })
-    .on("aftershow.slidetoggler", function(event){
-        $("#example2_events").append(" Event <b>AfterShow</b> fired");
-    })
-    .on("beforehide.slidetoggler", function(event){
-        $("#example2_events").html("Event <b>BeforeHide</b> fired.....");
-    })
-    .on("afterhide.slidetoggler", function(event){
-        $("#example2_events").append(" Event <b>AfterHide</b> fired");
+    }).on("beforeshow.slidetoggler", function(event, data){
+        $("#example2_events pre").append("\nEvent <b>BeforeShow</b> fired. Data: " + JSON.stringify(data) + "\n");
+    }).on("aftershow.slidetoggler", function(event, data){
+        $("#example2_events pre").append("Event <b>AfterShow</b> fired. Data: " + JSON.stringify(data) + "\n");
+    }).on("beforehide.slidetoggler", function(event, data){
+        $("#example2_events pre").append("\nEvent <b>BeforeHide</b> fired. Data: " + JSON.stringify(data) + "\n");
+    }).on("afterhide.slidetoggler", function(event, data){
+        $("#example2_events pre").append("Event <b>AfterHide</b> fired. Data: " + JSON.stringify(data) + "\n");
     });
-    
+    $("#example2_clear").on("click", function(event){
+        $("#example2_events pre").html("Use the SlideToggler to log the events here");
+    });
     
     /***** Example 3 *****/
     // Initialize SlideTogglers
@@ -53,7 +51,7 @@ $(document).ready(function(){
     });
     
     
-    /***** Example 3 *****/
+    /***** Example 5 *****/
     $("#example5_content1").SlideToggler({
         statusPosition  : "left",
         title           : "Title 1",

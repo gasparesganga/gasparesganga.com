@@ -22,24 +22,29 @@ source      : jquery-slide-toggler
 
 ## Methods
 
-#### *$.SlideToggler([options])*
+### *$(selector).SlideToggler([options])*
 Initialize the SlideToggler on an element, providing some [options](#options-and-defaults-values).
 
-#### *$.SlideToggler(action [,customSpeed])*
+
+### *$(selector).SlideToggler(action [,customSpeed])*
 There are 4 ***actions*** available: `show`, `hide`, `status` and `remove`.
 
-**`show`, `hide`**
-Use the actions `show` and `hide` to manually open and close the SlideToggler, optionally providing a `customSpeed` for this particular time. In this case the method will return a chainable jQuery object/collection.
+##### Show & Hide
+`$(selector).SlideToggler("show" [,customSpeed])`
+`$(selector).SlideToggler("hide" [,customSpeed])`
+Use the actions `show` and `hide` to programmatically open and close the SlideToggler, optionally providing a `customSpeed` to override the [speed setting](#speed). A **chainable jQuery object/collection** is returned.
 
-**`status`**
-Use the action `status` to get a boolean value representing the current open or closed status of the SlideToggler. The method will return a value corresponding to the first element in the set of matched elements.
+##### Status
+`$(selector).SlideToggler("status")`
+Use the action `status` to get a boolean value representing the current open *(true)* or closed *(false)* status of the SlideToggler. The return value corresponds to the **first element** in the set of matched elements.
 
-**`remove`**
-Use the action `remove` to revert the element back to its original status, prior to the SlideToggler.
+##### Remove
+`$(selector).SlideToggler("remove")`
+Use the action `remove` to revert the element back to its original condition, removing the SlideToggler. A **chainable jQuery object/collection** is returned.
 
 
 #### *$.SlideTogglerSetup(options)*
-Set default `options` for all future calls to `$.SlideToggler(options)`.
+Set default `options` for all future calls to `$(selector).SlideToggler(options)`.
 
 
 
@@ -58,10 +63,10 @@ toolTipShow     : "Show"            // String
 ```
 
 ##### `autoHide`
-Set to `true` to initialize the SlideToggler closed. Set to `false` to leave it open.
+Set to `true` to initialize the SlideToggler in closed status. Set to `false` to leave it open.
 
 ##### `speed`
-Speed in milliseconds. It is passed to jQuery [.slideToggle()](http://api.jquery.com/slidetoggle/) function as `duration`, so you can use supported strings as well.
+Speed in **milliseconds**. It is passed to jQuery [.slideToggle()](http://api.jquery.com/slidetoggle/) function as `duration`, so you can use supported strings as well.
 
 ##### `statusHide`
 Text/Html to show in the status when the SlideToggler is open.
@@ -90,18 +95,23 @@ Tool tip to show when mouse pointer passes over closed SlideToggler.
 
 
 ## Events
+See [Example 2](#example-2---events) for details, especially about `data` passed to the event handlers.
 
-#### *BeforeShow.SlideToggler*
-Fired before the `show` action is performed. Actual `speed` *(default or custom one)* and `title` are passed as data to the event handler.
+#### BeforeShow
+`$(selector).on("beforeshow.slidetoggler", function(event, data){})`
+Fired **before** the `show` action is performed. Actual `speed` *(default or custom one)* and `title` are passed as `data` to the event handler.
 
-#### *AfterShow.SlideToggler*
-Fired after the `show` action is performed. `title` is passed as data to the event handler.
+#### AfterShow
+`$(selector).on("aftershow.slidetoggler", function(event, data){})`
+Fired **after** the `show` action is performed. `title` is passed as `data` to the event handler.
 
-#### *BeforeHide.SlideToggler*
-Fired before the `hide` action is performed. Actual `speed` (default or custom one) and `title` are passed as data to the event handler.
+#### BeforeHide
+`$(selector).on("beforehide.slidetoggler", function(event, data){})`
+Fired **before** the `hide` action is performed. Actual `speed` *(default or custom one)* and `title` are passed as `data` to the event handler.
 
-#### *AfterHide.SlideToggler*
-Fired after the `hide` action is performed. `title` is passed as data to the event handler.
+#### AfterHide
+`$(selector).on("afterhide.slidetoggler", function(event, data){})`
+Fired **after** the `hide` action is performed. `title` is passed as `data` to the event handler.
 
 
 
@@ -147,14 +157,18 @@ $("#example2").SlideToggler({
     autoHide   : false,
     speed      : 2000,
     title      : "Example 2"
-}).on("beforeshow.slidetoggler", function(event){
-    console.log("Event BeforeShow fired");
-}).on("aftershow.slidetoggler", function(event){
-    console.log("Event AfterShow fired");
-}).on("beforehide.slidetoggler", function(event){
-   console.log("Event BeforeHide fired");
-}).on("afterhide.slidetoggler", function(event){
-    console.log("Event AfterHide fired");
+}).on("beforeshow.slidetoggler", function(event, data){
+    console.log("Event BeforeShow fired. Data:");
+    console.log(data);
+}).on("aftershow.slidetoggler", function(event, data){
+    console.log("Event AfterShow fired. Data:");
+    console.log(data);
+}).on("beforehide.slidetoggler", function(event, data){
+   console.log("Event BeforeHide fired. Data:");
+   console.log(data);
+}).on("afterhide.slidetoggler", function(event, data){
+    console.log("Event AfterHide fired. Data:");
+    console.log(data);
 });
 ```
 
