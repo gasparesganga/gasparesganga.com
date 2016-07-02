@@ -38,26 +38,28 @@ source      : jquery-loading-overlay
 ## Methods
 There are three different methods, one to attach a Loading Overlay to the `body` and thus covering the whole page, another to attach it to a single DOM element or a set of DOM elements and the last one to set the default parameters.
 
-#### *$.LoadingOverlay(action [,options])*
+### *$.LoadingOverlay(action [,options])*
 Shows the Loading Overlay with a fixed position, covering the whole page. Optionally pass some `options` to it.
 This method doesn't return anything.
 
-#### *$(selector).LoadingOverlay(action [,options])*
+### *$(selector).LoadingOverlay(action [,options])*
 Attach the Loading Overlay to a single DOM element or a set of DOM elements. Optionally pass some `options` to it.
 This method return a jQuery object or a set of jQuery objects (depending on the selector used) and is **chainable**.
 
-#### *$.LoadingOverlaySetup(options)*
-Set default `options` for all future calls to `$.LoadingOverlay` and `$(selector).LoadingOverlay`.
+### *$.LoadingOverlaySetup(options)*
+Set default `options` for all future calls to `$.LoadingOverlay()` and `$(selector).LoadingOverlay()`.
 
 
 
 ## Actions
-The `$.LoadingOverlay` and `$(selector).LoadingOverlay` methods have two variants, corresponding to two *actions*:
+The `$.LoadingOverlay()` and `$(selector).LoadingOverlay()` methods have two variants, corresponding to two *actions*:
 
-##### *$[(selector)].LoadingOverlay("show" [,options])*
+##### Show
+`$[(selector)].LoadingOverlay("show" [,options])`
 Show a Loading Overlay, or increase the *counter* if it's already shown. Optionally you can pass a set of `options`, but note that they only take effect if the Loading Overlay is not shown yet on the element.
 
-##### *$[(selector)].LoadingOverlay("hide" [,force])*
+##### Hide
+`$[(selector)].LoadingOverlay("hide" [,force])`
 Hide the Loading Overlay or decrease the *counter* if it's more than 1. You can optionally pass a boolean parameter `force` to hide the Loading Overlay even if the counter hasn't reached `0`.
 
 
