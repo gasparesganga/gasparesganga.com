@@ -2,6 +2,10 @@
     display : none;
 }
 
+.example_iblock {
+    display : inline-block;
+}
+
 #example1_log {
     margin-top          : 1rem;
     text-align          : left;
@@ -10,11 +14,18 @@
     border              : 1px solid #cccccc;
 }
 #example1_buttons button {
-    width   : 10rem;
+    width       : 7rem;
+    min-width   : 7rem;
 }
 #example1_buttons label {
-    width   : 5rem;
+    display         : inline-block;
+    margin-right    : 0.3rem;
 }
-#example1_buttons input[type=text] {
-    width   : 3rem;
-}
+    #example1_buttons label span {
+        display         : inline-block;
+        width           : 5rem;
+    }
+    #example1_buttons label input[type=text] {
+        width           : 3rem;
+        text-align      : left;
+    }

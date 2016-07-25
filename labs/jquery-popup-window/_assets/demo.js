@@ -1,6 +1,8 @@
 $(document).ready(function(){
     $("#quick_demo_button").on("click", Demo.QuickDemo);
     $("#example1_button").on("click",   Demo.Example1);
+    $("#example2_button").on("click",   Demo.Example2);
+    $("#example3_button").on("click",   Demo.Example3);
     Demo.Init();
 });
 
@@ -8,14 +10,16 @@ var Demo = (function($, undefined){
     return {
         Init        : Init,
         QuickDemo   : QuickDemo,
-        Example1    : Example1
+        Example1    : Example1,
+        Example2    : Example2,
+        Example3    : Example3
     };
     
     
     function Init(){
         /********** QuickDemo **********/
         $("#quick_demo").PopupWindow({
-            
+            autoOpen    : false
         });
         
         /********** Example 1 **********/
@@ -93,6 +97,7 @@ var Demo = (function($, undefined){
         $("#example1").PopupWindow({
             title           : "Example 1 - Complete playground",
             modal           : false,
+            autoOpen        : false,
             height          : 200,
             width           : 300,
             collapsedWidth  : 300,

@@ -27,19 +27,21 @@
     </p>
     <p>
         <button id="example1_getposition">Get Position</button>
-        <br>
-        <button id="example1_setposition">Set Position</button>
-        <label>Top<input id="example1_setposition_input_top" type="text" value="100"></label>
-        <label>Left<input id="example1_setposition_input_left" type="text" value="100"></label>
-        <label>Animation<input id="example1_setposition_input_animation" type="text" value="500"></label>
+        <span class="example_iblock">
+            <button id="example1_setposition">Set Position</button>
+            <label><span>Top</span>         <input id="example1_setposition_input_top"          type="text" value="100"></label>
+            <label><span>Left</span>        <input id="example1_setposition_input_left"         type="text" value="100"></label>
+            <label><span>Animation</span>   <input id="example1_setposition_input_animation"    type="text" value="500"></label>
+        </span>
     </p>
     <p>
         <button id="example1_getsize">Get Size</button>
-        <br>
-        <button id="example1_setsize">Set Size</button>
-        <label>Width<input id="example1_setsize_input_width" type="text" value="500"></label>
-        <label>Height<input id="example1_setsize_input_height" type="text" value="300"></label>
-        <label>Animation<input id="example1_setsize_input_animation" type="text" value="100"></label>
+        <span class="example_iblock">
+            <button id="example1_setsize">Set Size</button>
+            <label><span>Width</span>       <input id="example1_setsize_input_width"     type="text" value="500"></label>
+            <label><span>Height</span>      <input id="example1_setsize_input_height"    type="text" value="300"></label>
+            <label><span>Animation</span>   <input id="example1_setsize_input_animation" type="text" value="100"></label>
+        </span>
     </p>
     <p>
         <button id="example1_getstate">Get State</button>
@@ -61,10 +63,11 @@
 
 
 {% when "example2" %}
-<input id="example2" type="button" value="Example 2 - Single element Overlay">
+<input id="example2_button" type="button" value="Example 2 - Modal windows">
+
 
 {% when "example3" %}
-<input id="example3" type="button" value="Example 3 - Single element Overlay with auto resize">
+<input id="example3_button" type="button" value="Example 3 - Custom style">
 
 
 {% endcase %}

@@ -429,6 +429,7 @@ $("#example1_destroy").on("click", function(event){
 $("#example1").PopupWindow({
     title           : "Example 1 - Complete playground",
     modal           : false,
+    autoOpen        : false,
     height          : 200,
     width           : 300,
     collapsedWidth  : 300,
@@ -438,7 +439,7 @@ $("#example1").PopupWindow({
 {% include_relative _demo.html demo="example1" %}
 
 
-### Example 2 - Modal window
+### Example 2 - Modal windows
 ```javascript
 qui usa una modale ma consenti di aprire altre finestre sopra. Se chiudi la modale chiudi tutto!
 ```
