@@ -346,7 +346,14 @@ Use the button
 
 ```javascript
 // Log all Events
-$("#example1").on("open.popupwindow close.popupwindow collapse.popupwindow uncollapse.popupwindow minimize.popupwindow unminimize.popupwindow maximize.popupwindow unmaximize.popupwindow move.popupwindow resize.popupwindow destroy.popupwindow", function(event, data){
+$("#example1").on(  
+    "open.popupwindow      close.popupwindow      " +
+    "collapse.popupwindow  uncollapse.popupwindow " +
+    "minimize.popupwindow  unminimize.popupwindow " +
+    "maximize.popupwindow  unmaximize.popupwindow " +
+    "move.popupwindow      resize.popupwindow     " +
+    "destroy.popupwindow",
+function(event, data){
     console.log(event);
     console.log(data);
 });

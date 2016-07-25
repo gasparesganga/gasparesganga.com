@@ -1,22 +1,33 @@
 $(document).ready(function(){
     $("#quick_demo_button").on("click", Demo.QuickDemo);
     $("#example1_button").on("click",   Demo.Example1);
+    Demo.Init();
 });
 
 var Demo = (function($, undefined){
     return {
+        Init        : Init,
         QuickDemo   : QuickDemo,
-        Example1    : Example1,
+        Example1    : Example1
     };
     
-    function QuickDemo(event){
-        $("#quick_demo").PopupWindow();
-    }
     
-    
-    function Example1(event){
+    function Init(){
+        /********** QuickDemo **********/
+        $("#quick_demo").PopupWindow({
+            
+        });
+        
+        /********** Example 1 **********/
         // Log all Events
-        $("#example1").on("open.popupwindow close.popupwindow collapse.popupwindow uncollapse.popupwindow minimize.popupwindow unminimize.popupwindow maximize.popupwindow unmaximize.popupwindow move.popupwindow resize.popupwindow destroy.popupwindow", function(event, data){
+        $("#example1").on(  
+            "open.popupwindow      close.popupwindow      " +
+            "collapse.popupwindow  uncollapse.popupwindow " +
+            "minimize.popupwindow  unminimize.popupwindow " +
+            "maximize.popupwindow  unmaximize.popupwindow " +
+            "move.popupwindow      resize.popupwindow     " +
+            "destroy.popupwindow",
+        function(event, data){
             $("#example1_log").append("Event <b>" + event.type + "</b> fired." + (data ? " Data: <b>" + JSON.stringify(data) + "</b>" : "") + "\n");
         });
         
@@ -78,9 +89,6 @@ var Demo = (function($, undefined){
             $("#example1").PopupWindow("destroy");
         });
         
-        
-        
-        
         // Init PopupWindow
         $("#example1").PopupWindow({
             title           : "Example 1 - Complete playground",
@@ -91,10 +99,20 @@ var Demo = (function($, undefined){
             mouseMoveEvents : false
         });
         
-        
+        // Clear Log
         $("#example1_clear").on("click", function(event){
             $("#example1_log").html("PopupWindow events will be logged here\n");
         });
+    }
+    
+    
+    
+    function QuickDemo(event){
+        $("#quick_demo").PopupWindow("open");
+    }
+    
+    function Example1(event){
+        $("#example1").PopupWindow("open");
     }
 
     

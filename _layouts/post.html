@@ -15,4 +15,6 @@ permalink : /posts/:title/
 </article>
 
 {% include share.html %}
-{% include comments.html %}
+{% if jekyll.environment == "production" %}
+    {% include comments.html %}
+{% endif %}
