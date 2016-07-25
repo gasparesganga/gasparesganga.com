@@ -7,7 +7,7 @@ css         :
   - jquery-popup-window/_assets/popupwindow.css
 js          :
   - js/jquery-3.1.0.min.js
-  - jquery-popup-window/_assets/popupwindow.min.js
+  - jquery-popup-window/_assets/popupwindow.js
   - jquery-popup-window/_assets/demo.js
 download    : jquery-popup-window/archive/1.0.0.zip
 source      : jquery-popup-window
