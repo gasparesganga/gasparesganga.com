@@ -322,7 +322,7 @@ Fired when a PopupWindow is unmaximized. No additional parameters are passed to 
 `$(selector).on("move.popupwindow", handler)`
 Fired when a PopupWindow is moved. Additional parameter `position` is passed to the `handler` function.
 
-#### Resize`
+#### Resize
 `$(selector).on("resize.popupwindow", handler)`
 Fired when a PopupWindow is resized. Additional parameter `size` is passed to the `handler` function.
 
@@ -359,6 +359,21 @@ function(event, data){
 });
 
 // Buttons to test Actions
+$("#example1_init").on("click", function(event){
+    $("#example1").PopupWindow({
+        title           : "Example 1 - Complete playground",
+        modal           : false,
+        autoOpen        : false,
+        height          : 200,
+        width           : 300,
+        collapsedWidth  : 300,
+        mouseMoveEvents : false
+    });
+});
+$("#example1_destroy").on("click", function(event){
+    $("#example1").PopupWindow("destroy");
+});
+
 $("#example1_open").on("click", function(event){
     $("#example1").PopupWindow("open");
 });
@@ -394,7 +409,7 @@ $("#example1_setposition").on("click", function(event){
     $("#example1").PopupWindow("setPosition", {
         top             : $("#example1_setposition_input_top").val(),
         left            : $("#example1_setposition_input_left").val(),
-        animationTime   : $("#example1_setposition_input_animation").val()
+        animationTime   : $("#example1_setposition_input_time").val()
     });
 });
 
@@ -405,35 +420,20 @@ $("#example1_setsize").on("click", function(event){
     $("#example1").PopupWindow("setSize", {
         width           : $("#example1_setsize_input_width").val(),
         height          : $("#example1_setsize_input_height").val(),
-        animationTime   : $("#example1_setsize_input_animation").val()
+        animationTime   : $("#example1_setsize_input_time").val()
     });
-});
-
-$("#example1_getstate").on("click", function(event){
-    console.log($("#example1").PopupWindow("getState"));
-});
-
-$("#example1_statusbar").on("click", function(event){
-    $("#example1").PopupWindow("statusbar", $("#example1_statusbar_input_text").val());
 });
 
 $("#example1_settitle").on("click", function(event){
     $("#example1").PopupWindow("setTitle", $("#example1_settitle_input_title").val());
 });
 
-$("#example1_destroy").on("click", function(event){
-    $("#example1").PopupWindow("destroy");
+$("#example1_statusbar").on("click", function(event){
+    $("#example1").PopupWindow("statusbar", $("#example1_statusbar_input_text").val());
 });
 
-// Init PopupWindow
-$("#example1").PopupWindow({
-    title           : "Example 1 - Complete playground",
-    modal           : false,
-    autoOpen        : false,
-    height          : 200,
-    width           : 300,
-    collapsedWidth  : 300,
-    mouseMoveEvents : false
+$("#example1_getstate").on("click", function(event){
+    console.log($("#example1").PopupWindow("getState"));
 });
 ```
 {% include_relative _demo.html demo="example1" %}

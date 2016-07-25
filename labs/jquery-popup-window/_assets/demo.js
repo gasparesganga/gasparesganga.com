@@ -1,18 +1,14 @@
 $(document).ready(function(){
     $("#quick_demo_button").on("click", Demo.QuickDemo);
-    $("#example1_button").on("click",   Demo.Example1);
-    $("#example2_button").on("click",   Demo.Example2);
-    $("#example3_button").on("click",   Demo.Example3);
+    //$("#example2_button").on("click",   Demo.Example2);
+    //$("#example3_button").on("click",   Demo.Example3);
     Demo.Init();
 });
 
 var Demo = (function($, undefined){
     return {
         Init        : Init,
-        QuickDemo   : QuickDemo,
-        Example1    : Example1,
-        Example2    : Example2,
-        Example3    : Example3
+        QuickDemo   : QuickDemo
     };
     
     
@@ -36,6 +32,20 @@ var Demo = (function($, undefined){
         });
         
         // Buttons to test Actions
+        $("#example1_init").on("click", function(event){
+            $("#example1").PopupWindow({
+                title           : "Example 1 - Complete playground",
+                modal           : false,
+                autoOpen        : false,
+                height          : 200,
+                width           : 300,
+                collapsedWidth  : 300,
+                mouseMoveEvents : false
+            });
+        });
+        $("#example1_destroy").on("click", function(event){
+            $("#example1").PopupWindow("destroy");
+        });
         $("#example1_open").on("click", function(event){
             $("#example1").PopupWindow("open");
         });
@@ -67,7 +77,7 @@ var Demo = (function($, undefined){
             $("#example1").PopupWindow("setPosition", {
                 top             : $("#example1_setposition_input_top").val(),
                 left            : $("#example1_setposition_input_left").val(),
-                animationTime   : $("#example1_setposition_input_animation").val()
+                animationTime   : $("#example1_setposition_input_time").val()
             });
         });
         $("#example1_getsize").on("click", function(event){
@@ -77,36 +87,22 @@ var Demo = (function($, undefined){
             $("#example1").PopupWindow("setSize", {
                 width           : $("#example1_setsize_input_width").val(),
                 height          : $("#example1_setsize_input_height").val(),
-                animationTime   : $("#example1_setsize_input_animation").val()
+                animationTime   : $("#example1_setsize_input_time").val()
             });
-        });
-        $("#example1_getstate").on("click", function(event){
-            $("#example1_log").append("Current state: <b>" + $("#example1").PopupWindow("getState") + "</b>\n");
-        });
-        $("#example1_statusbar").on("click", function(event){
-            $("#example1").PopupWindow("statusbar", $("#example1_statusbar_input_text").val());
         });
         $("#example1_settitle").on("click", function(event){
             $("#example1").PopupWindow("setTitle", $("#example1_settitle_input_title").val());
         });
-        $("#example1_destroy").on("click", function(event){
-            $("#example1").PopupWindow("destroy");
+        $("#example1_statusbar").on("click", function(event){
+            $("#example1").PopupWindow("statusbar", $("#example1_statusbar_input_text").val());
         });
-        
-        // Init PopupWindow
-        $("#example1").PopupWindow({
-            title           : "Example 1 - Complete playground",
-            modal           : false,
-            autoOpen        : false,
-            height          : 200,
-            width           : 300,
-            collapsedWidth  : 300,
-            mouseMoveEvents : false
+        $("#example1_getstate").on("click", function(event){
+            $("#example1_log").append("Current state: <b>" + $("#example1").PopupWindow("getState") + "</b>\n");
         });
         
         // Clear Log
         $("#example1_clear").on("click", function(event){
-            $("#example1_log").html("PopupWindow events will be logged here\n");
+            $("#example1_log").html("<i><u>PopupWindow events and data will be logged here:</u></i><br>\n");
         });
     }
     
@@ -116,10 +112,6 @@ var Demo = (function($, undefined){
         $("#quick_demo").PopupWindow("open");
     }
     
-    function Example1(event){
-        $("#example1").PopupWindow("open");
-    }
-
     
     
 })(jQuery);

@@ -6,59 +6,61 @@
 
 
 {% when "example1" %}
-<input id="example1_button" type="button" value="Init PopupWindow">
 <div id="example1" class="example_content"></div>
 <div id="example1_buttons">
-    <p>
+    <div>
+        <button id="example1_init">Init</button>
+        <button id="example1_destroy">Destroy</button>
+    </div>
+    <div>
         <button id="example1_open">Open</button>
         <button id="example1_close">Close</button>
-    </p>
-    <p>
+    </div>
+    <div>
         <button id="example1_collapse">Collapse</button>
         <button id="example1_uncollapse">UnCollapse</button>
-    </p>
-    <p>
+    </div>
+    <div>
         <button id="example1_minimize">Minimize</button>
         <button id="example1_unminimize">UnMinimize</button>
-    </p>
-    <p>
+    </div>
+    <div>
         <button id="example1_maximize">Maximize</button>
         <button id="example1_unmaximize">UnMaximize</button>
-    </p>
-    <p>
+    </div>
+    <div>
         <button id="example1_getposition">Get Position</button>
-        <span class="example_iblock">
+        <div class="example1_inputs">
             <button id="example1_setposition">Set Position</button>
-            <label><span>Top</span>         <input id="example1_setposition_input_top"          type="text" value="100"></label>
-            <label><span>Left</span>        <input id="example1_setposition_input_left"         type="text" value="100"></label>
-            <label><span>Animation</span>   <input id="example1_setposition_input_animation"    type="text" value="500"></label>
-        </span>
-    </p>
-    <p>
+            <label><span>Top:</span>     <input id="example1_setposition_input_top"  type="text" value="100"></label>
+            <label><span>Left:</span>    <input id="example1_setposition_input_left" type="text" value="100"></label>
+            <label><span>Time:</span>    <input id="example1_setposition_input_time" type="text" value="500"></label>
+        </div>
+    </div>
+    <div>
         <button id="example1_getsize">Get Size</button>
-        <span class="example_iblock">
+        <div class="example1_inputs">
             <button id="example1_setsize">Set Size</button>
-            <label><span>Width</span>       <input id="example1_setsize_input_width"     type="text" value="500"></label>
-            <label><span>Height</span>      <input id="example1_setsize_input_height"    type="text" value="300"></label>
-            <label><span>Animation</span>   <input id="example1_setsize_input_animation" type="text" value="100"></label>
-        </span>
-    </p>
-    <p>
-        <button id="example1_getstate">Get State</button>
-    </p>
-    <p>
-        <button id="example1_statusbar">StatusBar</button>
-        <label>Text<input id="example1_statusbar_input_text" type="text" value="Some text"></label>
-    </p>
-    <p>
+            <label><span>Width:</span>   <input id="example1_setsize_input_width"    type="text" value="500"></label>
+            <label><span>Height:</span>  <input id="example1_setsize_input_height"   type="text" value="300"></label>
+            <label><span>Time:</span>    <input id="example1_setsize_input_time"     type="text" value="100"></label>
+        </div>
+    </div>
+    <div>
         <button id="example1_settitle">SetTitle</button>
-        <label>Title<input id="example1_settitle_input_title" type="text" value="New title"></label>
-    </p>
-    <p>
-        <button id="example1_destroy">Destroy</button>
-    </p>
+        <div class="example1_inputs">
+            <label><span>Title</span>   <input id="example1_settitle_input_title" type="text" value="New title"></label>
+        </div>
+        <button id="example1_statusbar">StatusBar</button>
+        <div class="example1_inputs">
+            <label><span>Text</span>    <input id="example1_statusbar_input_text" type="text" value="Some text"></label>
+        </div>
+    </div>
+    <div>
+        <button id="example1_getstate">Get State</button>
+    </div>
 </div>
-<div><pre id="example1_log">PopupWindow events and data will be logged here:<br></pre></div>
+<div><pre id="example1_log"><i><u>PopupWindow events and data will be logged here:</u></i><br></pre></div>
 <button id="example1_clear">Clear log</button>
 
 
