@@ -13,9 +13,10 @@
 }
 
 #example1_buttons > div {
-    display : inline-block;
-    margin  : 0.3rem 0.5rem;
-    padding : 0.0rem 0.3rem;
+    position    : relative;
+    display     : inline-block;
+    margin      : 0.3rem 0.5rem;
+    padding     : 0 0.3rem;
 }
 #example1_buttons button {
     width       : 7rem;
@@ -23,18 +24,19 @@
 }
 
 .example1_inputs {
-    display : inline-block;
+    position    : absolute;
+    display     : inline-block;
+    background  : #ffffff;
+    border      : #cccccc;
+    padding     : 1rem 1.5rem;
+    text-align  : right;
 }
     .example1_inputs label {
-        display         : block;
-        margin-right    : 0.5rem;
+        display     : block;
+        margin      : 0.5rem 0;
     }
-       .example1_inputs span {
-            display         : inline-block;
-            text-align      : right;
-        }
         .example1_inputs input[type=text] {
-            width           : 3rem;
-            text-align      : left;
+            width       : 3rem;
+            text-align  : left;
         }
     

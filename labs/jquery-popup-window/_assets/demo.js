@@ -13,12 +13,23 @@ var Demo = (function($, undefined){
     
     
     function Init(){
-        /********** QuickDemo **********/
+        _InitQuickDemo();
+        _InitExample1();
+    }
+    
+    function QuickDemo(event){
+        $("#quick_demo").PopupWindow("open");
+    }
+    
+    
+    /********** PRIVATE **********/
+    function _InitQuickDemo(){
         $("#quick_demo").PopupWindow({
             autoOpen    : false
         });
-        
-        /********** Example 1 **********/
+    }
+    
+    function _InitExample1(){
         // Log all Events
         $("#example1").on(  
             "open.popupwindow      close.popupwindow      " +
@@ -100,6 +111,11 @@ var Demo = (function($, undefined){
             $("#example1_log").append("Current state: <b>" + $("#example1").PopupWindow("getState") + "</b>\n");
         });
         
+        // Toggle Inputs
+        $("#example1_setposition_toggle, #example1_setsize_toggle, #example1_settitle_toggle, #example1_statusbar_toggle").on("click", function(event){
+            $(event.currentTarget).next(".example1_inputs").toggle();
+        }
+        
         // Clear Log
         $("#example1_clear").on("click", function(event){
             $("#example1_log").html("<i><u>PopupWindow events and data will be logged here:</u></i><br>\n");
@@ -107,9 +123,17 @@ var Demo = (function($, undefined){
     }
     
     
-    
-    function QuickDemo(event){
-        $("#quick_demo").PopupWindow("open");
+    function _InitExample2(){
+        
+        $("#example2").PopupWindow({
+            title           : "Example 2 - Modal windows",
+            modal           : false,
+            autoOpen        : false,
+            height          : 200,
+            width           : 300,
+            collapsedWidth  : 300,
+        });
+        
     }
     
     
