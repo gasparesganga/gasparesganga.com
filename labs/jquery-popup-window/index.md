@@ -407,9 +407,9 @@ $("#example1_getposition").on("click", function(event){
 });
 $("#example1_setposition").on("click", function(event){
     $("#example1").PopupWindow("setPosition", {
-        top             : $("#example1_setposition_input_top").val(),
-        left            : $("#example1_setposition_input_left").val(),
-        animationTime   : $("#example1_setposition_input_time").val()
+        top             : 100,
+        left            : 100,
+        animationTime   : 500
     });
 });
 
@@ -418,18 +418,18 @@ $("#example1_getsize").on("click", function(event){
 })
 $("#example1_setsize").on("click", function(event){
     $("#example1").PopupWindow("setSize", {
-        width           : $("#example1_setsize_input_width").val(),
-        height          : $("#example1_setsize_input_height").val(),
-        animationTime   : $("#example1_setsize_input_time").val()
+        width           : 500,
+        height          : 300,
+        animationTime   : 100
     });
 });
 
 $("#example1_settitle").on("click", function(event){
-    $("#example1").PopupWindow("setTitle", $("#example1_settitle_input_title").val());
+    $("#example1").PopupWindow("setTitle", "New Title");
 });
 
 $("#example1_statusbar").on("click", function(event){
-    $("#example1").PopupWindow("statusbar", $("#example1_statusbar_input_text").val());
+    $("#example1").PopupWindow("statusbar", "Some text...");
 });
 
 $("#example1_getstate").on("click", function(event){
