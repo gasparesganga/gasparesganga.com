@@ -5,6 +5,7 @@ description : The ultimate popup/dialog/modal jQuery plugin
 updated     : 2016-07-25
 css         :
   - jquery-popup-window/_assets/popupwindow.css
+  - jquery-popup-window/_assets/demo.css
 js          :
   - js/jquery-3.1.0.min.js
   - jquery-popup-window/_assets/popupwindow.js
@@ -21,8 +22,8 @@ source      : jquery-popup-window
 ## Features
 
 * All the capabilities *(maximizing, minimizing, modal/non-modal, etc.)* you would expect from a regular window and more *(collapsing, keepInViewport, animations, etc.)*
-* Exaustive set of [Actions](#actions) to control it
-* Exaustive set [Events](#events) to interact with it
+* Exhaustive set of [Actions](#actions) to control it
+* Exhaustive set [Events](#events) to interact with it
 * Fully CSS customizable
 * Low footprint and great performances
 
@@ -34,10 +35,11 @@ source      : jquery-popup-window
 This is the main method. It supports different *actions* and provides the interaction with the PopupWindow. See the [Actions](#actions) section for more details.
 
 #### *$.PopupWindowSetup(options)*
-Change the default `options` for all the PopupWindow [initialized](#init) in the future.
+Changes the default `options` for all the PopupWindow [initialized](#init) in the future.
 
 #### *$.PopupWindowMinimizedArea(options)*
-Change the position of the *minimized area* in the browser's window where all the PopupWindows are minimized. The `options` object can contain one or both of the following properties *(the default values are shown here)*:
+Changes the position of the *minimized area* in the browser's window where all the PopupWindows are minimized. The `options` object can contain one or both of the following properties *(the default values are shown here)*:
+
 ```javascript
 {
     position    : "bottom left"   // String
@@ -52,7 +54,7 @@ Both of them are case insensitive. Words order doesn't matter, as well as spaces
 
 
 ## Actions
-The `$(selector).PopupWindow([action] [,options])` method supports the following *actions*:
+The **`$(selector).PopupWindow([action] [,options])`** method supports the following *actions*:
 
 ##### Init
 `$(selector).PopupWindow("init" [,options])`
@@ -423,7 +425,7 @@ $("#example1").PopupWindow({
     height          : 200,
     width           : 300,
     collapsedWidth  : 300,
-    keepInViewport  : false
+    mouseMoveEvents : false
 });
 ```
 {% include_relative _demo.html demo="example1" %}

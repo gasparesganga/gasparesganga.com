@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    $("#quick_demo").on("click",    Demo.QuickDemo);
-    $("#example1").on("click",      Demo.Example1);
+    $("#quick_demo_button").on("click", Demo.QuickDemo);
+    $("#example1_button").on("click",   Demo.Example1);
 });
 
 var Demo = (function($, undefined){
@@ -10,17 +10,14 @@ var Demo = (function($, undefined){
     };
     
     function QuickDemo(event){
-        $.LoadingOverlay("show");
-        setTimeout(function(){
-            $.LoadingOverlay("hide");
-        }, 3000);
+        $("#quick_demo").PopupWindow();
     }
     
     
     function Example1(event){
         // Log all Events
         $("#example1").on("open.popupwindow close.popupwindow collapse.popupwindow uncollapse.popupwindow minimize.popupwindow unminimize.popupwindow maximize.popupwindow unmaximize.popupwindow move.popupwindow resize.popupwindow destroy.popupwindow", function(event, data){
-            $("#example1_log").append("Event <b>" + event.type + "</b> fired." + (data ? " Data: " + JSON.stringify(data) : "") + "\n");
+            $("#example1_log").append("Event <b>" + event.type + "</b> fired." + (data ? " Data: <b>" + JSON.stringify(data) + "</b>" : "") + "\n");
         });
         
         // Buttons to test Actions
@@ -49,7 +46,7 @@ var Demo = (function($, undefined){
             $("#example1").PopupWindow("unmaximize");
         });
         $("#example1_getposition").on("click", function(event){
-            $("#example1_log").append("Current position: " + $("#example1").PopupWindow("getPosition") + "\n");
+            $("#example1_log").append("Current position: <b>" + JSON.stringify($("#example1").PopupWindow("getPosition")) + "</b>\n");
         });
         $("#example1_setposition").on("click", function(event){
             $("#example1").PopupWindow("setPosition", {
@@ -59,7 +56,7 @@ var Demo = (function($, undefined){
             });
         });
         $("#example1_getsize").on("click", function(event){
-            $("#example1_log").append("Current size: " + $("#example1").PopupWindow("getSize") + "\n");
+            $("#example1_log").append("Current size: <b>" + JSON.stringify($("#example1").PopupWindow("getSize")) + "</b>\n");
         })
         $("#example1_setsize").on("click", function(event){
             $("#example1").PopupWindow("setSize", {
@@ -69,7 +66,7 @@ var Demo = (function($, undefined){
             });
         });
         $("#example1_getstate").on("click", function(event){
-            $("#example1_log").append("Current state: " + $("#example1").PopupWindow("getState") + "\n");
+            $("#example1_log").append("Current state: <b>" + $("#example1").PopupWindow("getState") + "</b>\n");
         });
         $("#example1_statusbar").on("click", function(event){
             $("#example1").PopupWindow("statusbar", $("#example1_statusbar_input_text").val());
@@ -91,12 +88,12 @@ var Demo = (function($, undefined){
             height          : 200,
             width           : 300,
             collapsedWidth  : 300,
-            keepInViewport  : false
+            mouseMoveEvents : false
         });
         
         
         $("#example1_clear").on("click", function(event){
-            $("#example1_log").html("PopupWindow events will be logged here");
+            $("#example1_log").html("PopupWindow events will be logged here\n");
         });
     }
 

@@ -1,3 +1,7 @@
+.example_content {
+    display : none;
+}
+
 #example1_log {
     margin-top          : 1rem;
     text-align          : left;
