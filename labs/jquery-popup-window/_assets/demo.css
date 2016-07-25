@@ -1,0 +1,16 @@
+#example1_log {
+    margin-top          : 1rem;
+    text-align          : left;
+    padding             : 0.3rem 1rem;
+    background-color    : #fafafa;
+    border              : 1px solid #cccccc;
+}
+#example1_buttons button {
+    width   : 10rem;
+}
+#example1_buttons label {
+    width   : 5rem;
+}
+#example1_buttons input[type=text] {
+    width   : 3rem;
+}

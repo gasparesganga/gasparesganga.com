@@ -1,0 +1,69 @@
+{% case include.demo %}
+
+{% when "quick_demo" %}
+<input id="quick_demo" type="button" value="Try jQuery PopupWindow!">
+
+
+{% when "example1" %}
+<input id="example1" type="button" value="Init PopupWindow">
+<div><pre id="example1_log">PopupWindow events and data will be logged here</pre></div>
+<div id="example1_buttons">
+    <p>
+        <button id="example1_open">Open</button>
+        <button id="example1_close">Close</button>
+    </p>
+    <p>
+        <button id="example1_collapse">Collapse</button>
+        <button id="example1_uncollapse">UnCollapse</button>
+    </p>
+    <p>
+        <button id="example1_minimize">Minimize</button>
+        <button id="example1_unminimize">UnMinimize</button>
+    </p>
+    <p>
+        <button id="example1_maximize">Maximize</button>
+        <button id="example1_unmaximize">UnMaximize</button>
+    </p>
+    <p>
+        <button id="example1_getposition">Get Position</button><br>
+        <br>
+        <button id="example1_setposition">Set Position</button>
+        <label>Top<input id="example1_setposition_input_top" type="text" value="100"></label>
+        <label>Left<input id="example1_setposition_input_left" type="text" value="100"></label>
+        <label>Animation<input id="example1_setposition_input_animation" type="text" value="500"></label>
+    </p>
+    <p>
+        <button id="example1_getsize">Get Size</button>
+        <br>
+        <button id="example1_setsize">Set Size</button>
+        <label>Width<input id="example1_setsize_input_width" type="text" value="500"></label>
+        <label>Height<input id="example1_setsize_input_height" type="text" value="300"></label>
+        <label>Animation<input id="example1_setsize_input_animation" type="text" value="100"></label>
+    </p>
+    <p>
+        <button id="example1_getstate">Get State</button>
+    </p>
+    <p>
+        <button id="example1_statusbar">StatusBar</button>
+        <label>Text<input id="example1_statusbar_input_text" type="text" value="Some text"></label>
+    </p>
+    <p>
+        <button id="example1_settitle">SetTitle</button>
+        <label>Title<input id="example1_settitle_input_title" type="text" value="New title"></label>
+    </p>
+    <p>
+        <button id="example1_destroy">Destroy</button>
+    </p>
+    <p>
+        <button id="example1_clear">Clear log</button>
+    </p>
+</div>
+
+{% when "example2" %}
+<input id="example2" type="button" value="Example 2 - Single element Overlay">
+
+{% when "example3" %}
+<input id="example3" type="button" value="Example 3 - Single element Overlay with auto resize">
+
+
+{% endcase %}
