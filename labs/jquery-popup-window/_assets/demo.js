@@ -1,12 +1,12 @@
 var Demo = (function($, undefined){
-    $(Init);
-    
-    function Init(){
+   
+   $(function(){
         QuickDemo();
         Example1();
         Example2();
         Example3();
-    }
+    });
+    
     
     function QuickDemo(){
         $("#quick_demo").PopupWindow({
@@ -16,6 +16,7 @@ var Demo = (function($, undefined){
             $("#quick_demo").PopupWindow("open");
         });
     }
+    
     
     function Example1(){
         // Log all Events
@@ -34,7 +35,7 @@ var Demo = (function($, undefined){
         $("#example1_init").on("click", function(event){
             $("#example1").PopupWindow({
                 title           : "Example 1 - Complete playground",
-                modal           : true,
+                modal           : false,
                 collapsedWidth  : 300,
                 mouseMoveEvents : false
             });
@@ -121,6 +122,7 @@ var Demo = (function($, undefined){
         $(".example1_inputs").hide();
     }
     
+    
     function Example2(){
         /*$("#example2").PopupWindow({
             title           : "Example 2 - Modal windows",
@@ -131,6 +133,7 @@ var Demo = (function($, undefined){
             collapsedWidth  : 300,
         });*/
     }
+    
     
     function Example3(){
         $("#example3_default").PopupWindow({
@@ -154,7 +157,6 @@ var Demo = (function($, undefined){
         $("#example3_macos_button").on("click", function(event){
             $("#example3_macos").PopupWindow("open");
         });
-        
     }
     
 })(jQuery);

@@ -1115,6 +1115,7 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
                 newPosition.left = event.data.startX + event.pageX;
                 if (settings.keepInViewport) {
                     var overlayOffset   = popupWindow.data("overlay").offset();
+                    console.log(overlayOffset);
                     var size            = _GetCurrentSize(popupWindow);
                     var $window         = $(window);
                     if (newPosition.top < overlayOffset.top)                                  newPosition.top  = overlayOffset.top;
