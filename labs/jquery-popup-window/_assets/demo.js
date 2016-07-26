@@ -141,13 +141,13 @@ var Demo = (function($, undefined){
             autoOpen    : false,
             height      : 200,
             width       : 400,
-            left        : 100,
+            left        : 100
         });
         $("#example3_macos").PopupWindow({
             title       : "Example 3 - MacOS Style",
             modal       : false,
             autoOpen    : false,
-            customClass : "macos"
+            customClass : "macos",
             height      : 200,
             width       : 400,
             left        : 600
