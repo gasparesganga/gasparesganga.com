@@ -120,12 +120,12 @@ var Demo = (function($, undefined){
         });
         
         // UI
+        $(document).on("click", function(event){
+            if ($(event.target).closest(".example1_inputs").length) return false;
+            $(".example1_inputs").hide();
+        });
         $("#example1_setposition_toggle, #example1_setsize_toggle, #example1_settitle_toggle, #example1_statusbar_toggle").on("click", function(event){          
-            var inputs = $(event.currentTarget).next(".example1_inputs");
-            inputs.toggle();
-            $(document).on("click", function(event){
-                if (!$(event.target).closest(".example1_inputs").length) inputs.hide();
-            });
+            $(event.currentTarget).next(".example1_inputs").toggle();
         });
         $(".example1_inputs").hide();
     }
