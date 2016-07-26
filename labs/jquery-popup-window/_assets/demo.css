@@ -46,12 +46,10 @@
         margin      : auto;
         margin-top  : 1.2rem;
     }
-/*********************/
+
 
 
 /***** Example 3 *****/  
-.macos {}
-
 /* Center Titlebar text */
 .macos .popupwindow_titlebar_text {
     text-align  : center;
@@ -59,7 +57,11 @@
 
 /* Round buttons */
 .macos .popupwindow_titlebar_button {
-    border-radius       : 50%;
+    width           : 18px;
+    height          : 18px;
+    margin-left     : 4px;
+    border          : none;
+    border-radius   : 50%;
 }
     /* Button's icon on hover */
     .macos .popupwindow_titlebar_button svg {
@@ -68,18 +70,19 @@
     .macos .popupwindow_titlebar_button:hover svg {
         display : block; 
     }
-    
+
 /* Close button */
 .macos .popupwindow_titlebar_button_close {
-    background-color    : #f25533;
+    background-color    : #d03020;
 }
     .macos .popupwindow_titlebar_button_close:hover {
-        background-color    : #f26644;
-        stroke              : #e24422;
+        background-color    : #ca3020;
+        stroke              : #803020;
     }
     .macos .popupwindow_titlebar_button_close:active {
-        background-color    : #e24422;
+        background-color    : #c03020;
     }
+
 /* Maximize button */   
 .macos .popupwindow_titlebar_button_maximize {
     background-color    : #ffbb66;
@@ -91,6 +94,19 @@
     .macos .popupwindow_titlebar_button_maximize:active {
         background-color    : #dd8811;
     }
+
+/* Collapse button */   
+.macos .popupwindow_titlebar_button_maximize {
+    background-color    : #5599ee;
+}
+    .macos .popupwindow_titlebar_button_maximize:hover {
+        background-color    : #4466aa;
+        stroke              : #002299;
+    }
+    .macos .popupwindow_titlebar_button_maximize:active {
+        background-color    : #335599;
+    }
+
 /* Minimize button */
 .macos .popupwindow_titlebar_button_minimize {
     background-color    : #99b055;
@@ -102,5 +118,3 @@
     .macos .popupwindow_titlebar_button_minimize:active {
         background-color    : #559044;
     }
-
-/*********************/

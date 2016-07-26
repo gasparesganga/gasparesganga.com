@@ -454,8 +454,94 @@ qui usa una modale ma consenti di aprire altre finestre sopra. Se chiudi la moda
 
 
 ### Example 3 - Custom style
+If you want to apply a custom style just to a specific PopupWindow without overriding the default style for all the others, the `customClass` option comes in handy. Here is a simple javascript using it together with `buttonsPosition` option:
+
 ```javascript
-xxxxxxx
+$("#example3_default").PopupWindow({
+    title           : "Example 3 - Default Style",
+    modal           : false,
+    left            : 100
+});
+$("#example3_macos").PopupWindow({
+    title           : "Example 3 - MacOS Style",
+    modal           : false,
+    customClass     : "macos",
+    buttonsPosition : "left",
+    left            : 600
+});
+```
+
+Then add your CSS using the `customClass` you have specified:
+
+```css
+/* Center Titlebar text */
+.macos .popupwindow_titlebar_text {
+    text-align  : center;
+}
+
+/* Round buttons */
+.macos .popupwindow_titlebar_button {
+    width           : 18px;
+    height          : 18px;
+    margin-left     : 4px;
+    border          : none;
+    border-radius   : 50%;
+}
+    /* Button's icon on hover */
+    .macos .popupwindow_titlebar_button svg {
+        display : none; 
+    }
+    .macos .popupwindow_titlebar_button:hover svg {
+        display : block; 
+    }
+
+/* Close button */
+.macos .popupwindow_titlebar_button_close {
+    background-color    : #d03020;
+}
+    .macos .popupwindow_titlebar_button_close:hover {
+        background-color    : #ca3020;
+        stroke              : #803020;
+    }
+    .macos .popupwindow_titlebar_button_close:active {
+        background-color    : #c03020;
+    }
+
+/* Maximize button */   
+.macos .popupwindow_titlebar_button_maximize {
+    background-color    : #ffbb66;
+}
+    .macos .popupwindow_titlebar_button_maximize:hover {
+        background-color    : #ee9922;
+        stroke              : #885511;
+    }
+    .macos .popupwindow_titlebar_button_maximize:active {
+        background-color    : #dd8811;
+    }
+
+/* Collapse button */   
+.macos .popupwindow_titlebar_button_maximize {
+    background-color    : #5599ee;
+}
+    .macos .popupwindow_titlebar_button_maximize:hover {
+        background-color    : #4466aa;
+        stroke              : #002299;
+    }
+    .macos .popupwindow_titlebar_button_maximize:active {
+        background-color    : #335599;
+    }
+
+/* Minimize button */
+.macos .popupwindow_titlebar_button_minimize {
+    background-color    : #99b055;
+}
+    .macos .popupwindow_titlebar_button_minimize:hover {
+        background-color    : #77a055;
+        stroke              : #223311;
+    }
+    .macos .popupwindow_titlebar_button_minimize:active {
+        background-color    : #559044;
+    }
 ```
 {% include_relative _demo.html demo="example3" %}
 

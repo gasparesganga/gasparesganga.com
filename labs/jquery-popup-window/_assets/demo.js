@@ -10,8 +10,7 @@ var Demo = (function($, undefined){
     
     function QuickDemo(){
         $("#quick_demo").PopupWindow({
-            autoOpen    : false,
-            modal:false
+            autoOpen    : false
         });
         $("#quick_demo_button").on("click", function(event){
             $("#quick_demo").PopupWindow("open");
@@ -137,21 +136,18 @@ var Demo = (function($, undefined){
     
     function Example3(){
         $("#example3_default").PopupWindow({
-            title       : "Example 3 - Default Style",
-            modal       : false,
-            autoOpen    : false,
-            height      : 200,
-            width       : 400,
-            left        : 100
+            title           : "Example 3 - Default Style",
+            modal           : false,
+            autoOpen        : false,
+            left            : 100
         });
         $("#example3_macos").PopupWindow({
-            title       : "Example 3 - MacOS Style",
-            modal       : false,
-            autoOpen    : false,
-            customClass : "macos",
-            height      : 200,
-            width       : 400,
-            left        : 600
+            title           : "Example 3 - MacOS Style",
+            modal           : false,
+            autoOpen        : false,
+            customClass     : "macos",
+            buttonsPosition : "left",
+            left            : 600
         });
         
         $("#example3_default_button").on("click", function(event){
