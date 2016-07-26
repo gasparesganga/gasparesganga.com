@@ -1073,10 +1073,12 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
     function _Titlebar_MouseDown(event){
         if (event.target === event.currentTarget || $(event.target).hasClass("popupwindow_titlebar_text")) {
             var popupWindow = $(event.currentTarget).closest(".popupwindow");
+            var settings    = popupWindow.data("settings");
+            if (!settings.modal) popupWindow.data("overlay").css("background-color", "transparent").width("100%").height("100%");
             _AddDocumentMouseEventHandlers({
                 popupWindow : popupWindow,
                 action      : "drag",
-                opacity     : popupWindow.data("settings").dragOpacity,
+                opacity     : settings.dragOpacity,
                 startX      : popupWindow.offset().left - event.pageX,
                 startY      : popupWindow.offset().top - event.pageY
             });
@@ -1115,7 +1117,6 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
                 newPosition.left = event.data.startX + event.pageX;
                 if (settings.keepInViewport) {
                     var overlayOffset   = popupWindow.data("overlay").offset();
-                    console.log(overlayOffset);
                     var size            = _GetCurrentSize(popupWindow);
                     var $window         = $(window);
                     if (newPosition.top < overlayOffset.top)                                  newPosition.top  = overlayOffset.top;
@@ -1153,17 +1154,20 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
         }
     }
     function _Document_MouseUp(event){
-        event.data.popupWindow.fadeTo(0, 1);
+        var popupWindow = event.data.popupWindow;
+        var settings    = popupWindow.data("settings");
+        popupWindow.fadeTo(0, 1);
         $(document)
             .off("mousemove", _Document_MouseMove)
             .off("mouseup",   _Document_MouseUp);
-        if (!event.data.popupWindow.data("settings").mouseMoveEvents) {
-            var currentPosition = _GetCurrentPosition(event.data.popupWindow);
-            var currentSize     = _GetCurrentSize(event.data.popupWindow);
-            var savedData       = event.data.popupWindow.data("tempSavedData");
-            if (savedData.position.top != currentPosition.top || savedData.position.left != currentPosition.left) _TriggerEvent(event.data.popupWindow, "move");
-            if (savedData.size.width != currentSize.width || savedData.size.height != currentSize.height)         _TriggerEvent(event.data.popupWindow, "resize");
-            event.data.popupWindow.removeData("tempSavedData");
+        if (!settings.modal) popupWindow.data("overlay").width(0).height(0).css("background-color", "");
+        if (!settings.mouseMoveEvents) {
+            var currentPosition = _GetCurrentPosition(popupWindow);
+            var currentSize     = _GetCurrentSize(popupWindow);
+            var savedData       = popupWindow.data("tempSavedData");
+            if (savedData.position.top != currentPosition.top || savedData.position.left != currentPosition.left) _TriggerEvent(popupWindow, "move");
+            if (savedData.size.width != currentSize.width || savedData.size.height != currentSize.height)         _TriggerEvent(popupWindow, "resize");
+            popupWindow.removeData("tempSavedData");
         }
     }
     
