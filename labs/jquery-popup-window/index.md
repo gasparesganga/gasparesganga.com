@@ -454,13 +454,13 @@ qui usa una modale ma consenti di aprire altre finestre sopra. Se chiudi la moda
 
 
 ### Example 3 - Custom style
-If you want to apply a custom style just to a specific PopupWindow without overriding the default style for all the others, the `customClass` option comes in handy. Here is a simple javascript using it together with `buttonsPosition` option:
+If you want to apply a custom style just to a specific PopupWindow without overriding the default style for all the others, the `customClass` option comes in handy. Here is an example of *macos-lookalike* using the `buttonsPosition` option as well:
 
 ```javascript
 $("#example3_default").PopupWindow({
-    title           : "Example 3 - Default Style",
-    modal           : false,
-    left            : 100
+    title       : "Example 3 - Default Style",
+    modal       : false,
+    left        : 100
 });
 $("#example3_macos").PopupWindow({
     title           : "Example 3 - MacOS Style",
@@ -471,12 +471,12 @@ $("#example3_macos").PopupWindow({
 });
 ```
 
-Then add your CSS using the `customClass` you have specified:
+And here is some CSS with the `.macos` custom class specified:
 
 ```css
 /* Center Titlebar text */
 .macos .popupwindow_titlebar_text {
-    text-align  : center;
+    padding-left    : 8px;
 }
 
 /* Round buttons */
@@ -520,14 +520,14 @@ Then add your CSS using the `customClass` you have specified:
     }
 
 /* Collapse button */   
-.macos .popupwindow_titlebar_button_maximize {
+.macos .popupwindow_titlebar_button_collapse {
     background-color    : #5599ee;
 }
-    .macos .popupwindow_titlebar_button_maximize:hover {
+    .macos .popupwindow_titlebar_button_collapse:hover {
         background-color    : #4466aa;
         stroke              : #002299;
     }
-    .macos .popupwindow_titlebar_button_maximize:active {
+    .macos .popupwindow_titlebar_button_collapse:active {
         background-color    : #335599;
     }
 

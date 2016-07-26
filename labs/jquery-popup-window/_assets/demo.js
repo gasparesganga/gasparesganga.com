@@ -136,10 +136,10 @@ var Demo = (function($, undefined){
     
     function Example3(){
         $("#example3_default").PopupWindow({
-            title           : "Example 3 - Default Style",
-            modal           : false,
-            autoOpen        : false,
-            left            : 100
+            title       : "Example 3 - Default Style",
+            modal       : false,
+            autoOpen    : false,
+            left        : 100
         });
         $("#example3_macos").PopupWindow({
             title           : "Example 3 - MacOS Style",

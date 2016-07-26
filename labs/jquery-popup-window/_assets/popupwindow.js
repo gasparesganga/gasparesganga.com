@@ -98,7 +98,6 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
             "box-sizing"        : "border-box",
             "flex"              : "1 1 auto",
             "overflow"          : "hidden",
-            "text-align"        : "left",
             "text-overflow"     : "ellipsis",
             "white-space"       : "nowrap"
         },
@@ -907,6 +906,7 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
         var defRet          = $.Deferred();
         var settings        = popupWindow.data("settings");
         var animationTime   = (params.animationTime !== undefined) ? params.animationTime : settings.animationTime;
+        console.log(animationTime);
         var newSize         = {
             width   : params.width,
             height  : params.height

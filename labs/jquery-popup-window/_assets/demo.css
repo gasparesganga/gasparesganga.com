@@ -52,7 +52,7 @@
 /***** Example 3 *****/  
 /* Center Titlebar text */
 .macos .popupwindow_titlebar_text {
-    text-align  : center;
+    padding-left    : 8px;
 }
 
 /* Round buttons */
@@ -96,14 +96,14 @@
     }
 
 /* Collapse button */   
-.macos .popupwindow_titlebar_button_maximize {
+.macos .popupwindow_titlebar_button_collapse {
     background-color    : #5599ee;
 }
-    .macos .popupwindow_titlebar_button_maximize:hover {
+    .macos .popupwindow_titlebar_button_collapse:hover {
         background-color    : #4466aa;
         stroke              : #002299;
     }
-    .macos .popupwindow_titlebar_button_maximize:active {
+    .macos .popupwindow_titlebar_button_collapse:active {
         background-color    : #335599;
     }
 
