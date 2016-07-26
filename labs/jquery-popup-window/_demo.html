@@ -49,6 +49,26 @@
         </div>
     </div>
     <div>
+        <button id="example1_getstate">Get State</button>
+        <button id="example1_setstate_toggle">Set State</button>
+        <div class="example1_inputs" style="width:15rem;">
+            <label>
+                State : 
+                <select id="example1_setstate_input_state" style="width:8rem;">
+                    <option value="normal">normal</option>
+                    <option value="closed">closed</option>
+                    <option value="maximized">maximized</option>
+                    <option value="unmaximized">unmaximized</option>
+                    <option value="collapsed">collapsed</option>
+                    <option value="uncollapsed">uncollapsed</option>
+                    <option value="minimized">minimized</option>
+                    <option value="unminimized">unminimized</option>
+                </select>
+            </label>
+            <button id="example1_setstate">OK</button>
+        </div>
+    </div>
+    <div>
         <button id="example1_settitle_toggle">SetTitle</button>
         <div class="example1_inputs" style="width:17rem;">
             <label>Title : <input id="example1_settitle_input_title" type="text" value="New title" style="width:10rem;"></label>
@@ -59,9 +79,6 @@
             <label>Text : <input id="example1_statusbar_input_text" type="text" value="Some text" style="width:10rem;"></label>
             <button id="example1_statusbar">OK</button>
         </div>
-    </div>
-    <div>
-        <button id="example1_getstate">Get State</button>
     </div>
 </div>
 <div><pre id="example1_log"><i><u>PopupWindow events and data will be logged here:</u></i><br><br></pre></div>

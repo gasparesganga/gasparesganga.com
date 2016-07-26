@@ -96,6 +96,7 @@ Unminimizes a minimized PopupWindow. It's equivalent to a click on the *unminimi
 ##### GetPosition
 `$(selector).PopupWindow("getposition")`
 Gets the position of PopupWindow for the first element in the set of matched elements. It returns an object with numeric `top` and `left` values.
+
 ```javascript
 {
     top     : numeric
@@ -106,6 +107,7 @@ Gets the position of PopupWindow for the first element in the set of matched ele
 ##### SetPosition
 `$(selector).PopupWindow("setposition", position)`
 Sets the position of PopupWindow for all the elements in the set of matched elements. It is **chainable** and returns all the elements matched by `selector`. You can pass any *(or all)* of the following values with the `position` parameter:
+
 ```javascript
 position : {
     top             : numeric, optional  // Set PopupWindow's top position 
@@ -117,6 +119,7 @@ position : {
 ##### GetSize
 `$(selector).PopupWindow("getsize")`
 Gets the size of PopupWindow for the first element in the set of matched elements. It returns an object with numeric `width` and `height` values.
+
 ```javascript
 {
     width   : numeric
@@ -127,6 +130,7 @@ Gets the size of PopupWindow for the first element in the set of matched element
 ##### SetSize
 `$(selector).PopupWindow("setsize", size)`
 Sets the size of PopupWindow for all the elements in the set of matched elements. It is **chainable** and returns all the elements matched by `selector`. You can pass any *(or all)* of the following values with the `size` parameter:
+
 ```javascript
 size : {
     width           : numeric, optional  // Set PopupWindow's width
@@ -142,6 +146,7 @@ Gets the state of PopupWindow for the first element in the set of matched elemen
 ##### SetState
 `$(selector).PopupWindow("setstate", state)`
 Sets the state of PopupWindow for all the elements in the set of matched elements. There's no difference between using this action or the corresponding specific ones *(ie. `$(selector).PopupWindow("setstate", "collapsed")` is the same as `$(selector).PopupWindow("collapse")`)*. It is **chainable** and returns all the elements matched by `selector`. You must pass a string with the `state` parameter:
+
 ```javascript
 state   : string    // "normal", "closed", "maximized", "unmaximized", "collapsed", "uncollapsed", "minimized", "unminimized"
 ```
@@ -423,16 +428,19 @@ $("#example1_setsize").on("click", function(event){
     });
 });
 
+$("#example1_getstate").on("click", function(event){
+    console.log($("#example1").PopupWindow("getState"));
+});
+$("#example1_setstate").on("click", function(event){
+    $("#example1").PopupWindow("setState", "normal");
+});
+
 $("#example1_settitle").on("click", function(event){
     $("#example1").PopupWindow("setTitle", "New Title");
 });
 
 $("#example1_statusbar").on("click", function(event){
     $("#example1").PopupWindow("statusbar", "Some text...");
-});
-
-$("#example1_getstate").on("click", function(event){
-    console.log($("#example1").PopupWindow("getState"));
 });
 ```
 {% include_relative _demo.html demo="example1" %}

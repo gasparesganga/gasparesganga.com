@@ -102,6 +102,12 @@ var Demo = (function($, undefined){
             });
             $(event.currentTarget).closest(".example1_inputs").hide();
         });
+        $("#example1_getstate").on("click", function(event){
+            $("#example1_log").append("Current state: <b>" + $("#example1").PopupWindow("getState") + "</b>\n");
+        });
+        $("#example1_setstate").on("click", function(event){
+            $("#example1").PopupWindow("setState", $("#example1_setstate_input_state").val());
+        });
         $("#example1_settitle").on("click", function(event){
             $("#example1").PopupWindow("setTitle", $("#example1_settitle_input_title").val());
             $(event.currentTarget).closest(".example1_inputs").hide();
@@ -110,9 +116,6 @@ var Demo = (function($, undefined){
             $("#example1").PopupWindow("statusbar", $("#example1_statusbar_input_text").val());
             $(event.currentTarget).closest(".example1_inputs").hide();
         });
-        $("#example1_getstate").on("click", function(event){
-            $("#example1_log").append("Current state: <b>" + $("#example1").PopupWindow("getState") + "</b>\n");
-        });
         
         // Clear Log
         $("#example1_clear").on("click", function(event){
@@ -120,7 +123,7 @@ var Demo = (function($, undefined){
         });
         
         // UI
-        $("#example1_setposition_toggle, #example1_setsize_toggle, #example1_settitle_toggle, #example1_statusbar_toggle").on("click", function(event){          
+        $("#example1_setposition_toggle, #example1_setsize_toggle, #example1_setstate_toggle, #example1_settitle_toggle, #example1_statusbar_toggle").on("click", function(event){          
             $(event.currentTarget).next(".example1_inputs").toggle();
         });
         $(document).on("click", function(event){
