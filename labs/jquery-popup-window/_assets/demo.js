@@ -116,29 +116,16 @@ var Demo = (function($, undefined){
         
         // Clear Log
         $("#example1_clear").on("click", function(event){
-            $("#example1_log").html("<i><u>PopupWindow events and data will be logged here:</u></i><br>");
+            $("#example1_log").html("<i><u>PopupWindow events and data will be logged here:</u></i><br><br>");
         });
         
         // UI
-        $("#example1_setposition_toggle, #example1_setsize_toggle, #example1_settitle_toggle, #example1_statusbar_toggle").on("click", function(event){
-            var $this   = $(event.currentTarget);
-            var wrapper = $this.parent();
-            var inputs  = $this.next(".example1_inputs");
-            console.log("Wrapper");
-            console.log(wrapper.width());
-            console.log(wrapper.outerWidth());
-            if (inputs.is(":visible")) {
-                wrapper.css("width", wrapper.width + inputs.width);
-            } else {
-                wrapper.css("width", "");
-            }            
+        $("#example1_setposition_toggle, #example1_setsize_toggle, #example1_settitle_toggle, #example1_statusbar_toggle").on("click", function(event){          
+            var inputs = $(event.currentTarget).next(".example1_inputs");
             inputs.toggle();
-                
-        });
-        $(document).on("click", function MenuNascondi(event){
-            var $this = $(event.target);
-            if ($this.closest(".example1_inputs").length) return false;
-            $(".example1_inputs").hide();
+            $(document).on("click", function(event){
+                if (!$(event.target).closest(".example1_inputs").length) inputs.hide();
+            });
         });
         $(".example1_inputs").hide();
     }

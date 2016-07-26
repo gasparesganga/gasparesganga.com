@@ -25,12 +25,14 @@
 
 .example1_inputs {
     position    : absolute;
+    top         : 0;
+    right       : 0;
     display     : inline-block;
     background  : #ffffff;
     border      : 1px solid #cccccc;
     padding     : 1rem 1.5rem;
     text-align  : right;
-    z-index     : 9;
+    z-index     : 1;
 }
     .example1_inputs label {
         display     : block;
