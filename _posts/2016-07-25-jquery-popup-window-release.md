@@ -24,7 +24,7 @@ It is fully CSS customizable using a few simple classes. It is standalone and ve
 
 ### Actions and Events
 jQuery PopupWindow offers a complete set of *actions* to fully control its behaviour and all the related *events* to interact with it.
-At a first sight to the [documentation](/labs/jquery-popup-window/) they might seem *a lot* in number, but then you will realize they are very consistent and predictable: you want to *maximize* a PopupWindow so you use a `maximize` *action* which fires a `maximize` *event* after it's done; to perform the opposite use `unmaximize` isntead. It sounds simple enough to me!
+At a first sight to the [documentation](/labs/jquery-popup-window/) they might seem *a lot* in number, but then you will realize they are very consistent and predictable: you want to *maximize* a PopupWindow so you use a `maximize` *action* which fires a `maximize` *event* after it's done; to perform the opposite use `unmaximize` instead. It sounds simple enough to me!
 
 
 ## Download and documentation

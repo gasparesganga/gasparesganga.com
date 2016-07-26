@@ -89,6 +89,7 @@ var Demo = (function($, undefined){
                 left            : $("#example1_setposition_input_left").val(),
                 animationTime   : $("#example1_setposition_input_time").val()
             });
+            $(event.currentTarget).closest(".example1_inputs").hide();
         });
         $("#example1_getsize").on("click", function(event){
             $("#example1_log").append("Current size: <b>" + JSON.stringify($("#example1").PopupWindow("getSize")) + "</b>\n");
@@ -99,18 +100,23 @@ var Demo = (function($, undefined){
                 height          : $("#example1_setsize_input_height").val(),
                 animationTime   : $("#example1_setsize_input_time").val()
             });
+            $(event.currentTarget).closest(".example1_inputs").hide();
         });
         $("#example1_settitle").on("click", function(event){
             $("#example1").PopupWindow("setTitle", $("#example1_settitle_input_title").val());
+            $(event.currentTarget).closest(".example1_inputs").hide();
         });
         $("#example1_statusbar").on("click", function(event){
             $("#example1").PopupWindow("statusbar", $("#example1_statusbar_input_text").val());
+            $(event.currentTarget).closest(".example1_inputs").hide();
         });
         $("#example1_getstate").on("click", function(event){
             $("#example1_log").append("Current state: <b>" + $("#example1").PopupWindow("getState") + "</b>\n");
         });
         
-        // Toggle Inputs
+        
+        // UI
+        $(".example1_inputs").hide();
         $("#example1_setposition_toggle, #example1_setsize_toggle, #example1_settitle_toggle, #example1_statusbar_toggle").on("click", function(event){
             $(event.currentTarget).next(".example1_inputs").toggle();
         });
@@ -126,7 +132,8 @@ var Demo = (function($, undefined){
         
         $("#example2").PopupWindow({
             title           : "Example 2 - Modal windows",
-            modal           : false,
+            //modal           : false,
+            modal           : $("#xxxmodal").val(),
             autoOpen        : false,
             height          : 200,
             width           : 300,
