@@ -10,7 +10,8 @@ var Demo = (function($, undefined){
     
     function QuickDemo(){
         $("#quick_demo").PopupWindow({
-            autoOpen    : false
+            autoOpen    : false,
+            modal:false
         });
         $("#quick_demo_button").on("click", function(event){
             $("#quick_demo").PopupWindow("open");
@@ -134,7 +135,7 @@ var Demo = (function($, undefined){
         });*/
     }
     
-    function _Example3(){
+    function Example3(){
         $("#example3_default").PopupWindow({
             title       : "Example 3 - Default Style",
             modal       : false,
