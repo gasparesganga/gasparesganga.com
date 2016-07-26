@@ -843,7 +843,7 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
         if (!popupWindow.length) return;
         var defRet          = $.Deferred();
         var settings        = popupWindow.data("settings");
-        var animationTime   = (params.animationTime !== undefined) ? params.animationTime : settings.animationTime;
+        var animationTime   = (params.animationTime !== undefined) ? parseInt(params.animationTime) : settings.animationTime;
         var newPosition     = {
             top     : params.top,
             left    : params.left
@@ -905,8 +905,7 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
         if (!popupWindow.length) return;
         var defRet          = $.Deferred();
         var settings        = popupWindow.data("settings");
-        var animationTime   = (params.animationTime !== undefined) ? params.animationTime : settings.animationTime;
-        console.log(animationTime);
+        var animationTime   = (params.animationTime !== undefined) ? parseInt(params.animationTime) : settings.animationTime;
         var newSize         = {
             width   : params.width,
             height  : params.height

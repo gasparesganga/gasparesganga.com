@@ -89,9 +89,9 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
     padding-bottom  : 10px; /* In order to preserve padding-bottom when the content is taller than the PopupWindow and thus scrolled on the Y-axis, set the same value as "height" in the following :after pseudo-class */
 }
 .popupwindow_content:after {
-    content : "";
-    display : block;
-    height  : 10px; /* Set this value equal to .popupwindow_content's "padding-bottom" to preserve it when the content overflows Y-axis and the scrollbar is shown */
+    content         : "";
+    display         : block;
+    height          : 10px; /* Set this value equal to .popupwindow_content's "padding-bottom" to preserve it when the content overflows Y-axis and the scrollbar is shown */
 }
 
 /* StatusBar */
@@ -102,14 +102,15 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
 }
     /* StatusBar Content */
     .popupwindow_statusbar_content {
-        color           : #303030;
-        font-family     : inherit;
-        font-size       : inherit;
-        font-weight     : normal;
-        padding-left    : 4px;
+        color               : #303030;
+        font-family         : inherit;
+        font-size           : inherit;
+        font-weight         : normal;
+        padding-left        : 4px;
     }
     /* StatusBar Handle */
     .popupwindow_statusbar_handle {
-        height      : 10px;
-        stroke      : #a0a0a0;
+        width               : 10px;
+        height              : 10px;
+        stroke              : #a0a0a0;
     }

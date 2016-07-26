@@ -34,9 +34,7 @@ var Demo = (function($, undefined){
         $("#example1_init").on("click", function(event){
             $("#example1").PopupWindow({
                 title           : "Example 1 - Complete playground",
-                modal           : false,
-                height          : 200,
-                width           : 300,
+                modal           : true,
                 collapsedWidth  : 300,
                 mouseMoveEvents : false
             });
