@@ -307,7 +307,7 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
         var settings = $.extend(true, {}, _defaults, options);
         settings.animationTime  = parseInt(settings.animationTime, 10);
         settings.height         = parseInt(settings.height, 10);
-        settings.width          = parseInt(settings.height, 10);
+        settings.width          = parseInt(settings.width, 10);
         settings.maxHeight      = parseInt(settings.maxHeight, 10) || 0;
         settings.maxWidth       = parseInt(settings.maxWidth, 10) || 0;
         settings.minHeight      = parseInt(settings.minHeight, 10) || 0;

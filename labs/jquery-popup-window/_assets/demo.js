@@ -1,35 +1,23 @@
-$(document).ready(function(){
-    $("#quick_demo_button").on("click", Demo.QuickDemo);
-    //$("#example2_button").on("click",   Demo.Example2);
-    //$("#example3_button").on("click",   Demo.Example3);
-    Demo.Init();
-});
-
 var Demo = (function($, undefined){
-    return {
-        Init        : Init,
-        QuickDemo   : QuickDemo
-    };
-    
+    $(Init);
     
     function Init(){
-        _InitQuickDemo();
-        _InitExample1();
+        QuickDemo();
+        Example1();
+        Example2();
+        Example3();
     }
     
-    function QuickDemo(event){
-        $("#quick_demo").PopupWindow("open");
-    }
-    
-    
-    /********** PRIVATE **********/
-    function _InitQuickDemo(){
+    function QuickDemo(){
         $("#quick_demo").PopupWindow({
             autoOpen    : false
         });
+        $("#quick_demo_button").on("click", function(event){
+            $("#quick_demo").PopupWindow("open");
+        });
     }
     
-    function _InitExample1(){
+    function Example1(){
         // Log all Events
         $("#example1").on(  
             "open.popupwindow      close.popupwindow      " +
@@ -107,6 +95,7 @@ var Demo = (function($, undefined){
         });
         $("#example1_setstate").on("click", function(event){
             $("#example1").PopupWindow("setState", $("#example1_setstate_input_state").val());
+            $(event.currentTarget).closest(".example1_inputs").hide();
         });
         $("#example1_settitle").on("click", function(event){
             $("#example1").PopupWindow("setTitle", $("#example1_settitle_input_title").val());
@@ -134,20 +123,43 @@ var Demo = (function($, undefined){
         $(".example1_inputs").hide();
     }
     
-    
-    function _InitExample2(){
-        
-        $("#example2").PopupWindow({
+    function Example2(){
+        /*$("#example2").PopupWindow({
             title           : "Example 2 - Modal windows",
             modal           : true,
             autoOpen        : false,
             height          : 200,
             width           : 300,
             collapsedWidth  : 300,
+        });*/
+    }
+    
+    function _Example3(){
+        $("#example3_default").PopupWindow({
+            title       : "Example 3 - Default Style",
+            modal       : false,
+            autoOpen    : false,
+            height      : 200,
+            width       : 400,
+            left        : 100,
+        });
+        $("#example3_macos").PopupWindow({
+            title       : "Example 3 - MacOS Style",
+            modal       : false,
+            autoOpen    : false,
+            customClass : "macos"
+            height      : 200,
+            width       : 400,
+            left        : 600
+        });
+        
+        $("#example3_default_button").on("click", function(event){
+            $("#example3_default").PopupWindow("open");
+        });
+        $("#example3_macos_button").on("click", function(event){
+            $("#example3_macos").PopupWindow("open");
         });
         
     }
-    
-    
     
 })(jQuery);

@@ -49,7 +49,7 @@ Changes the position of the *minimized area* in the browser's window where all t
 
 For the `position` value you can use a combination of *`top`* or *`bottom`* for vertical placement and *`left`* or *`right`* for horizzontal placement
 For the `direction` value you can use either *`horizzontal`* or *`vertical`*.
-Both of them are case insensitive. Words order doesn't matter, as well as spaces. You can shorten the words if you prefer: `top left` is the same as `tl` and `v` is the same as `vertical`.
+Both of them are case insensitive. Words' order doesn't matter, as well as spaces. You can shorten the words if you prefer: `top left` is the same as `tl` and `v` is the same as `vertical`.
 
 
 
@@ -57,44 +57,44 @@ Both of them are case insensitive. Words order doesn't matter, as well as spaces
 The **`$(selector).PopupWindow([action] [,options])`** method supports the following *actions*:
 
 ##### Init
-`$(selector).PopupWindow("init" [,options])`
-`$(selector).PopupWindow([options])`
+**`$(selector).PopupWindow("init" [,options])`**
+**`$(selector).PopupWindow([options])`**
 Initializes a new PopupWindow. Optionally you can pass a some [options](#options-and-defaults-values) to override the default values. The `init` string can be omitted, this is the default action. If a PopupWindow has already been initialized for the matched element, it does nothing. It is **chainable** and returns all the elements matched by `selector`.
 
 ##### Open
-`$(selector).PopupWindow("open")`
+**`$(selector).PopupWindow("open")`**
 Opens a previously initialized and closed PopupWindow. If the PopupWindow was in *collapsed* or *minimized* state when it was closed, the *normal* state will be restored. If the PopupWindow is already opened, nothing will happen. It is **chainable** and returns all the elements matched by `selector`.
 
 ##### Close
-`$(selector).PopupWindow("close")`
+**`$(selector).PopupWindow("close")`**
 Closes an open PopupWindow. It's equivalent to a click on the *close button* in the titlebar. If the PopupWindow is already in *closed* state, nothing will happen. It is **chainable** and returns all the elements matched by `selector`.
 
 ##### Maximize
-`$(selector).PopupWindow("maximize")`
+**`$(selector).PopupWindow("maximize")`**
 Maximizes an open PopupWindow. It's equivalent to a click on the *maximize button* in the titlebar. Note that a *closed*, *collapsed*, *minimized* or already *maximized* PopupWindow can't be maximized, thus nothing will happen in these cases. It is **chainable** and returns all the elements matched by `selector`.
 
 ##### Unmaximize
-`$(selector).PopupWindow("unmaximize")`
+**`$(selector).PopupWindow("unmaximize")`**
 Unmaximizes a maximized PopupWindow. It's equivalent to a click on the *unmaximize button* in the titlebar. If the PopupWindow is not in *maximized* state, nothing will happen. It is **chainable** and returns all the elements matched by `selector`.
 
 ##### Collapse
-`$(selector).PopupWindow("collapse")`
+**`$(selector).PopupWindow("collapse")`**
 Collapses an open PopupWindow. It's equivalent to a click on the *collapse button* in the titlebar. Note that a *closed*, *maximized*, *minimized* or already *collapsed* PopupWindow can't be collapsed, thus nothing will happen in these cases. It is **chainable** and returns all the elements matched by `selector`.
 
 ##### Uncollapse
-`$(selector).PopupWindow("uncollapse")`
+**`$(selector).PopupWindow("uncollapse")`**
 Uncollapses a collapsed PopupWindow. It's equivalent to a click on the *uncollapse button* in the titlebar. If the PopupWindow is not in *collapsed* state, nothing will happen. It is **chainable** and returns all the elements matched by `selector`.
 
 ##### Minimize
-`$(selector).PopupWindow("minimize")`
+**`$(selector).PopupWindow("minimize")`**
 Minimizes an open PopupWindow. It's equivalent to a click on the *minimize button* in the titlebar. Note that a *closed*, *collapsed* or already *minimized* PopupWindow can't be minimized, thus nothing will happen in these cases. If the PopupWindow is *maximized*, it will be restored to its normal state before minimizing. It is **chainable** and returns all the elements matched by `selector`.
 
 ##### Unminimize
-`$(selector).PopupWindow("unminimize")`
+**`$(selector).PopupWindow("unminimize")`**
 Unminimizes a minimized PopupWindow. It's equivalent to a click on the *unminimize button* in the titlebar. If the PopupWindow is not in *minimized* state, nothing will happen. It is **chainable** and returns all the elements matched by `selector`.
 
 ##### GetPosition
-`$(selector).PopupWindow("getposition")`
+**`$(selector).PopupWindow("getposition")`**
 Gets the position of PopupWindow for the first element in the set of matched elements. It returns an object with numeric `top` and `left` values.
 
 ```javascript
@@ -105,8 +105,8 @@ Gets the position of PopupWindow for the first element in the set of matched ele
 ```
 
 ##### SetPosition
-`$(selector).PopupWindow("setposition", position)`
-Sets the position of PopupWindow for all the elements in the set of matched elements. It is **chainable** and returns all the elements matched by `selector`. You can pass any *(or all)* of the following values with the `position` parameter:
+**`$(selector).PopupWindow("setposition", position)`**
+Sets the position of PopupWindow for all the elements in the set of matched elements. It is **chainable** and returns all the elements matched by `selector`. You can pass any *(or all)* of the following values using the `position` parameter:
 
 ```javascript
 position : {
@@ -117,7 +117,7 @@ position : {
 ```
 
 ##### GetSize
-`$(selector).PopupWindow("getsize")`
+**`$(selector).PopupWindow("getsize")`**
 Gets the size of PopupWindow for the first element in the set of matched elements. It returns an object with numeric `width` and `height` values.
 
 ```javascript
@@ -128,8 +128,8 @@ Gets the size of PopupWindow for the first element in the set of matched element
 ```
 
 ##### SetSize
-`$(selector).PopupWindow("setsize", size)`
-Sets the size of PopupWindow for all the elements in the set of matched elements. It is **chainable** and returns all the elements matched by `selector`. You can pass any *(or all)* of the following values with the `size` parameter:
+**`$(selector).PopupWindow("setsize", size)`**
+Sets the size of PopupWindow for all the elements in the set of matched elements. It is **chainable** and returns all the elements matched by `selector`. You can pass any *(or all)* of the following values using the `size` parameter:
 
 ```javascript
 size : {
@@ -140,81 +140,81 @@ size : {
 ```
 
 ##### GetState
-`$(selector).PopupWindow("getstate")`
+**`$(selector).PopupWindow("getstate")`**
 Gets the state of PopupWindow for the first element in the set of matched elements. It returns a string representing the state: `normal`, `closed`, `collapsed`, `minimized` or `maximized`.
 
 ##### SetState
-`$(selector).PopupWindow("setstate", state)`
-Sets the state of PopupWindow for all the elements in the set of matched elements. There's no difference between using this action or the corresponding specific ones *(ie. `$(selector).PopupWindow("setstate", "collapsed")` is the same as `$(selector).PopupWindow("collapse")`)*. It is **chainable** and returns all the elements matched by `selector`. You must pass a string with the `state` parameter:
+**`$(selector).PopupWindow("setstate", state)`**
+Sets the state of PopupWindow for all the elements in the set of matched elements. There's no difference between using this action or the corresponding specific ones *(ie. `$(selector).PopupWindow("setstate", "collapsed")` is the same as `$(selector).PopupWindow("collapse")`)*. It is **chainable** and returns all the elements matched by `selector`. You must pass a string using the `state` parameter:
 
 ```javascript
 state   : string    // "normal", "closed", "maximized", "unmaximized", "collapsed", "uncollapsed", "minimized", "unminimized"
 ```
 
 ##### SetTitle
-`$(selector).PopupWindow("settitle", title)`
-Sets the title in the *titlebar* of PopupWindow for all the elements in the set of matched elements. It is **chainable** and returns all the elements matched by `selector`. You must pass a string with the `title` parameter.
+**`$(selector).PopupWindow("settitle", title)`**
+Sets the title in the *titlebar* of PopupWindow for all the elements in the set of matched elements. It is **chainable** and returns all the elements matched by `selector`. You must pass a string using the `title` parameter.
 
 ##### StatusBar
-`$(selector).PopupWindow("statusbar", content)`
-Sets the content in the *status bar* of PopupWindow for all the elements in the set of matched elements. It is **chainable** and returns all the elements matched by `selector`. You cas pass a string or even a DOM element with the `content` parameter.
+**`$(selector).PopupWindow("statusbar", content)`**
+Sets the content in the *status bar* of PopupWindow for all the elements in the set of matched elements. It is **chainable** and returns all the elements matched by `selector`. You cas pass a string or even a DOM element using the `content` parameter.
 
 ##### Destroy
-`$(selector).PopupWindow("destroy")`
+**`$(selector).PopupWindow("destroy")`**
 Removes a PopupWindow, restoring the content to its original parent. It is **chainable** and returns all the elements matched by `selector`.
 
 
 
 ## Options and defaults values
 ```javascript
-title               : "Popup Window"    // String
-modal               : true              // Boolean
-autoOpen            : true              // Boolean
-animationTime       : 300               // Integer
-customClass         : ""                // String
+title           : "Popup Window"    // String
+modal           : true              // Boolean
+autoOpen        : true              // Boolean
+animationTime   : 300               // Integer
+customClass     : ""                // String
 
-buttons             : {
-    close               : true          // Boolean
-    maximize            : true          // Boolean
-    collapse            : true          // Boolean
-    minimize            : true          // Boolean
+buttons         : {
+    close           : true          // Boolean
+    maximize        : true          // Boolean
+    collapse        : true          // Boolean
+    minimize        : true          // Boolean
 }
-buttonsPosition     : "right"           // String
-buttonsTexts        : {
-    close               : "Close"       // String
-    maximize            : "Maximize"    // String
-    unmaximize          : "Restore"     // String
-    minimize            : "Minimize"    // String
-    unminimize          : "Show"        // String
-    collapse            : "Collapse"    // String
-    uncollapse          : "Expand"      // String
+buttonsPosition : "right"           // String
+buttonsTexts    : {
+    close           : "Close"       // String
+    maximize        : "Maximize"    // String
+    unmaximize      : "Restore"     // String
+    minimize        : "Minimize"    // String
+    unminimize      : "Show"        // String
+    collapse        : "Collapse"    // String
+    uncollapse      : "Expand"      // String
 }  
 
-draggable           : true              // Boolean
-dragOpacity         : 0.6               // Numeric
+draggable       : true              // Boolean
+dragOpacity     : 0.6               // Numeric
 
-resizable           : true              // Boolean
-resizeOpacity       : 0.6               // Numeric
+resizable       : true              // Boolean
+resizeOpacity   : 0.6               // Numeric
 
-statusBar           : true              // Boolean
+statusBar       : true              // Boolean
 
-top                 : "auto"            // String/Integer
-left                : "auto"            // String/Integer
+top             : "auto"            // String/Integer
+left            : "auto"            // String/Integer
 
-height              : 200               // Integer
-width               : 400               // Integer
-maxHeight           : undefined         // Integer
-maxWidth            : undefined         // Integer
-minHeight           : 100               // Integer
-minWidth            : 200               // Integer
-collapsedWidth      : undefined         // Integer
+height          : 200               // Integer
+width           : 400               // Integer
+maxHeight       : undefined         // Integer
+maxWidth        : undefined         // Integer
+minHeight       : 100               // Integer
+minWidth        : 200               // Integer
+collapsedWidth  : undefined         // Integer
 
-keepInViewport      : true              // Boolean
-mouseMoveEvents     : true              // Boolean
+keepInViewport  : true              // Boolean
+mouseMoveEvents : true              // Boolean
 ```
 
 ##### `title`
-Text appearing in the PopupWindow's *titlebar*. You can change this at any time using the [setTitle action](#settile).
+Text appearing in the PopupWindow's *titlebar*. You can change this at any time using the [setTitle action](#settitle).
 
 ##### `modal`
 Set to `true` to create a modal PopupWindow. It is possible to create other PopupWindows (modal or not) *over* a modal one. 
@@ -288,51 +288,51 @@ Set to `true` to fire [move](#move) and [rezize](#rezize) events while the mouse
 
 
 ## Events
-All the events are fired **after** something has happened and the corresponding animation is completed. The only exceptions are `move.popupwindow` and `resize.popupwindow` events, which can be fired continuously depending on the [keepInViewport](#keepinviewport) option.
+All the events are fired **after** something has happened and the corresponding animation is completed. The only exceptions are `move.popupwindow` and `resize.popupwindow` events, which can be fired continuously depending on the [mouseMoveEvents](#mousemoveevents) option.
 The namespace `popupwindow` is used for all the events fired by PopupWindow.
 
 #### Open
-`$(selector).on("open.popupwindow", handler)`
+**`$(selector).on("open.popupwindow", handler)`**
 Fired when a PopupWindow is opened. No additional parameters are passed to the `handler` function.
 
 #### Close
-`$(selector).on("close.popupwindow", handler)`
+**`$(selector).on("close.popupwindow", handler)`**
 Fired when a PopupWindow is closed. No additional parameters are passed to the `handler` function.
 
 #### Collapse
-`$(selector).on("collapse.popupwindow", handler)`
+**`$(selector).on("collapse.popupwindow", handler)`**
 Fired when a PopupWindow is collapsed. No additional parameters are passed to the `handler` function.
 
 #### Uncollapse
-`$(selector).on("uncollapse.popupwindow", handler)`
+**`$(selector).on("uncollapse.popupwindow", handler)`**
 Fired when a PopupWindow is uncollapsed. No additional parameters are passed to the `handler` function.
 
 #### Minimize
-`$(selector).on("minimize.popupwindow", handler)`
+**`$(selector).on("minimize.popupwindow", handler)`**
 Fired when a PopupWindow is minimized. No additional parameters are passed to the `handler` function.
 
 #### Unminimize
-`$(selector).on("unminimize.popupwindow", handler)`
+**`$(selector).on("unminimize.popupwindow", handler)`**
 Fired when a PopupWindow is unminimized. No additional parameters are passed to the `handler` function.
 
 #### Maximize
-`$(selector).on("maximize.popupwindow", handler)`
+**`$(selector).on("maximize.popupwindow", handler)`**
 Fired when a PopupWindow is maximized. No additional parameters are passed to the `handler` function.
 
 #### Unmaximize
-`$(selector).on("unmaximize.popupwindow", handler)`
+**`$(selector).on("unmaximize.popupwindow", handler)`**
 Fired when a PopupWindow is unmaximized. No additional parameters are passed to the `handler` function.
 
 #### Move
-`$(selector).on("move.popupwindow", handler)`
+**`$(selector).on("move.popupwindow", handler)`**
 Fired when a PopupWindow is moved. Additional parameter `position` is passed to the `handler` function.
 
 #### Resize
-`$(selector).on("resize.popupwindow", handler)`
+**`$(selector).on("resize.popupwindow", handler)`**
 Fired when a PopupWindow is resized. Additional parameter `size` is passed to the `handler` function.
 
 #### Destroy
-`$(selector).on("destroy.popupwindow", handler)`
+**`$(selector).on("destroy.popupwindow", handler)`**
 Fired when a PopupWindow is destroyed. No additional parameters are passed to the `handler` function.
 
 
@@ -347,7 +347,7 @@ In addition to that, you can use the [customClass](#customclass) option to apply
 ## Examples
 
 ### Example 1 - Complete playground
-Use the button 
+This sample code shows all the actions available. Use the buttons below to test them and see the logged events. Note how the *implicit actions* performed interacting directly with the PopupWindow produce the same effects and events.
 
 ```javascript
 // Log all Events

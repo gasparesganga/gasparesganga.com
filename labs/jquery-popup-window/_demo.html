@@ -51,10 +51,10 @@
     <div>
         <button id="example1_getstate">Get State</button>
         <button id="example1_setstate_toggle">Set State</button>
-        <div class="example1_inputs" style="width:15rem;">
+        <div class="example1_inputs" style="width:17rem;">
             <label>
                 State : 
-                <select id="example1_setstate_input_state" style="width:8rem;">
+                <select id="example1_setstate_input_state" style="width:10rem;">
                     <option value="normal">normal</option>
                     <option value="closed">closed</option>
                     <option value="maximized">maximized</option>
@@ -90,7 +90,10 @@
 
 
 {% when "example3" %}
-<input id="example3_button" type="button" value="Example 3 - Custom style">
+<input id="example3_default_button" type="button" value="Default Style">
+<input id="example3_macos_button" type="button" value="MacOS Style">
+<div id="example3_default" class="example_content"></div>
+<div id="example3_macos" class="example_content"></div>
 
 
 {% endcase %}
