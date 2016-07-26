@@ -47,7 +47,6 @@ var Demo = (function($, undefined){
             $("#example1").PopupWindow({
                 title           : "Example 1 - Complete playground",
                 modal           : false,
-                autoOpen        : false,
                 height          : 200,
                 width           : 300,
                 collapsedWidth  : 300,
@@ -114,7 +113,7 @@ var Demo = (function($, undefined){
         // Toggle Inputs
         $("#example1_setposition_toggle, #example1_setsize_toggle, #example1_settitle_toggle, #example1_statusbar_toggle").on("click", function(event){
             $(event.currentTarget).next(".example1_inputs").toggle();
-        }
+        });
         
         // Clear Log
         $("#example1_clear").on("click", function(event){

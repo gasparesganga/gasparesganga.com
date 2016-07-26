@@ -363,7 +363,6 @@ $("#example1_init").on("click", function(event){
     $("#example1").PopupWindow({
         title           : "Example 1 - Complete playground",
         modal           : false,
-        autoOpen        : false,
         height          : 200,
         width           : 300,
         collapsedWidth  : 300,
