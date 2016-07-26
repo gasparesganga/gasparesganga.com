@@ -114,17 +114,33 @@ var Demo = (function($, undefined){
             $("#example1_log").append("Current state: <b>" + $("#example1").PopupWindow("getState") + "</b>\n");
         });
         
-        
-        // UI
-        $(".example1_inputs").hide();
-        $("#example1_setposition_toggle, #example1_setsize_toggle, #example1_settitle_toggle, #example1_statusbar_toggle").on("click", function(event){
-            $(event.currentTarget).next(".example1_inputs").toggle();
-        });
-        
         // Clear Log
         $("#example1_clear").on("click", function(event){
-            $("#example1_log").html("<i><u>PopupWindow events and data will be logged here:</u></i><br>\n");
+            $("#example1_log").html("<i><u>PopupWindow events and data will be logged here:</u></i><br>");
         });
+        
+        // UI
+        $("#example1_setposition_toggle, #example1_setsize_toggle, #example1_settitle_toggle, #example1_statusbar_toggle").on("click", function(event){
+            var $this   = $(event.currentTarget);
+            var wrapper = $this.parent();
+            var inputs  = $this.next(".example1_inputs");
+            console.log("Wrapper");
+            console.log(wrapper.width());
+            console.log(wrapper.outerWidth());
+            if (inputs.is(":visible")) {
+                wrapper.css("width", wrapper.width + inputs.width);
+            } else {
+                wrapper.css("width", "");
+            }            
+            inputs.toggle();
+                
+        });
+        $(document).on("click", function MenuNascondi(event){
+            var $this = $(event.target);
+            if ($this.closest(".example1_inputs").length) return false;
+            $(".example1_inputs").hide();
+        });
+        $(".example1_inputs").hide();
     }
     
     
@@ -132,8 +148,7 @@ var Demo = (function($, undefined){
         
         $("#example2").PopupWindow({
             title           : "Example 2 - Modal windows",
-            //modal           : false,
-            modal           : $("#xxxmodal").val(),
+            modal           : true,
             autoOpen        : false,
             height          : 200,
             width           : 300,
