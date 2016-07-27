@@ -445,7 +445,7 @@ $("#example1_statusbar").on("click", function(event){
 
 
 ### Example 2 - Modal window
-A *modal* PopupWindow will be displayed over the page, but you can still open more PopupWindows on top of it.
+A **modal** PopupWindow will be displayed over the page, but you can still open more PopupWindows on top of it.
 
 ```javascript
 $("#example2_first").PopupWindow({
@@ -502,7 +502,7 @@ $("#example3_custom").PopupWindow({
 });
 ```
 
-And here is some CSS with the `.custom_style` custom class specified:
+And here is some CSS for this `.custom_style` class:
 
 ```css
 /* Content's background */

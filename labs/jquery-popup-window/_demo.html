@@ -1,7 +1,7 @@
 {% case include.demo %}
 
 {% when "quick_demo" %}
-<input id="quick_demo_button" type="button" value="Try jQuery PopupWindow!">
+<button id="quick_demo_button">Try jQuery PopupWindow!</button>
 <div id="quick_demo" class="example_content">Yay, I'm a PopupWindow!</div>
 
 
@@ -86,20 +86,20 @@
 
 
 {% when "example2" %}
-<input id="example2_button1" type="button" value="Modal window">
+<button id="example2_button1">Modal window</button>
 <div id="example2_first" class="example_content">
     <p>I am a <b>modal</b> window.</p>
     <p>You can open other PopupWindows on top of this! Use the buttons down here:</p>
-    <input id="example2_button2" type="button" value="Popup 2">
-    <input id="example2_button3" type="button" value="Popup 3">    
+    <button id="example2_button2">Popup 2</button>
+    <button id="example2_button3">Popup 3</button>  
 </div>
 <div id="example2_second" class="example_content">I'm a PopupWindow shown on top of a modal one</div>
 <div id="example2_third" class="example_content">I'm a PopupWindow shown on top of a modal one</div>
 
 
 {% when "example3" %}
-<input id="example3_default_button" type="button" value="Default Style">
-<input id="example3_custom_button" type="button" value="Custom Style">
+<button id="example3_default_button">Default Style</button>
+<button id="example3_custom_button">Custom Style</button>
 <div id="example3_default" class="example_content">I like default style...</div>
 <div id="example3_custom" class="example_content">Call me <i>PopupWindow S Plus</i>!</div>
 

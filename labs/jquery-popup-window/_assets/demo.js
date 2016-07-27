@@ -127,7 +127,7 @@ var Demo = (function($, undefined){
         $("#example2_first").PopupWindow({
             title       : "Example 2 - Modal window",
             modal       : true,
-            autoOpen    : false
+            autoOpen    : false,
             height      : 250,
             width       : 400,
             top         : 100,
