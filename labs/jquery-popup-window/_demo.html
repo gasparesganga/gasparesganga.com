@@ -2,11 +2,11 @@
 
 {% when "quick_demo" %}
 <input id="quick_demo_button" type="button" value="Try jQuery PopupWindow!">
-<div id="quick_demo" class="example_content"></div>
+<div id="quick_demo" class="example_content">Yay! I'm in a PopupWindow!</div>
 
 
 {% when "example1" %}
-<div id="example1" class="example_content"></div>
+<div id="example1" class="example_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum tortor lacus, non dictum nulla feugiat sed. Nam molestie diam id nisi fringilla placerat. Fusce aliquet, tellus non vehicula scelerisque, sem orci luctus nunc, non gravida ipsum elit id massa. Phasellus eu vulputate nisl. Curabitur et posuere nisl, vel gravida elit. Donec at tristique orci. Phasellus et orci ac turpis pharetra finibus quis eget risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec volutpat eros sit amet elit commodo, in molestie felis dignissim. Vestibulum lobortis justo magna, ut dictum tortor porta eget. Ut rutrum placerat eros, non ultricies arcu convallis in. Ut imperdiet tortor nec sem suscipit commodo. Phasellus ac leo in risus ullamcorper hendrerit.</div>
 <div id="example1_buttons">
     <div>
         <button id="example1_init">Init</button>
@@ -86,14 +86,22 @@
 
 
 {% when "example2" %}
-<input id="example2_button" type="button" value="Example 2 - Modal windows">
+<input id="example2_button1" type="button" value="Example 2 - Modal window">
+<div id="example2_first" class="example_content">
+    <p>I am a <b>modal</b> window.</p>
+    <p>You can open other PopupWindows on top of this! Use the buttons down here:</p>
+    <input id="example2_button2" type="button" value="xxx">
+    <input id="example2_button3" type="button" value="yyy">    
+</div>
+<div id="example2_second" class="example_content">I'm a PopupWindow shown on top of a modal one</div>
+<div id="example2_third" class="example_content">I'm a PopupWindow shown on top of a modal one</div>
 
 
 {% when "example3" %}
 <input id="example3_default_button" type="button" value="Default Style">
-<input id="example3_macos_button" type="button" value="MacOS Style">
-<div id="example3_default" class="example_content"></div>
-<div id="example3_macos" class="example_content"></div>
+<input id="example3_custom_button" type="button" value="Custom Style">
+<div id="example3_default" class="example_content">I like default style...</div>
+<div id="example3_custom" class="example_content">Call me <i>PopupWindow S Plus</i>!</div>
 
 
 {% endcase %}

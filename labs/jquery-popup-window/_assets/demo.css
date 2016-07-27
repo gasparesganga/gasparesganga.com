@@ -51,12 +51,12 @@
 
 /***** Example 3 *****/  
 /* Center Titlebar text */
-.macos .popupwindow_titlebar_text {
+.custom_style .popupwindow_titlebar_text {
     padding-left    : 8px;
 }
 
 /* Round buttons */
-.macos .popupwindow_titlebar_button {
+.custom_style .popupwindow_titlebar_button {
     width           : 18px;
     height          : 18px;
     margin-left     : 4px;
@@ -64,57 +64,57 @@
     border-radius   : 50%;
 }
     /* Button's icon on hover */
-    .macos .popupwindow_titlebar_button svg {
+    .custom_style .popupwindow_titlebar_button svg {
         display : none; 
     }
-    .macos .popupwindow_titlebar_button:hover svg {
+    .custom_style .popupwindow_titlebar_button:hover svg {
         display : block; 
     }
 
 /* Close button */
-.macos .popupwindow_titlebar_button_close {
+.custom_style .popupwindow_titlebar_button_close {
     background-color    : #d03020;
 }
-    .macos .popupwindow_titlebar_button_close:hover {
+    .custom_style .popupwindow_titlebar_button_close:hover {
         background-color    : #ca3020;
         stroke              : #803020;
     }
-    .macos .popupwindow_titlebar_button_close:active {
+    .custom_style .popupwindow_titlebar_button_close:active {
         background-color    : #c03020;
     }
 
 /* Maximize button */   
-.macos .popupwindow_titlebar_button_maximize {
+.custom_style .popupwindow_titlebar_button_maximize {
     background-color    : #ffbb66;
 }
-    .macos .popupwindow_titlebar_button_maximize:hover {
+    .custom_style .popupwindow_titlebar_button_maximize:hover {
         background-color    : #ee9922;
         stroke              : #885511;
     }
-    .macos .popupwindow_titlebar_button_maximize:active {
+    .custom_style .popupwindow_titlebar_button_maximize:active {
         background-color    : #dd8811;
     }
 
 /* Collapse button */   
-.macos .popupwindow_titlebar_button_collapse {
+.custom_style .popupwindow_titlebar_button_collapse {
     background-color    : #5599ee;
 }
-    .macos .popupwindow_titlebar_button_collapse:hover {
+    .custom_style .popupwindow_titlebar_button_collapse:hover {
         background-color    : #4466aa;
         stroke              : #002299;
     }
-    .macos .popupwindow_titlebar_button_collapse:active {
+    .custom_style .popupwindow_titlebar_button_collapse:active {
         background-color    : #335599;
     }
 
 /* Minimize button */
-.macos .popupwindow_titlebar_button_minimize {
+.custom_style .popupwindow_titlebar_button_minimize {
     background-color    : #99b055;
 }
-    .macos .popupwindow_titlebar_button_minimize:hover {
+    .custom_style .popupwindow_titlebar_button_minimize:hover {
         background-color    : #77a055;
         stroke              : #223311;
     }
-    .macos .popupwindow_titlebar_button_minimize:active {
+    .custom_style .popupwindow_titlebar_button_minimize:active {
         background-color    : #559044;
     }

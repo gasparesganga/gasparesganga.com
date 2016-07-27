@@ -124,14 +124,34 @@ var Demo = (function($, undefined){
     
     
     function Example2(){
-        /*$("#example2").PopupWindow({
-            title           : "Example 2 - Modal windows",
-            modal           : true,
-            autoOpen        : false,
-            height          : 200,
-            width           : 300,
-            collapsedWidth  : 300,
-        });*/
+        $("#example2_first").PopupWindow({
+            title       : "Example 2 - Modal window",
+            modal       : true,
+            autoOpen    : false
+        });
+        $("#example2_second").PopupWindow({
+            title       : "Other window",
+            modal       : false,
+            autoOpen    : false,
+            left        : 100
+        });
+        $("#example2_third").PopupWindow({
+            title       : "Yet another one",
+            modal       : false,
+            autoOpen    : false,
+            left        : 600
+        });
+        
+        
+        $("#example2_button1").on("click", function(event){
+            $("#example2_first").PopupWindow("open");
+        });
+        $("#example2_button2").on("click", function(event){
+            $("#example2_second").PopupWindow("open");
+        });
+        $("#example2_button3").on("click", function(event){
+            $("#example2_third").PopupWindow("open");
+        });
     }
     
     
@@ -142,11 +162,11 @@ var Demo = (function($, undefined){
             autoOpen    : false,
             left        : 100
         });
-        $("#example3_macos").PopupWindow({
-            title           : "Example 3 - MacOS Style",
+        $("#example3_custom").PopupWindow({
+            title           : "Example 3 - Custom Style",
             modal           : false,
             autoOpen        : false,
-            customClass     : "macos",
+            customClass     : "custom_style",
             buttonsPosition : "left",
             left            : 600
         });
@@ -154,8 +174,8 @@ var Demo = (function($, undefined){
         $("#example3_default_button").on("click", function(event){
             $("#example3_default").PopupWindow("open");
         });
-        $("#example3_macos_button").on("click", function(event){
-            $("#example3_macos").PopupWindow("open");
+        $("#example3_custom_button").on("click", function(event){
+            $("#example3_custom").PopupWindow("open");
         });
     }
     

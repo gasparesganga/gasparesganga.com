@@ -853,10 +853,10 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
             if (settings.keepInViewport) {
                 var size    = _GetCurrentSize(popupWindow);
                 var $window = $(window);
-                if (newPosition.top < 0) newPosition.top = 0;
-                if (newPosition.left < 0) newPosition.left = 0;
                 if (newPosition.top > $window.height() - size.height) newPosition.top = $window.height() - size.height;
                 if (newPosition.left > $window.width() - size.width) newPosition.left = $window.width() - size.width;
+                if (newPosition.top < 0) newPosition.top = 0;
+                if (newPosition.left < 0) newPosition.left = 0;
             }
         }
         var currentPosition = _GetCurrentPosition(popupWindow);
@@ -1071,19 +1071,19 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
     }
     
     function _Titlebar_MouseDown(event){
-        if (event.target === event.currentTarget || $(event.target).hasClass("popupwindow_titlebar_text")) {
-            var popupWindow = $(event.currentTarget).closest(".popupwindow");
-            var settings    = popupWindow.data("settings");
-            if (!settings.modal) popupWindow.data("overlay").css("background-color", "transparent").width("100%").height("100%");
-            _AddDocumentMouseEventHandlers({
-                popupWindow : popupWindow,
-                action      : "drag",
-                opacity     : settings.dragOpacity,
-                startX      : popupWindow.offset().left - event.pageX,
-                startY      : popupWindow.offset().top - event.pageY
-            });
-            event.preventDefault();
-        }
+        if (event.target !== event.currentTarget && !$(event.target).hasClass("popupwindow_titlebar_text")) return false;
+        var popupWindow     = $(event.currentTarget).closest(".popupwindow");
+        var currentPosition = _GetCurrentPosition(popupWindow);
+        var settings        = popupWindow.data("settings");
+        if (!settings.modal) popupWindow.data("overlay").css("background-color", "transparent").width("100%").height("100%");
+        _AddDocumentMouseEventHandlers({
+            popupWindow     : popupWindow,
+            action          : "drag",
+            opacity         : settings.dragOpacity,
+            compensationX   : event.pageX - currentPosition.left,
+            compensationY   : event.pageY - currentPosition.top
+        });
+        event.preventDefault();
     }
     function _Resizer_MouseDown(event){
         var popupWindow     = $(event.currentTarget).closest(".popupwindow");
@@ -1113,16 +1113,15 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
         var newSize         = {};
         switch (event.data.action) {
             case "drag":
-                newPosition.top  = event.data.startY + event.pageY;
-                newPosition.left = event.data.startX + event.pageX;
+                newPosition.top  = event.pageY - event.data.compensationY;
+                newPosition.left = event.pageX - event.data.compensationX;
                 if (settings.keepInViewport) {
-                    var overlayOffset   = popupWindow.data("overlay").offset();
-                    var size            = _GetCurrentSize(popupWindow);
-                    var $window         = $(window);
-                    if (newPosition.top < overlayOffset.top)                                  newPosition.top  = overlayOffset.top;
-                    if (newPosition.left < overlayOffset.left)                                newPosition.left = overlayOffset.left;
-                    if (newPosition.top > $window.height() + overlayOffset.top - size.height) newPosition.top  = $window.height() + overlayOffset.top - size.height;
-                    if (newPosition.left > $window.width() + overlayOffset.left - size.width) newPosition.left = $window.width() + overlayOffset.left - size.width;
+                    var size    = _GetCurrentSize(popupWindow);
+                    var $window = $(window);
+                    if (newPosition.top < 0)                                newPosition.top  = 0;
+                    if (newPosition.left < 0)                               newPosition.left = 0;
+                    if (newPosition.top > $window.height() - size.height)   newPosition.top  = $window.height() - size.height;
+                    if (newPosition.left > $window.width() - size.width)    newPosition.left = $window.width() - size.width;
                 }
             break;
             case "resize":
@@ -1143,7 +1142,7 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
             break;
         }
         if ((newPosition.top !== undefined && newPosition.top != currentPosition.top) || (newPosition.left !== undefined && newPosition.left != currentPosition.left)) {
-            popupWindow.offset(newPosition);
+            popupWindow.css(newPosition);
             _SetCurrentPosition(popupWindow, newPosition);
             if (settings.mouseMoveEvents) _TriggerEvent(popupWindow, "move");
         }

@@ -452,7 +452,7 @@ qui usa una modale ma consenti di aprire altre finestre sopra. Se chiudi la moda
 
 
 ### Example 3 - Custom style
-If you want to apply a custom style just to a specific PopupWindow without overriding the default style for all the others, the `customClass` option comes in handy. Here is an example of *macos-lookalike* using the `buttonsPosition` option as well:
+If you want to apply a custom style just to a specific PopupWindow without overriding the default style for all the others, the `customClass` option comes in handy. Here is an example using the `buttonsPosition` option as well:
 
 ```javascript
 $("#example3_default").PopupWindow({
@@ -460,25 +460,25 @@ $("#example3_default").PopupWindow({
     modal       : false,
     left        : 100
 });
-$("#example3_macos").PopupWindow({
-    title           : "Example 3 - MacOS Style",
+$("#example3_custom").PopupWindow({
+    title           : "Example 3 - Custom Style",
     modal           : false,
-    customClass     : "macos",
+    customClass     : "custom_style",
     buttonsPosition : "left",
     left            : 600
 });
 ```
 
-And here is some CSS with the `.macos` custom class specified:
+And here is some CSS with the `.custom_style` custom class specified:
 
 ```css
 /* Center Titlebar text */
-.macos .popupwindow_titlebar_text {
+.custom_style .popupwindow_titlebar_text {
     padding-left    : 8px;
 }
 
 /* Round buttons */
-.macos .popupwindow_titlebar_button {
+.custom_style .popupwindow_titlebar_button {
     width           : 18px;
     height          : 18px;
     margin-left     : 4px;
@@ -486,58 +486,58 @@ And here is some CSS with the `.macos` custom class specified:
     border-radius   : 50%;
 }
     /* Button's icon on hover */
-    .macos .popupwindow_titlebar_button svg {
+    .custom_style .popupwindow_titlebar_button svg {
         display : none; 
     }
-    .macos .popupwindow_titlebar_button:hover svg {
+    .custom_style .popupwindow_titlebar_button:hover svg {
         display : block; 
     }
 
 /* Close button */
-.macos .popupwindow_titlebar_button_close {
+.custom_style .popupwindow_titlebar_button_close {
     background-color    : #d03020;
 }
-    .macos .popupwindow_titlebar_button_close:hover {
+    .custom_style .popupwindow_titlebar_button_close:hover {
         background-color    : #ca3020;
         stroke              : #803020;
     }
-    .macos .popupwindow_titlebar_button_close:active {
+    .custom_style .popupwindow_titlebar_button_close:active {
         background-color    : #c03020;
     }
 
 /* Maximize button */   
-.macos .popupwindow_titlebar_button_maximize {
+.custom_style .popupwindow_titlebar_button_maximize {
     background-color    : #ffbb66;
 }
-    .macos .popupwindow_titlebar_button_maximize:hover {
+    .custom_style .popupwindow_titlebar_button_maximize:hover {
         background-color    : #ee9922;
         stroke              : #885511;
     }
-    .macos .popupwindow_titlebar_button_maximize:active {
+    .custom_style .popupwindow_titlebar_button_maximize:active {
         background-color    : #dd8811;
     }
 
 /* Collapse button */   
-.macos .popupwindow_titlebar_button_collapse {
+.custom_style .popupwindow_titlebar_button_collapse {
     background-color    : #5599ee;
 }
-    .macos .popupwindow_titlebar_button_collapse:hover {
+    .custom_style .popupwindow_titlebar_button_collapse:hover {
         background-color    : #4466aa;
         stroke              : #002299;
     }
-    .macos .popupwindow_titlebar_button_collapse:active {
+    .custom_style .popupwindow_titlebar_button_collapse:active {
         background-color    : #335599;
     }
 
 /* Minimize button */
-.macos .popupwindow_titlebar_button_minimize {
+.custom_style .popupwindow_titlebar_button_minimize {
     background-color    : #99b055;
 }
-    .macos .popupwindow_titlebar_button_minimize:hover {
+    .custom_style .popupwindow_titlebar_button_minimize:hover {
         background-color    : #77a055;
         stroke              : #223311;
     }
-    .macos .popupwindow_titlebar_button_minimize:active {
+    .custom_style .popupwindow_titlebar_button_minimize:active {
         background-color    : #559044;
     }
 ```
