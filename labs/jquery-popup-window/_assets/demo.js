@@ -128,21 +128,31 @@ var Demo = (function($, undefined){
             title       : "Example 2 - Modal window",
             modal       : true,
             autoOpen    : false
+            height      : 250,
+            width       : 400,
+            top         : 100,
+            left        : 300
         });
         $("#example2_second").PopupWindow({
             title       : "Other window",
             modal       : false,
             autoOpen    : false,
+            top         : 400,
             left        : 100
         });
         $("#example2_third").PopupWindow({
             title       : "Yet another one",
             modal       : false,
             autoOpen    : false,
+            top         : 400,
             left        : 600
         });
         
-        
+        $("#example2_first").on("close.popupwindow", function(event){
+            $("#example2_second").PopupWindow("close");
+            $("#example2_third").PopupWindow("close");
+        });
+       
         $("#example2_button1").on("click", function(event){
             $("#example2_first").PopupWindow("open");
         });
@@ -160,6 +170,9 @@ var Demo = (function($, undefined){
             title       : "Example 3 - Default Style",
             modal       : false,
             autoOpen    : false,
+            buttons     : {
+                collapse    : false
+            },
             left        : 100
         });
         $("#example3_custom").PopupWindow({
@@ -167,6 +180,9 @@ var Demo = (function($, undefined){
             modal           : false,
             autoOpen        : false,
             customClass     : "custom_style",
+            buttons         : {
+                collapse        : false
+            },
             buttonsPosition : "left",
             left            : 600
         });

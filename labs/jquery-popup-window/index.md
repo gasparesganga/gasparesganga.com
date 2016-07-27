@@ -445,8 +445,35 @@ $("#example1_statusbar").on("click", function(event){
 
 
 ### Example 2 - Modal window
+A *modal* PopupWindow will be displayed over the page, but you can still open more PopupWindows on top of it.
+
 ```javascript
-qui usa una modale ma consenti di aprire altre finestre sopra. Se chiudi la modale chiudi tutto!
+$("#example2_first").PopupWindow({
+    title       : "Example 2 - Modal window",
+    modal       : true,
+    height      : 250,
+    width       : 400,
+    top         : 100,
+    left        : 300
+});
+$("#example2_second").PopupWindow({
+    title       : "Other window",
+    modal       : false,
+    top         : 400,
+    left        : 100
+});
+$("#example2_third").PopupWindow({
+    title       : "Yet another one",
+    modal       : false,
+    top         : 400,
+    left        : 600
+});
+
+// Close the other PopupWindows when the modal one is closed
+$("#example2_first").on("close.popupwindow", function(event){
+    $("#example2_second").PopupWindow("close");
+    $("#example2_third").PopupWindow("close");
+});
 ```
 {% include_relative _demo.html demo="example2" %}
 
@@ -458,12 +485,18 @@ If you want to apply a custom style just to a specific PopupWindow without overr
 $("#example3_default").PopupWindow({
     title       : "Example 3 - Default Style",
     modal       : false,
+    buttons     : {
+        collapse    : false
+    },
     left        : 100
 });
 $("#example3_custom").PopupWindow({
     title           : "Example 3 - Custom Style",
     modal           : false,
     customClass     : "custom_style",
+    buttons         : {
+        collapse        : false
+    },
     buttonsPosition : "left",
     left            : 600
 });
@@ -472,6 +505,11 @@ $("#example3_custom").PopupWindow({
 And here is some CSS with the `.custom_style` custom class specified:
 
 ```css
+/* Content's background */
+.custom_style .popupwindow_content {
+    background-color    : #fafafa;
+}
+
 /* Center Titlebar text */
 .custom_style .popupwindow_titlebar_text {
     padding-left    : 8px;
@@ -515,18 +553,6 @@ And here is some CSS with the `.custom_style` custom class specified:
     }
     .custom_style .popupwindow_titlebar_button_maximize:active {
         background-color    : #dd8811;
-    }
-
-/* Collapse button */   
-.custom_style .popupwindow_titlebar_button_collapse {
-    background-color    : #5599ee;
-}
-    .custom_style .popupwindow_titlebar_button_collapse:hover {
-        background-color    : #4466aa;
-        stroke              : #002299;
-    }
-    .custom_style .popupwindow_titlebar_button_collapse:active {
-        background-color    : #335599;
     }
 
 /* Minimize button */
