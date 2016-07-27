@@ -1,0 +1,106 @@
+{% case include.demo %}
+
+{% when "quick_demo" %}
+<button id="quick_demo_button">Try jQuery PopupWindow!</button>
+<div id="quick_demo" class="example_content">Yay, I'm a PopupWindow!</div>
+
+
+{% when "example1" %}
+<div id="example1" class="example_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum tortor lacus, non dictum nulla feugiat sed. Nam molestie diam id nisi fringilla placerat. Fusce aliquet, tellus non vehicula scelerisque, sem orci luctus nunc, non gravida ipsum elit id massa. Phasellus eu vulputate nisl. Curabitur et posuere nisl, vel gravida elit. Donec at tristique orci. Phasellus et orci ac turpis pharetra finibus quis eget risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec volutpat eros sit amet elit commodo, in molestie felis dignissim. Vestibulum lobortis justo magna, ut dictum tortor porta eget. Ut rutrum placerat eros, non ultricies arcu convallis in. Ut imperdiet tortor nec sem suscipit commodo. Phasellus ac leo in risus ullamcorper hendrerit.</div>
+<div id="example1_buttons">
+    <div>
+        <button id="example1_init">Init</button>
+        <button id="example1_destroy">Destroy</button>
+    </div>
+    <div>
+        <button id="example1_open">Open</button>
+        <button id="example1_close">Close</button>
+    </div>
+    <div>
+        <button id="example1_collapse">Collapse</button>
+        <button id="example1_uncollapse">UnCollapse</button>
+    </div>
+    <div>
+        <button id="example1_minimize">Minimize</button>
+        <button id="example1_unminimize">UnMinimize</button>
+    </div>
+    <div>
+        <button id="example1_maximize">Maximize</button>
+        <button id="example1_unmaximize">UnMaximize</button>
+    </div>
+    <div>
+        <button id="example1_getposition">Get Position</button>
+        <button id="example1_setposition_toggle">Set Position</button>
+        <div class="example1_inputs" style="width:10rem;">
+            <label>Top : <input id="example1_setposition_input_top" type="text" value="100"></label>
+            <label>Left : <input id="example1_setposition_input_left" type="text" value="100"></label>
+            <label>Time : <input id="example1_setposition_input_time" type="text" value="500"></label>
+            <button id="example1_setposition">OK</button>
+        </div>
+    </div>
+    <div>
+        <button id="example1_getsize">Get Size</button>
+        <button id="example1_setsize_toggle">Set Size</button>
+        <div class="example1_inputs" style="width:10rem;">
+            <label>Width : <input id="example1_setsize_input_width" type="text" value="500"></label>
+            <label>Height : <input id="example1_setsize_input_height" type="text" value="300"></label>
+            <label>Time : <input id="example1_setsize_input_time" type="text" value="100"></label>
+            <button id="example1_setsize">OK</button>
+        </div>
+    </div>
+    <div>
+        <button id="example1_getstate">Get State</button>
+        <button id="example1_setstate_toggle">Set State</button>
+        <div class="example1_inputs" style="width:17rem;">
+            <label>
+                State : 
+                <select id="example1_setstate_input_state" style="width:10rem;">
+                    <option value="normal">normal</option>
+                    <option value="closed">closed</option>
+                    <option value="maximized">maximized</option>
+                    <option value="unmaximized">unmaximized</option>
+                    <option value="collapsed">collapsed</option>
+                    <option value="uncollapsed">uncollapsed</option>
+                    <option value="minimized">minimized</option>
+                    <option value="unminimized">unminimized</option>
+                </select>
+            </label>
+            <button id="example1_setstate">OK</button>
+        </div>
+    </div>
+    <div>
+        <button id="example1_settitle_toggle">SetTitle</button>
+        <div class="example1_inputs" style="width:17rem;">
+            <label>Title : <input id="example1_settitle_input_title" type="text" value="New title" style="width:10rem;"></label>
+            <button id="example1_settitle">OK</button>
+        </div>
+        <button id="example1_statusbar_toggle">StatusBar</button>
+        <div class="example1_inputs" style="width:17rem;">
+            <label>Text : <input id="example1_statusbar_input_text" type="text" value="Some text" style="width:10rem;"></label>
+            <button id="example1_statusbar">OK</button>
+        </div>
+    </div>
+</div>
+<div><pre id="example1_log"><i><u>PopupWindow events and data will be logged here:</u></i><br><br></pre></div>
+<button id="example1_clear">Clear log</button>
+
+
+{% when "example2" %}
+<button id="example2_button1">Modal window</button>
+<div id="example2_first" class="example_content">
+    <p>I am a <b>modal</b> window.</p>
+    <p>You can open other PopupWindows on top of this! Use the buttons down here:</p>
+    <button id="example2_button2">Popup 2</button>
+    <button id="example2_button3">Popup 3</button>  
+</div>
+<div id="example2_second" class="example_content">I'm a PopupWindow shown on top of a modal one</div>
+<div id="example2_third" class="example_content">I'm a PopupWindow shown on top of a modal one</div>
+
+
+{% when "example3" %}
+<button id="example3_default_button">Default Style</button><button id="example3_custom_button">Custom Style</button>
+<div id="example3_default" class="example_content">I like default style...</div>
+<div id="example3_custom" class="example_content">Call me <i>PopupWindow S Plus</i>!</div>
+
+
+{% endcase %}

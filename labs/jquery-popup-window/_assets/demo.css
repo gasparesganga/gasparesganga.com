@@ -1,0 +1,114 @@
+.example_content {
+    display : none;
+}
+
+/***** Example 1 *****/
+#example1_log {
+    margin-top          : 1rem;
+    text-align          : left;
+    padding             : 0.3rem 1rem;
+    background-color    : #fafafa;
+    border              : 1px solid #cccccc;
+}
+
+#example1_buttons > div {
+    position    : relative;
+    display     : inline-block;
+    margin      : 0.3rem 0.5rem;
+    padding     : 0 0.3rem;
+}
+#example1_buttons button {
+    width       : 7rem;
+    min-width   : 7rem;
+}
+
+.example1_inputs {
+    position    : absolute;
+    top         : 0;
+    right       : 0;
+    display     : inline-block;
+    background  : #ffffff;
+    border      : 1px solid #cccccc;
+    padding     : 1rem 1.5rem;
+    text-align  : right;
+    z-index     : 1;
+}
+    .example1_inputs label {
+        display     : block;
+        margin      : 0.5rem 0;
+    }
+        .example1_inputs input[type=text] {
+            width       : 3rem;
+            text-align  : left;
+        }
+    .example1_inputs button {
+        display     : block !important;
+        margin      : auto;
+        margin-top  : 1.2rem;
+    }
+
+
+
+/***** Example 3 *****/ 
+
+/* Content's background */
+.custom_style .popupwindow_content {
+    background-color    : #f0f0f0;
+}
+
+/* Center Titlebar text */
+.custom_style .popupwindow_titlebar_text {
+    padding-left    : 8px;
+}
+
+/* Round buttons */
+.custom_style .popupwindow_titlebar_button {
+    width           : 18px;
+    height          : 18px;
+    margin-left     : 4px;
+    border          : none;
+    border-radius   : 50%;
+}
+    /* Button's icon on hover */
+    .custom_style .popupwindow_titlebar_button svg {
+        display : none; 
+    }
+    .custom_style .popupwindow_titlebar_button:hover svg {
+        display : block; 
+    }
+
+/* Close button */
+.custom_style .popupwindow_titlebar_button_close {
+    background-color    : #d03020;
+}
+    .custom_style .popupwindow_titlebar_button_close:hover {
+        background-color    : #ca3020;
+        stroke              : #803020;
+    }
+    .custom_style .popupwindow_titlebar_button_close:active {
+        background-color    : #c03020;
+    }
+
+/* Maximize button */   
+.custom_style .popupwindow_titlebar_button_maximize {
+    background-color    : #ffbb66;
+}
+    .custom_style .popupwindow_titlebar_button_maximize:hover {
+        background-color    : #ee9922;
+        stroke              : #885511;
+    }
+    .custom_style .popupwindow_titlebar_button_maximize:active {
+        background-color    : #dd8811;
+    }
+
+/* Minimize button */
+.custom_style .popupwindow_titlebar_button_minimize {
+    background-color    : #99b055;
+}
+    .custom_style .popupwindow_titlebar_button_minimize:hover {
+        background-color    : #77a055;
+        stroke              : #223311;
+    }
+    .custom_style .popupwindow_titlebar_button_minimize:active {
+        background-color    : #559044;
+    }
