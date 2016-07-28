@@ -1,6 +1,14 @@
+.popupwindow_titlebar_text {
+    font-size   : 0.95rem;
+}
+.popupwindow_statusbar_content {
+    font-size   : 0.9rem;
+}
+
 .example_content {
     display : none;
 }
+
 
 /***** Example 1 *****/
 #example1_log {
@@ -33,18 +41,70 @@
     text-align  : right;
     z-index     : 1;
 }
-    .example1_inputs label {
+    .example1_inputs > div {
         display     : block;
         margin      : 0.5rem 0;
     }
-        .example1_inputs input[type=text] {
-            width       : 3rem;
+        .example1_inputs input[type=text],
+        .example1_inputs select,
+        .example1_inputs label {
+            display     : inline-block;
+            box-sizing  : border-box;
             text-align  : left;
         }
     .example1_inputs button {
         display     : block !important;
         margin      : auto;
         margin-top  : 1.2rem;
+    }
+
+#example1_init_inputs {
+    width   : 17rem;
+}
+    #example1_init_inputs.example1_inputs input[type=text],
+    #example1_init_inputs.example1_inputs select,
+    #example1_init_inputs.example1_inputs label {
+        width   : 6rem;
+    }
+#example1_setposition_inputs {
+    width   : 10rem;
+}
+    #example1_setposition_inputs.example1_inputs input[type=text],
+    #example1_setposition_inputs.example1_inputs select,
+    #example1_setposition_inputs.example1_inputs label {
+        width   : 3rem;
+    }
+#example1_setsize_inputs {
+    width   : 10rem;
+}
+    #example1_setsize_inputs.example1_inputs input[type=text],
+    #example1_setsize_inputs.example1_inputs select,
+    #example1_setsize_inputs.example1_inputs label {
+        width   : 3rem;
+    }
+#example1_setstate_inputs {
+    width   : 17rem;
+}
+    #example1_setstate_inputs.example1_inputs input[type=text],
+    #example1_setstate_inputs.example1_inputs select,
+    #example1_setstate_inputs.example1_inputs label {
+        width   : 10rem;
+    }
+#example1_settitle_inputs {
+    width   : 17rem;
+}
+    #example1_settitle_inputs.example1_inputs input[type=text],
+    #example1_settitle_inputs.example1_inputs select,
+    #example1_settitle_inputs.example1_inputs label {
+        width   : 10rem;
+    }
+#example1_statusbar_inputs {
+    width   : 17rem;
+}
+    #example1_statusbar_inputs.example1_inputs input[type=text],
+    #example1_statusbar_inputs.example1_inputs select,
+    #example1_statusbar_inputs.example1_inputs label {
+        width   : 10rem;
     }
 
 

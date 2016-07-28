@@ -366,10 +366,10 @@ function(event, data){
 // Buttons to test Actions
 $("#example1_init").on("click", function(event){
     $("#example1").PopupWindow({
-        title           : "Example 1 - Complete playground",
-        modal           : false,
-        collapsedWidth  : 300,
-        mouseMoveEvents : false
+        title   : "Example 1 - Complete playground",
+        modal   : false,
+        // .....
+        // .....
     });
 });
 $("#example1_destroy").on("click", function(event){

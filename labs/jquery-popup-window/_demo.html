@@ -9,7 +9,71 @@
 <div id="example1" class="example_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum tortor lacus, non dictum nulla feugiat sed. Nam molestie diam id nisi fringilla placerat. Fusce aliquet, tellus non vehicula scelerisque, sem orci luctus nunc, non gravida ipsum elit id massa. Phasellus eu vulputate nisl. Curabitur et posuere nisl, vel gravida elit. Donec at tristique orci. Phasellus et orci ac turpis pharetra finibus quis eget risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec volutpat eros sit amet elit commodo, in molestie felis dignissim. Vestibulum lobortis justo magna, ut dictum tortor porta eget. Ut rutrum placerat eros, non ultricies arcu convallis in. Ut imperdiet tortor nec sem suscipit commodo. Phasellus ac leo in risus ullamcorper hendrerit.</div>
 <div id="example1_buttons">
     <div>
-        <button id="example1_init">Init</button>
+        <button id="example1_init_toggle">Init</button>
+        <div class="example1_inputs" id="example1_init_inputs">
+            <div>
+                Buttons : 
+                    <label><input id="example1_init_input_close" type="checkbox" checked>Close</label>
+                    <br>
+                    <label><input id="example1_init_input_maximize" type="checkbox" checked>Maximize</label>
+                    <br>
+                    <label><input id="example1_init_input_collapse" type="checkbox" checked>Collapse</label>
+                    <br>
+                    <label><input id="example1_init_input_minimize" type="checkbox" checked>Minimize</label>
+            </div>
+            <div>
+                Buttons Position : 
+                <select id="example1_init_input_buttonsPosition">
+                    <option value="left">Left</option>
+                    <option value="right" selected>Right</option>
+                </select>
+            </div>
+            <div>
+                Draggable : 
+                <select id="example1_init_input_draggable">
+                    <option value="true" selected>Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div>
+                Resizable : 
+                <select id="example1_init_input_resizable">
+                    <option value="true" selected>Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div>
+                StatusBar : 
+                <select id="example1_init_input_statusBar">
+                    <option value="true" selected>Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div>Top : <input id="example1_init_input_top" type="text" value="auto"></div>
+            <div>Left : <input id="example1_init_input_left" type="text" value="auto"></div>
+            <div>Height : <input id="example1_init_input_height" type="text" value="200"></div>
+            <div>Width : <input id="example1_init_input_width" type="text" value="400"></div>
+            <div>maxHeight : <input id="example1_init_input_maxHeight" type="text" value="undefined"></div>
+            <div>maxWidth : <input id="example1_init_input_maxWidth" type="text" value="undefined"></div>
+            <div>minHeight : <input id="example1_init_input_minHeight" type="text" value="100"></div>
+            <div>minWidth : <input id="example1_init_input_minWidth" type="text" value="200"></div>
+            <div>Collapsed Width : <input id="example1_init_input_collapsedWidth" type="text" value="undefined"></div>
+            <div>
+                Keep In Viewport : 
+                <select id="example1_init_input_keepInViewport">
+                    <option value="true" selected>Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div>
+                Mouse Move Events : 
+                <select id="example1_init_input_mouseMoveEvents">
+                    <option value="true" selected>Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <button id="example1_init">OK</button>
+        </div>
         <button id="example1_destroy">Destroy</button>
     </div>
     <div>
@@ -31,30 +95,30 @@
     <div>
         <button id="example1_getposition">Get Position</button>
         <button id="example1_setposition_toggle">Set Position</button>
-        <div class="example1_inputs" style="width:10rem;">
-            <label>Top : <input id="example1_setposition_input_top" type="text" value="100"></label>
-            <label>Left : <input id="example1_setposition_input_left" type="text" value="100"></label>
-            <label>Time : <input id="example1_setposition_input_time" type="text" value="500"></label>
+        <div class="example1_inputs" id="example1_setposition_inputs">
+            <div>Top : <input id="example1_setposition_input_top" type="text" value="100"></div>
+            <div>Left : <input id="example1_setposition_input_left" type="text" value="100"></div>
+            <div>Time : <input id="example1_setposition_input_time" type="text" value="500"></div>
             <button id="example1_setposition">OK</button>
         </div>
     </div>
     <div>
         <button id="example1_getsize">Get Size</button>
         <button id="example1_setsize_toggle">Set Size</button>
-        <div class="example1_inputs" style="width:10rem;">
-            <label>Width : <input id="example1_setsize_input_width" type="text" value="500"></label>
-            <label>Height : <input id="example1_setsize_input_height" type="text" value="300"></label>
-            <label>Time : <input id="example1_setsize_input_time" type="text" value="100"></label>
+        <div class="example1_inputs" id="example1_setsize_inputs">
+            <div>Width : <input id="example1_setsize_input_width" type="text" value="500"></div>
+            <div>Height : <input id="example1_setsize_input_height" type="text" value="300"></div>
+            <div>Time : <input id="example1_setsize_input_time" type="text" value="100"></div>
             <button id="example1_setsize">OK</button>
         </div>
     </div>
     <div>
         <button id="example1_getstate">Get State</button>
         <button id="example1_setstate_toggle">Set State</button>
-        <div class="example1_inputs" style="width:17rem;">
-            <label>
+        <div class="example1_inputs" id="example1_setstate_inputs">
+            <div>
                 State : 
-                <select id="example1_setstate_input_state" style="width:10rem;">
+                <select id="example1_setstate_input_state">
                     <option value="normal">normal</option>
                     <option value="closed">closed</option>
                     <option value="maximized">maximized</option>
@@ -64,19 +128,19 @@
                     <option value="minimized">minimized</option>
                     <option value="unminimized">unminimized</option>
                 </select>
-            </label>
+            </div>
             <button id="example1_setstate">OK</button>
         </div>
     </div>
     <div>
         <button id="example1_settitle_toggle">SetTitle</button>
-        <div class="example1_inputs" style="width:17rem;">
-            <label>Title : <input id="example1_settitle_input_title" type="text" value="New title" style="width:10rem;"></label>
+        <div class="example1_inputs" id="example1_settitle_inputs">
+            <div>Title : <input id="example1_settitle_input_title" type="text" value="New title"></div>
             <button id="example1_settitle">OK</button>
         </div>
         <button id="example1_statusbar_toggle">StatusBar</button>
-        <div class="example1_inputs" style="width:17rem;">
-            <label>Text : <input id="example1_statusbar_input_text" type="text" value="Some text" style="width:10rem;"></label>
+        <div class="example1_inputs" id="example1_statusbar_inputs">
+            <div>Text : <input id="example1_statusbar_input_text" type="text" value="Some text"></div>
             <button id="example1_statusbar">OK</button>
         </div>
     </div>
