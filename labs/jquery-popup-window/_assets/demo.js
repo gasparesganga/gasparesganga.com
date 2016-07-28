@@ -33,12 +33,33 @@ var Demo = (function($, undefined){
         
         // Buttons to test Actions
         $("#example1_init").on("click", function(event){
+            $("#example1").PopupWindow("destroy");
             $("#example1").PopupWindow({
                 title           : "Example 1 - Complete playground",
                 modal           : false,
-                collapsedWidth  : 300,
-                mouseMoveEvents : false
+                buttons         : {
+                    close           : $("#example1_init_input_close").prop("checked"),
+                    maximize        : $("#example1_init_input_maximize").prop("checked"),
+                    collapse        : $("#example1_init_input_collapse").prop("checked"),
+                    minimize        : $("#example1_init_input_minimize").prop("checked")
+                },
+                buttonsPosition : $("#example1_init_input_buttonsPosition").val(),
+                draggable       : $("#example1_init_input_draggable").val() === "true",
+                resizable       : $("#example1_init_input_resizable").val() === "true",
+                statusBar       : $("#example1_init_input_statusBar").val() === "true",
+                top             : $("#example1_init_input_top").val(),
+                left            : $("#example1_init_input_left").val(),
+                height          : $("#example1_init_input_height").val(),
+                width           : $("#example1_init_input_width").val(),
+                maxHeight       : $("#example1_init_input_maxHeight").val(),
+                maxWidth        : $("#example1_init_input_maxWidth").val(),
+                minHeight       : $("#example1_init_input_minHeight").val(),
+                minWidth        : $("#example1_init_input_minWidth").val(),
+                collapsedWidth  : $("#example1_init_input_collapsedWidth").val(),
+                keepInViewport  : $("#example1_init_input_keepInViewport").val() === "true",
+                mouseMoveEvents : $("#example1_init_input_mouseMoveEvents").val() === "true"
             });
+            $(event.currentTarget).closest(".example1_inputs").hide();
         });
         $("#example1_destroy").on("click", function(event){
             $("#example1").PopupWindow("destroy");
@@ -74,7 +95,7 @@ var Demo = (function($, undefined){
             $("#example1").PopupWindow("setPosition", {
                 top             : $("#example1_setposition_input_top").val(),
                 left            : $("#example1_setposition_input_left").val(),
-                animationTime   : $("#example1_setposition_input_time").val()
+                animationTime   : $("#example1_setposition_input_animationTime").val()
             });
             $(event.currentTarget).closest(".example1_inputs").hide();
         });
@@ -85,7 +106,7 @@ var Demo = (function($, undefined){
             $("#example1").PopupWindow("setSize", {
                 width           : $("#example1_setsize_input_width").val(),
                 height          : $("#example1_setsize_input_height").val(),
-                animationTime   : $("#example1_setsize_input_time").val()
+                animationTime   : $("#example1_setsize_input_animationTime").val()
             });
             $(event.currentTarget).closest(".example1_inputs").hide();
         });
@@ -111,15 +132,32 @@ var Demo = (function($, undefined){
         });
         
         // UI
-        $("#example1_setposition_toggle, #example1_setsize_toggle, #example1_setstate_toggle, #example1_settitle_toggle, #example1_statusbar_toggle").on("click", function(event){          
+        $("#example1_init_toggle, #example1_setposition_toggle, #example1_setsize_toggle, #example1_setstate_toggle, #example1_settitle_toggle, #example1_statusbar_toggle").on("click", function(event){          
             $(event.currentTarget).next(".example1_inputs").toggle();
         });
         $(document).on("click", function(event){
             var $this = $(event.target);
-            if ($this.closest(".example1_inputs").length) return false;
-            $(".example1_inputs").not($this.next(".example1_inputs")).hide();
+            if (!$this.closest(".example1_inputs").length) $(".example1_inputs").not($this.next(".example1_inputs")).hide();
         });
         $(".example1_inputs").hide();
+        
+        // Default Values
+        var _defaultValues = {};
+        $("#example1_buttons").find("input[type=text]").each(function(){
+            var $this = $(this);
+            _defaultValues[$this.attr("id")] = $this.val();
+        });
+        $("#example1_buttons").on("blur", "input[type=text]", function(event){
+            var $this   = $(event.currentTarget);
+            var id      = $this.attr("id");
+            var value   = $.trim($this.val());
+            if (value == "") {
+                value = _defaultValues[id];
+            } else if (value != _defaultValues[id]) {
+                value = parseInt(value) || _defaultValues[id];
+            }
+            $this.val(value);
+        });
     }
     
     
@@ -128,6 +166,7 @@ var Demo = (function($, undefined){
             title       : "Example 2 - Modal window",
             modal       : true,
             autoOpen    : false,
+            statusBar   : false,
             height      : 250,
             width       : 400,
             top         : 100,
@@ -137,6 +176,7 @@ var Demo = (function($, undefined){
             title       : "Other window",
             modal       : false,
             autoOpen    : false,
+            statusBar   : false,
             top         : 400,
             left        : 100
         });
@@ -144,6 +184,7 @@ var Demo = (function($, undefined){
             title       : "Yet another one",
             modal       : false,
             autoOpen    : false,
+            statusBar   : false,
             top         : 400,
             left        : 600
         });
