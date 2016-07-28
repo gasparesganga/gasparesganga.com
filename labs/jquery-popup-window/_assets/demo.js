@@ -58,6 +58,7 @@ var Demo = (function($, undefined){
                 keepInViewport  : $("#example1_init_input_keepInViewport").val() === "true",
                 mouseMoveEvents : $("#example1_init_input_mouseMoveEvents").val() === "true"
             });
+            $(event.currentTarget).closest(".example1_inputs").hide();
         });
         $("#example1_destroy").on("click", function(event){
             $("#example1").PopupWindow("destroy");
@@ -93,7 +94,7 @@ var Demo = (function($, undefined){
             $("#example1").PopupWindow("setPosition", {
                 top             : $("#example1_setposition_input_top").val(),
                 left            : $("#example1_setposition_input_left").val(),
-                animationTime   : $("#example1_setposition_input_time").val()
+                animationTime   : $("#example1_setposition_input_animationTime").val()
             });
             $(event.currentTarget).closest(".example1_inputs").hide();
         });
@@ -104,7 +105,7 @@ var Demo = (function($, undefined){
             $("#example1").PopupWindow("setSize", {
                 width           : $("#example1_setsize_input_width").val(),
                 height          : $("#example1_setsize_input_height").val(),
-                animationTime   : $("#example1_setsize_input_time").val()
+                animationTime   : $("#example1_setsize_input_animationTime").val()
             });
             $(event.currentTarget).closest(".example1_inputs").hide();
         });
@@ -156,7 +157,12 @@ var Demo = (function($, undefined){
                 value = parseInt(value) || _defaultValues[id];
             }
             $this.val(value);
-        });  
+        });
+        
+         $("input[type='checkbox']").on('change', function(){
+            console.log(this);
+            console.log($(this).val());
+        });
     }
     
     
