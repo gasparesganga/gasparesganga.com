@@ -451,6 +451,7 @@ A **modal** PopupWindow will be displayed over the page, but you can still open 
 $("#example2_first").PopupWindow({
     title       : "Example 2 - Modal window",
     modal       : true,
+    statusBar   : false,
     height      : 250,
     width       : 400,
     top         : 100,
@@ -459,12 +460,14 @@ $("#example2_first").PopupWindow({
 $("#example2_second").PopupWindow({
     title       : "Other window",
     modal       : false,
+    statusBar   : false,
     top         : 400,
     left        : 100
 });
 $("#example2_third").PopupWindow({
     title       : "Yet another one",
     modal       : false,
+    statusBar   : false,
     top         : 400,
     left        : 600
 });

@@ -136,8 +136,7 @@ var Demo = (function($, undefined){
         });
         $(document).on("click", function(event){
             var $this = $(event.target);
-            if ($this.closest(".example1_inputs").length) return false;
-            $(".example1_inputs").not($this.next(".example1_inputs")).hide();
+            if (!$this.closest(".example1_inputs").length) $(".example1_inputs").not($this.next(".example1_inputs")).hide();
         });
         $(".example1_inputs").hide();
         
@@ -158,11 +157,6 @@ var Demo = (function($, undefined){
             }
             $this.val(value);
         });
-        
-         $("input[type='checkbox']").on('change', function(){
-            console.log(this);
-            console.log($(this).val());
-        });
     }
     
     
@@ -171,6 +165,7 @@ var Demo = (function($, undefined){
             title       : "Example 2 - Modal window",
             modal       : true,
             autoOpen    : false,
+            statusBar   : false,
             height      : 250,
             width       : 400,
             top         : 100,
@@ -180,6 +175,7 @@ var Demo = (function($, undefined){
             title       : "Other window",
             modal       : false,
             autoOpen    : false,
+            statusBar   : false,
             top         : 400,
             left        : 100
         });
@@ -187,6 +183,7 @@ var Demo = (function($, undefined){
             title       : "Yet another one",
             modal       : false,
             autoOpen    : false,
+            statusBar   : false,
             top         : 400,
             left        : 600
         });
