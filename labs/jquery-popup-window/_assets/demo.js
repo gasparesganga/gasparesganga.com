@@ -125,6 +125,13 @@ var Demo = (function($, undefined){
             $("#example1").PopupWindow("statusbar", $("#example1_statusbar_input_text").val());
             $(event.currentTarget).closest(".example1_inputs").hide();
         });
+        $("#example1_minimizedarea").on("click", function(event){
+            $.PopupWindowMinimizedArea({
+                position    : $("#example1_minimizedarea_input_position").val(),
+                direction   : $("#example1_minimizedarea_input_direction").val()
+            });
+            $(event.currentTarget).closest(".example1_inputs").hide();
+        });
         
         // Clear Log
         $("#example1_clear").on("click", function(event){
@@ -132,7 +139,7 @@ var Demo = (function($, undefined){
         });
         
         // UI
-        $("#example1_init_toggle, #example1_setposition_toggle, #example1_setsize_toggle, #example1_setstate_toggle, #example1_settitle_toggle, #example1_statusbar_toggle").on("click", function(event){          
+        $("#example1_init_toggle, #example1_setposition_toggle, #example1_setsize_toggle, #example1_setstate_toggle, #example1_settitle_toggle, #example1_statusbar_toggle, #example1_minimizedarea_toggle").on("click", function(event){          
             $(event.currentTarget).next(".example1_inputs").toggle();
         });
         $(document).on("click", function(event){
