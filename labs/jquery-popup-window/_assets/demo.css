@@ -111,7 +111,16 @@
         width   : 10rem;
     }
 
+#example1_minimizedarea_inputs {
+    width   : 17rem;
+}
+    #example1_minimizedarea_inputs.example1_inputs input[type=text],
+    #example1_minimizedarea_inputs.example1_inputs select,
+    #example1_minimizedarea_inputs.example1_inputs label {
+        width   : 10rem;
+    }
 
+    
 
 /***** Example 3 *****/ 
 

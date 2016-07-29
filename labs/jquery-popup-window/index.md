@@ -441,6 +441,13 @@ $("#example1_settitle").on("click", function(event){
 $("#example1_statusbar").on("click", function(event){
     $("#example1").PopupWindow("statusbar", "Some text...");
 });
+
+$("#example1_minimizedarea").on("click", function(event){
+    $.PopupWindowMinimizedArea({
+        position    : "top left",
+        direction   : "vertical"
+    });
+});
 ```
 {% include_relative _demo.html demo="example1" %}
 
