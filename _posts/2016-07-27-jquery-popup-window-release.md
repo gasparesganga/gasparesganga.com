@@ -1,9 +1,13 @@
 ---
 layout      : post
-title       : jQuery PopupWindow release 1.0.0
+title       : jQuery PopupWindow release
 description : The ultimate popup/dialog/modal jQuery plugin is here
 tags        : [Releases, Javascript, jQuery, Plugin, PopupWindow, Dialog, Modal, Popup, Window]
 ---
+
+<div class="alert">
+    <b>29 July 2016 :</b> Version 1.0.1 released with minor CSS tweaks. It doesn't matter how much one tests a piece of software, some minor bugs will evetually show up the day after public release!
+</div>
 
 That is one bold statement:
 
