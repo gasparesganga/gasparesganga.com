@@ -14,11 +14,6 @@ download    : jquery-loading-overlay/archive/1.4.0.zip
 source      : jquery-loading-overlay
 ---
 
-<div class="alert">
-    <b>29 June 2016 :</b> Version 1.4.0 released: a new versioning system has been introduced, as well as <code>imagePosition</code> option. See the complete <a href="/posts/jquery-loading-overlay-1.4.0/">release notes</a>.
-</div>
-
-
 ## Quick Demo
 {% include_relative _demo.html demo="quick_demo" %}
 

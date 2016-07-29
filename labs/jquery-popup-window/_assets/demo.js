@@ -143,11 +143,11 @@ var Demo = (function($, undefined){
         
         // Default Values
         var _defaultValues = {};
-        $("#example1_buttons").find("input[type=text]").each(function(){
+        $("#example1_init_inputs. #example1_setposition_inputs, #example1_setsize_inputs").find("input[type=text]").each(function(){
             var $this = $(this);
             _defaultValues[$this.attr("id")] = $this.val();
         });
-        $("#example1_buttons").on("blur", "input[type=text]", function(event){
+        $("#example1_init_inputs. #example1_setposition_inputs, #example1_setsize_inputs").on("blur", "input[type=text]", function(event){
             var $this   = $(event.currentTarget);
             var id      = $this.attr("id");
             var value   = $.trim($this.val());
