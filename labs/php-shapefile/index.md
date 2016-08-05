@@ -256,8 +256,5 @@ Nothing else is different in the code, so all credits go to **Erwin Kooi** for t
 
 
 ## History
-
 *31 March 2016* - [Version 1.1](/posts/php-shapefile-version-1.1/)
-
 *13 November 2014* - [Version 1.0](/posts/php-shapefile-release/)
-

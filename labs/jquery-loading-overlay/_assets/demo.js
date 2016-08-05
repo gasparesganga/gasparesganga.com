@@ -60,7 +60,10 @@ $(function(){
                 height  : h,
                 width   : w
             }, 2500, function(){
-                element.LoadingOverlay("hide");
+                element.LoadingOverlay("hide").css({
+                    height  : "",
+                    width   : ""
+                });
                 _example2Active = false;
             })
         });

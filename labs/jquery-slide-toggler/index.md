@@ -338,8 +338,5 @@ $.SlideTogglerSetup({
 
 
 ## History
-
 *8 July 2015* - [Version 1.1](/posts/jquery-slide-toggler-version-1.1/)
-
 *3 July 2015* - [Version 1.0](/posts/jquery-slide-toggler-release/)
-

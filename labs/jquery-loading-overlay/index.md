@@ -14,9 +14,14 @@ download    : jquery-loading-overlay/archive/v1.4.1.zip
 source      : jquery-loading-overlay
 ---
 
+
+{% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2016-09-01' | date: '%s'}}{% endcapture %}
+{% if current_date < expire_date %}
 <div class="alert">
     <b>5 August 2016 :</b> Version 1.4.1 released. See <a href="/posts/jquery-loading-overlay-1.4.1/">release notes</a>.
 </div>
+{% endif %}
 
 
 ## Quick Demo
@@ -284,16 +289,9 @@ var progressCustom = new LoadingOverlayProgress({
 
 
 ## History
-
 *5 August 2016* - [Version 1.4.1](/posts/jquery-loading-overlay-1.4.1/)
-
 *29 June 2016* - [Version 1.4.0](/posts/jquery-loading-overlay-1.4.0/)
-
 *25 May 2016* - [Version 1.3](/posts/jquery-loading-overlay-version-1.3/)
-
 *22 April 2016* - [Version 1.2](/posts/jquery-loading-overlay-version-1.2/)
-
 *31 December 2015* - [Version 1.1](/posts/jquery-loading-overlay-version-1.1/)
-
 *15 February 2015* - [Version 1.0](/posts/jquery-loading-overlay-release/)
-

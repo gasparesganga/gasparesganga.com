@@ -8,7 +8,7 @@ source      : jquery-message-box
 ---
 
 <div class="alert">
-    <b>Some maintenance is going on, version 2.0 is coming!!!</b>
+    <b>Some maintenance is going on, version 2.0.0 is coming by the end of this week <i>(7 August)</i>!</b>
 </div>
 
 

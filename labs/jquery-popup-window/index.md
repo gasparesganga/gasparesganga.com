@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery PopupWindow
 description : The ultimate popup/dialog/modal jQuery plugin
-updated     : 2016-07-29
+updated     : 2016-08-05
 css         :
   - jquery-popup-window/_assets/popupwindow.css
   - jquery-popup-window/_assets/demo.css
@@ -10,9 +10,19 @@ js          :
   - js/jquery-3.1.0.min.js
   - jquery-popup-window/_assets/popupwindow.min.js
   - jquery-popup-window/_assets/demo.js
-download    : jquery-popup-window/archive/v1.0.0.zip
+download    : jquery-popup-window/archive/v1.0.2.zip
 source      : jquery-popup-window
 ---
+
+
+{% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2016-09-01' | date: '%s'}}{% endcapture %}
+{% if current_date < expire_date %}
+<div class="alert">
+    <b>5 August 2016 :</b> Version 1.0.2 released. See <a href="/posts/jquery-popup-window-1.0.2/">release notes</a>.
+</div>
+{% endif %}
+
 
 
 ## Quick Demo
@@ -141,7 +151,7 @@ size : {
 
 ##### GetState
 **`$(selector).PopupWindow("getstate")`**
-Gets the state of PopupWindow for the first element in the set of matched elements. It returns a string representing the state: `normal`, `closed`, `collapsed`, `minimized` or `maximized`.
+Gets the state of PopupWindow for the first element in the set of matched elements. It returns `undefined` if PopupWindow has not been initialized on the element, or a string representing its state: `normal`, `closed`, `collapsed`, `minimized` or `maximized`.
 
 ##### SetState
 **`$(selector).PopupWindow("setstate", state)`**
@@ -365,7 +375,7 @@ function(event, data){
 
 // Buttons to test Actions
 $("#example1_init").on("click", function(event){
-    $("#example1").PopupWindow("destroy");
+    if ($("#example1").PopupWindow("getState")) $("#example1").PopupWindow("destroy");
     $("#example1").PopupWindow({
         title   : "Example 1 - Complete playground",
         modal   : false,
@@ -583,7 +593,6 @@ And here is some CSS for this `.custom_style` class:
 
 
 ## History
-
-*27 July 2016* - [Version 1.0.0](/posts/jquery-popup-window-release/)
+*5 August 2016* - [Version 1.0.2](/posts/jquery-popup-window-1.0.2/)
 *29 July 2016* - [Version 1.0.1](/posts/jquery-popup-window-release/)
-
+*27 July 2016* - [Version 1.0.0](/posts/jquery-popup-window-release/)
