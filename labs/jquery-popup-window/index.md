@@ -593,6 +593,6 @@ And here is some CSS for this `.custom_style` class:
 
 
 ## History
-*5 August 2016* - [Version 1.0.2](/posts/jquery-popup-window-version-1.0.2/)
+*5 August 2016* - [Version 1.0.2](/posts/jquery-popup-window-1.0.2/)
 *29 July 2016* - [Version 1.0.1](/posts/jquery-popup-window-release/)
 *27 July 2016* - [Version 1.0.0](/posts/jquery-popup-window-release/)
