@@ -307,7 +307,10 @@ PopupWindow - The ultimate popup/dialog/modal jQuery plugin
     //  FUNCTIONS
     // **************************************************
     function _Init(originalTarget, options){
-        if (_CheckPopupWindow(originalTarget.closest(".popupwindow"))) return;
+        if (originalTarget.closest(".popupwindow").length) {
+            _Warning("jQuery PopupWindow is already initialized on this element");
+            return;
+        }
         var settings = $.extend(true, {}, _defaults, options);
         settings.animationTime  = parseInt(settings.animationTime, 10);
         settings.height         = parseInt(settings.height, 10);
