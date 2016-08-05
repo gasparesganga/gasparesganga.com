@@ -33,15 +33,16 @@ $(function(){
             color   : "rgba(165, 190, 100, 0.5)"
         });
         setTimeout(function(){
-            element.LoadingOverlay("hide");
+            element.LoadingOverlay("hide", true);
         }, 3000);
     });
     
     $("#example2b").on("click", function(event){
         var element = $(event.currentTarget).parent().prev();
+        if (element.data("demoOn")) return false;
         var h       = element.height();
         var w       = element.width();
-        element.LoadingOverlay("show", {
+        element.data("demoOn", true).LoadingOverlay("show", {
             color           : "rgba(165, 190, 100, 0.5)",
             size            : "30%",
             resizeInterval  : 50
@@ -54,7 +55,7 @@ $(function(){
                 height  : h,
                 width   : w
             }, 2500, function(){
-                element.LoadingOverlay("hide");
+                element.LoadingOverlay("hide").removeData("demoOn");
             })
         });
     });
