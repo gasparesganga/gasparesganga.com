@@ -27,22 +27,27 @@ $(function(){
     /***************************************************************************
         Example 2
     ***************************************************************************/
+    var _example2Active = false;
     $("#example2a").on("click", function(event){
+        if (_example2Active) return false;
         var element = $(event.currentTarget).parent().prev();
+        _example2Active = true;
         element.LoadingOverlay("show", {
             color   : "rgba(165, 190, 100, 0.5)"
         });
         setTimeout(function(){
             element.LoadingOverlay("hide", true);
+            _example2Active = false;
         }, 3000);
     });
     
     $("#example2b").on("click", function(event){
+        if (_example2Active) return false;
         var element = $(event.currentTarget).parent().prev();
-        if (element.data("demoOn")) return false;
         var h       = element.height();
         var w       = element.width();
-        element.data("demoOn", true).LoadingOverlay("show", {
+        _example2Active = true;
+        element.LoadingOverlay("show", {
             color           : "rgba(165, 190, 100, 0.5)",
             size            : "30%",
             resizeInterval  : 50
@@ -55,7 +60,8 @@ $(function(){
                 height  : h,
                 width   : w
             }, 2500, function(){
-                element.LoadingOverlay("hide").removeData("demoOn");
+                element.LoadingOverlay("hide");
+                _example2Active = false;
             })
         });
     });

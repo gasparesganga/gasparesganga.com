@@ -26,7 +26,7 @@ source      : jquery-loading-overlay
 
 ## Features
 * Shows a loading overlay on the whole page or over single DOM elements
-* Tracks a "counter" (or a queue) to allow multiple calls on single target
+* Tracks a *counter* to allow multiple calls on single target
 * Can auto resize according to its container (very useful if used over a DOM element being filled meanwhile)
 * Compatible with [Font Awesome](https://fortawesome.github.io/Font-Awesome/)
 * Can show a custom element to provide feedback to the user
@@ -36,7 +36,7 @@ source      : jquery-loading-overlay
 
 
 ## Methods
-There are three different methods, one to attach a LoadingOverlay to the `body` and thus covering the whole page, another to attach it to a single DOM element or a set of DOM elements and the last one to set the default parameters.
+There are three different methods, one to attach a LoadingOverlay to the `body` and thus covering the whole page, another to attach it to a single *DOM element* or a set of *DOM elements* and the last one to set the default parameters.
 
 ### *$.LoadingOverlay(action [,options])*
 Shows the LoadingOverlay with a fixed position, covering the whole page. Optionally pass some `options` to it.
