@@ -15,6 +15,16 @@ source      : jquery-popup-window
 ---
 
 
+{% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2016-09-01' | date: '%s'}}{% endcapture %}
+{% if current_date < expire_date %}
+<div class="alert">
+    <b>5 August 2016 :</b> Version 1.0.2 released. See <a href="/posts/jquery-popup-window-1.0.2/">release notes</a>.
+</div>
+{% endif %}
+
+
+
 ## Quick Demo
 {% include_relative _demo.html demo="quick_demo" %}
 
@@ -583,7 +593,6 @@ And here is some CSS for this `.custom_style` class:
 
 
 ## History
-
-*27 July 2016* - [Version 1.0.0](/posts/jquery-popup-window-release/)
+*05 August 2016* - [Version 1.0.2](/posts/jquery-popup-window-version-1.0.2/)
 *29 July 2016* - [Version 1.0.1](/posts/jquery-popup-window-release/)
-
+*27 July 2016* - [Version 1.0.0](/posts/jquery-popup-window-release/)
