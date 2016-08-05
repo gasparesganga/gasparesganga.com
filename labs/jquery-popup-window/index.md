@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery PopupWindow
 description : The ultimate popup/dialog/modal jQuery plugin
-updated     : 2016-07-29
+updated     : 2016-08-05
 css         :
   - jquery-popup-window/_assets/popupwindow.css
   - jquery-popup-window/_assets/demo.css
@@ -593,6 +593,6 @@ And here is some CSS for this `.custom_style` class:
 
 
 ## History
-*05 August 2016* - [Version 1.0.2](/posts/jquery-popup-window-version-1.0.2/)
+*5 August 2016* - [Version 1.0.2](/posts/jquery-popup-window-version-1.0.2/)
 *29 July 2016* - [Version 1.0.1](/posts/jquery-popup-window-release/)
 *27 July 2016* - [Version 1.0.0](/posts/jquery-popup-window-release/)
