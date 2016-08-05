@@ -1,27 +1,32 @@
 {% case include.demo %}
 
 {% when "quick_demo" %}
-<input id="quick_demo" type="button" value="Try jQuery LoadingOverlay!">
+<button id="quick_demo">Try jQuery LoadingOverlay!</button>
+
 
 {% when "example1" %}
-<input id="example1" type="button" value="Example 1 - Whole page Overlay">
+<button id="example1">Whole page Overlay</button>
+
 
 {% when "example2" %}
-<input id="example2" type="button" value="Example 2 - Single element Overlay">
+<button id="example2a">Single element Overlay</button>
+<button id="example2b">Test auto resize</button>
+
 
 {% when "example3" %}
-<input id="example3" type="button" value="Example 3 - Single element Overlay with auto resize">
+<button id="example3">Use Font Awesome spinner instead of gif image</button>
+
 
 {% when "example4" %}
-<input id="example4" type="button" value="Example 4 - Use Font Awesome spinner instead of gif image">
+<button id="example4">Show a countdown in a custom element</button>
 
-{% when "example5" %}
-<input id="example5" type="button" value="Example 5 - Show a countdown in a custom element">
 
-{% when "example7" %}
-<input id="example7" type="button" value="Example 7 - Play with extreme fade durations">
+{% when "example6" %}
+<button id="example6">Play with extreme fade durations</button>
+
 
 {% when "extraprogress1" %}
-<input id="extraprogress1" type="button" value="Try Extra Progress">
+<button id="extraprogress1">Try Extra Progress</button>
+
 
 {% endcase %}

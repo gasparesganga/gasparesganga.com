@@ -31,13 +31,13 @@ source      : jquery-popup-window
 
 ## Methods
 
-#### *$(selector).PopupWindow([action] [,options])*
+### *$(selector).PopupWindow([action] [,options])*
 This is the main method. It supports different *actions* and provides the interaction with the PopupWindow. See the [Actions](#actions) section for more details.
 
-#### *$.PopupWindowSetup(options)*
+### *$.PopupWindowSetup(options)*
 Changes the default `options` for all the PopupWindow [initialized](#init) in the future.
 
-#### *$.PopupWindowMinimizedArea(options)*
+### *$.PopupWindowMinimizedArea(options)*
 Changes the position of the *minimized area* in the browser's window where all the PopupWindows are minimized. The `options` object can contain one or both of the following properties *(the default values are shown here)*:
 
 ```javascript

@@ -1,33 +1,33 @@
-$(document).ready(function(){
-    $("#quick_demo").on("click",        Demo.Example1);
-    $("#example1").on("click",          Demo.Example1);
-    $("#example2").on("click",          Demo.Example2);
-    $("#example3").on("click",          Demo.Example3);
-    $("#example4").on("click",          Demo.Example4);
-    $("#example5").on("click",          Demo.Example5);
-    $("#example7").on("click",          Demo.Example7);
-    $("#extraprogress1").on("click",    Demo.ExtraProgress1);
-});
-
-var Demo = (function($, undefined){
-    return {
-        Example1        : Example1,
-        Example2        : Example2,
-        Example3        : Example3,
-        Example4        : Example4,
-        Example5        : Example5,
-        Example7        : Example7,
-        ExtraProgress1  : ExtraProgress1
-    };
-
-    function Example1(event){
+$(function(){
+    
+    /***************************************************************************
+        Quick Demo
+    ***************************************************************************/
+    $("#quick_demo").on("click", function(event){
         $.LoadingOverlay("show");
         setTimeout(function(){
             $.LoadingOverlay("hide");
         }, 3000);
-    }
-
-    function Example2(event){
+    });
+    
+    
+    
+    /***************************************************************************
+        Example 1
+    ***************************************************************************/
+    $("#example1").on("click", function(event){
+        $.LoadingOverlay("show");
+        setTimeout(function(){
+            $.LoadingOverlay("hide");
+        }, 3000);
+    });
+    
+    
+    
+    /***************************************************************************
+        Example 2
+    ***************************************************************************/
+    $("#example2a").on("click", function(event){
         var element = $(event.currentTarget).parent().prev();
         element.LoadingOverlay("show", {
             color   : "rgba(165, 190, 100, 0.5)"
@@ -35,16 +35,16 @@ var Demo = (function($, undefined){
         setTimeout(function(){
             element.LoadingOverlay("hide");
         }, 3000);
-    }
-
-    function Example3(event){
+    });
+    
+    $("#example2b").on("click", function(event){
         var element = $(event.currentTarget).parent().prev();
         var h       = element.height();
         var w       = element.width();
         element.LoadingOverlay("show", {
             color           : "rgba(165, 190, 100, 0.5)",
             size            : "30%",
-            resizeInterval  : 20
+            resizeInterval  : 50
         });
         element.animate({
             height  : h * 2,
@@ -57,9 +57,14 @@ var Demo = (function($, undefined){
                 element.LoadingOverlay("hide");
             })
         });
-    }
+    });
     
-    function Example4(event){
+    
+    
+    /***************************************************************************
+        Example 3
+    ***************************************************************************/
+    $("#example3").on("click", function(event){
         $.LoadingOverlay("show", {
             image       : "",
             fontawesome : "fa fa-spinner fa-spin"
@@ -67,9 +72,14 @@ var Demo = (function($, undefined){
         setTimeout(function(){
             $.LoadingOverlay("hide");
         }, 3000);
-    }
+    });
     
-    function Example5(event){
+    
+    
+    /***************************************************************************
+        Example 4
+    ***************************************************************************/
+    $("#example4").on("click", function(event){
         var count           = 5;
         var customElement   = $("<div>", {
             id      : "countdown",
@@ -93,18 +103,28 @@ var Demo = (function($, undefined){
                 return;
             }
         }, 1000);
-    }
+    });
     
-    function Example7(event){
+    
+    
+    /***************************************************************************
+        Example 6
+    ***************************************************************************/
+    $("#example6").on("click", function(event){
         $.LoadingOverlay("show", {
              fade  : [2000, 1000]
         });
         setTimeout(function(){
             $.LoadingOverlay("hide");
         }, 5000);
-    }
+    });
     
-    function ExtraProgress1(event){
+    
+    
+    /***************************************************************************
+        Extra Progress 1
+    ***************************************************************************/
+    $("#extraprogress1").on("click", function(event){
         var progress = new LoadingOverlayProgress();
         $.LoadingOverlay("show", {
             custom  : progress.Init()
@@ -120,6 +140,7 @@ var Demo = (function($, undefined){
             count++;
             progress.Update(count);
         }, 100);
-    }
+    });
     
-})(jQuery);
+    
+})();
