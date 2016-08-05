@@ -10,7 +10,7 @@ js          :
   - js/jquery-3.1.0.min.js
   - jquery-popup-window/_assets/popupwindow.min.js
   - jquery-popup-window/_assets/demo.js
-download    : jquery-popup-window/archive/v1.0.0.zip
+download    : jquery-popup-window/archive/v1.0.2.zip
 source      : jquery-popup-window
 ---
 
