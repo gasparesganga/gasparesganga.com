@@ -15,7 +15,7 @@ source      : jquery-loading-overlay
 ---
 
 <div class="alert">
-    <b>5 August 2016 :</b> Version 1.4.1 released. See [release notes](/posts/jquery-loading-overlay-1.4.1/)
+    <b>5 August 2016 :</b> Version 1.4.1 released. See <a href="/posts/jquery-loading-overlay-1.4.1/">release notes</a>.
 </div>
 
 

@@ -9,7 +9,7 @@ tags        : [Releases, Javascript, jQuery, Plugin, LoadingOverlay]
 ### Auto resizing and positioning
 
 - Fixed a bug with positioning when LoadingOverlay is attached to an element *(element overlay mode)*.
-- LoadingOverlay is now **always** attached to the `body`, even if it is an *element overlay*. This means you can now safely remove all the *container element's* content while the LoadingOverlay is being shown. At the same time it shouldn't break anything in your existing code, unless you were doing something *really* tricky with it.
+- LoadingOverlay is now **always** attached to the `body`, even if it is an *element overlay*. This means you can safely remove all the *container element's* contents while the LoadingOverlay is being shown. At the same time it shouldn't break anything in your existing code, unless you were doing something *really* tricky with it.
 - The `resizeInterval` option is now active and set to `50` milliseconds by default. This makes more sense as a default value since one would activate it more often than not.
 
 
