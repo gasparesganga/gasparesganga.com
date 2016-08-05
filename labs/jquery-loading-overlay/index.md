@@ -14,9 +14,14 @@ download    : jquery-loading-overlay/archive/v1.4.1.zip
 source      : jquery-loading-overlay
 ---
 
+
+{% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2016-09-01' | date: '%s'}}{% endcapture %}
+{% if current_date < expire_date %}
 <div class="alert">
     <b>5 August 2016 :</b> Version 1.4.1 released. See <a href="/posts/jquery-loading-overlay-1.4.1/">release notes</a>.
 </div>
+{% endif %}
 
 
 ## Quick Demo
