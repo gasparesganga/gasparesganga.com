@@ -151,7 +151,7 @@ size : {
 
 ##### GetState
 **`$(selector).PopupWindow("getstate")`**
-Gets the state of PopupWindow for the first element in the set of matched elements. It returns a string representing the state: `normal`, `closed`, `collapsed`, `minimized` or `maximized`.
+Gets the state of PopupWindow for the first element in the set of matched elements. It returns `undefined` if PopupWindow has not been initialized on the element, or a string representing its state: `normal`, `closed`, `collapsed`, `minimized` or `maximized`.
 
 ##### SetState
 **`$(selector).PopupWindow("setstate", state)`**
@@ -375,7 +375,7 @@ function(event, data){
 
 // Buttons to test Actions
 $("#example1_init").on("click", function(event){
-    $("#example1").PopupWindow("destroy");
+    if ($("#example1").PopupWindow("getState")) $("#example1").PopupWindow("destroy");
     $("#example1").PopupWindow({
         title   : "Example 1 - Complete playground",
         modal   : false,

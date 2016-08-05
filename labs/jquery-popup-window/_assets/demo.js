@@ -29,7 +29,7 @@ $(function(){
     
     // Buttons to test Actions
     $("#example1_init").on("click", function(event){
-        $("#example1").PopupWindow("destroy");
+        if ($("#example1").PopupWindow("getState")) $("#example1").PopupWindow("destroy");
         $("#example1").PopupWindow({
             title           : "Example 1 - Complete playground",
             modal           : false,
