@@ -1,0 +1,33 @@
+.log {
+    margin-top          : 1rem;
+    text-align          : left;
+    padding             : 0.3rem 1rem;
+    background-color    : #fafafa;
+    border              : 1px solid #cccccc;
+}
+
+
+/***** Example 6 *****/
+.custom_messagebox {
+    background-color    : #ddf0b0;
+    border              : 1px solid #99bb55;
+}
+    .custom_messagebox .messagebox_buttons {
+        background-color    : #ccea88;
+        border-top          : 1px solid #99bb55;
+    }
+
+
+.messagebox_buttons .custom_button {
+        color               : #ffffff;
+        background-color    : #0a66cc;
+    }
+        .messagebox_buttons .custom_button:hover {
+            color               : #ffffff;
+            background-color    : #4088cc;
+        }
+        .messagebox_buttons .custom_button:active {
+            color               : #ffffff;
+            background-color    : #0055aa;
+            box-shadow          : none;
+        }
