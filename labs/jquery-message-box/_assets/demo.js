@@ -5,7 +5,7 @@ $(function(){
     ***************************************************************************/
     $("#quick_demo").on("click", function(event){
         $.MessageBox("Hi! That's a pretty nice MessageBox, isn't it?");
-    }):
+    });
     
     
     
@@ -14,7 +14,7 @@ $(function(){
     ***************************************************************************/
     // Alert
     $("#example1_alert").on("click", function(event){
-        $.MessageBox("A plain MessagBox can replace Javascript's window.alert(), and it looks definitely better...");
+        $.MessageBox("A plain MessageBox can replace Javascript's window.alert(), and it looks definitely better...");
     });
     
     // Confirm
@@ -190,7 +190,7 @@ $(function(){
     Example5ResetLog();
     
     $("#example5_simple").on("click", function(event){
-        // Simple
+        // Simpe textbox
         $.MessageBox({
             input    : true,
             message  : "Input some string:"
@@ -200,7 +200,7 @@ $(function(){
     });
     
     $("#example5_default").on("click", function(event){
-        // Default value
+        // Simpe textbox with default value
         $.MessageBox({
             input    : "Some default value",
             message  : "Input some string (again):"
@@ -291,7 +291,7 @@ $(function(){
         Example 6
     ***************************************************************************/
     $("#example6_messagebox").on("click", function(event){
-        // Custom MessagBox
+        // Custom MessageBox
         $.MessageBox({
             customClass : "custom_messagebox",
             message     : "You can customize the MessageBox using the <i>customClass</i> option"

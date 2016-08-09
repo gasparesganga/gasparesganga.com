@@ -15,7 +15,7 @@ source      : jquery-message-box
 ---
 
 <div class="alert">
-    <b>9 August 2016 :</b> Version 2.0.0 released! See [release notes](/posts/jquery-message-box-2.0.0)
+    <b>9 August 2016 :</b> Version 2.0.0 released! See <a href="/posts/jquery-message-box-2.0.0">release notes</a>
 </div>
 
 
@@ -38,11 +38,11 @@ source      : jquery-message-box
 There are two methods, one display a MessageBox and one to set the default parameters.
 
 #### *$.MessageBox([options])*
-Shows a MessageBox. The `options` parameter is optional and can be either a plain ***object*** with some [options](#options-and-defaults-values) or a value which will be assumed as [message](#message).
+Shows a MessageBox. The `options` parameter is optional and can be either a plain **object** with some [options](#options-and-defaults-values) or a *string* which will be assumed as [message](#message).
 This method implements [jQuery Promise interface](https://api.jquery.com/category/deferred-object/), so you can use `.done()`, `.fail()`, `.always()` and even chain multiple promises with `.then()`. See the [handlers](#handlers) section.
 
 #### *$.MessageBoxSetup(options)*
-Set default [options](#options-and-defaults-values) for all future calls to **`$.MessageBox()`**.
+Set default [options](#options-and-defaults-values) for all future calls to **`$.MessageBox([options])`**.
 
 
 
@@ -62,12 +62,12 @@ width        : undefined    // Integer / String
 ```
 
 ##### `buttonDone`
-If a ***string*** is provided, a button with the specified text which executes the [done handler](#handlers) will be shown. By default the `Enter` *(`keyCode 13`)* key *(and the `Escape` *(`keyCode 27`)* key if `buttonFail` is not defined)* will also trigger the [done handler](#handlers).
+If a ***string*** is provided, a button with the specified text which executes the [done handler](#handlers) will be shown. By default the `Enter` key *(keyCode `13`)* and the `Escape` key *(keyCode `27`)* if `buttonFail` is not defined* will also trigger the [done handler](#handlers).
 If an ***object*** is provided, a collection of buttons will be created, all of them triggering the [done handler](#handlers). See [custom buttons configuration](#custom-buttons-configuration) for details.
 Set it to `false` to disable it *(note that disabling it will prevent any [done handler](#handlers) from being triggered)*.
 
 ##### `buttonFail`
-If a ***string*** is provided, a button with the specified text which triggers the [fail handler](#handlers) will be shown. By default the `Escape` *(`keyCode 27`)* key will also trigger the [fail handler](#handlers).
+If a ***string*** is provided, a button with the specified text which triggers the [fail handler](#handlers) will be shown. By default the `Escape` key *(keyCode `27`)* will also trigger the [fail handler](#handlers).
 If an ***object*** is provided, a collection of buttons will be created, all of them triggering the [fail handler](#handlers). See [custom buttons configuration](#custom-buttons-configuration) for details.
 Leave it `undefined` or set it to `false` to disable it *(note that disabling it will prevent any [fail handler](#handlers) from being triggered)*.
 
@@ -86,14 +86,14 @@ Alternatively you can also pass a *DOM element* or *jQuery object* to use your o
 Actual text of the message. Alternatively you can pass raw *HTML*, a *DOM element* or even a *jQuery object/collection*.
 
 ##### `queue`
-If `true` the MessagBox will be placed into the *queue* to be shown after all the MessagBoxes created before are cleared. If `false` the current MessagBox will be **immediately placed on top** of any eventual MessagBox already shown. See it in action in [Example 3](#example-3---to-queue-or-not-to-queue).
+If `true` the MessageBox will be placed into the *queue* to be shown after all the MessageBoxes created before are cleared. If `false` the current MessageBox will be **immediately placed on top** of any eventual MessageBox already shown. See it in action in [Example 3](#example-3---to-queue-or-not-to-queue).
 
 ##### `speed`
 Speed in milliseconds. It is passed directly to jQuery's [.animate()](http://api.jquery.com/animate/) function, so you can use supported strings as well.
 
 ##### `top`
-Distance from the top of the viewport. Set it to `"auto"` to vertically center the MessagBox, or use a numeric value *(assumed to be in **pixels**)* or any other CSS-compatible unit *(eg. `"10%"`)* to manually place it.
-Note that specifying a value different than `"auto"` will imply the proportional calulation of the MessagBox's maximum height, overriding any CSS `max-height` rule *(ie. `top : "10%"` will set a `max-height` of `"85%"`)*.
+Distance from the top of the viewport. Set it to `"auto"` to vertically center the MessageBox, or use a numeric value *(assumed to be in **pixels**)* or any other CSS-compatible unit *(eg. `"10%"`)* to manually place it.
+Note that specifying a value different than `"auto"` will imply the proportional calulation of the MessageBox's maximum height, overriding any CSS `max-height` rule *(ie. `top : "10%"` will set a `max-height` of `"85%"`)*.
 
 ##### `width`
 Width of the MessageBox. You can specify an amount in pixels or any other CSS-compatible unit *(Es. `"80%"`)*.
@@ -145,12 +145,12 @@ You can specify one or more CSS classes separated by a space to customize the bu
 The actual text of the button.
 
 ##### `keyCode`
-The keyboard's [keyCode](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode#Value_of_keyCode) associated to the button. It can be either an `integer` *(`strings` will be converted into `integers`)* or an ****array**** to specify multiple key codes.
+The keyboard's [keyCode](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode#Value_of_keyCode) associated to the button. It can be either an `integer` *(`strings` will be converted into `integers`)* or an ***array*** to specify multiple key codes.
 
 
 
 ### Custom Inputs configuration
-The [input](#input) option is very versatile. It can accept a ***boolean*** or a ***string*** to show a simple *textbox*, an ****array**** to create multiple textboxes in the most simple and straightforward way, or an ***object*** to define complex of different *inputs* and/or *select boxes*, providing additional properties.
+The [input](#input) option is very versatile. It can accept a ***boolean*** or a ***string*** to show a simple *textbox*, an ***array*** to create multiple textboxes in the most simple and straightforward way, or an ***object*** to define complex of different *inputs* and/or *select boxes*, providing additional properties.
 All the input's properties are **optional** *(in case of `selects` a warning will be thrown if no `option` is provided, though)*. Check [Example 5](#example-5---inputs-capabilities) to see custom inputs in action.
 
 ```javascript
@@ -240,7 +240,7 @@ If you have defined a [custom buttons configuration](#custom-buttons-configurati
 ### Example 1 - Substitute for Alert(), Confirm(), Prompt()
 ```javascript
 // Alert
-$.MessageBox("A plain MessagBox can replace Javascript's window.alert(), and it looks definitely better...");
+$.MessageBox("A plain MessageBox can replace Javascript's window.alert(), and it looks definitely better...");
 
 // Confirm
  $.MessageBox({
@@ -304,7 +304,7 @@ MessageBoxPrompt("Give me some data:").done(function(data){
 
 
 ### Example 3 - To *queue* or not to *queue*?
-The `queue` option controls whether the MessagBox has to be placed in the *queue* after the other MessagBoxes already created, or it must take precedence and be shown **immediately** and **on top**.
+The [`queue`](#queue) option controls whether the MessageBox has to be placed in the *queue* after the other MessageBoxes already created, or it must take precedence and be shown **immediately** and **on top**.
 
 ```javascript
 // Just a regular MessageBox, all options to default
@@ -397,7 +397,7 @@ $.MessageBox({
 Here is a demonstration of the input capabilities. Values will appear in the box below.
 
 ```javascript
-// Simple
+// Simple textbox
 $.MessageBox({
     input    : true,
     message  : "Input some string:"
@@ -405,7 +405,7 @@ $.MessageBox({
     console.log(data);
 });
 
-// Default value
+// Simpe textbox with default value
 $.MessageBox({
     input    : "Some default value",
     message  : "Input some string (again):"
@@ -487,12 +487,12 @@ $.MessageBox({
 
 
 ### Example 6 - Customize it!
-You can customize the whole MessagBox using the `customClass` option.
+You can customize the whole MessageBox using the `customClass` option.
 Or you can customize single buttons using the `class` property in the button definition. Don't forget to use the `.messagebox_buttons` in your CSS in this case! See the example code:
 
 
 ```javascript
-// Custom MessagBox
+// Custom MessageBox
 $.MessageBox({
     customClass : "custom_messagebox",
     message     : "You can customize the MessageBox using the <i>customClass</i> option"
@@ -511,6 +511,8 @@ $.MessageBox({
     message     : "You can customize single buttons using their <i>class</i> property"
 });
 ```
+
+CSS:
 
 ```css
 .custom_messagebox {
@@ -542,7 +544,7 @@ $.MessageBox({
 
 
 ### Example 7 - Set Defaults
-Using the [**`$.MessageBoxSetup()`**](#messageboxsetupoptions) method you can change the default values for all the MessagBox created in the future:
+Using the [**`$.MessageBoxSetup(options)`**](#messageboxsetupoptions) method you can change the default values for all the MessageBox created in the future:
 
 ```javascript
 $.MessageBoxSetup({
