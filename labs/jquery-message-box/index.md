@@ -14,9 +14,14 @@ download    : jquery-message-box/archive/v2.0.0.zip
 source      : jquery-message-box
 ---
 
+
+{% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2016-09-01' | date: '%s'}}{% endcapture %}
+{% if current_date < expire_date %}
 <div class="alert">
     <b>9 August 2016 :</b> Version 2.0.0 released! See <a href="/posts/jquery-message-box-2.0.0">release notes</a>
 </div>
+{% endif %}
 
 
 ## Quick Demo
