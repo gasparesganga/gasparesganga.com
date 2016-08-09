@@ -25,11 +25,11 @@ source      : jquery-message-box
 
 
 ## Features
-* Substitutes Javascript's window.alert(), window.confirm() and window.prompt() functions
-* Implements [jQuery Promise interface](https://api.jquery.com/category/deferred-object/)
-* Customizable [buttons](#custom-buttons-configuration) and [inputs](#custom-inputs-configuration)
-* Flexible *message-queue*
-* Fully CSS customizable
+- Substitutes Javascript's window.alert(), window.confirm() and window.prompt() functions
+- Implements [jQuery Promise interface](https://api.jquery.com/category/deferred-object/)
+- Customizable [buttons](#custom-buttons-configuration) and [inputs](#custom-inputs-configuration)
+- Flexible *message-queue*
+- Fully CSS customizable
 
 
 
@@ -283,7 +283,7 @@ function MessageBoxConfirm(message){
 
 function MessageBoxPrompt(message){
     return $.MessageBox({
-        input   : true
+        input   : true,
         message : message
     });
 }

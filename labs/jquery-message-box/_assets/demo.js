@@ -60,7 +60,7 @@ $(function(){
     
     function MessageBoxPrompt(message){
         return $.MessageBox({
-            input   : true
+            input   : true,
             message : message
         });
     }
