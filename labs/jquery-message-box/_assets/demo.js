@@ -106,10 +106,11 @@ $(function(){
         Example 4
     ***************************************************************************/
     function Example4Log(handler, button){
+        Example4ResetLog();
         $("#example4_log").append("Handler <b>" + (handler ? ".done()" : ".fail()") + "</b>. Button: <b>" + button + "</b>");
     }
     function Example4ResetLog(){
-        $("#example4_log").html("<i><u>Results will be logged here:</u></i>\n");
+        $("#example4_log").html("<i><u>Results will be logged here:</u></i>\n\n");
     }
     Example4ResetLog();
     
@@ -182,10 +183,11 @@ $(function(){
         Example 5
     ***************************************************************************/
     function Example5Log(data){
+        Example5ResetLog()
         $("#example5_log").append(JSON.stringify(data, null, "    "));
     }
     function Example5ResetLog(){
-        $("#example5_log").html("<i><u>Results will be logged here:</u></i>\n");
+        $("#example5_log").html("<i><u>Results will be logged here:</u></i>\n\n");
     }
     Example5ResetLog();
     
@@ -302,13 +304,13 @@ $(function(){
         // Custom Buttons
         $.MessageBox({
             buttonDone  : {
-                yes : {
-                    text    : "Yes",
+                cool : {
+                    text    : "Cool",
                     class   : "custom_button",
                     keyCode : 13
                 }
             },
-            buttonFail  : "No",
+            buttonFail  : "Boring",
             message     : "You can customize single buttons using their <i>class</i> property"
         });
     });

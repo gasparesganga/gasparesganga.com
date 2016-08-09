@@ -501,13 +501,13 @@ $.MessageBox({
 // Custom Buttons
 $.MessageBox({
     buttonDone  : {
-        yes : {
-            text    : "Yes",
+        cool : {
+            text    : "Cool",
             class   : "custom_button",
             keyCode : 13
         }
     },
-    buttonFail  : "No",
+    buttonFail  : "Boring",
     message     : "You can customize single buttons using their <i>class</i> property"
 });
 ```

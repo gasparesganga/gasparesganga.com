@@ -22,6 +22,7 @@ MessageBox - A jQuery Plugin to replace Javascript's window.alert(), window.conf
 .messagebox {
     font-family         : verdana, arial, helvetica, sans-serif;
     font-size           : 10pt;
+    font-style          : normal;
     font-weight         : normal;
     text-align          : left;
     color               : #303030;
@@ -65,6 +66,7 @@ MessageBox - A jQuery Plugin to replace Javascript's window.alert(), window.conf
     border          : 1px solid #909090;
     font-family     : inherit;
     font-size       : inherit;
+    font-style      : normal;
     font-weight     : inherit;
     text-align      : left;
 }
