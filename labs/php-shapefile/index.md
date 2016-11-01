@@ -9,6 +9,14 @@ download    : php-shapefile/archive/v2.0.0.zip
 source      : php-shapefile
 ---
 
+{% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2016-12-31' | date: '%s'}}{% endcapture %}
+{% if current_date < expire_date %}
+<div class="alert">
+    <b>1 November 2016 :</b> Version 2.0.0 released with many improvements. See the <a href="/posts/php-shapefile-2.0.0/">release notes</a>.
+</div>
+{% endif %}
+
 
 ## Features
 
@@ -27,6 +35,7 @@ source      : php-shapefile
 // Register autoloader
 require_once('php-shapefile/src/ShapeFileAutoloader.php');
 \ShapeFile\ShapeFileAutoloader::register();
+
 // Import classes
 use \ShapeFile\ShapeFile;
 use \ShapeFile\ShapeFileException;
@@ -49,7 +58,7 @@ try {
 
 
 ## Classes
-There are 3 classes available in the `\ShapeFile` namespace:
+There are 3 Classes available in the `\ShapeFile` namespace:
 
 - [\ShapeFile\ShapeFileAutoloader](#class-shapefileautoloader)
 - [\ShapeFile\ShapeFileException](#class-shapefileexception)
@@ -58,17 +67,17 @@ There are 3 classes available in the `\ShapeFile` namespace:
 
 
 ## Class ShapeFileAutoloader
-This is a simple static class which provides autoloading capabilities. Use the static method `\ShapeFile\ShapeFileAutoloader::register()` as shows in the [example](#usage) to register the PHP ShapeFile autoloader.
+This is a simple static Class which provides autoloading capabilities. Use the static method `\ShapeFile\ShapeFileAutoloader::register()` as shown in the [example](#usage) to register the PHP ShapeFile autoloader.
 
 
 
 ## Class ShapeFileException
-A custom Exception which extends PHP native [Exception](http://php.net/manual/en/language.exceptions.php) class. It add a custom `getErrorType()` method and it can be used to isolate PHP ShapeFile related exceptions. See it in action in the [example above](#usage).
+A custom Exception which extends PHP native [Exception](http://php.net/manual/en/language.exceptions.php) Class. It adds a custom `getErrorType()` method and can be used to isolate PHP ShapeFile related exceptions. See it in action in the [example above](#usage).
 
 
 
 ## Class ShapeFile
-Here are in detail all the public methods available for this Class:
+The main Class which exposes the following public methods:
 
 - [__construct](#construct)
 - [getShapeType](#getshapetype)
@@ -83,7 +92,7 @@ Here are in detail all the public methods available for this Class:
 public ShapeFile::__construct(mixed $files [, int $flags = 0]);
 ```
 
-##### `$files`
+#### `$files`
 It can be either a *String* with the path to the `.shp` file or an *Array* containing the individual paths to the `.shp` `.dbf` and `.prj` files.
 
 For example, the three following variants are equivalent:
@@ -106,7 +115,7 @@ $ShapeFile = new ShapeFile(array(
 The *Array* version is useful in case of arbitrarily named files (*ie. temporary files*).
 Note that the `.prj` file is absolutely **optional**.
 
-##### `$flags`
+#### `$flags`
 You can pass **optional** flags, combined with a *bitwise Or* operator `|` or simply adding them:
 
 ```php?start_inline=1
@@ -131,7 +140,7 @@ public mixed ShapeFile::getShapeType([int $format])
 
 Gets the ShapeFile type as either text or number.
 
-##### `$format`
+#### `$format`
 It specifies the return format and can one of:
  `ShapeFile::FORMAT_INT` : Integer (*Default*)
  `ShapeFile::FORMAT_STR` : String
@@ -387,10 +396,10 @@ Code    Type                        Description
 
 
 ## But what about MultiPatch shape types?
-Well, in more than 10 years working with GIS related technology, I have yet to see a *MultiPatch* shapefile! Supporting them is not currently in my todo list.
+Well, after more than 10 years working with GIS related technology, I have yet to see a *MultiPatch* shapefile. Supporting them is not currently in my todo list.
 
 
 ## History
-*1 November 2016* - [Version 2.0.0](/posts/php-shapefile-version-2.0.0/)
+*1 November 2016* - [Version 2.0.0](/posts/php-shapefile-2.0.0/)
 *31 March 2016* - [Version 1.1](/posts/php-shapefile-version-1.1/)
 *13 November 2014* - [Version 1.0](/posts/php-shapefile-release/)
