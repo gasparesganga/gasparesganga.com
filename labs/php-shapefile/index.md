@@ -209,11 +209,11 @@ array(
 )
 ```
 
-#### `geometry_format`
+#### `$geometry_format`
 It specifies the format for returned geometries (`shp` part of the returned *Array*). It can be either:
  `ShapeFile::GEOMETRY_ARRAY` : A structured *Array* (*Default*)
  `ShapeFile::GEOMETRY_WKT` : Well Known Text
-See [Output](#geometry-output) section for details.
+
 
 
 
@@ -225,7 +225,7 @@ Note that eventual `FLAG_SUPPRESS_Z` and `FLAG_SUPPRESS_M` flags set with the [_
 In the output *Array* *"no data"* values set for *M coordinates* in the shapefiles are returned as *boolean* `false`. 
 
 
-### WKT
+### GEOMETRY_WKT
 
 ```
 ---------- NULL ----------
@@ -288,7 +288,7 @@ MULTIPOLYGONZM(((5 5 0 2, 6 6 0 2, 7 5 0 2, 5 5 0 2)), ((0 0 0 2, 0 4 0 2, 4 4 0
 ```
 
 
-### Array
+### GEOMETRY_ARRAY
 
 ```php?start_inline=1
 --- Record Type  0: Null
@@ -408,7 +408,7 @@ Code    Type                        Description
 ```
 
 
-## But what about MultiPatch shape types?
+## Wait, what about MultiPatch shape types?
 Well, after more than 10 years working with GIS related technology, I have yet to see a *MultiPatch* shapefile. Supporting them is not currently in my todo list.
 
 
