@@ -46,7 +46,7 @@ Some good *old school* flags for the `\ShapeFile\ShapeFile` constructor. See [fl
 A new format is available for [getRecord()](/labs/php-shapefile/#getrecord) method: `ShapeFile::GEOMETRY_BOTH`. See the [output section](/labs/php-shapefile/#geometry-output) for details.
 
 #### New DBF error codes
-Native DBF capabilities require some new `ShapeFileException` error codes. You can find all the error codes [here]((/labs/php-shapefile/#error-codes)).
+Native DBF capabilities require some new `ShapeFileException` error codes. You can find all the error codes [here](/labs/php-shapefile/#error-codes).
 
 #### PHP 7 compatible
 Dropping the XBase dependency and rewriting part of the code should have made this library PHP 7 compatible. I don't think there are many PHP libraries to read ESRI Shapefiles currently maintained out there.

@@ -40,9 +40,17 @@ require_once('php-shapefile/src/ShapeFileAutoloader.php');
 use \ShapeFile\ShapeFile;
 use \ShapeFile\ShapeFileException;
 
-// Open shape and read all the records
 try {
+    // Open shapefile
     $ShapeFile = new ShapeFile('data.shp');
+    
+    // Get Shape Type
+    echo "Shape Type ".$ShapeFile->getShapeType()." : ".$ShapeFile->getShapeType(ShapeFile::FORMAT_STR)."\n\n";
+    // Get Bounding Box
+    echo "Bounding Box : ";
+    print_r($ShapeFile->getBoundingBox());
+    
+    // Read all the records
     while ($record = $ShapeFile->getRecord(ShapeFile::GEOMETRY_BOTH)) {
         if ($record['dbf']['_deleted']) continue;
         // Geometry
