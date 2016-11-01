@@ -45,7 +45,9 @@ try {
     $ShapeFile = new ShapeFile('data.shp');
     
     // Get Shape Type
-    echo "Shape Type ".$ShapeFile->getShapeType()." : ".$ShapeFile->getShapeType(ShapeFile::FORMAT_STR)."\n\n";
+    echo "Shape Type : ";
+    echo $ShapeFile->getShapeType()." - ".$ShapeFile->getShapeType(ShapeFile::FORMAT_STR);
+    echo "\n\n";
     // Get Bounding Box
     echo "Bounding Box : ";
     print_r($ShapeFile->getBoundingBox());
@@ -58,7 +60,9 @@ try {
         // DBF Data
         print_r($record['dbf']);
     }
+    
 } catch (ShapeFileException $e) {
+    // Print detailed error information
     exit('Error '.$e->getCode().' ('.$e->getErrorType().'): '.$e->getMessage());
 }
 ```
@@ -196,28 +200,29 @@ Returns the raw WKT string from the `.prj` file. If there's no `.prj` file then 
 public array ShapeFile::getRecord([int $geometry_format])
 ```
 
-Returns the next record from the open file.
+Returns the next record from the currently opened file as an associative *Array*:
 
 ```php?start_inline=1
 array(
-   'shp' => array() or string
-   'dbf' => array()
+   [shp]  => array() or string
+   [dbf]  => array()
 )
 ```
 
-<b>`geometry_format`</b> specifies the format for returned geometries.
-It can be either
- `ShapeFile::GEOMETRY_ARRAY` : A structured *Array*. See [Output](#geometry-output) section (*Default*)
+#### `geometry_format`
+It specifies the format for returned geometries (`shp` part of the returned *Array*). It can be either:
+ `ShapeFile::GEOMETRY_ARRAY` : A structured *Array* (*Default*)
  `ShapeFile::GEOMETRY_WKT` : Well Known Text
+See [Output](#geometry-output) section for details.
 
 
 
 ## Geometry Output
 
-Geometries can be read as structured arrays or [WKT](http://en.wikipedia.org/wiki/Well-known_text).
+Geometries read with [getRecord](#getrecord) method can be returned as a structured *Array* or [WKT](http://en.wikipedia.org/wiki/Well-known_text).
 Multi `MULTI*`, 3dz `* Z`, 3dm `* M` and  4d `* ZM` geometries are recognized as such.
 Note that eventual `FLAG_SUPPRESS_Z` and `FLAG_SUPPRESS_M` flags set with the [__constructor](#construct) will effectively condition the output.
-In the output *array* *"no data"* values set for *M coordinates* in the shapefiles are returned as *boolean* `false`. 
+In the output *Array* *"no data"* values set for *M coordinates* in the shapefiles are returned as *boolean* `false`. 
 
 
 ### WKT
