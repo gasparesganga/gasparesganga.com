@@ -52,7 +52,7 @@ Native DBF capabilities require some new `ShapeFileException` error codes. You c
 Dropping the XBase dependency and rewriting part of the code should have made this library PHP 7 compatible. I don't think there are many PHP libraries to read ESRI Shapefiles currently maintained out there.
 
 #### Support for big-endian machines
-It's unikely that you will run some PHP code on big-endian machines, but this library will now work nonetheless.
+It's unlikely that you will run some PHP code on big-endian machines, but this library will now work nonetheless.
 
 
 
