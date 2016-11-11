@@ -10,7 +10,7 @@ js          :
   - jquery-loading-overlay/_assets/loadingoverlay.min.js
   - jquery-loading-overlay/_assets/loadingoverlay_progress.min.js
   - jquery-loading-overlay/_assets/demo.js
-download    : jquery-loading-overlay/archive/v1.5.0.zip
+download    : jquery-loading-overlay/archive/v1.5.1.zip
 source      : jquery-loading-overlay
 ---
 
@@ -23,7 +23,7 @@ source      : jquery-loading-overlay
 {% capture expire_date %}{{'2016-12-31' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>11 November 2016 :</b> Version 1.5.0 released. See <a href="/posts/jquery-loading-overlay-1.5.0/">release notes</a>.
+    <b>11 November 2016 :</b> Version 1.5.1 released. See <a href="/posts/jquery-loading-overlay-1.5.1/">release notes</a>.
 </div>
 {% endif %}
 
@@ -293,7 +293,8 @@ var progressCustom = new LoadingOverlayProgress({
 
 
 ## History
-*11 November 2016* - [Version 1.5.0](/posts/jquery-loading-overlay-1.5.0/)
+*11 November 2016* - [Version 1.5.1](/posts/jquery-loading-overlay-1.5.1/)
+*11 November 2016* - [Version 1.5.0](/posts/jquery-loading-overlay-1.5.1/)
 *5 August 2016* - [Version 1.4.1](/posts/jquery-loading-overlay-1.4.1/)
 *29 June 2016* - [Version 1.4.0](/posts/jquery-loading-overlay-1.4.0/)
 *25 May 2016* - [Version 1.3](/posts/jquery-loading-overlay-version-1.3/)
