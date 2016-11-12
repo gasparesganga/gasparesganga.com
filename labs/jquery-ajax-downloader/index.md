@@ -2,15 +2,24 @@
 layout      : lab
 title       : jQuery AjaxDownloader
 description : A jQuery Plugin to perform Ajax style downloads
-updated     : 2015-05-04
+updated     : 2016-11-12
 css         : []
 js          :
-  - js/jquery-2.1.3.min.js
+  - js/jquery-3.1.0.min.js
   - jquery-ajax-downloader/_assets/ajaxdownloader.min.js
   - jquery-ajax-downloader/_assets/demo.js
-download    : jquery-ajax-downloader/archive/v1.0.zip
+download    : jquery-ajax-downloader/archive/v1.1.0.zip
 source      : jquery-ajax-downloader
 ---
+
+
+{% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2016-12-31' | date: '%s'}}{% endcapture %}
+{% if current_date < expire_date %}
+<div class="alert">
+    <b>12 November 2016 :</b> Version 1.1.0 released: see <a href="/posts/jquery-ajax-downloader-1.1.0">release notes</a>
+</div>
+{% endif %}
 
 
 ## Quick Demo
@@ -92,3 +101,8 @@ The solution is easy, just do some server side *magic*, like sending the right h
     exit();
 ?>
 ```
+
+
+## History
+*12 November 2016* - [Version 1.1.0](/posts/jquery-ajax-downloader-1.1.0/)
+*4 May 2015* - [Version 1.0](/posts/jquery-ajax-downloader-release/)
