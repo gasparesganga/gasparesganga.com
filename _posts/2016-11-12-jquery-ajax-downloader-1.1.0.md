@@ -1,7 +1,7 @@
 ---
 layout      : post
 title       : jQuery AjaxDownloader 1.1.0
-description : First public release
+description : Bower and npm support
 tags        : [Releases, Javascript, jQuery, Plugin, AjaxDownloader]
 ---
 
