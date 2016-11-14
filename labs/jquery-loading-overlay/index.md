@@ -58,7 +58,7 @@ getit       :
 
 
 ## Get it
-{% include getit.md %}
+{% include getit.html %}
 
 
 ## Features

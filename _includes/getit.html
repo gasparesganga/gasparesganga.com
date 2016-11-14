@@ -1,0 +1,44 @@
+{% if page.getit.github %}
+  <h5>GitHub</h5>
+  View project on <a href="https://github.com/{{ page.getit.github }}">GitHub</a>
+{% endif %}
+
+
+{% if page.getit.github and page.getit.download %}
+  <h5>Download</h5>
+  Download latest <a href="https://github.com/{{ page.getit.github }}/releases/latest">release</a>
+{% endif %}
+
+
+{% if page.getit.composer %}
+  <h5>Composer</h5>
+  View the package on <a href="https://packagist.org/packages/{{ page.getit.composer }}">Packagist</a>
+{% endif %}
+
+
+{% if page.getit.npm %}
+  <h5>npm</h5>
+        npm install {{ page.getit.npm }}
+{% endif %}
+
+
+{% if page.getit.bower %}
+  <h5>Bower</h5>
+        bower install {{ page.getit.bower }}
+{% endif %}
+
+
+{% if page.getit.cdn %}
+  <h5>CDN</h5>
+  {% if page.getit.cdn.js %}
+    {% for item in page.getit.cdn.js %}
+        <script src="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>
+    {% endfor %}
+  {% endif %}
+  {% if page.getit.cdn.css %}
+    {% for item in page.getit.cdn.css %}
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">
+    {% endfor %}
+  {% endif %}
+  See more information and all the available versions in the <a href="cdn/">CDN page</a>
+{% endif %}
