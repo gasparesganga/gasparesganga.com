@@ -5,12 +5,15 @@ permalink : /labs/:title/cdn/
 <article class="lab_cdn">
     <section class="page_header">
         <h1>{{ page.title }}</h1>
-        <h2>CDN</h2>
+        <h2>{{ page.description }}</h2>
     </section>
     
     <section class="page_content">
+        <h2>CDN</h2>
+        
         {{ content }}
         
+        <hr>
         <a href="../">Back to {{ page.title }}</a>
     </section>
     
