@@ -58,7 +58,8 @@ getit       :
 
 
 ## Get it
-{% include getit.md %}
+{% capture getit %}{% include getit.md %}{% endcapture %}
+{{ getit | markdownify }}
 
 
 

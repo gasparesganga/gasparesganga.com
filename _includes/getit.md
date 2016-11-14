@@ -25,13 +25,19 @@
 
 {% if page.getit.cdn %}
     ##### CDN
-    ```
-    {% for item in page.getit.cdn.js %}
-        <script src="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>
-    {% endfor %}
-    {% for item in page.getit.cdn.css %}
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">
-    {% endfor %}
-    ```
+    {% if page.getit.cdn.js %}
+        ```
+        {% for item in page.getit.cdn.js %}
+            <script src="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>
+        {% endfor %}
+        ```
+    {% endif %}
+    {% if page.getit.cdn.css %}
+        ```
+        {% for item in page.getit.cdn.css %}
+            <link rel="stylesheet" href="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">
+        {% endfor %}
+        ```
+	{% endif %}
     See more information and all the available versions in the [CDN page](cdn/)
 {% endif %}
