@@ -1,0 +1,33 @@
+<h2>Get it</h2>
+
+{% if page.getit.github %}
+    <h4>GitHub</h4>
+    View project on <a href="https://github.com/gasparesganga/{{ page.getit.github }}">GitHub</a>
+{% endif %}
+    
+{% if page.getit.github page.getit.download %}
+    <h4>Download</h4>
+    Download latest <a href="https://github.com/gasparesganga/{{ page.getit.github }}/releases/latest">release</a>
+{% endif %}
+
+{% if page.getit.composer %}
+    <h4>Composer</h4>
+    <code class="highlighter-rouge">{{ page.getit.composer }}</code>
+    View the package on <a href="https://packagist.org/packages/{{ page.getit.composer }}">Packagist</a>
+{% endif %}
+
+{% if page.getit.npm %}
+    <h4>npm</h4>
+    <code class="highlighter-rouge">npm install {{ page.getit.npm }}</code>
+    View <a href="https://www.npmjs.com/package/{{ page.getit.npm }}">package info</a>
+{% endif %}
+
+{% if page.getit.bower %}
+    <h4>Bower</h4>
+    <code class="highlighter-rouge">bower install {{ page.getit.bower }}</code>
+{% endif %}
+
+{% if page.getit.cdn %}
+    <h4>CDN</h4>
+    You can find the latest version and all the cached ones in the <a href="https://www.npmjs.com/package/{{ page.getit.npm }}">CDN page</a>
+{% endif %}
