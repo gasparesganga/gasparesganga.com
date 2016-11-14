@@ -57,6 +57,7 @@ getit       :
 {% include_relative _demo.html demo="quick_demo" %}
 
 
+## Get it
 {% include lab_getit.html %}
 
 
