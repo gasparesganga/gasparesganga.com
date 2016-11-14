@@ -1,5 +1,5 @@
 ---
-layout  : lab
+layout  : cdn
 title   : jQuery LoadingOverlay
 ---
 
