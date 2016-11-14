@@ -17,7 +17,13 @@ getit       :
   download    : true
   npm         : gasparesganga-jquery-loading-overlay
   bower       : gasparesganga-jquery-loading-overlay
-  cdn         : true
+  cdn         :
+    name    : jquery.loadingoverlay
+    js      :
+      - loadingoverlay.min.js
+      - loadingoverlay_progress.min.js
+    css     :
+      - dummy.css
   composer    : gasparesganga/php-shapefile
 ---
 
@@ -35,13 +41,6 @@ getit       :
 </div>
 
 
-## Quick Demo
-{% include_relative _demo.html demo="quick_demo" %}
-
-
-{% include labs_getit.html %}
-
-
 ## Contents
 - [Quick Demo](#quick-demo)
 - [Get it](#get-it)
@@ -52,6 +51,14 @@ getit       :
 - [Examples](#examples)
 - [Extras](#extras)
 - [History](#history)
+
+
+## Quick Demo
+{% include_relative _demo.html demo="quick_demo" %}
+
+
+{% include lab_getit.html %}
+
 
 
 ## Features

@@ -1,3 +1,5 @@
+---
+---
 <h2>Get it</h2>
 
 {% if page.getit.github %}
@@ -29,5 +31,13 @@
 
 {% if page.getit.cdn %}
     <h4>CDN</h4>
-    You can find the latest version and all the cached ones in the <a href="https://www.npmjs.com/package/{{ page.getit.npm }}">CDN page</a>
+    <code class="highlighter-rouge">
+        {% for item in page.getit.cdn.js %}
+            <script src="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>
+        {% endfor %}
+        {% for item in page.getit.cdn.css %}
+            <link rel="stylesheet" href="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">
+        {% endfor %}
+    </code>
+    See more information and all the available versions in the <a href="https://www.npmjs.com/package/{{ page.getit.npm }}">CDN page</a>
 {% endif %}
