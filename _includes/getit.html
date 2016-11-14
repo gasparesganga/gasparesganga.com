@@ -33,14 +33,14 @@
  {% if page.getit.cdn.js %}
   Javascript files:
   {% for item in page.getit.cdn.js %}
-   <code class="highlighter-rouge"><script src="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script></code>
+   <pre><code class="highlighter-rouge"><script src="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script></code></pre>
   {% endfor %}
  {% endif %}
  
  {% if page.getit.cdn.css %}
   CSS files:
   {% for item in page.getit.cdn.css %}
-   <code class="highlighter-rouge"><link rel="stylesheet" href="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></code>
+   <pre><code class="highlighter-rouge"><link rel="stylesheet" href="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></code></pre>
   {% endfor %}
  {% endif %}
  See more information and all the available versions in the <a href="cdn/">CDN page</a>

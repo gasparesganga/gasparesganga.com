@@ -1,6 +1,6 @@
 ---
 layout      : cdn
-title       : jQuery LoadingOverlay
+title       : CDN - jQuery LoadingOverlay
 description : A flexible loading overlay jQuery Plugin
 ---
 
