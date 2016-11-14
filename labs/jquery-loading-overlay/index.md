@@ -58,7 +58,7 @@ getit       :
 
 
 ## Get it
-{% include lab_getit.html %}
+{% include getit.md %}
 
 
 
