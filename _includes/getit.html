@@ -18,27 +18,30 @@
 
 {% if page.getit.npm %}
   <h5>npm</h5>
-        npm install {{ page.getit.npm }}
+  <code class="highlighter-rouge">npm install {{ page.getit.npm }}</code>
 {% endif %}
 
 
 {% if page.getit.bower %}
   <h5>Bower</h5>
-        bower install {{ page.getit.bower }}
+  <code class="highlighter-rouge">bower install {{ page.getit.bower }}</code>
 {% endif %}
 
 
 {% if page.getit.cdn %}
-  <h5>CDN</h5>
-  {% if page.getit.cdn.js %}
-    {% for item in page.getit.cdn.js %}
-        <script src="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>
-    {% endfor %}
-  {% endif %}
-  {% if page.getit.cdn.css %}
-    {% for item in page.getit.cdn.css %}
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">
-    {% endfor %}
-  {% endif %}
-  See more information and all the available versions in the <a href="cdn/">CDN page</a>
+ <h5>CDN</h5>
+ {% if page.getit.cdn.js %}
+  Javascript files:
+  {% for item in page.getit.cdn.js %}
+   <code class="highlighter-rouge"><script src="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script></code>
+  {% endfor %}
+ {% endif %}
+ 
+ {% if page.getit.cdn.css %}
+  CSS files:
+  {% for item in page.getit.cdn.css %}
+   <code class="highlighter-rouge"><link rel="stylesheet" href="//cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></code>
+  {% endfor %}
+ {% endif %}
+ See more information and all the available versions in the <a href="cdn/">CDN page</a>
 {% endif %}
