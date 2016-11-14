@@ -67,7 +67,7 @@ width        : undefined    // Integer / String
 ```
 
 ##### `buttonDone`
-If a ***string*** is provided, a button with the specified text which executes the [done handler](#handlers) will be shown. By default the `Enter` key *(keyCode `13`)* and the `Escape` key *(keyCode `27`)* if `buttonFail` is not defined* will also trigger the [done handler](#handlers).
+If a ***string*** is provided, a button with the specified text which executes the [done handler](#handlers) will be shown. By default the `Enter` key *(keyCode `13`)* will also trigger the [done handler](#handlers).
 If an ***object*** is provided, a collection of buttons will be created, all of them triggering the [done handler](#handlers). See [custom buttons configuration](#custom-buttons-configuration) for details.
 Set it to `false` to disable it *(note that disabling it will prevent any [done handler](#handlers) from being triggered)*.
 

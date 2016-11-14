@@ -15,10 +15,6 @@ source      : jquery-loading-overlay
 ---
 
 
-<div class="alert">
-    <b>Do you like this plugin? Great! Then why don't you try my brand-new <a href="/labs/jquery-popup-window/">jQuery PopupWindow</a>, the <i>"ultimate popup/dialog/modal jQuery plugin"</i>?</b>
-</div>
-
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
 {% capture expire_date %}{{'2016-12-31' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
@@ -27,10 +23,28 @@ source      : jquery-loading-overlay
 </div>
 {% endif %}
 
+<div class="alert">
+    <b>Do you like this plugin? Great! Then why don't you try my other <a href="/labs/">jQuery plugins</a>?</b>
+</div>
+
 
 ## Quick Demo
 {% include_relative _demo.html demo="quick_demo" %}
 
+
+{% include labs_getit.html %}
+
+
+## Contents
+- [Quick Demo](#quick-demo)
+- [Get it](#get-it)
+- [Features](#features)
+- [Methods](#methods)
+- [Actions](#actions)
+- [Options and defaults values](#options-and-defaults-values)
+- [Examples](#examples)
+- [Extras](#extras)
+- [History](#history)
 
 
 ## Features
