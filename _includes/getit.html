@@ -1,12 +1,9 @@
 {% if page.getit.github %}
   <h5>GitHub</h5>
   View project on <a href="https://github.com/{{ page.getit.github }}">GitHub</a>
-{% endif %}
-
-
-{% if page.getit.github and page.getit.download %}
-  <h5>Download</h5>
-  Download latest <a href="https://github.com/{{ page.getit.github }}/releases/latest">release</a>
+  {% if page.getit.download %}
+   or download the latest <a href="https://github.com/{{ page.getit.github }}/releases/latest">release</a>
+  {% endif %}
 {% endif %}
 
 
@@ -33,14 +30,14 @@
  {% if page.getit.cdn.js %}
   Javascript files:
   {% for item in page.getit.cdn.js %}
-   <code class="highlighter-rouge"><pre><script src="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script></pre></code>
+   <code class="highlighter-rouge"><script src="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script></code>
   {% endfor %}
  {% endif %}
  
  {% if page.getit.cdn.css %}
   CSS files:
   {% for item in page.getit.cdn.css %}
-   <code class="highlighter-rouge"><pre><link rel="stylesheet" href="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></pre></code>
+   <code class="highlighter-rouge"><link rel="stylesheet" href="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></code>
   {% endfor %}
  {% endif %}
  See more information and all the available versions in the <a href="cdn/">CDN page</a>
