@@ -33,9 +33,5 @@ View the package on <a href="https://packagist.org/packages/{{ page.getit.compos
   {% endfor %}
   <pre class="highlight"><code class="highlighter-rouge">{{ code }}</code></pre>
   
-  {% for file in page.getit.cdn.files %}
-  <code class="highlighter-rouge">https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ file }}</code>
-  {% endfor %}
-  
   See more information and all the available versions in the <a href="cdn/">CDN page</a>
 {% endif %}
