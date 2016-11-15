@@ -1,9 +1,6 @@
 {% if page.getit.github %}
 <h5>GitHub</h5>
-View project on <a href="https://github.com/{{ page.getit.github }}">GitHub</a>
-  {% if page.getit.download %}
-  or download the latest <a href="https://github.com/{{ page.getit.github }}/releases/latest">release</a>
-  {% endif %}
+View project on <a href="https://github.com/{{ page.getit.github }}">GitHub</a> {% if page.getit.download %}or download the latest <a href="https://github.com/{{ page.getit.github }}/releases/latest">release</a>{% endif %}
 {% endif %}
 
 
@@ -29,30 +26,30 @@ View the package on <a href="https://packagist.org/packages/{{ page.getit.compos
 <h5>CDN</h5>
   {% if page.getit.cdn.compressed %}
   Compressed, production files:
-  <pre class="highlight"><code class="highlighter-rouge">
+  {% assign code = "" %}
   {% for item in page.getit.cdn.compressed %}
     {% assign type = item | slice: -3 %}
     {% if type == "js" %}
-    <script src="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>
+      {% assign code = code | append: '<script src="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>' %}
     {% else %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">
+      {% assign code = code | append: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">' %}
     {% endif %}
   {% endfor %}
-  </code></pre>
+  <pre class="highlight"><code class="highlighter-rouge">{{ code | xml_escape }}</code></pre>
   {% endif %}
   
   {% if page.getit.cdn.uncompressed %}
   Uncompressed, development files:
-  <pre class="highlight"><code class="highlighter-rouge">
+  {% assign code = "" %}
   {% for item in page.getit.cdn.uncompressed %}
     {% assign type = item | slice: -3 %}
     {% if type == "js" %}
-    <script src="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>
+      {% assign code = code | append: '<script src="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>' %}
     {% else %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">
+      {% assign code = code | append: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">' %}
     {% endif %}
   {% endfor %}
-  </code></pre>
+  <pre class="highlight"><code class="highlighter-rouge">{{ code | xml_escape }}</code></pre>
   {% endif %}
   
   See more information and all the available versions in the <a href="cdn/">CDN page</a>
