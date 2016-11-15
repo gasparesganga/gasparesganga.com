@@ -18,9 +18,10 @@ getit       :
   npm           : gasparesganga-jquery-loading-overlay
   bower         : gasparesganga-jquery-loading-overlay
   cdn           :
-    name    : jquery.loadingoverlay
-    js      : [loadingoverlay.min.js, loadingoverlay_progress.min.js]
-    css     : [dummy.css]
+    name            : jquery.loadingoverlay
+    compressed      : [loadingoverlay.min.js, dummy.min.css, loadingoverlay_progress.min.js,]
+    uncompressed    : [loadingoverlay.js, dummy.css, loadingoverlay_progress.js]
+    
   composer    : gasparesganga/php-shapefile
 ---
 

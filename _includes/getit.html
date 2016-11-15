@@ -1,46 +1,59 @@
 {% if page.getit.github %}
-  <h5>GitHub</h5>
-  View project on <a href="https://github.com/{{ page.getit.github }}">GitHub</a>
+<h5>GitHub</h5>
+View project on <a href="https://github.com/{{ page.getit.github }}">GitHub</a>
   {% if page.getit.download %}
-   or download the latest <a href="https://github.com/{{ page.getit.github }}/releases/latest">release</a>
+  or download the latest <a href="https://github.com/{{ page.getit.github }}/releases/latest">release</a>
   {% endif %}
 {% endif %}
 
 
 {% if page.getit.composer %}
-  <h5>Composer</h5>
-  View the package on <a href="https://packagist.org/packages/{{ page.getit.composer }}">Packagist</a>
+<h5>Composer</h5>
+View the package on <a href="https://packagist.org/packages/{{ page.getit.composer }}">Packagist</a>
 {% endif %}
 
 
 {% if page.getit.npm %}
-  <h5>npm</h5>
-  <code class="highlighter-rouge">npm install {{ page.getit.npm }}</code>
+<h5>npm</h5>
+<code class="highlighter-rouge">npm install {{ page.getit.npm }}</code>
 {% endif %}
 
 
 {% if page.getit.bower %}
-  <h5>Bower</h5>
-  <code class="highlighter-rouge">bower install {{ page.getit.bower }}</code>
+<h5>Bower</h5>
+<code class="highlighter-rouge">bower install {{ page.getit.bower }}</code>
 {% endif %}
 
 
 {% if page.getit.cdn %}
- <h5>CDN</h5>
- {% if page.getit.cdn.js %}
-  Javascript files:
-  {% for item in page.getit.cdn.js %}
-   {% capture code %}<script src="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>{% endcapture %}
-   <code class="highlighter-rouge">{{ code | xml_escape }}</code>
+<h5>CDN</h5>
+  {% if page.getit.cdn.compressed %}
+  Compressed, production files:
+  <pre class="highlight"><code class="highlighter-rouge">
+  {% for item in page.getit.cdn.compressed %}
+    {% assign type = item | slice: -3 %}
+    {% if type == "js" %}
+    <script src="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>
+    {% else %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">
+    {% endif %}
   {% endfor %}
- {% endif %}
- 
- {% if page.getit.cdn.css %}
-  CSS files:
-  {% for item in page.getit.cdn.css %}
-   {% capture code %}<link rel="stylesheet" href="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">{% endcapture %}
-   <code class="highlighter-rouge">{{ code | xml_escape }}</code>
+  </code></pre>
+  {% endif %}
+  
+  {% if page.getit.cdn.uncompressed %}
+  Uncompressed, development files:
+  <pre class="highlight"><code class="highlighter-rouge">
+  {% for item in page.getit.cdn.uncompressed %}
+    {% assign type = item | slice: -3 %}
+    {% if type == "js" %}
+    <script src="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>
+    {% else %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">
+    {% endif %}
   {% endfor %}
- {% endif %}
- See more information and all the available versions in the <a href="cdn/">CDN page</a>
+  </code></pre>
+  {% endif %}
+  
+  See more information and all the available versions in the <a href="cdn/">CDN page</a>
 {% endif %}
