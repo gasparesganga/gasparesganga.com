@@ -24,27 +24,18 @@ View the package on <a href="https://packagist.org/packages/{{ page.getit.compos
 
 {% if page.getit.cdn %}
 <h5>CDN</h5>
+{% assign code = "" %}
 {% capture new_line %}
 {% endcapture %}
-  {% if page.getit.cdn.compressed %}
-  Compressed, production files:
-  {% assign code = "" %}
-  {% for item in page.getit.cdn.compressed %}
+  {% for file in page.getit.cdn.files %}
     {% if code != "" %}{% assign code = code | append: new_line %}{% endif %}
-    {% capture code %}{{ code }}https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}{% endcapture %}
+    {% capture code %}{{ code }}https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ file }}{% endcapture %}
   {% endfor %}
   <pre class="highlight"><code class="highlighter-rouge">{{ code }}</code></pre>
-  {% endif %}
   
-  {% if page.getit.cdn.uncompressed %}
-  Uncompressed, development files:
-  {% assign code = "" %}
-  {% for item in page.getit.cdn.uncompressed %}
-    {% if code != "" %}{% assign code = code | append: new_line %}{% endif %}
-    {% capture code %}{{ code }}https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}{% endcapture %}
+  {% for file in page.getit.cdn.files %}
+    <code class="highlighter-rouge">https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ file }}</code>
   {% endfor %}
-  <pre class="highlight"><code class="highlighter-rouge">{{ code }}</code></pre>
-  {% endif %}
   
   See more information and all the available versions in the <a href="cdn/">CDN page</a>
 {% endif %}
