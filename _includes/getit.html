@@ -24,15 +24,17 @@ View the package on <a href="https://packagist.org/packages/{{ page.getit.compos
 
 {% if page.getit.cdn %}
 <h5>CDN</h5>
+{% capture new_line %}
+{% endcapture %}
   {% if page.getit.cdn.compressed %}
   Compressed, production files:
   {% assign code = "" %}
   {% for item in page.getit.cdn.compressed %}
     {% assign type = item | slice: -3 %}
     {% if type == "js" %}
-      {% assign code = code | append: '<script src="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>' %}
+      {% capture code %}{{ code }}{{ new_line }}<script src="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>{% endcapture %}
     {% else %}
-      {% assign code = code | append: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">' %}
+      {% capture code %}{{ code }}{{ new_line }}<link rel="stylesheet" href="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">{% endcapture %}
     {% endif %}
   {% endfor %}
   <pre class="highlight"><code class="highlighter-rouge">{{ code | xml_escape }}</code></pre>
@@ -44,9 +46,9 @@ View the package on <a href="https://packagist.org/packages/{{ page.getit.compos
   {% for item in page.getit.cdn.uncompressed %}
     {% assign type = item | slice: -3 %}
     {% if type == "js" %}
-      {% assign code = code | append: '<script src="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>' %}
+      {% capture code %}{{ code }}{{ new_line }}<script src="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>{% endcapture %}
     {% else %}
-      {% assign code = code | append: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">' %}
+      {% capture code %}{{ code }}{{ new_line }}<link rel="stylesheet" href="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">{% endcapture %}
     {% endif %}
   {% endfor %}
   <pre class="highlight"><code class="highlighter-rouge">{{ code | xml_escape }}</code></pre>
