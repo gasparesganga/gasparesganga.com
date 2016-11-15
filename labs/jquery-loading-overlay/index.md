@@ -13,17 +13,14 @@ js          :
 download    : jquery-loading-overlay/archive/v1.5.1.zip
 source      : jquery-loading-overlay
 getit       :
-  github      : gasparesganga/jquery-loading-overlay
-  download    : true
-  npm         : gasparesganga-jquery-loading-overlay
-  bower       : gasparesganga-jquery-loading-overlay
-  cdn         :
+  github        : gasparesganga/jquery-loading-overlay
+  download      : true
+  npm           : gasparesganga-jquery-loading-overlay
+  bower         : gasparesganga-jquery-loading-overlay
+  cdn           :
     name    : jquery.loadingoverlay
-    js      :
-      - loadingoverlay.min.js
-      - loadingoverlay_progress.min.js
-    css     :
-      - dummy.css
+    js      : [loadingoverlay.min.js, loadingoverlay_progress.min.js]
+    css     : [dummy.css]
   composer    : gasparesganga/php-shapefile
 ---
 
