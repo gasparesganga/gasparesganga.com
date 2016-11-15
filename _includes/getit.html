@@ -30,28 +30,20 @@ View the package on <a href="https://packagist.org/packages/{{ page.getit.compos
   Compressed, production files:
   {% assign code = "" %}
   {% for item in page.getit.cdn.compressed %}
-    {% assign type = item | slice: -3 %}
-    {% if type == "js" %}
-      {% capture code %}{{ code }}{{ new_line }}<script src="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>{% endcapture %}
-    {% else %}
-      {% capture code %}{{ code }}{{ new_line }}<link rel="stylesheet" href="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">{% endcapture %}
-    {% endif %}
+    {% if code != "" %}{% assign code = code | append: new_line %}{% endif %}
+    {% capture code %}{{ code }}https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}{% endcapture %}
   {% endfor %}
-  <pre class="highlight"><code class="highlighter-rouge">{{ code | xml_escape }}</code></pre>
+  <pre class="highlight"><code class="highlighter-rouge">{{ code }}</code></pre>
   {% endif %}
   
   {% if page.getit.cdn.uncompressed %}
   Uncompressed, development files:
   {% assign code = "" %}
   {% for item in page.getit.cdn.uncompressed %}
-    {% assign type = item | slice: -3 %}
-    {% if type == "js" %}
-      {% capture code %}{{ code }}{{ new_line }}<script src="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}"></script>{% endcapture %}
-    {% else %}
-      {% capture code %}{{ code }}{{ new_line }}<link rel="stylesheet" href="https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}">{% endcapture %}
-    {% endif %}
+    {% if code != "" %}{% assign code = code | append: new_line %}{% endif %}
+    {% capture code %}{{ code }}https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ item }}{% endcapture %}
   {% endfor %}
-  <pre class="highlight"><code class="highlighter-rouge">{{ code | xml_escape }}</code></pre>
+  <pre class="highlight"><code class="highlighter-rouge">{{ code }}</code></pre>
   {% endif %}
   
   See more information and all the available versions in the <a href="cdn/">CDN page</a>
