@@ -1,12 +1,12 @@
 {% if page.getit.github %}
 <h5>GitHub</h5>
-View project on <a href="https://github.com/{{ page.getit.github }}">GitHub</a> {% if page.getit.download %}or download the latest <a href="https://github.com/{{ page.getit.github }}/releases/latest">release</a>{% endif %}
+View project on <a href="{{ site.base_urls.github }}{{ page.getit.github }}">GitHub</a> {% if page.getit.download %}or download the latest <a href="{{ site.base_urls.github }}{{ page.getit.github }}/releases/latest">release</a>{% endif %}
 {% endif %}
 
 
 {% if page.getit.composer %}
 <h5>Composer</h5>
-View the package on <a href="https://packagist.org/packages/{{ page.getit.composer }}">Packagist</a>
+View the package on <a href="{{ site.base_urls.packagist }}{{ page.getit.composer }}">Packagist</a>
 {% endif %}
 
 
@@ -29,7 +29,7 @@ View the package on <a href="https://packagist.org/packages/{{ page.getit.compos
 {% endcapture %}
   {% for file in page.getit.cdn.files %}
     {% if code != "" %}{% assign code = code | append: new_line %}{% endif %}
-    {% capture code %}{{ code }}https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ file }}{% endcapture %}
+    {% capture code %}{{ code }}{{ site.base_urls.cdn }}{{ page.getit.cdn.name }}/latest/{{ file }}{% endcapture %}
   {% endfor %}
   <pre class="highlight"><code class="highlighter-rouge">{{ code }}</code></pre>
   
