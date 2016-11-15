@@ -3,24 +3,24 @@ layout      : lab
 title       : jQuery LoadingOverlay
 description : A flexible loading overlay jQuery Plugin
 updated     : 2016-11-11
-css         :
-  - jquery-loading-overlay/_assets/font-awesome-4.6.3/font-awesome.scss
-js          :
-  - js/jquery-3.1.0.min.js
-  - jquery-loading-overlay/_assets/loadingoverlay.min.js
-  - jquery-loading-overlay/_assets/loadingoverlay_progress.min.js
-  - jquery-loading-overlay/_assets/demo.js
-download    : jquery-loading-overlay/archive/v1.5.1.zip
-source      : jquery-loading-overlay
 getit       :
   github        : gasparesganga/jquery-loading-overlay
   download      : true
   npm           : gasparesganga-jquery-loading-overlay
   bower         : gasparesganga-jquery-loading-overlay
+  composer      : gasparesganga/php-shapefile
   cdn           :
-    name    : jquery.loadingoverlay
-    files   : [loadingoverlay.min.js, loadingoverlay_progress.min.js]
-  composer    : gasparesganga/php-shapefile
+    name   : jquery.loadingoverlay
+    files  : [loadingoverlay.min.js, loadingoverlay_progress.min.js]
+
+assets      :
+  css   :
+    - jquery-loading-overlay/_assets/font-awesome-4.6.3/font-awesome.scss
+  js    :
+    - js/jquery-3.1.0.min.js
+    - jquery-loading-overlay/_assets/loadingoverlay.min.js
+    - jquery-loading-overlay/_assets/loadingoverlay_progress.min.js
+    - jquery-loading-overlay/_assets/demo.js
 ---
 
 
