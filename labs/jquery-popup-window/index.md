@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery PopupWindow
 description : The ultimate popup/dialog/modal jQuery plugin
-updated     : 2016-08-25
+updated     : 2016-08-13
 getit       :
   github        : gasparesganga/jquery-popup-window
   download      : true
@@ -27,7 +27,7 @@ assets      :
 {% capture expire_date %}{{'2016-10-01' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>25 August 2016 :</b> Version 1.0.4 released. See <a href="/posts/jquery-popup-window-1.0.4/">release notes</a>.
+    <b>13 August 2016 :</b> Version 1.0.3 released. See <a href="/posts/jquery-popup-window-1.0.3/">release notes</a>.
 </div>
 {% endif %}
 
@@ -618,7 +618,6 @@ And here is some CSS for this `.custom_style` class:
 
 
 ## History
-*25 August 2016* - [Version 1.0.4](/posts/jquery-popup-window-1.0.4/)
 *13 August 2016* - [Version 1.0.3](/posts/jquery-popup-window-1.0.3/)
 *5 August 2016* - [Version 1.0.2](/posts/jquery-popup-window-1.0.2/)
 *29 July 2016* - [Version 1.0.1](/posts/jquery-popup-window-release/)
