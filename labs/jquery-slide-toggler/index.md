@@ -26,6 +26,7 @@ assets      :
 - [Events](#events)
 - [Examples](#examples)
 - [History](#history)
+- [Comments and Ideas](#comments-and-ideas)
 
 
 ## Quick Demo

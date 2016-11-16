@@ -26,6 +26,7 @@ getit       :
 - [Geometry Output](#geometry-output)
 - [Error Codes](#error-codes)
 - [History](#history)
+- [Comments and Ideas](#comments-and-ideas)
 
 
 ## Get it

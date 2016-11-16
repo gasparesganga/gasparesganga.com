@@ -3,15 +3,23 @@ layout      : lab
 title       : jQuery PopupWindow
 description : The ultimate popup/dialog/modal jQuery plugin
 updated     : 2016-08-25
-css         :
-  - jquery-popup-window/_assets/popupwindow.css
-  - jquery-popup-window/_assets/demo.css
-js          :
-  - js/jquery-3.1.0.min.js
-  - jquery-popup-window/_assets/popupwindow.min.js
-  - jquery-popup-window/_assets/demo.js
-download    : jquery-popup-window/archive/v1.0.4.zip
-source      : jquery-popup-window
+getit       :
+  github        : gasparesganga/jquery-popup-window
+  download      : true
+  npm           : gasparesganga-jquery-popup-window
+  bower         : gasparesganga-jquery-popup-window
+  cdn           :
+    name   : jquery.loadingoverlay
+    files  : [popupwindow.min.js, popupwindow.css]
+
+assets      :
+  css   :
+    - jquery-popup-window/_assets/popupwindow.css
+    - jquery-popup-window/_assets/demo.css
+  js    :
+    - js/jquery-3.1.0.min.js
+    - jquery-popup-window/_assets/popupwindow.min.js
+    - jquery-popup-window/_assets/demo.js
 ---
 
 
@@ -24,9 +32,26 @@ source      : jquery-popup-window
 {% endif %}
 
 
+## Contents
+- [Quick Demo](#quick-demo)
+- [Get it](#get-it)
+- [Features](#features)
+- [Methods](#methods)
+- [Actions](#actions)
+- [Options and defaults values](#options-and-defaults-values)
+- [Events](#events)
+- [Customization](#customization)
+- [Examples](#examples)
+- [History](#history)
+- [Comments and Ideas](#comments-and-ideas)
+
 
 ## Quick Demo
 {% include_relative _demo.html demo="quick_demo" %}
+
+
+## Get it
+{% include getit.html %}
 
 
 ## Features

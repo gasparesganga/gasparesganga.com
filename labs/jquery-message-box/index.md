@@ -44,6 +44,7 @@ assets      :
 - [Examples](#examples)
 - [Why this name?](#why-this-name)
 - [History](#history)
+- [Comments and Ideas](#comments-and-ideas)
 
 
 ## Quick Demo

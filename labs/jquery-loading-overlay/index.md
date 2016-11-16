@@ -46,6 +46,7 @@ assets      :
 - [Examples](#examples)
 - [Extras](#extras)
 - [History](#history)
+- [Comments and Ideas](#comments-and-ideas)
 
 
 ## Quick Demo

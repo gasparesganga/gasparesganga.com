@@ -39,6 +39,7 @@ assets      :
 - [Examples](#examples)
 - [Server Side](#server-side)
 - [History](#history)
+- [Comments and Ideas](#comments-and-ideas)
 
 
 ## Quick Demo

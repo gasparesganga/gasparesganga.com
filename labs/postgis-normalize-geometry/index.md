@@ -18,6 +18,7 @@ getit       :
 - [Return value](#return-value)
 - [Examples](#examples)
 - [History](#history)
+- [Comments and Ideas](#comments-and-ideas)
 
 
 ## Get it
