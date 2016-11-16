@@ -3,11 +3,26 @@ layout      : lab
 title       : PostGIS NormalizeGeometry
 description : PL/pgSQL function to remove spikes and simplify geometries with PostGIS
 updated     : 2016-06-02
-css         : []
-js          : []
-download    : postgis-normalize-geometry/archive/v1.0.zip
-source      : postgis-normalize-geometry
+getit       :
+  github        : gasparesganga/postgis-normalize-geometry
+  download      : true
 ---
+
+
+## Contents
+- [Get it](#get-it)
+- [Background](#background)
+- [Synopsis](#synopsis)
+- [Input parameters](#input-parameters)
+- [How normalization works](#how-normalization-works)
+- [Return value](#return-value)
+- [Examples](#examples)
+- [History](#history)
+
+
+## Get it
+{% include getit.html %}
+
 
 ## Background
 The initial proof-of-concept about checking the angles between adjacent points was provided by the well-known **Andreas Schmidt** & **Nils Krüger**'s function [Spike-Remover](https://trac.osgeo.org/postgis/wiki/UsersWikiExamplesSpikeRemover) *(kudos to them)*.
@@ -17,7 +32,6 @@ I wrote a brand-new algorithm integrating the angle checks with area and points 
 ### What it does
 The function decomposes all `POLYGON`, `MULTIPOLYGON` and `MULTILINESTRING` into single `LINESTRING`, then it iterates over all the points considering 3 at a time. When conditions depending on the input parameters are met, the point which produces the unwanted condition is removed.
 This effectively removes **spikes** and **points lying on the same straight line**, producing normalized geometries.
-
 
 
 ## Synopsis
@@ -179,3 +193,6 @@ FROM (
 
 <img src="{% asset_path postgis-normalize-geometry/_assets/example3.png %}" style="width:100%; max-width:1000px;">
 
+
+## History
+*2 June 2016* - [Version 1.0](/posts/postgis-normalize-geometry-release/)
