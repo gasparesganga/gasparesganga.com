@@ -1,12 +1,12 @@
 {% if page.getit.github %}
 <h5>GitHub</h5>
-View project on <a href="{{ site.base_urls.github }}{{ page.getit.github }}">GitHub</a> {% if page.getit.download %}or download the latest <a href="{{ site.base_urls.github }}{{ page.getit.github }}/releases/latest">release</a>{% endif %}
+View project on <a href="https://github.com/{{ page.getit.github }}">GitHub</a> {% if page.getit.download %}or download the latest <a href="https://github.com/{{ page.getit.github }}/releases/latest">release</a>{% endif %}
 {% endif %}
 
 
 {% if page.getit.composer %}
 <h5>Composer</h5>
-View the package on <a href="{{ site.base_urls.packagist }}{{ page.getit.composer }}">Packagist</a>
+<code class="highlighter-rouge">composer require {{ page.getit.composer }}</code>
 {% endif %}
 
 
@@ -29,9 +29,11 @@ View the package on <a href="{{ site.base_urls.packagist }}{{ page.getit.compose
 {% endcapture %}
   {% for file in page.getit.cdn.files %}
     {% if code != "" %}{% assign code = code | append: new_line %}{% endif %}
-    {% capture code %}{{ code }}{{ site.base_urls.cdn }}{{ page.getit.cdn.name }}/latest/{{ file }}{% endcapture %}
+    {% capture code %}{{ code }}https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ file }}{% endcapture %}
   {% endfor %}
   <pre class="highlight"><code class="highlighter-rouge">{{ code }}</code></pre>
   
-  See more information and all the available versions in the <a href="cdn/">CDN page</a>
+  CDN hosting of this library is possible thanks to <a href="https://www.jsdelivr.com">jsDelivr</a>. For more details about URL structure please refer to the official <a href="https://github.com/jsdelivr/jsdelivr#usage">documentation</a>.
+  See and all the available files and versions of this library on the <a href="https://www.jsdelivr.com/projects/{{ page.getit.cdn.name }}">CDN page</a>
+  
 {% endif %}

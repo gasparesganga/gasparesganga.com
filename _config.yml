@@ -10,11 +10,6 @@ social          :
   paypal    : https://paypal.me/gasparesganga
   twitter   : https://twitter.com/gasparesganga
 
-base_urls      :
-  github    : https://github.com/
-  packagist : https://packagist.org/packages/
-  cdn       : https://cdn.jsdelivr.net/
-
 future          : true
 paginate        : 10
 paginate_path   : /posts/page:num

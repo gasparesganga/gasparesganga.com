@@ -3,13 +3,21 @@ layout      : lab
 title       : jQuery AjaxDownloader
 description : A jQuery Plugin to perform Ajax style downloads
 updated     : 2016-11-12
-css         : []
-js          :
-  - js/jquery-3.1.0.min.js
-  - jquery-ajax-downloader/_assets/ajaxdownloader.min.js
-  - jquery-ajax-downloader/_assets/demo.js
-download    : jquery-ajax-downloader/archive/v1.1.0.zip
-source      : jquery-ajax-downloader
+getit       :
+  github        : gasparesganga/jquery-ajax-downloader
+  download      : false
+  npm           : gasparesganga-jquery-ajax-downloader
+  bower         : gasparesganga-jquery-ajax-downloader
+  cdn           :
+    name   : jquery.ajaxdownloader
+    files  : [ajaxdownloader.min.js]
+
+assets      :    
+  css   : []
+  js    :
+    - js/jquery-3.1.0.min.js
+    - jquery-ajax-downloader/_assets/ajaxdownloader.min.js
+    - jquery-ajax-downloader/_assets/demo.js
 ---
 
 
