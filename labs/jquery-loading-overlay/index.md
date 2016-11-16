@@ -8,7 +8,6 @@ getit       :
   download      : true
   npm           : gasparesganga-jquery-loading-overlay
   bower         : gasparesganga-jquery-loading-overlay
-  composer      : gasparesganga/php-shapefile
   cdn           :
     name   : jquery.loadingoverlay
     files  : [loadingoverlay.min.js, loadingoverlay_progress.min.js]

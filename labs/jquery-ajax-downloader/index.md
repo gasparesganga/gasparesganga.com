@@ -5,7 +5,7 @@ description : A jQuery Plugin to perform Ajax style downloads
 updated     : 2016-11-12
 getit       :
   github        : gasparesganga/jquery-ajax-downloader
-  download      : false
+  download      : true
   npm           : gasparesganga-jquery-ajax-downloader
   bower         : gasparesganga-jquery-ajax-downloader
   cdn           :
