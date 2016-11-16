@@ -9,7 +9,7 @@ getit       :
   npm           : gasparesganga-jquery-popup-window
   bower         : gasparesganga-jquery-popup-window
   cdn           :
-    name   : jquery.loadingoverlay
+    name   : jquery.popupwindow
     files  : [popupwindow.min.js, popupwindow.css]
 
 assets      :
