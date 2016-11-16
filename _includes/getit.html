@@ -27,13 +27,11 @@ View project on <a href="https://github.com/{{ page.getit.github }}">GitHub</a> 
 {% assign code = "" %}
 {% capture new_line %}
 {% endcapture %}
+  CDN hosting of this library is possible thanks to <a href="https://www.jsdelivr.com">jsDelivr</a>. For more details about URL structure please refer to the official <a href="https://github.com/jsdelivr/jsdelivr#usage">documentation</a>.
   {% for file in page.getit.cdn.files %}
     {% if code != "" %}{% assign code = code | append: new_line %}{% endif %}
     {% capture code %}{{ code }}https://cdn.jsdelivr.net/{{ page.getit.cdn.name }}/latest/{{ file }}{% endcapture %}
   {% endfor %}
   <pre class="highlight"><code class="highlighter-rouge">{{ code }}</code></pre>
-  
-  CDN hosting of this library is possible thanks to <a href="https://www.jsdelivr.com">jsDelivr</a>. For more details about URL structure please refer to the official <a href="https://github.com/jsdelivr/jsdelivr#usage">documentation</a>.
   See and all the available files and versions of this library on the <a href="https://www.jsdelivr.com/projects/{{ page.getit.cdn.name }}">CDN page</a>
-  
 {% endif %}

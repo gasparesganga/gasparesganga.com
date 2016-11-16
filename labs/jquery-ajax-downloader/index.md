@@ -30,13 +30,29 @@ assets      :
 {% endif %}
 
 
+## Contents
+- [Quick Demo](#quick-demo)
+- [Get it](#get-it)
+- [How it works](#how-it-works)
+- [Methods](#methods)
+- [Options and defaults values](#options-and-defaults-values)
+- [Examples](#examples)
+- [Server Side](#server-side)
+- [History](#history)
+
+
 ## Quick Demo
 {% include_relative _demo.html demo="quick_demo" %}
+
+
+## Get it
+{% include getit.html %}
 
 
 ## How it works
 An `HTML` form is created and submitted to ad invisible `IFrame`. You can pass parameters like you would in a regular Ajax request.
 The server should answer the request providing a file to download of course.
+
 
 
 ## Methods
