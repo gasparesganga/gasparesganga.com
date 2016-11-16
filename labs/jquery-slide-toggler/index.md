@@ -3,20 +3,38 @@ layout      : lab
 title       : jQuery SlideToggler
 description : A jQuery Plugin to turn an element into a collapsible sliding panel with a title
 updated     : 2015-07-08
-css         :
-  - jquery-slide-toggler/_assets/slidetoggler.css
-  - jquery-slide-toggler/_assets/demo.css
-js          :
-  - js/jquery-2.1.3.min.js
-  - jquery-slide-toggler/_assets/slidetoggler.min.js
-  - jquery-slide-toggler/_assets/demo.js
-download    : jquery-slide-toggler/archive/v1.0.zip
-source      : jquery-slide-toggler
+getit       :
+  github        : gasparesganga/jquery-slide-toggler
+  download      : true
+
+assets      :
+  css   :
+    - jquery-slide-toggler/_assets/slidetoggler.css
+    - jquery-slide-toggler/_assets/demo.css
+  js    :
+    - js/jquery-2.1.3.min.js
+    - jquery-slide-toggler/_assets/slidetoggler.min.js
+    - jquery-slide-toggler/_assets/demo.js
 ---
+
+
+## Contents
+- [Quick Demo](#quick-demo)
+- [Get it](#get-it)
+- [Methods](#methods)
+- [Options and defaults values](#options-and-defaults-values)
+- [Events](#events)
+- [Examples](#examples)
+- [History](#history)
+- [Comments and Ideas](#comments-and-ideas)
 
 
 ## Quick Demo
 {% include_relative _demo.html demo="quick_demo" %}
+
+
+## Get it
+{% include getit.html %}
 
 
 

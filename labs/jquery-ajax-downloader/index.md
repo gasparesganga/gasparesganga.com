@@ -3,13 +3,21 @@ layout      : lab
 title       : jQuery AjaxDownloader
 description : A jQuery Plugin to perform Ajax style downloads
 updated     : 2016-11-12
-css         : []
-js          :
-  - js/jquery-3.1.0.min.js
-  - jquery-ajax-downloader/_assets/ajaxdownloader.min.js
-  - jquery-ajax-downloader/_assets/demo.js
-download    : jquery-ajax-downloader/archive/v1.1.0.zip
-source      : jquery-ajax-downloader
+getit       :
+  github        : gasparesganga/jquery-ajax-downloader
+  download      : true
+  npm           : gasparesganga-jquery-ajax-downloader
+  bower         : gasparesganga-jquery-ajax-downloader
+  cdn           :
+    name   : jquery.ajaxdownloader
+    files  : [ajaxdownloader.min.js]
+
+assets      :    
+  css   : []
+  js    :
+    - js/jquery-3.1.0.min.js
+    - jquery-ajax-downloader/_assets/ajaxdownloader.min.js
+    - jquery-ajax-downloader/_assets/demo.js
 ---
 
 
@@ -22,13 +30,30 @@ source      : jquery-ajax-downloader
 {% endif %}
 
 
+## Contents
+- [Quick Demo](#quick-demo)
+- [Get it](#get-it)
+- [How it works](#how-it-works)
+- [Methods](#methods)
+- [Options and defaults values](#options-and-defaults-values)
+- [Examples](#examples)
+- [Server Side](#server-side)
+- [History](#history)
+- [Comments and Ideas](#comments-and-ideas)
+
+
 ## Quick Demo
 {% include_relative _demo.html demo="quick_demo" %}
+
+
+## Get it
+{% include getit.html %}
 
 
 ## How it works
 An `HTML` form is created and submitted to ad invisible `IFrame`. You can pass parameters like you would in a regular Ajax request.
 The server should answer the request providing a file to download of course.
+
 
 
 ## Methods

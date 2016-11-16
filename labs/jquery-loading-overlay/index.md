@@ -3,21 +3,25 @@ layout      : lab
 title       : jQuery LoadingOverlay
 description : A flexible loading overlay jQuery Plugin
 updated     : 2016-11-11
-css         :
-  - jquery-loading-overlay/_assets/font-awesome-4.6.3/font-awesome.scss
-js          :
-  - js/jquery-3.1.0.min.js
-  - jquery-loading-overlay/_assets/loadingoverlay.min.js
-  - jquery-loading-overlay/_assets/loadingoverlay_progress.min.js
-  - jquery-loading-overlay/_assets/demo.js
-download    : jquery-loading-overlay/archive/v1.5.1.zip
-source      : jquery-loading-overlay
+getit       :
+  github        : gasparesganga/jquery-loading-overlay
+  download      : true
+  npm           : gasparesganga-jquery-loading-overlay
+  bower         : gasparesganga-jquery-loading-overlay
+  cdn           :
+    name   : jquery.loadingoverlay
+    files  : [loadingoverlay.min.js, loadingoverlay_progress.min.js]
+
+assets      :
+  css   :
+    - jquery-loading-overlay/_assets/font-awesome-4.6.3/font-awesome.scss
+  js    :
+    - js/jquery-3.1.0.min.js
+    - jquery-loading-overlay/_assets/loadingoverlay.min.js
+    - jquery-loading-overlay/_assets/loadingoverlay_progress.min.js
+    - jquery-loading-overlay/_assets/demo.js
 ---
 
-
-<div class="alert">
-    <b>Do you like this plugin? Great! Then why don't you try my brand-new <a href="/labs/jquery-popup-window/">jQuery PopupWindow</a>, the <i>"ultimate popup/dialog/modal jQuery plugin"</i>?</b>
-</div>
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
 {% capture expire_date %}{{'2016-12-31' | date: '%s'}}{% endcapture %}
@@ -27,10 +31,30 @@ source      : jquery-loading-overlay
 </div>
 {% endif %}
 
+<div class="alert">
+    <b>Do you like this plugin? Great! Then why don't you try my other <a href="/labs/">jQuery plugins</a>?</b>
+</div>
+
+
+## Contents
+- [Quick Demo](#quick-demo)
+- [Get it](#get-it)
+- [Features](#features)
+- [Methods](#methods)
+- [Actions](#actions)
+- [Options and defaults values](#options-and-defaults-values)
+- [Examples](#examples)
+- [Extras](#extras)
+- [History](#history)
+- [Comments and Ideas](#comments-and-ideas)
+
 
 ## Quick Demo
 {% include_relative _demo.html demo="quick_demo" %}
 
+
+## Get it
+{% include getit.html %}
 
 
 ## Features
