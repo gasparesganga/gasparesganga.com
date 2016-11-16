@@ -3,15 +3,23 @@ layout      : lab
 title       : jQuery MessageBox
 description : A jQuery Plugin to replace Javascript's window.alert(), window.confirm() and window.prompt() functions
 updated     : 2016-11-12
-css         :
-  - jquery-message-box/_assets/messagebox.css
-  - jquery-message-box/_assets/demo.css
-js          :
-  - js/jquery-3.1.0.min.js
-  - jquery-message-box/_assets/messagebox.min.js
-  - jquery-message-box/_assets/demo.js
-download    : jquery-message-box/archive/v2.1.0.zip
-source      : jquery-message-box
+getit       :
+  github        : gasparesganga/jquery-message-box
+  download      : true
+  npm           : gasparesganga-jquery-message-box
+  bower         : gasparesganga-jquery-message-box
+  cdn           :
+    name   : jquery.messagebox
+    files  : [messagebox.min.js, messagebox.css]
+
+assets      :
+  css   :
+    - jquery-message-box/_assets/messagebox.css
+    - jquery-message-box/_assets/demo.css
+  js    :
+    - js/jquery-3.1.0.min.js
+    - jquery-message-box/_assets/messagebox.min.js
+    - jquery-message-box/_assets/demo.js
 ---
 
 
@@ -24,9 +32,26 @@ source      : jquery-message-box
 {% endif %}
 
 
+## Contents
+- [Quick Demo](#quick-demo)
+- [Get it](#get-it)
+- [Features](#features)
+- [Methods](#methods)
+- [Options and defaults values](#options-and-defaults-values)
+- [Custom Buttons configuration](#custom-buttons-configuration)
+- [Custom Inputs configuration](#custom-inputs-configuration)
+- [Handlers](#handlers)
+- [Examples](#examples)
+- [Why this name?](#why-this-name)
+- [History](#history)
+
+
 ## Quick Demo
 {% include_relative _demo.html demo="quick_demo" %}
 
+
+## Get it
+{% include getit.html %}
 
 
 ## Features
@@ -35,7 +60,6 @@ source      : jquery-message-box
 - Customizable [buttons](#custom-buttons-configuration) and [inputs](#custom-inputs-configuration)
 - Flexible *message-queue*
 - Fully CSS customizable
-
 
 
 
@@ -105,7 +129,7 @@ Width of the MessageBox. You can specify an amount in pixels or any other CSS-co
 
 
 
-### Custom Buttons configuration
+## Custom Buttons configuration
 If two simple buttons triggering the `.done()` and `.fail()` handlers are not enough, you can completely customize them using a configuration ***object*** for [buttonDone](#buttonDone) and [buttonFail](#buttonFail) options. All the button's properties are **optional**. Check [Example 4](#example-4---buttons-capabilities) to see custom buttons in action.
 
 ```javascript
@@ -154,7 +178,7 @@ The keyboard's [keyCode](https://developer.mozilla.org/en-US/docs/Web/API/Keyboa
 
 
 
-### Custom Inputs configuration
+## Custom Inputs configuration
 The [input](#input) option is very versatile. It can accept a ***boolean*** or a ***string*** to show a simple *textbox*, an ***array*** to create multiple textboxes in the most simple and straightforward way, or an ***object*** to define complex of different *inputs* and/or *select boxes*, providing additional properties.
 All the input's properties are **optional** *(in case of `selects` a warning will be thrown if no `option` is provided, though)*. Check [Example 5](#example-5---inputs-capabilities) to see custom inputs in action.
 
