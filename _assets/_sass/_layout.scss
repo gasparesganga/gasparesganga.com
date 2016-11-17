@@ -234,6 +234,7 @@ main {
     .paginator {
         display             : table;
         background-color    : $color_main;
+        color               : $color_white;
         fill                : $color_white;
         margin              : auto;
         margin-top          : 1rem;
@@ -244,12 +245,13 @@ main {
         }
         .paginator_link_disabled {
             display     : table-cell;
-            fill        : $color_white;
-            padding     : 0.4rem 1rem;
+            padding     : 0.4rem;
             border      : none;
         }
         .paginator_link {
             @extend .paginator_link_disabled;
+            width       : 3rem;
+            padding     : 0.4rem 1rem;
             &:hover {
                 background-color    : $color_main_light;
                 border              : none;
