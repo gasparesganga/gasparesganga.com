@@ -65,7 +65,7 @@
             © 2014 - {{'now' | date: "%Y"}} Gaspare Sganga
         </footer>
         
-        {% javascript '{{ utils }}' %}
+        {% javascript js/utils.js %}
         {% for filename in page.assets.js %}
             {% javascript '{{ filename }}' %}
         {% endfor %}
