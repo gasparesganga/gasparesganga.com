@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP ShapeFile
 description : PHP library to read any ESRI Shapefile and its associated DBF into a PHP Array or WKT
-updated     : 2016-11-10
+updated     : 2016-11-17
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -13,7 +13,7 @@ getit       :
 {% capture expire_date %}{{'2016-12-31' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>1 November 2016 :</b> Version 2.0.0 released with many improvements. See the <a href="/posts/php-shapefile-2.0.0/">release notes</a>.
+    <b>17 November 2016 :</b> Version 2.1.0 released. See the <a href="/posts/php-shapefile-2.1.0/">release notes</a>.
 </div>
 {% endif %}
 
@@ -63,9 +63,15 @@ try {
     echo "Shape Type : ";
     echo $ShapeFile->getShapeType()." - ".$ShapeFile->getShapeType(ShapeFile::FORMAT_STR);
     echo "\n\n";
+    
     // Get Bounding Box
     echo "Bounding Box : ";
     print_r($ShapeFile->getBoundingBox());
+    
+    // Get DBF Fields
+    echo "DBF Fields : ";
+    print_r($ShapeFile->getDBFFields());
+    echo "\n\n";
     
     // Read all the records
     while ($record = $ShapeFile->getRecord(ShapeFile::GEOMETRY_BOTH)) {
@@ -110,6 +116,7 @@ The main Class which exposes the following public methods:
 - [getShapeType](#getshapetype)
 - [getBoundingBox](#getboundingbox)
 - [getPRJ](#getprj)
+- [getDBFFields](#getdbffields)
 - [getRecord](#getrecord)
 
 
@@ -207,6 +214,35 @@ public string ShapeFile::getPRJ()
 
 Returns the raw WKT string from the `.prj` file. If there's no `.prj` file then `null` is returned.
 
+
+
+### getDBFFields
+
+```php?start_inline=1
+public array ShapeFile::getDBFFields()
+```
+
+Returns and *Array* representing the fields definition in the DBF file:
+
+```php?start_inline=1
+array(
+    [] => Array(
+        [name]      => string
+        [type]      => string
+        [size]      => integer
+        [decimals]  => integer
+    )
+)
+```
+
+The field `type` is encoded as the original dBaseIII/IV specifications:
+
+```
+C : Char
+D : Date
+N : Numeric
+L : Logical
+```
 
 
 ### getRecord
@@ -428,6 +464,7 @@ Well, after more than 10 years working with GIS related technology, I have yet t
 
 
 ## History
+*17 November 2016* - [Version 2.1.0](/posts/php-shapefile-2.1.0/)
 *10 November 2016* - [Version 2.0.1](/posts/php-shapefile-2.0.1/)
 *1 November 2016* - [Version 2.0.0](/posts/php-shapefile-2.0.0/)
 *31 March 2016* - [Version 1.1](/posts/php-shapefile-version-1.1/)
