@@ -1,22 +1,21 @@
 (function(window){
     window.addEventListener("load", function(){
-        var body    = document.documentElement;
-        var button  = document.getElementById("backtotop");
+        var button = document.getElementById("backtotop");
         document.addEventListener("scroll", function(){
-            button.className = (body.scrollTop > 10) ? "visible" : "";
+            button.className = (window.pageYOffset > 10) ? "visible" : "";
         });
         button.addEventListener("click", function(){
-            animatedScroll(body, 0, 500)
+            animatedScroll(0, 500)
         });
         
-        function animatedScroll(element, position, duration){
-            var currentPosition = element.scrollTop;
+        function animatedScroll(position, duration){
+            var currentPosition = window.pageYOffset;
             if (currentPosition == 0 || duration < 0) return;
             var step = (position - currentPosition) / duration * 30;
             setTimeout(function(){
-                element.scrollTop = currentPosition + step;
-                animatedScroll(element, position, duration - 10);
+                window.scroll(0, currentPosition + step);
+                animatedScroll(position, duration - 10);
             }, 10);
-        } 
+        }
     });
 })(window);
