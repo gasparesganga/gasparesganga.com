@@ -35,7 +35,6 @@ getit       :
 
 
 ## Features
-
 - Supports all kinds of shapefiles, including Z and M ones
 - Provides WKT/EWKT output
 - Implements the [Iterator](http://php.net/manual/en/class.iterator.php) interface
@@ -48,7 +47,6 @@ getit       :
 
 
 ## Basic Usage
-
 ```php?start_inline=1
 // Register autoloader
 require_once('php-shapefile/src/ShapeFileAutoloader.php');
@@ -115,7 +113,6 @@ The main Class which exposes the following public methods:
 
 
 ### __construct
-
 ```php?start_inline=1
 public ShapeFile::__construct(mixed $files [, int $flags = 0]);
 ```
@@ -162,7 +159,6 @@ Available flags are:
 
 
 ### getShapeType
-
 ```php?start_inline=1
 public mixed ShapeFile::getShapeType([int $format])
 ```
@@ -177,7 +173,6 @@ It specifies the return format and can one of:
 
 
 ### getBoundingBox
-
 ```php?start_inline=1
 public array ShapeFile::getBoundingBox()
 ```
@@ -202,7 +197,6 @@ Eventual `FLAG_SUPPRESS_Z` and `FLAG_SUPPRESS_M` flags set with the [__construct
 
 
 ### getPRJ
-
 ```php?start_inline=1
 public string ShapeFile::getPRJ()
 ```
@@ -212,7 +206,6 @@ Returns the raw WKT string from the `.prj` file. If there's no `.prj` file then 
 
 
 ### getDBFFields
-
 ```php?start_inline=1
 public array ShapeFile::getDBFFields()
 ```
@@ -242,7 +235,6 @@ L : Logical
 
 
 ### getTotRecords
-
 ```php?start_inline=1
 public integer ShapeFile::getTotRecords()
 ```
@@ -252,7 +244,6 @@ Returns the number of records present in the shapefile.
 
 
 ### setCurrentRecord
-
 ```php?start_inline=1
 public void ShapeFile::setCurrentRecord($index)
 ```
@@ -262,7 +253,6 @@ Sets the index of the current record. Note that records count starts from `1` in
 
 
 ### getCurrentRecord
-
 ```php?start_inline=1
 public integer ShapeFile::getCurrentRecord()
 ```
@@ -272,7 +262,6 @@ Returns the index of the current record. Note that records count starts from `1`
 
 
 ### getRecord
-
 ```php?start_inline=1
 public array ShapeFile::getRecord([int $geometry_format = ShapeFile::GEOMETRY_BOTH])
 ```
@@ -296,7 +285,6 @@ It specifies the format for returned geometries (`shp` part of the returned *Arr
 
 
 ## Geometry Output
-
 Geometries read with [getRecord](#getrecord) method can be returned as a structured *Array* or [WKT](http://en.wikipedia.org/wiki/Well-known_text).
 Multi `MULTI*`, 3dz `* Z`, 3dm `* M` and  4d `* ZM` geometries are recognized as such.
 Note that eventual `FLAG_SUPPRESS_Z` and `FLAG_SUPPRESS_M` flags set with the [__constructor](#construct) will effectively condition the output.
@@ -304,7 +292,6 @@ In the output *Array* *"no data"* values set for *M coordinates* in the shapefil
 
 
 ### GEOMETRY_WKT
-
 ```
 ---------- NULL ----------
 --- Record Type 0: Null

@@ -1,7 +1,7 @@
 ---
 layout      : post
 title       : PHP ShapeFile 2.2.0
-description : Random access to specific record and handling of unexpected bytes in the files
+description : Random access to specific record, handling of unexpected bytes in the files and Iterator interface
 tags        : [Releases, PHP, ESRI, ShapeFile, GIS]
 ---
 
@@ -12,7 +12,7 @@ The sequential read approach used by this library wasn't obviously capable of ha
 
 
 ### What's new in Version 2.2.0
-- SHX file is now required
+- *SHX* file is now required
 - Capability to randomly access the shapefile records
 - Implements the [Iterator](http://php.net/manual/en/class.iterator.php) interface
 - Method `getTotRecords()`
@@ -36,7 +36,7 @@ This new method provides the number of records in the shapefile. See [getTotReco
 You can manually set the pointer to a specific record with this method. See [setCurrentRecord](/labs/php-shapefile/#setcurrentrecord).
 
 #### Method `getCurrentRecord()`
-Gets the current record pointer. See [getCurrentRecord](/labs/php-shapefile/#setcurrentrecord).
+Gets the current record pointer. See [getCurrentRecord](/labs/php-shapefile/#getcurrentrecord).
 
 
 
