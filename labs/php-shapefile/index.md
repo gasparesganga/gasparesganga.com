@@ -269,7 +269,7 @@ Returns the index of the current record. Note that records count starts from `1`
 public array ShapeFile::getRecord([int $geometry_format = ShapeFile::GEOMETRY_BOTH])
 ```
 
-Returns the current record and move the cursor forward to the next element. When the last record is reached, the cursor will be set to the special value `ShapeFile::EOF` and this method will return boolean value `false`.
+Returns the current record and move the cursor forward to the next element. When the last record is reached, the cursor will be set to the special value `ShapeFile::EOF` and this method will return boolean value **`false`**.
 
 ```php?start_inline=1
 array(
@@ -291,7 +291,7 @@ It specifies the format for returned geometries (`shp` part of the returned *Arr
 Geometries read with [getRecord](#getrecord) method can be returned as a structured *Array* or [WKT](http://en.wikipedia.org/wiki/Well-known_text).
 Multi `MULTI*`, 3dz `* Z`, 3dm `* M` and  4d `* ZM` geometries are recognized as such.
 Note that eventual `FLAG_SUPPRESS_Z` and `FLAG_SUPPRESS_M` flags set with the [__constructor](#construct) will effectively condition the output.
-In the output *Array* *"no data"* values set for *M coordinates* in the shapefiles are returned as *boolean* **`false`**. 
+In the output *Array* *"no data"* values set for *M coordinates* in the shapefiles are returned as *boolean* `false`. 
 
 
 ### GEOMETRY_WKT
