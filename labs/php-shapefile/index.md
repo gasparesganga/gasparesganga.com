@@ -245,10 +245,13 @@ Returns the number of records present in the shapefile.
 
 ### setCurrentRecord
 ```php?start_inline=1
-public void ShapeFile::setCurrentRecord($index)
+public void ShapeFile::setCurrentRecord(int $index)
 ```
 
-Sets the index of the current record. Note that records count starts from `1` in the shapefiles. If an invalid index is provided, this method will throw a ShapeFileException.
+Sets the index of the current record. If an invalid index is provided, this method will throw a ShapeFileException.
+
+#### `$index`
+The index of the record. Note that records count starts from `1` in the shapefiles.
 
 
 
@@ -288,7 +291,7 @@ It specifies the format for returned geometries (`shp` part of the returned *Arr
 Geometries read with [getRecord](#getrecord) method can be returned as a structured *Array* or [WKT](http://en.wikipedia.org/wiki/Well-known_text).
 Multi `MULTI*`, 3dz `* Z`, 3dm `* M` and  4d `* ZM` geometries are recognized as such.
 Note that eventual `FLAG_SUPPRESS_Z` and `FLAG_SUPPRESS_M` flags set with the [__constructor](#construct) will effectively condition the output.
-In the output *Array* *"no data"* values set for *M coordinates* in the shapefiles are returned as *boolean* `false`. 
+In the output *Array* *"no data"* values set for *M coordinates* in the shapefiles are returned as *boolean* **`false`**. 
 
 
 ### GEOMETRY_WKT
