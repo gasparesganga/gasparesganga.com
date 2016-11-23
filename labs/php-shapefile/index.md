@@ -89,12 +89,12 @@ There are 3 Classes available in the `\ShapeFile` namespace:
 
 
 ## Class ShapeFileAutoloader
-This is a simple static Class which provides autoloading capabilities. Use the static method `\ShapeFile\ShapeFileAutoloader::register()` as shown in the [example](#usage) to register the PHP ShapeFile autoloader.
+This is a simple static Class which provides autoloading capabilities. Use the static method `\ShapeFile\ShapeFileAutoloader::register()` as shown in the [example](#basic-usage) to register the PHP ShapeFile autoloader.
 
 
 
 ## Class ShapeFileException
-A custom Exception which extends PHP native [Exception](http://php.net/manual/en/language.exceptions.php) Class. It adds a custom `getErrorType()` method and can be used to isolate PHP ShapeFile related exceptions. See it in action in the [example above](#usage).
+A custom Exception which extends PHP native [Exception](http://php.net/manual/en/language.exceptions.php) Class. It adds a custom `getErrorType()` method and can be used to isolate PHP ShapeFile related exceptions. See it in action in the [example above](#basic-usage).
 
 
 
