@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP ShapeFile
 description : PHP library to read any ESRI Shapefile and its associated DBF into a PHP Array or WKT
-updated     : 2016-11-17
+updated     : 2016-11-23
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -13,7 +13,7 @@ getit       :
 {% capture expire_date %}{{'2016-12-31' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>17 November 2016 :</b> Version 2.1.0 released. See the <a href="/posts/php-shapefile-2.1.0/">release notes</a>.
+    <b>23 November 2016 :</b> Version 2.2.0 released. See the <a href="/posts/php-shapefile-2.2.0/">release notes</a> and check the new <a href="#examples">Examples</a> section.
 </div>
 {% endif %}
 
@@ -21,10 +21,11 @@ getit       :
 ## Contents
 - [Get it](#get-it)
 - [Features](#features)
-- [Usage](#usage)
+- [Basic Usage](#basic-usage)
 - [Classes](#classes)
 - [Geometry Output](#geometry-output)
 - [Error Codes](#error-codes)
+- [Examples](#examples)
 - [History](#history)
 - [Comments and Ideas](#comments-and-ideas)
 
@@ -34,18 +35,18 @@ getit       :
 
 
 ## Features
-
 - Supports all kinds of shapefiles, including Z and M ones
 - Provides WKT/EWKT output
+- Implements the [Iterator](http://php.net/manual/en/class.iterator.php) interface
 - [PHP FIG](http://www.php-fig.org/) [PSR-1](http://www.php-fig.org/psr/psr-1/), [PSR-2](http://www.php-fig.org/psr/psr-2/) and [PSR-4](http://www.php-fig.org/psr/psr-4/) compliant
+- Sequential read or random access the specific shapefile records
 - Completely standalone library
 - Very fast and lightweight
 - PHP 7 compatible
 
 
 
-## Usage
-
+## Basic Usage
 ```php?start_inline=1
 // Register autoloader
 require_once('php-shapefile/src/ShapeFileAutoloader.php');
@@ -58,20 +59,6 @@ use \ShapeFile\ShapeFileException;
 try {
     // Open shapefile
     $ShapeFile = new ShapeFile('data.shp');
-    
-    // Get Shape Type
-    echo "Shape Type : ";
-    echo $ShapeFile->getShapeType()." - ".$ShapeFile->getShapeType(ShapeFile::FORMAT_STR);
-    echo "\n\n";
-    
-    // Get Bounding Box
-    echo "Bounding Box : ";
-    print_r($ShapeFile->getBoundingBox());
-    
-    // Get DBF Fields
-    echo "DBF Fields : ";
-    print_r($ShapeFile->getDBFFields());
-    echo "\n\n";
     
     // Read all the records
     while ($record = $ShapeFile->getRecord(ShapeFile::GEOMETRY_BOTH)) {
@@ -87,6 +74,8 @@ try {
     exit('Error '.$e->getCode().' ('.$e->getErrorType().'): '.$e->getMessage());
 }
 ```
+
+Check the [Examples](#examples) section for more usage hints.
 
 
 
@@ -117,22 +106,24 @@ The main Class which exposes the following public methods:
 - [getBoundingBox](#getboundingbox)
 - [getPRJ](#getprj)
 - [getDBFFields](#getdbffields)
+- [getTotRecords](#gettotrecords)
+- [setCurrentRecord](#setcurrentrecord)
+- [getCurrentRecord](#getcurrentrecord)
 - [getRecord](#getrecord)
 
 
 ### __construct
-
 ```php?start_inline=1
 public ShapeFile::__construct(mixed $files [, int $flags = 0]);
 ```
 
 #### `$files`
-It can be either a *String* with the path to the `.shp` file or an *Array* containing the individual paths to the `.shp` `.dbf` and `.prj` files.
+It can be either a *String* with the path to the `.shp` file or an *Array* containing the individual paths to the `.shp`, `.shx`, `.dbf` and `.prj` files.
 
 For example, the three following variants are equivalent:
 
 ```php?start_inline=1
-// This is will look for "myshape.shp", "myshape.dbf" and "myshape.prj" files
+// This is will look for "myshape.shp", "myshape.shx", "myshape.dbf" and "myshape.prj" files
 $ShapeFile = new ShapeFile('myshape');
 
 // This as well
@@ -141,6 +132,7 @@ $ShapeFile = new ShapeFile('myshape.shp');
 // And this too
 $ShapeFile = new ShapeFile(array(
     'shp'   => 'myshape.shp',
+    'shx'   => 'myshape.shx',
     'dbf'   => 'myshape.dbf',
     'prj'   => 'myshape.prj'
 ));
@@ -167,7 +159,6 @@ Available flags are:
 
 
 ### getShapeType
-
 ```php?start_inline=1
 public mixed ShapeFile::getShapeType([int $format])
 ```
@@ -182,7 +173,6 @@ It specifies the return format and can one of:
 
 
 ### getBoundingBox
-
 ```php?start_inline=1
 public array ShapeFile::getBoundingBox()
 ```
@@ -207,7 +197,6 @@ Eventual `FLAG_SUPPRESS_Z` and `FLAG_SUPPRESS_M` flags set with the [__construct
 
 
 ### getPRJ
-
 ```php?start_inline=1
 public string ShapeFile::getPRJ()
 ```
@@ -217,7 +206,6 @@ Returns the raw WKT string from the `.prj` file. If there's no `.prj` file then 
 
 
 ### getDBFFields
-
 ```php?start_inline=1
 public array ShapeFile::getDBFFields()
 ```
@@ -245,13 +233,43 @@ L : Logical
 ```
 
 
-### getRecord
 
+### getTotRecords
 ```php?start_inline=1
-public array ShapeFile::getRecord([int $geometry_format])
+public integer ShapeFile::getTotRecords()
 ```
 
-Returns the next record from the currently opened file as an associative *Array*:
+Returns the number of records present in the shapefile.
+
+
+
+### setCurrentRecord
+```php?start_inline=1
+public void ShapeFile::setCurrentRecord(int $index)
+```
+
+Sets the index of the current record. If an invalid index is provided, this method will throw a ShapeFileException.
+
+#### `$index`
+The index of the record. Note that records count starts from `1` in the shapefiles.
+
+
+
+### getCurrentRecord
+```php?start_inline=1
+public integer ShapeFile::getCurrentRecord()
+```
+
+Returns the index of the current record. Note that records count starts from `1` in the shapefiles. When the last record is reached, the special value `ShapeFile::EOF` will be returned.
+
+
+
+### getRecord
+```php?start_inline=1
+public array ShapeFile::getRecord([int $geometry_format = ShapeFile::GEOMETRY_BOTH])
+```
+
+Returns the current record and move the cursor forward to the next element. When the last record is reached, the cursor will be set to the special value `ShapeFile::EOF` and this method will return boolean value **`false`**.
 
 ```php?start_inline=1
 array(
@@ -262,14 +280,14 @@ array(
 
 #### `$geometry_format`
 It specifies the format for returned geometries (`shp` part of the returned *Array*). It can be either:
- `ShapeFile::GEOMETRY_ARRAY` : A structured *Array* (*Default*)
- `ShapeFile::GEOMETRY_WKT` : Well Known Text
+ `ShapeFile::GEOMETRY_ARRAY` : A structured *Array*
+ `ShapeFile::GEOMETRY_WKT` : Well Known Text string
+ `ShapeFile::GEOMETRY_BOTH` : A structured *Array* containing also a `wkt` key (*Default*)
 
 
 
 
 ## Geometry Output
-
 Geometries read with [getRecord](#getrecord) method can be returned as a structured *Array* or [WKT](http://en.wikipedia.org/wiki/Well-known_text).
 Multi `MULTI*`, 3dz `* Z`, 3dm `* M` and  4d `* ZM` geometries are recognized as such.
 Note that eventual `FLAG_SUPPRESS_Z` and `FLAG_SUPPRESS_M` flags set with the [__constructor](#construct) will effectively condition the output.
@@ -277,7 +295,6 @@ In the output *Array* *"no data"* values set for *M coordinates* in the shapefil
 
 
 ### GEOMETRY_WKT
-
 ```
 ---------- NULL ----------
 --- Record Type 0: Null
@@ -339,8 +356,7 @@ MULTIPOLYGONZM(((5 5 0 2, 6 6 0 2, 7 5 0 2, 5 5 0 2)), ((0 0 0 2, 0 4 0 2, 4 4 0
 ```
 
 
-### GEOMETRY_ARRAY
-
+### GEOMETRY_ARRAY / GEOMETRY_BOTH
 ```php?start_inline=1
 --- Record Type  0: Null
 null
@@ -444,7 +460,6 @@ Array(
 
 
 ## Error Codes
-
 ```
 Code    Type                        Description
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -455,8 +470,126 @@ Code    Type                        Description
 31      POLYGON_AREA_TOO_SMALL      Polygon Area too small, can't determine vertex orientation
 32      POLYGON_NOT_VALID           Polygon not valid or Polygon Area too small. Please check the geometries before reading the Shapefile
 41      DBF_FILE_NOT_VALID          DBF file doesn't seem to be a valid dBase III or dBase IV format
-42      DBF_EOF_REACHED             End of DBF file reached. Number of records not corresponding to the SHP file
+42      DBF_MISMATCHED_FILE         Mismatched DBF file. Number of records not corresponding to the SHP file
+43      DBF_EOF_REACHED             End of DBF file reached. Number of records not corresponding to the SHP file
+91      RECORD_INDEX_NOT_VALID      Record index not valid. Check the total number of records in the SHP file
 ```
+
+
+
+## Examples
+
+### Example 1 - Get shapefile info
+```php?start_inline=1
+// Register autoloader
+require_once('php-shapefile/src/ShapeFileAutoloader.php');
+\ShapeFile\ShapeFileAutoloader::register();
+
+// Import classes
+use \ShapeFile\ShapeFile;
+use \ShapeFile\ShapeFileException;
+
+echo "<pre>";
+try {
+    // Open shapefile
+    $ShapeFile = new ShapeFile('data.shp');
+    
+    // Get Shape Type
+    echo "Shape Type : ";
+    echo $ShapeFile->getShapeType()." - ".$ShapeFile->getShapeType(ShapeFile::FORMAT_STR);
+    echo "\n\n";
+    
+    // Get number of Records
+    echo "Records : ";
+    echo $ShapeFile->getTotRecords();
+    echo "\n\n";
+    
+    // Get Bounding Box
+    echo "Bounding Box : ";
+    print_r($ShapeFile->getBoundingBox());
+    echo "\n\n";
+    
+    // Get DBF Fields
+    echo "DBF Fields : ";
+    print_r($ShapeFile->getDBFFields());
+    echo "\n\n";
+    
+} catch (ShapeFileException $e) {
+    // Print detailed error information
+    exit('Error '.$e->getCode().' ('.$e->getErrorType().'): '.$e->getMessage());
+}
+echo "</pre>";
+```
+
+
+### Example 2 - Access a specific record
+```php?start_inline=1
+// Register autoloader
+require_once('php-shapefile/src/ShapeFileAutoloader.php');
+\ShapeFile\ShapeFileAutoloader::register();
+
+// Import classes
+use \ShapeFile\ShapeFile;
+use \ShapeFile\ShapeFileException;
+
+echo "<pre>";
+try {
+    // Open shapefile
+    $ShapeFile = new ShapeFile('data.shp');
+    
+    // Check if provided index is valid
+    if ($_GET['record_index'] > 0 && $_GET['record_index'] <= $ShapeFile->getTotRecords()) {
+        // Set the cursor to a specific record
+        $ShapeFile->setCurrentRecord($_GET['record_index']);
+        // Read only one record
+        $ret = $ShapeFile->getRecord();
+    } else {
+        $ret = "Index not valid!";
+    }
+    
+    print_r($ret);
+    
+} catch (ShapeFileException $e) {
+    // Print detailed error information
+    exit('Error '.$e->getCode().' ('.$e->getErrorType().'): '.$e->getMessage());
+}
+echo "</pre>";
+```
+
+
+### Example 3 - Use foreach iterator
+```php?start_inline=1
+// Register autoloader
+require_once('php-shapefile/src/ShapeFileAutoloader.php');
+\ShapeFile\ShapeFileAutoloader::register();
+
+// Import classes
+use \ShapeFile\ShapeFile;
+use \ShapeFile\ShapeFileException;
+
+echo "<pre>";
+try {
+    // Open shapefile
+    $ShapeFile = new ShapeFile('data.shp');
+    
+    // Read all the records using a foreach loop
+    foreach ($ShapeFile as $i => $record) {
+        if ($record['dbf']['_deleted']) continue;
+        // Record number
+        echo "Record number: $i\n";
+        // Geometry
+        print_r($record['shp']);
+        // DBF Data
+        print_r($record['dbf']);
+    }
+    
+} catch (ShapeFileException $e) {
+    // Print detailed error information
+    exit('Error '.$e->getCode().' ('.$e->getErrorType().'): '.$e->getMessage());
+}
+echo "</pre>";
+```
+
 
 
 ## Wait, what about MultiPatch shape types?
@@ -464,6 +597,7 @@ Well, after more than 10 years working with GIS related technology, I have yet t
 
 
 ## History
+*23 November 2016* - [Version 2.2.0](/posts/php-shapefile-2.2.0/)
 *17 November 2016* - [Version 2.1.0](/posts/php-shapefile-2.1.0/)
 *10 November 2016* - [Version 2.0.1](/posts/php-shapefile-2.0.1/)
 *1 November 2016* - [Version 2.0.0](/posts/php-shapefile-2.0.0/)
