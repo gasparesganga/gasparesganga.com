@@ -1,7 +1,7 @@
 ---
 layout      : post
 title       : PostGIS NormalizeGeometry 1.1.0
-description : It works, for real!
+description : array_remove() backport for older versions of PostgreSQL
 tags        : [Releases, PostGIS, PostgreSQL, PL/pgSQL]
 ---
 
