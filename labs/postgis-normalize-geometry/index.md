@@ -2,7 +2,7 @@
 layout      : lab
 title       : PostGIS NormalizeGeometry
 description : PL/pgSQL function to remove spikes and simplify geometries with PostGIS
-updated     : 2016-06-02
+updated     : 2016-12-06
 getit       :
   github        : gasparesganga/postgis-normalize-geometry
   download      : true
@@ -196,4 +196,5 @@ FROM (
 
 
 ## History
+*6 Dicember 2016* - [Version 1.1.0](/posts/postgis-normalize-geometry-1.1.0/)
 *2 June 2016* - [Version 1.0](/posts/postgis-normalize-geometry-release/)
