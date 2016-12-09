@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery LoadingOverlay
 description : A flexible loading overlay jQuery Plugin
-updated     : 2016-11-11
+updated     : 2016-12-09
 getit       :
   github        : gasparesganga/jquery-loading-overlay
   download      : true
@@ -24,10 +24,10 @@ assets      :
 
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
-{% capture expire_date %}{{'2016-12-31' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2017-01-31' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>11 November 2016 :</b> Version 1.5.1 released. See <a href="/posts/jquery-loading-overlay-1.5.1/">release notes</a>.
+    <b>9 December 2016 :</b> Version 1.5.2 released. See <a href="/posts/jquery-loading-overlay-1.5.2/">release notes</a>.
 </div>
 {% endif %}
 
@@ -109,7 +109,7 @@ maxSize         : "100px"                       // Integer/String
 minSize         : "20px"                        // Integer/String
 resizeInterval  : 50                            // Integer
 size            : "50%"                         // Integer/String
-zIndex          : undefined                     // Integer
+zIndex          : 9999                          // Integer
 ```
 
 ##### `color`
@@ -145,7 +145,7 @@ Set it to `0` or `false` to disable this feature.
 Size of image in **percentage**. Use `0` or `false` to disable image resizing.
 
 ##### `zIndex`
-Use this to explicitly set a `z-index` for the overlay.
+Use this to explicitly set a `z-index` for the overlay. This is useful when LoadingOverlay is used with other *z-index intensive* libraries like Bootstrap.
 
 
 
@@ -317,6 +317,7 @@ var progressCustom = new LoadingOverlayProgress({
 
 
 ## History
+*9 December 2016* - [Version 1.5.2](/posts/jquery-loading-overlay-1.5.2/)
 *11 November 2016* - [Version 1.5.1](/posts/jquery-loading-overlay-1.5.1/)
 *11 November 2016* - [Version 1.5.0](/posts/jquery-loading-overlay-1.5.1/)
 *5 August 2016* - [Version 1.4.1](/posts/jquery-loading-overlay-1.4.1/)
