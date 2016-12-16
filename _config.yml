@@ -49,6 +49,6 @@ assets :
     css                 : false
   features  :
     automatic_img_size  : false
-    automatic_img_alt   : false
+    automatic_img_alt   : true
     liquid              : false
     integrity           : false
