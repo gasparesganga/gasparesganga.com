@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
@@ -31,7 +31,7 @@
         <header>
             <div id="profile">
                 <div id="profile_pic">
-                    <a href="/">{% img img/logo_no_bg.svg %}</a>
+                    <a href="/">{% img img/logo_no_bg.svg alt:'logo' %}</a>
                 </div>
                 <div id="profile_title">Gaspare Sganga</div>
                 <div id="profile_details">
@@ -47,7 +47,7 @@
             </nav>
             <div id="header_actions">
                 <a href="#">{% img img/maptools.svg %}<span>MapTools</span></a>
-                <a href="/coffee/">{% img img/coffee.svg %}<span>Buy me a coffee?</span></a>
+                <a href="/coffee/">{% img img/coffee.svg alt:'coffee' %}<span>Buy me a coffee?</span></a>
             </div>
         </header>
         
