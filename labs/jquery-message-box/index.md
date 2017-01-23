@@ -84,8 +84,8 @@ buttonDone   : "OK"         // String / Object / Boolean
 buttonFail   : undefined    // String / Object / Boolean
 buttonsOrder : "done fail"  // String
 customClass  : ""           // String
-filterDone   : undefined    // Function
-filterFail   : undefined    // Function
+filterDone   : undefined    // Function/Deferred
+filterFail   : undefined    // Function/Deferred
 input        : false        // Boolean / String / Array / Object / jQuery object / DOM element
 message      : ""           // String / jQuery object / DOM Element
 queue        : true         // Boolean
@@ -111,10 +111,10 @@ Defines the order in which `buttonDone` and `buttonFail` are shown from left to 
 You can specify one or more CSS classes separated by a space here. They will be appended to the MessageBox to customize its appearance.
 
 ##### `filterDone`
-Here you can pass a function that will be executed before resolving the MessageBox deferred and calling any eventual `.done()` handler. See [Filters](#filters) for details.
+Here you can pass a function or a deferred that will be executed before resolving the MessageBox deferred and calling any eventual `.done()` handler. See [Filters](#filters) for details.
 
 ##### `filterFail`
-Here you can pass a function that will be executed before rejecting the MessageBox deferred and calling any eventual `.fail()` handler. See [Filters](#filters) for details.
+Here you can pass a function or a deferred that will be executed before rejecting the MessageBox deferred and calling any eventual `.fail()` handler. See [Filters](#filters) for details.
 
 ##### `input`
 Set it to `true` to display a simple empty *textbox*, or a ***string*** to display a *textbox* with a default value.
@@ -278,10 +278,35 @@ If you have defined a [custom buttons configuration](#custom-buttons-configurati
 
 
 ## Filters
-Filters functions can be defined using the `filterDone` and `filterFail` options.
-xxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxx
+Filters functions can be defined using the `filterDone` and `filterFail` options. You can pass either a *Function* or a *Deferred*/*Promise*.
+
+### Function
+If a *Function* is used, its return value determines the outcome of the filter:
+
+##### Boolean value `false`
+The execution is blocked and the MessageBox remains visible.
+
+##### *String* or *(jQuery) Object*
+The *String*, *DOM Object/Collection* or *jQuery Object/Collection* is appended to an error message, the execution is blocked and the MessageBox remains visible.
+
+##### Javascript [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) object
+The `Error.message` property is used as error message, the execution is blocked and the MessageBox remains visible. Note that to be recognized as such, jQuery 1.9.0+ is required.
+
+##### Anything else
+The filter is ignored and the execution continue normally.
+
+
+### Deferred or Promise
+If you prefer to use a *Deferred* or a *Promise* object as `filterDone` or `filterFail` *(maybe you want to perform an Ajax call to validate the inputs)*, its resolved or rejected status represents the outcome of the filter.
+
+#### Resolved
+The filter is ignored and the execution continue normally.
+
+#### Rejected
+You can pass an optional *String*, a *DOM Object/Collection* or a *jQuery Object/Collection* that will be appended to an error message. The execution is blocked and the MessageBox remains visible.
+
+
+Due to the great flexibility offered, it sounds more complicated than it really is. Check [Example 6](#example-6---filters-and-validation) to see filters in action.
 
 
 
@@ -624,25 +649,25 @@ $.MessageBox({
 });
 ```
 
-Here is a server-side PHP example for the simple *Ajax** validation:
+Here is a server-side PHP example for the simple **Ajax** validation:
 ```php
 <?php
-// Some "very secure" check going on here...
-echo ($_POST['username'] != 'user' || $_POST['password'] != 'secret') ? 0 : 1;
-});
+    // Some "very secure" check going on here...
+    echo ($_POST['username'] != 'user' || $_POST['password'] != 'secret') ? 0 : 1;
+    });
 ?>
 ```
 
 And here is another server-side PHP example for the **Ajax with HTTP status code** validation:
 ```php
 <?php
-// Again, the check is likely to be performed against a Database,
-// but you get the idea about HTTP headers nonetheless
-if ($_POST['username'] != 'user' || $_POST['password'] != 'secret') {
-    header($_SERVER['SERVER_PROTOCOL'].' '.401, true, 401);
-    exit('Wrong username or password');
-}
-?>
+    // Again, the check is likely to be performed against a Database,
+    // but you get the idea about HTTP headers nonetheless
+    if ($_POST['username'] != 'user' || $_POST['password'] != 'secret') {
+        header($_SERVER['SERVER_PROTOCOL'].' '.401, true, 401);
+        exit('Wrong username or password');
+    }
+    ?>
 });
 ```
 {% include_relative _demo.html demo="example6" %}

@@ -32,7 +32,7 @@ $(function(){
             },
             filterDone      : function(data){
                 if (data.name === "")           return "Please insert your <b>name</b>";
-                if (data.sex === "")            return "Have you already chosen your <b>sex</b>?";
+                if (data.sex === null)          return "Have you already chosen your <b>sex</b>?";
                 if (data.password === "")       return "Please insert a <b>password</b>";
                 if (data.password.length < 8)   return "The <b>password</b> must be at least 8 characters";
             }
@@ -324,7 +324,6 @@ $(function(){
     /***************************************************************************
         Example 6
     ***************************************************************************/
-    
     $("#example6_simple").on("click", function(event){
         // Simple
         $.MessageBox({
@@ -419,6 +418,7 @@ $(function(){
     });
     
     
+    
     /***************************************************************************
         Example 7
     ***************************************************************************/
@@ -446,4 +446,4 @@ $(function(){
     });
     
     
-})();
+});
