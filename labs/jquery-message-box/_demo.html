@@ -2,7 +2,8 @@
 {% case include.demo %}
     
     {% when "quick_demo" %}
-    <button id="quick_demo">Try jQuery MessageBox!</button>
+    <button id="quick_demo1">Try a simple jQuery MessageBox!</button>
+    <button id="quick_demo2">Try a more complex jQuery MessageBox!</button>
     
     
     {% when "example1" %}
@@ -37,8 +38,15 @@
     
     
     {% when "example6" %}
-    <button id="example6_messagebox">Custom MessageBox</button>
-    <button id="example6_buttons">Custom Buttons</button>
+    <button id="example6_simple">Simple</button>
+    <button id="example6_error">Error Message</button>
+    <button id="example6_ajax1">Ajax</button>
+    <button id="example6_ajax2">Ajax with HTTP status code</button>
+    
+    
+    {% when "example7" %}
+    <button id="example7_messagebox">Custom MessageBox</button>
+    <button id="example7_buttons">Custom Buttons</button>
     
     
 {% endcase %}
