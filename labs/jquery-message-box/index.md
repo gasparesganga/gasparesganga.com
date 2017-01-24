@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery MessageBox
 description : A jQuery Plugin to replace Javascript's window.alert(), window.confirm() and window.prompt() functions
-updated     : 2017-01-23
+updated     : 2017-01-24
 getit       :
   github        : gasparesganga/jquery-message-box
   download      : true
@@ -27,7 +27,7 @@ assets      :
 {% capture expire_date %}{{'2017-02-28' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>23 January 2017 :</b> Version 2.2.0 released: see <a href="/posts/jquery-message-box-2.2.0">release notes</a>
+    <b>24 January 2017 :</b> Version 2.2.0 released: see <a href="/posts/jquery-message-box-2.2.0">release notes</a>
 </div>
 {% endif %}
 
@@ -279,9 +279,7 @@ If you have defined a [custom buttons configuration](#custom-buttons-configurati
 
 ## Filters
 Filters functions can be defined using the `filterDone` and `filterFail` options. You can pass either a *Function* or a *Deferred*/*Promise*.
-
-#### Function
-If a *Function* is used, its return value determines the outcome of the filter:
+The returned value determines the outcome of the filter:
 
 ###### Boolean value `false`
 The execution is blocked and the MessageBox remains visible.
@@ -292,18 +290,14 @@ The *String*, *DOM Object/Collection* or *jQuery Object/Collection* is appended 
 ###### Javascript [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) object
 The `Error.message` property is used as error message, the execution is blocked and the MessageBox remains visible. Note that to be recognized as such, jQuery 1.9.0+ is required.
 
-###### Anything else
-The filter is ignored and the execution continue normally.
-
-
-#### Deferred or Promise
-If you prefer to use a *Deferred* or a *Promise* object as `filterDone` or `filterFail` *(maybe you want to perform an Ajax call to validate the inputs)*, its resolved or rejected status represents the outcome of the filter.
-
-##### Rejected
+##### Rejected deferred/promise
 The execution is blocked and the MessageBox remains visible. You can pass an optional *String*, a *DOM Object/Collection* or a *jQuery Object/Collection* that will be appended to an error message.
 
-##### Resolved
-The filter is ignored and the execution continue normally.
+##### Resolved deferred/promise
+The filter is ignored and the execution continues normally.
+
+###### Anything else
+The filter is ignored and the execution continues normally.
 
 
 Due to the great flexibility offered, it sounds more complicated than it really is. Check [Example 6](#example-6---filters-and-validation) to see filters in action.
@@ -747,7 +741,7 @@ My little personal tribute to Visual Basic 6 `MsgBox()` function.
 
 
 ## History
-*23 January 2017* - [Version 2.2.0](/posts/jquery-message-box-2.2.0/)
+*24 January 2017* - [Version 2.2.0](/posts/jquery-message-box-2.2.0/)
 *12 November 2016* - [Version 2.1.0](/posts/jquery-message-box-2.1.0/)
 *18 October 2016* - [Version 2.0.1](/posts/jquery-message-box-2.0.1/)
 *9 August 2016* - [Version 2.0.0](/posts/jquery-message-box-2.0.0/)
