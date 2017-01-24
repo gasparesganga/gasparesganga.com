@@ -282,29 +282,29 @@ If you have defined a [custom buttons configuration](#custom-buttons-configurati
 Filters functions can be defined using the `filterDone` and `filterFail` options. The `data` and `button` arguments will be provided for them the same way as they are for [Handlers](#handlers).
 The returned value determines the outcome of the filter:
 
-###### Boolean value `false`
+##### Boolean value `false`
 The execution is blocked and the MessageBox remains visible.
 
-###### *String* or *(jQuery) Object*
+##### *String* or *(jQuery) Object*
 The *String*, *DOM Object/Collection* or *jQuery Object/Collection* is appended to an error message, the execution is blocked and the MessageBox remains visible.
 
-###### Javascript [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) object
+##### Javascript [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) object
 The `Error.message` property is used as error message, the execution is blocked and the MessageBox remains visible. Note that to be recognized as such, jQuery 1.9.0+ is required.
 
-###### Anything else
+##### Anything else
 The filter is ignored and the execution continues normally.
 
 
-##### What if a filter function returns a *Deferred/Promise*?
+#### What if a filter function returns a *Deferred/Promise*?
 In case a *Deferred* or *Promise* is returned by a filter function, the outcome is determined as follows:
 
-###### Resolved deferred/promise
+##### Resolved deferred/promise
 The value returned by the resolved deferred/promise is checked and treated the same way as it were returned directly by the filter function. See above.
 
-###### Rejected deferred/promise
+##### Rejected deferred/promise
 The execution is blocked and the MessageBox remains visible. If an optional *String*, a *DOM Object/Collection* or a *jQuery Object/Collection* value is passed during rejection, it will be appended to an error message and displayed to the user.
 
-<br>
+
 Due to the great flexibility offered, it sounds more complicated than it really is. Check [Example 6](#example-6---filters-and-validation) to see filters in action.
 
 
