@@ -3,8 +3,40 @@ $(function(){
     /***************************************************************************
         Quick Demo
     ***************************************************************************/
-    $("#quick_demo").on("click", function(event){
+    $("#quick_demo1").on("click", function(event){
         $.MessageBox("Hi! That's a pretty nice MessageBox, isn't it?");
+    });
+    
+    $("#quick_demo2").on("click", function(event){
+        $.MessageBox({
+            buttonDone      : "OK",
+            buttonFail      : "Cancel",
+            message         : "Let's try a more complex example!<br>Here are multiple fields of different types,<br>an error message will be displayed if validation fails.",
+            input           : {
+                name : {
+                    type    : "text",
+                    label   : "Name:",
+                    title   : "Your name"
+                },
+                sex : {
+                    type    : "select",
+                    label   : "Sex:",
+                    title   : "Please choose one",
+                    options : ["Male", "Female", "Can't decide..."]
+                },
+                password : {
+                    type    : "password",
+                    label   : "Password:",
+                    title   : "Something secret here"
+                }
+            },
+            filterDone      : function(data){
+                if (data.name === "")           return "Please insert your <b>name</b>";
+                if (data.sex === null)          return "Have you already chosen your <b>sex</b>?";
+                if (data.password === "")       return "Please insert a <b>password</b>";
+                if (data.password.length < 8)   return "The <b>password</b> must be at least 8 characters";
+            }
+        });
     });
     
     
@@ -292,7 +324,105 @@ $(function(){
     /***************************************************************************
         Example 6
     ***************************************************************************/
-    $("#example6_messagebox").on("click", function(event){
+    $("#example6_simple").on("click", function(event){
+        // Simple
+        $.MessageBox({
+            buttonDone      : "OK",
+            buttonFail      : "Cancel",
+            message         : "You won't be able to continue unless you enter some string here:",
+            input           : true,
+            filterDone      : function(data){
+                if (data === "") return false;
+            }
+        });
+    });
+    
+    $("#example6_error").on("click", function(event){
+        // Error
+        $.MessageBox({
+            buttonDone      : "OK",
+            buttonFail      : "Cancel",
+            message         : "If you don't compile both fields an error message will pop up:",
+            input           : ["", ""],
+            filterDone      : function(data){
+                if (data[0] === "") return "Please fill the first input";
+                if (data[1] === "") return "Please fill the second input";
+            }
+        });
+    });
+    
+    $("#example6_ajax1").on("click", function(event){
+        // Ajax
+        $.MessageBox({
+            buttonDone      : "OK",
+            buttonFail      : "Cancel",
+            message         : "You can even perform an ajax request<br>to validate the inputs:",
+            input           : {
+                username : {
+                    type    : "text",
+                    label   : "Username (user):",
+                    title   : "Username"
+                },
+                password : {
+                    type    : "password",
+                    label   : "Password (secret):",
+                    title   : "Password"
+                }
+            },
+            filterDone      : function(data){
+                // Note the use of ".then()" instead of ".done()" to return a new promise
+                return $.ajax({
+                    url     : "login_1.php",
+                    type    : "post",
+                    data    : data
+                }).then(function(response){
+                    if (response == false) return "Wrong username or password";
+                });
+            }
+        });
+    });
+    
+    $("#example6_ajax2").on("click", function(event){
+        // Ajax with HTTP status code
+        $.MessageBox({
+            buttonDone      : "OK",
+            buttonFail      : "Cancel",
+            message         : "A better example, using HTTP status codes:",
+            input           : {
+                username : {
+                    type    : "text",
+                    label   : "Username (user):",
+                    title   : "Username"
+                },
+                password : {
+                    type    : "password",
+                    label   : "Password (secret):",
+                    title   : "Password"
+                }
+            },
+            filterDone      : function(data){
+                // Note the use of ".then()" instead of ".done()" to return a new promise
+                return $.ajax({
+                    url     : "login_2.php",
+                    type    : "post",
+                    data    : data
+                }).then(function(){
+                    // HTTP status code 200: Login OK
+                    return true;
+                }, function(jqXHR, textStatus, errorThrown){
+                    // Any other HTTP status code: Login failed
+                    return "Message from server (" + jqXHR.status + "):<br>" + jqXHR.responseText;
+                });
+            }
+        });
+    });
+    
+    
+    
+    /***************************************************************************
+        Example 7
+    ***************************************************************************/
+    $("#example7_messagebox").on("click", function(event){
         // Custom MessageBox
         $.MessageBox({
             customClass : "custom_messagebox",
@@ -300,7 +430,7 @@ $(function(){
         });
     });
     
-    $("#example6_buttons").on("click", function(event){
+    $("#example7_buttons").on("click", function(event){
         // Custom Buttons
         $.MessageBox({
             buttonDone  : {
@@ -316,4 +446,4 @@ $(function(){
     });
     
     
-})();
+});

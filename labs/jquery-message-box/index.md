@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery MessageBox
 description : A jQuery Plugin to replace Javascript's window.alert(), window.confirm() and window.prompt() functions
-updated     : 2016-11-12
+updated     : 2017-01-24
 getit       :
   github        : gasparesganga/jquery-message-box
   download      : true
@@ -17,17 +17,17 @@ assets      :
     - jquery-message-box/_assets/messagebox.css
     - jquery-message-box/_assets/demo.css
   js    :
-    - js/jquery-3.1.0.min.js
+    - js/jquery-3.1.1.min.js
     - jquery-message-box/_assets/messagebox.min.js
     - jquery-message-box/_assets/demo.js
 ---
 
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
-{% capture expire_date %}{{'2016-12-31' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2017-02-28' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>12 November 2016 :</b> Version 2.1.0 released: see <a href="/posts/jquery-message-box-2.1.0">release notes</a>
+    <b>24 January 2017 :</b> Version 2.2.0 released: see <a href="/posts/jquery-message-box-2.2.0">release notes</a>
 </div>
 {% endif %}
 
@@ -41,6 +41,7 @@ assets      :
 - [Custom Buttons configuration](#custom-buttons-configuration)
 - [Custom Inputs configuration](#custom-inputs-configuration)
 - [Handlers](#handlers)
+- [Filters](#filters)
 - [Examples](#examples)
 - [Why this name?](#why-this-name)
 - [History](#history)
@@ -83,6 +84,8 @@ buttonDone   : "OK"         // String / Object / Boolean
 buttonFail   : undefined    // String / Object / Boolean
 buttonsOrder : "done fail"  // String
 customClass  : ""           // String
+filterDone   : undefined    // Function
+filterFail   : undefined    // Function
 input        : false        // Boolean / String / Array / Object / jQuery object / DOM element
 message      : ""           // String / jQuery object / DOM Element
 queue        : true         // Boolean
@@ -92,12 +95,12 @@ width        : undefined    // Integer / String
 ```
 
 ##### `buttonDone`
-If a ***string*** is provided, a button with the specified text which executes the [done handler](#handlers) will be shown. By default the `Enter` key *(keyCode `13`)* will also trigger the [done handler](#handlers).
+If a ***string*** is provided, a button with the specified text which executes the [done handler](#handlers) will be shown. By default the *Enter* key *(keyCode `13`)* and the *Escape* key *(keyCode `27`)* too in case `buttonFail` is disabled, will also trigger the [done handler](#handlers).
 If an ***object*** is provided, a collection of buttons will be created, all of them triggering the [done handler](#handlers). See [custom buttons configuration](#custom-buttons-configuration) for details.
 Set it to `false` to disable it *(note that disabling it will prevent any [done handler](#handlers) from being triggered)*.
 
 ##### `buttonFail`
-If a ***string*** is provided, a button with the specified text which triggers the [fail handler](#handlers) will be shown. By default the `Escape` key *(keyCode `27`)* will also trigger the [fail handler](#handlers).
+If a ***string*** is provided, a button with the specified text which triggers the [fail handler](#handlers) will be shown. By default the *Escape* key *(keyCode `27`)* will also trigger the [fail handler](#handlers).
 If an ***object*** is provided, a collection of buttons will be created, all of them triggering the [fail handler](#handlers). See [custom buttons configuration](#custom-buttons-configuration) for details.
 Leave it `undefined` or set it to `false` to disable it *(note that disabling it will prevent any [fail handler](#handlers) from being triggered)*.
 
@@ -106,6 +109,12 @@ Defines the order in which `buttonDone` and `buttonFail` are shown from left to 
 
 ##### `customClass`
 You can specify one or more CSS classes separated by a space here. They will be appended to the MessageBox to customize its appearance.
+
+##### `filterDone`
+Here you can pass a **function** that will be executed before resolving the MessageBox deferred and calling any eventual `.done()` handler. See [Filters](#filters) for details.
+
+##### `filterFail`
+Here you can pass a **function** that will be executed before rejecting the MessageBox deferred and calling any eventual `.fail()` handler. See [Filters](#filters) for details.
 
 ##### `input`
 Set it to `true` to display a simple empty *textbox*, or a ***string*** to display a *textbox* with a default value.
@@ -169,7 +178,7 @@ You can also pass a simple *string* to the button definition instead of a comple
 Each object represents a button. Its `name` will be returned as [button](#button) argument for the [handler function](#handlers).
 
 ##### `class`
-You can specify one or more CSS classes separated by a space to customize the button. See [Example 6](#example-6---customize-it).
+You can specify one or more CSS classes separated by a space to customize the button. See [Example 7](#example-7---customize-it).
 
 ##### `text`
 The actual text of the button.
@@ -190,12 +199,13 @@ All the input's properties are **optional** *(in case of `selects` a warning wil
 // Object: each property represents an <input> or <select>. Additional details may be provided. Here is a template with default values:
 {
     name : {
-        type        : "text"      // String
-        label       : undefined   // String
-        title       : undefined   // String
-        default     : undefined   // String
-        maxlength   : undefined   // Integer
-        options     : undefined   // Object / Array  - For type == "select" it actually defaults to:  {"" : "&nbsp;"}  
+        type        : "text"            // String
+        label       : undefined         // String
+        title       : undefined         // String
+        default     : undefined         // String
+        autotrim    : true              // Boolean      - Only applicable to type == "text or "password"
+        maxlength   : undefined         // Integer      - Only applicable to type == "text or "password"
+        options     : {"" : "&nbsp;"}   // Object/Array - Only applicable to type == "select"
     },
     ...
 }
@@ -215,6 +225,9 @@ If provided, the input/select will have this value as `title` and `placeholder` 
 
 ##### `default`
 You can use this property to provide a default value. In case of a `select` type the **value** of the default option here, not the text.
+
+##### `autotrim`
+Only applicable to `"text"` and `"password"` types. If set to `true` it will auotmatically remove spaces, non-breaking spaces and tabs from the beginning and the end of the inputted string value.
 
 ##### `maxlength`
 Only applicable to `"text"` and `"password"` types. If provided, sets a maximum length for the typed string.
@@ -261,6 +274,38 @@ If multiple inputs were defined using [custom inputs configuration](#custom-inpu
 
 #### `button`
 If you have defined a [custom buttons configuration](#custom-buttons-configuration) it returns the `name` of the clicked button, otherwise it will default to `"buttonDone"` or `"buttonFail"`.
+
+
+
+
+## Filters
+Filters functions can be defined using the `filterDone` and `filterFail` options. The `data` and `button` arguments will be provided for them the same way as they are for [Handlers](#handlers).
+The returned value determines the outcome of the filter:
+
+##### Boolean value `false`
+The execution is blocked and the MessageBox remains visible.
+
+##### *String* or *(jQuery) Object*
+The *String*, *DOM Object/Collection* or *jQuery Object/Collection* is appended to an error message, the execution is blocked and the MessageBox remains visible.
+
+##### Javascript [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) object
+The `Error.message` property is used as error message, the execution is blocked and the MessageBox remains visible. Note that to be recognized as such, jQuery 1.9.0+ is required.
+
+##### Anything else
+The filter is ignored and the execution continues normally.
+
+
+#### What if a filter function returns a *Deferred/Promise*?
+In case a *Deferred* or *Promise* is returned by a filter function, the outcome is determined as follows:
+
+##### Resolved deferred/promise
+The value returned by the resolved deferred/promise is checked and treated the same way as it were returned directly by the filter function. See above.
+
+##### Rejected deferred/promise
+The execution is blocked and the MessageBox remains visible. If an optional *String*, a *DOM Object/Collection* or a *jQuery Object/Collection* value is passed during rejection, it will be appended to an error message and displayed to the user.
+
+
+Due to the great flexibility offered, it sounds more complicated than it really is. Check [Example 6](#example-6---filters-and-validation) to see filters in action.
 
 
 
@@ -422,7 +467,6 @@ $.MessageBox({
 {% include_relative _demo.html demo="example4" %}
 
 
-
 ### Example 5 - Inputs capabilities
 Here is a demonstration of the input capabilities. Values will appear in the box below.
 
@@ -516,10 +560,121 @@ $.MessageBox({
 {% include_relative _demo.html demo="example5" %}
 
 
-### Example 6 - Customize it!
+### Example 6 - Filters and validation
+```javascript
+// Simple
+$.MessageBox({
+    buttonDone      : "OK",
+    buttonFail      : "Cancel",
+    message         : "You won't be able to continue unless you enter some string here:",
+    input           : true,
+    filterDone      : function(data){
+        if (data === "") return false;
+    }
+});
+
+// Error
+$.MessageBox({
+    buttonDone      : "OK",
+    buttonFail      : "Cancel",
+    message         : "If you don't compile both fields an error message will pop up:",
+    input           : ["", ""],
+    filterDone      : function(data){
+        if (data[0] === "") return "Please fill the first input";
+        if (data[1] === "") return "Please fill the second input";
+    }
+});
+
+// Ajax
+$.MessageBox({
+    buttonDone      : "OK",
+    buttonFail      : "Cancel",
+    message         : "You can even perform an ajax request<br>to validate the inputs:",
+    input           : {
+        username : {
+            type    : "text",
+            label   : "Username (user):",
+            title   : "Username"
+        },
+        password : {
+            type    : "password",
+            label   : "Password (secret):",
+            title   : "Password"
+        }
+    },
+    filterDone      : function(data){
+        // Note the use of ".then()" instead of ".done()" to return a new promise
+        return $.ajax({
+            url     : "login_1.php",
+            type    : "post",
+            data    : data
+        }).then(function(response){
+            if (response == false) return "Wrong username or password";
+        });
+    }
+});
+
+// Ajax with HTTP status code
+$.MessageBox({
+    buttonDone      : "OK",
+    buttonFail      : "Cancel",
+    message         : "A better example, using HTTP status codes:",
+    input           : {
+        username : {
+            type    : "text",
+            label   : "Username (user):",
+            title   : "Username"
+        },
+        password : {
+            type    : "password",
+            label   : "Password (secret):",
+            title   : "Password"
+        }
+    },
+    filterDone      : function(data){
+        // Note the use of ".then()" instead of ".done()" to return a new promise
+        return $.ajax({
+            url     : "login_2.php",
+            type    : "post",
+            data    : data
+        }).then(function(){
+            // HTTP status code 200: Login OK
+            return true;
+        }, function(jqXHR, textStatus, errorThrown){
+            // Any other HTTP status code: Login failed
+            return "Message from server (" + jqXHR.status + "):<br>" + jqXHR.responseText;
+        });
+    }
+});
+```
+
+Here is a server-side PHP example for the simple **Ajax** validation:
+```php
+<?php
+    // Some "very secure" check going on here...
+    echo ($_POST['username'] != 'user' || $_POST['password'] != 'secret') ? 0 : 1;
+    });
+?>
+```
+
+And here is another server-side PHP example for the **Ajax with HTTP status code** validation:
+```php
+<?php
+    // Again, the check is likely to be performed against a Database,
+    // but you get the idea about HTTP headers nonetheless
+    if ($_POST['username'] != 'user' || $_POST['password'] != 'secret') {
+        header($_SERVER['SERVER_PROTOCOL'].' 401', true, 401);
+        exit('Wrong username or password');
+    }
+    ?>
+});
+```
+{% include_relative _demo.html demo="example6" %}
+
+
+### Example 7 - Customize it!
 You can customize the whole MessageBox using the `customClass` option.
 Or you can customize single buttons using the `class` property in the button definition. Don't forget to use the `.messagebox_buttons` in your CSS in this case! See the example code:
-
 
 ```javascript
 // Custom MessageBox
@@ -570,10 +725,10 @@ CSS:
             box-shadow          : none;
         } 
 ```
-{% include_relative _demo.html demo="example6" %}
+{% include_relative _demo.html demo="example7" %}
 
 
-### Example 7 - Set Defaults
+### Example 8 - Set Defaults
 Using the [**`$.MessageBoxSetup(options)`**](#messageboxsetupoptions) method you can change the default values for all the MessageBox created in the future:
 
 ```javascript
@@ -591,6 +746,7 @@ My little personal tribute to Visual Basic 6 `MsgBox()` function.
 
 
 ## History
+*24 January 2017* - [Version 2.2.0](/posts/jquery-message-box-2.2.0/)
 *12 November 2016* - [Version 2.1.0](/posts/jquery-message-box-2.1.0/)
 *18 October 2016* - [Version 2.0.1](/posts/jquery-message-box-2.0.1/)
 *9 August 2016* - [Version 2.0.0](/posts/jquery-message-box-2.0.0/)
