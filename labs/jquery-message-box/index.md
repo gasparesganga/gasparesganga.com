@@ -84,8 +84,8 @@ buttonDone   : "OK"         // String / Object / Boolean
 buttonFail   : undefined    // String / Object / Boolean
 buttonsOrder : "done fail"  // String
 customClass  : ""           // String
-filterDone   : undefined    // Function/Deferred
-filterFail   : undefined    // Function/Deferred
+filterDone   : undefined    // Function
+filterFail   : undefined    // Function
 input        : false        // Boolean / String / Array / Object / jQuery object / DOM element
 message      : ""           // String / jQuery object / DOM Element
 queue        : true         // Boolean
@@ -111,10 +111,10 @@ Defines the order in which `buttonDone` and `buttonFail` are shown from left to 
 You can specify one or more CSS classes separated by a space here. They will be appended to the MessageBox to customize its appearance.
 
 ##### `filterDone`
-Here you can pass a **function** or a **deferred** that will be executed before resolving the MessageBox deferred and calling any eventual `.done()` handler. See [Filters](#filters) for details.
+Here you can pass a **function** that will be executed before resolving the MessageBox deferred and calling any eventual `.done()` handler. See [Filters](#filters) for details.
 
 ##### `filterFail`
-Here you can pass a **function** or a **deferred** that will be executed before rejecting the MessageBox deferred and calling any eventual `.fail()` handler. See [Filters](#filters) for details.
+Here you can pass a **function** that will be executed before rejecting the MessageBox deferred and calling any eventual `.fail()` handler. See [Filters](#filters) for details.
 
 ##### `input`
 Set it to `true` to display a simple empty *textbox*, or a ***string*** to display a *textbox* with a default value.
@@ -277,8 +277,9 @@ If you have defined a [custom buttons configuration](#custom-buttons-configurati
 
 
 
+
 ## Filters
-Filters functions can be defined using the `filterDone` and `filterFail` options. You can pass either a *Function* or a *Deferred*/*Promise*.
+Filters functions can be defined using the `filterDone` and `filterFail` options. The `data` and `button` arguments will be provided for them the same way as they are for [Handlers](#handlers).
 The returned value determines the outcome of the filter:
 
 ###### Boolean value `false`
@@ -290,16 +291,20 @@ The *String*, *DOM Object/Collection* or *jQuery Object/Collection* is appended 
 ###### Javascript [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) object
 The `Error.message` property is used as error message, the execution is blocked and the MessageBox remains visible. Note that to be recognized as such, jQuery 1.9.0+ is required.
 
-##### Rejected deferred/promise
-The execution is blocked and the MessageBox remains visible. You can pass an optional *String*, a *DOM Object/Collection* or a *jQuery Object/Collection* that will be appended to an error message.
-
-##### Resolved deferred/promise
-The filter is ignored and the execution continues normally.
-
 ###### Anything else
 The filter is ignored and the execution continues normally.
 
 
+##### What if a filter function returns a *Deferred/Promise*?
+In case a *Deferred* or *Promise* is returned by a filter function, the outcome is determined as follows:
+
+###### Resolved deferred/promise
+The value returned by the resolved deferred/promise is checked and treated the same way as it were returned directly by the filter function. See above.
+
+###### Rejected deferred/promise
+The execution is blocked and the MessageBox remains visible. If an optional *String*, a *DOM Object/Collection* or a *jQuery Object/Collection* value is passed during rejection, it will be appended to an error message and displayed to the user.
+
+<br>
 Due to the great flexibility offered, it sounds more complicated than it really is. Check [Example 6](#example-6---filters-and-validation) to see filters in action.
 
 
