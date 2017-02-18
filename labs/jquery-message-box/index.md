@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery MessageBox
 description : A jQuery Plugin to replace Javascript's window.alert(), window.confirm() and window.prompt() functions
-updated     : 2017-01-24
+updated     : 2017-02-18
 getit       :
   github        : gasparesganga/jquery-message-box
   download      : true
@@ -24,10 +24,10 @@ assets      :
 
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
-{% capture expire_date %}{{'2017-02-28' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2017-03-31' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>24 January 2017 :</b> Version 2.2.0 released: see <a href="/posts/jquery-message-box-2.2.0">release notes</a>
+    <b>18 February 2017 :</b> Version 2.2.1 released: see <a href="/posts/jquery-message-box-2.2.1">release notes</a>
 </div>
 {% endif %}
 
@@ -746,6 +746,7 @@ My little personal tribute to Visual Basic 6 `MsgBox()` function.
 
 
 ## History
+*18 February 2017* - [Version 2.2.1](/posts/jquery-message-box-2.2.1/)
 *24 January 2017* - [Version 2.2.0](/posts/jquery-message-box-2.2.0/)
 *12 November 2016* - [Version 2.1.0](/posts/jquery-message-box-2.1.0/)
 *18 October 2016* - [Version 2.0.1](/posts/jquery-message-box-2.0.1/)
