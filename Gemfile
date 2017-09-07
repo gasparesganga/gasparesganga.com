@@ -1,5 +1,7 @@
 source "https://rubygems.org"
-gem "jekyll"
-gem "jekyll-assets"
-gem "jekyll-paginate"
-gem "autoprefixer-rails"
+group :jekyll_plugins do
+  gem "jekyll"
+  gem "jekyll-assets"
+  gem "jekyll-paginate"
+  gem "autoprefixer-rails"
+end
