@@ -8,10 +8,10 @@ getit       :
   download      : true
   npm           : gasparesganga-jquery-popup-window
   bower         : gasparesganga-jquery-popup-window
-  cdn           :
-    name    : gasparesganga-jquery-popup-window
-    version : 1.0.3
-    files   : [src/popupwindow.min.js, src/popupwindow.css]
+  #cdn           :
+  #  name    : gasparesganga-jquery-popup-window
+  #  version : 1.0.3
+  #  files   : [src/popupwindow.min.js, src/popupwindow.css]
 
 assets      :
   css   :
