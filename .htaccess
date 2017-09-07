@@ -17,13 +17,13 @@ AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css a
 ########## Rewrite & Redirects ##########
 RewriteEngine On
 
-### Redirect http to https
-RewriteCond %{HTTPS} off
-RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
-
 ### Redirect www to non-www
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+### Redirect http to https
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
 
 
 ########## Invalid URLs ##########

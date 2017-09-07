@@ -9,8 +9,9 @@ getit       :
   npm           : gasparesganga-jquery-ajax-downloader
   bower         : gasparesganga-jquery-ajax-downloader
   cdn           :
-    name   : jquery.ajaxdownloader
-    files  : [ajaxdownloader.min.js]
+    name    : gasparesganga-jquery-ajax-downloader
+    version : 1.1.0
+    files   : [src/ajaxdownloader.min.js]
 
 assets      :    
   css   : []
