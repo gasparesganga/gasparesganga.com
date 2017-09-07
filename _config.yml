@@ -33,7 +33,7 @@ exclude :
   - README.md
   - vendor
 
-gems :
+plugins :
   - jekyll-assets
   - jekyll-paginate
   - autoprefixer-rails
