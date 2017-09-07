@@ -5,7 +5,8 @@ title   : Labs
 <h1>Labs</h1>
 
 <ul class="list">
-    {% assign labs = (site.pages | sort: 'title' | where: "layout" , "lab") %}
+    {% assign labs = site.pages | where: "layout", "lab" %}
+    {% assign labs = labs | sort: 'title' %}
     {% for p in labs %}
         <li class="list_item">
             <div class="list_item_row1"><a href="{{ p.url | replace: 'index.html', '' }}">{{ p.title }}</a></div>

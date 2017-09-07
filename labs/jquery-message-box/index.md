@@ -9,8 +9,9 @@ getit       :
   npm           : gasparesganga-jquery-message-box
   bower         : gasparesganga-jquery-message-box
   cdn           :
-    name   : jquery.messagebox
-    files  : [messagebox.min.js, messagebox.css]
+    name    : gasparesganga-jquery-message-box
+    version : 2.2.1
+    files   : [src/messagebox.min.js, src/messagebox.css]
 
 assets      :
   css   :

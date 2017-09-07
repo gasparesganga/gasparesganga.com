@@ -9,8 +9,9 @@ getit       :
   npm           : gasparesganga-jquery-loading-overlay
   bower         : gasparesganga-jquery-loading-overlay
   cdn           :
-    name   : jquery.loadingoverlay
-    files  : [loadingoverlay.min.js, loadingoverlay_progress.min.js]
+    name    : gasparesganga-jquery-loading-overlay
+    version : 1.5.3
+    files   : [src/loadingoverlay.min.js, extras/loadingoverlay_progress/loadingoverlay_progress.min.js]
 
 assets      :
   css   :
@@ -116,7 +117,7 @@ zIndex          : 9999                          // Integer
 CSS background-color property. Use `rgba()` to set the opacity.
 
 ##### `custom`
-A *DOM element*, *jQuery object* or plain *HTML* to append to the LoadingOverlay. You can use this feature to display some feedback for your user *(see [example 5](#example-5---show-a-countdown-in-a-custom-element) )*.
+A *DOM element*, *jQuery object* or plain *HTML* to append to the LoadingOverlay. You can use this feature to display some feedback for your user *(see [example 4](#example-4---show-a-countdown-in-a-custom-element) )*.
 Use an empty string `""` or `false` to disable the feature.
 
 ##### `fade`
