@@ -26,6 +26,7 @@ include :
   - .htaccess
 
 exclude :
+  - .asset-cache
   - browserslist
   - Gemfile
   - Gemfile.lock
@@ -39,15 +40,16 @@ plugins :
   - autoprefixer-rails
 
 assets : 
-  sources   : [_assets, labs]
-  assets    : ["[^_]*(?!_assets\\/).*"]
-  prefix    : /assets
-  cache     : false
-  digest    : true
-  compress  :
-    js                  : false
-    css                 : false
-  features  :
+  sources       : [_assets, labs]
+  assets        : ["[^_]*(?!_assets\\/).*"]
+  prefix        : /assets
+  cache         : .asset-cache
+  cache_type    : memory
+  digest        : true
+  compress      :
+    js  : false
+    css : false
+  features      :
     automatic_img_size  : false
     automatic_img_alt   : true
     liquid              : false
