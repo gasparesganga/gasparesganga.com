@@ -11,7 +11,7 @@ getit       :
   cdn           :
     name    : gasparesganga-jquery-loading-overlay
     version : 1.5.3
-    files   : [src/loadingoverlay.min.js, src/loadingoverlay_progress.min.js]
+    files   : [src/loadingoverlay.min.js, extras/loadingoverlay_progress/loadingoverlay_progress.min.js]
 
 assets      :
   css   :
