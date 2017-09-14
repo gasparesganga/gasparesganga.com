@@ -3,7 +3,7 @@
 
 (function(window, undefined){
     // Back to top button
-    BackToTop.init("#backtotop", {
+    BackToTop.init(document.getElementById("backtotop"), {
         speed           : 500,
         threshold       : 10,
         visibleClass    : "visible"
