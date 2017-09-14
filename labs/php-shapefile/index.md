@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP ShapeFile
 description : PHP library to read any ESRI Shapefile and its associated DBF into a PHP Array or WKT
-updated     : 2016-11-23
+updated     : 2017-09-14
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -10,10 +10,10 @@ getit       :
 ---
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
-{% capture expire_date %}{{'2016-12-31' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2017-10-15' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>23 November 2016 :</b> Version 2.2.0 released. See the <a href="/posts/php-shapefile-2.2.0/">release notes</a> and check the new <a href="#examples">Examples</a> section.
+    <b>14 September 2017 :</b> Version 2.3.0 released. See the <a href="/posts/php-shapefile-2.3.0/">release notes</a>. Check the new <a href="#extending-the-library">Extending the Library</a> section.
 </div>
 {% endif %}
 
@@ -25,6 +25,7 @@ getit       :
 - [Classes](#classes)
 - [Geometry Output](#geometry-output)
 - [Error Codes](#error-codes)
+- [Extending the Library](#extending-the-library)
 - [Examples](#examples)
 - [History](#history)
 - [Comments and Ideas](#comments-and-ideas)
@@ -101,7 +102,7 @@ A custom Exception which extends PHP native [Exception](http://php.net/manual/en
 ## Class ShapeFile
 The main Class which exposes the following public methods:
 
-- [__construct](#construct)
+- [__construct](#__construct)
 - [getShapeType](#getshapetype)
 - [getBoundingBox](#getboundingbox)
 - [getPRJ](#getprj)
@@ -477,6 +478,53 @@ Code    Type                        Description
 
 
 
+## Extending the Library
+Starting from version 2.3.0 the main `ShapeFile` class can be easily extended thanks to the protected method `init()`:
+
+```php?start_inline=1
+protected void ShapeFile::init(resource $shp_handle, int $shp_size, resource $shx_handle, int $shx_size, resource $dbf_handle, int $dbf_size [, string $prj_contents = null [, int $flags = 0]]);
+```
+
+#### `$shp_handle`, `$shx_handle`, `$dbf_handle`
+Resource handles of the `.shp`, `.shx`, `.dbf` files.
+
+#### `$shp_size`, `$shx_size`, `$dbf_size`
+Filesizes expressed in bytes.
+
+#### `$prj_contents`
+Optional raw WKT contents of the PRJ file.
+
+#### `$flags`
+Optional [flags](#flags) to be passed to `ShapeFile` constructor.
+
+
+### See it in action
+```php?start_inline=1
+class ShapeFileCustom extends \ShapeFile\ShapeFile
+{
+    public function __construct($your_custom_arguments_here, $flags = 0)
+    {        
+        /*
+            Some custom code here...
+        */
+        
+        // In the end, you will need some resource streams and filesizes, as well as the optional prj file contents:
+        $shp_handle   = .....
+        $shx_handle   = .....
+        $dbf_handle   = .....
+        $shp_size     = .....
+        $shx_size     = .....
+        $dbf_size     = .....
+        $prj_contents = .....
+        
+        // Now call the init() method and let the ShapeFile class do its job:
+        $this->init($shp_handle, $shp_size, $shx_handle, $shx_size, $dbf_handle, $dbf_size, $prj_contents, $flags);
+    }
+}
+```
+
+
+
 ## Examples
 
 ### Example 1 - Get shapefile info
@@ -597,6 +645,7 @@ Well, after more than 10 years working with GIS related technology, I have yet t
 
 
 ## History
+*14 September 2017* - [Version 2.3.0](/posts/php-shapefile-2.3.0/)
 *23 November 2016* - [Version 2.2.0](/posts/php-shapefile-2.2.0/)
 *17 November 2016* - [Version 2.1.0](/posts/php-shapefile-2.1.0/)
 *10 November 2016* - [Version 2.0.1](/posts/php-shapefile-2.0.1/)
