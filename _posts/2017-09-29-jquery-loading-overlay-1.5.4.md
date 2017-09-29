@@ -1,7 +1,7 @@
 ---
 layout      : post
 title       : jQuery LoadingOverlay 1.5.4
-description : New zIndex default and some MS Edge compatibility fixes
+description : New zIndex default value and some MS Edge compatibility fixes
 tags        : [Releases, Javascript, jQuery, Plugin, LoadingOverlay]
 ---
 
