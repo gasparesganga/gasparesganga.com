@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery LoadingOverlay
 description : A flexible loading overlay jQuery Plugin
-updated     : 2017-01-27
+updated     : 2017-09-29
 getit       :
   github        : gasparesganga/jquery-loading-overlay
   download      : true
@@ -10,7 +10,7 @@ getit       :
   bower         : gasparesganga-jquery-loading-overlay
   cdn           :
     name    : gasparesganga-jquery-loading-overlay
-    version : 1.5.3
+    version : 1.5.4
     files   : [src/loadingoverlay.min.js, extras/loadingoverlay_progress/loadingoverlay_progress.min.js]
 
 assets      :
@@ -25,10 +25,10 @@ assets      :
 
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
-{% capture expire_date %}{{'2017-02-28' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2017-10-31' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>27 January 2017 :</b> Version 1.5.3 released. See <a href="/posts/jquery-loading-overlay-1.5.3/">release notes</a>.
+    <b>29 September 2017 :</b> Version 1.5.4 released. See <a href="/posts/jquery-loading-overlay-1.5.4/">release notes</a>.
 </div>
 {% endif %}
 
@@ -318,6 +318,7 @@ var progressCustom = new LoadingOverlayProgress({
 
 
 ## History
+*29 September 2017* - [Version 1.5.4](/posts/jquery-loading-overlay-1.5.4/)
 *27 January 2017* - [Version 1.5.3](/posts/jquery-loading-overlay-1.5.3/)
 *9 December 2016* - [Version 1.5.2](/posts/jquery-loading-overlay-1.5.2/)
 *11 November 2016* - [Version 1.5.1](/posts/jquery-loading-overlay-1.5.1/)
