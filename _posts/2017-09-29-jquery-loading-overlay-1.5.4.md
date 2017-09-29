@@ -6,7 +6,8 @@ tags        : [Releases, Javascript, jQuery, Plugin, LoadingOverlay]
 ---
 
 
-A bugfix release to address a positioning problem occurred when Extra *Progress* was used together with Font Awesome: the icon was being pushed all the way up.
+A few users have reported that Bootstrap and other plugins place themselves in front of LoadingOverlay, using a *highests z-index detection* mechanism. Well, let's make their life difficult with the highest `z-index` available as default!
+Some other minor fixes are included too.
 
 
 ### What's new in version 1.5.4
