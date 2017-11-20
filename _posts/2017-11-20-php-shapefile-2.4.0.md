@@ -1,12 +1,9 @@
 ---
 layout      : post
 title       : PHP ShapeFile 2.4.0
-description : GeoJSON output format
+description : Added GeoJSON output format
 tags        : [Releases, PHP, ESRI, ShapeFile, GIS]
 ---
-
-It's been a long time since the last update to this library. In the meanwhile it has been gaining popularity and I have received a few requests as well.
-A pretty easy one to implement was the possibility to extend the library to accomodate some custom requirements (ie. using an abstract filesystems like *flysystem*).
 
 
 ### What's new in Version 2.4.0

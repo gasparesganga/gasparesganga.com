@@ -479,7 +479,7 @@ MULTIPOLYGONZM(((5 5 0 2, 6 6 0 2, 7 5 0 2, 5 5 0 2)), ((0 0 0 2, 0 4 0 2, 4 4 0
 
 
 ### GEOMETRY_GEOJSON_GEOMETRY / GEOMETRY_GEOJSON_FEATURE
-```
+```php?start_inline=1
 --- Record Type 0: Null
 null
 
@@ -543,7 +543,7 @@ null
 }
 ```
 
-Note that *M* geometries are *not* supported by GeoJSON format, but I decided to extend it in order to deal with *measured Shapefiles*.
+Note that *M* geometries are not supported by the GeoJSON format, but I decided to extend it in order to deal with *measured Shapefiles*.
 You will find some `PointM`, `MultiPointM`, `LineStringM`, `MultiLineStringM`, `PolygonM`, `MultiPolygonM` geometry types and the coordinates will be expressed in either `[x, y, z, m]` or `[x, y, m]` depending on the Shapefile type and flags set.
 Use the [ShapeFile::FLAG_SUPPRESS_M](#flags) flag if you prefer to ignore the *M* dimension and be fully compliant to [RFC 7946](https://tools.ietf.org/html/rfc7946).
 
