@@ -1,8 +1,8 @@
 ---
 layout      : lab
 title       : PHP ShapeFile
-description : PHP library to read any ESRI Shapefile and its associated DBF into a PHP Array or WKT
-updated     : 2017-09-14
+description : PHP library to read any ESRI Shapefile and its associated DBF into a PHP Array, WKT or GeoJSON
+updated     : 2017-11-20
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -10,10 +10,10 @@ getit       :
 ---
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
-{% capture expire_date %}{{'2017-10-15' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2017-12-31' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>14 September 2017 :</b> Version 2.3.0 released. See the <a href="/posts/php-shapefile-2.3.0/">release notes</a>. Check the new <a href="#extending-the-library">Extending the Library</a> section.
+    <b>20 November 2017 :</b> Version 2.4.0 released. See the <a href="/posts/php-shapefile-2.4.0/">release notes</a>.
 </div>
 {% endif %}
 
@@ -37,7 +37,7 @@ getit       :
 
 ## Features
 - Supports all kinds of shapefiles, including Z and M ones
-- Provides WKT/EWKT output
+- Provides WKT/EWKT and GeoJSON output
 - Implements the [Iterator](http://php.net/manual/en/class.iterator.php) interface
 - [PHP FIG](http://www.php-fig.org/) [PSR-1](http://www.php-fig.org/psr/psr-1/), [PSR-2](http://www.php-fig.org/psr/psr-2/) and [PSR-4](http://www.php-fig.org/psr/psr-4/) compliant
 - Sequential read or random access the specific shapefile records
@@ -62,7 +62,7 @@ try {
     $ShapeFile = new ShapeFile('data.shp');
     
     // Read all the records
-    while ($record = $ShapeFile->getRecord(ShapeFile::GEOMETRY_BOTH)) {
+    while ($record = $ShapeFile->getRecord(Shapefile::GEOMETRY_WKT)) {
         if ($record['dbf']['_deleted']) continue;
         // Geometry
         print_r($record['shp']);
@@ -110,6 +110,7 @@ The main Class which exposes the following public methods:
 - [getTotRecords](#gettotrecords)
 - [setCurrentRecord](#setcurrentrecord)
 - [getCurrentRecord](#getcurrentrecord)
+- [setDefaultGeometryFormat](#setdefaultgeometryformat)
 - [getRecord](#getrecord)
 
 
@@ -265,9 +266,19 @@ Returns the index of the current record. Note that records count starts from `1`
 
 
 
+### setDefaultGeometryFormat
+```php?start_inline=1
+public void ShapeFile::setDefaultGeometryFormat(int $geometry_format)
+```
+
+Sets the default return format for geometries. See the `getRecord` method for details about [$geometry_format](#geometry_format) parameter.
+This comes in handy when using the Iterator interface, see [Example 3](#example-3---use-foreach-iterator).
+
+
+
 ### getRecord
 ```php?start_inline=1
-public array ShapeFile::getRecord([int $geometry_format = ShapeFile::GEOMETRY_BOTH])
+public array ShapeFile::getRecord([int $geometry_format = ShapeFile::GEOMETRY_ARRAY])
 ```
 
 Returns the current record and move the cursor forward to the next element. When the last record is reached, the cursor will be set to the special value `ShapeFile::EOF` and this method will return boolean value **`false`**.
@@ -280,19 +291,129 @@ array(
 ```
 
 #### `$geometry_format`
-It specifies the format for returned geometries (`shp` part of the returned *Array*). It can be either:
- `ShapeFile::GEOMETRY_ARRAY` : A structured *Array*
+A *bitmask* to specify the format for returned geometries (`shp` part of the returned *Array*).
+The available formats are:
+ `ShapeFile::GEOMETRY_ARRAY` : A structured *Array* **(Default)**
  `ShapeFile::GEOMETRY_WKT` : Well Known Text string
- `ShapeFile::GEOMETRY_BOTH` : A structured *Array* containing also a `wkt` key (*Default*)
+ `ShapeFile::GEOMETRY_GEOJSON_GEOMETRY` : GeoJSON string including only the *geometry* object
+ `ShapeFile::GEOMETRY_GEOJSON_FEATURE` : GeoJSON string including the whole *feature* object
+You can combine them using a *bitwise Or* operator `|` or simply adding them.
 
 
 
 
 ## Geometry Output
-Geometries read with [getRecord](#getrecord) method can be returned as a structured *Array* or [WKT](http://en.wikipedia.org/wiki/Well-known_text).
+Geometries read with [getRecord](#getrecord) method can be returned as a structured *Array* or a string containing their [WKT](https://en.wikipedia.org/wiki/Well-known_text) or [GeoJSON](http://geojson.org) representation.
 Multi `MULTI*`, 3dz `* Z`, 3dm `* M` and  4d `* ZM` geometries are recognized as such.
 Note that eventual `FLAG_SUPPRESS_Z` and `FLAG_SUPPRESS_M` flags set with the [__constructor](#construct) will effectively condition the output.
 In the output *Array* *"no data"* values set for *M coordinates* in the shapefiles are returned as *boolean* `false`. 
+
+
+### GEOMETRY_ARRAY / Combined bitmask
+```php?start_inline=1
+--- Record Type  0: Null
+null
+
+--- Record Types  1: Point,  11: PointZ,  21: PointM
+Array(
+  [x]       => float
+  [y]       => float
+  [z]       => float        // Present only for Record Type 11
+  [m]       => float/false  // Present only for Record Types 11 and 21
+  [wkt]     => string       // Present only when format ShapeFile::GEOMETRY_WKT is enabled
+  [geojson] => string       // Present only when formats ShapeFile::GEOMETRY_GEOJSON_GEOMETRY or ShapeFile::GEOMETRY_GEOJSON_FEATURE are enabled
+)
+
+--- Record Types  8: MultiPoint,  18: MultiPointZ,  28: MultiPointM
+Array(
+  [bounding_box] => Array(
+    [xmin]          => float
+    [ymin]          => float
+    [xmax]          => float
+    [ymax]          => float
+    [zmin]          => float        // Present only for Record Type 18
+    [zmax]          => float        // Present only for Record Type 18
+    [mmin]          => float/false  // Present only for Record Types 18 and 28
+    [mmax]          => float/false  // Present only for Record Types 18 and 28
+  )
+  [numpoints]    => integer
+  [points]       => Array(
+    []              => Array(
+      [x]              => float
+      [y]              => float
+      [z]              => float        // Present only for Record Type 18
+      [m]              => float/false  // Present only for Record Types 18 and 28
+    )
+  )
+  [wkt]          => string  // Present only when format ShapeFile::GEOMETRY_WKT is enabled
+  [geojson]      => string  // Present only when formats ShapeFile::GEOMETRY_GEOJSON_GEOMETRY or ShapeFile::GEOMETRY_GEOJSON_FEATURE are enabled
+)
+
+--- Record Types  3: PolyLine,  13: PolyLineZ,  23: PolyLineM
+Array(
+  [bounding_box] => Array(
+    [xmin]          => float
+    [ymin]          => float
+    [xmax]          => float
+    [ymax]          => float
+    [zmin]          => float        // Present only for Record Type 13
+    [zmax]          => float        // Present only for Record Type 13
+    [mmin]          => float/false  // Present only for Record Types 13 and 23
+    [mmax]          => float/false  // Present only for Record Types 13 and 23
+  )
+  [numparts]     => integer
+  [parts]        => Array(
+    []              => Array(
+      [numpoints]      => integer
+      [points]         => Array(
+        []                => Array(
+          [x]                => float
+          [y]                => float
+          [z]                => float        // Present only for Record Type 13
+          [m]                => float/false  // Present only for Record Types 13 and 23
+        )
+      )
+    )
+  )
+  [wkt]          => string  // Present only when format ShapeFile::GEOMETRY_WKT is enabled
+  [geojson]      => string  // Present only when formats ShapeFile::GEOMETRY_GEOJSON_GEOMETRY or ShapeFile::GEOMETRY_GEOJSON_FEATURE are enabled
+)
+
+--- Record Types  5: Polygon,  15: PolygonZ,  25: PolygonM
+Array(
+  [bounding_box] => Array(
+    [xmin]          => float
+    [ymin]          => float
+    [xmax]          => float
+    [ymax]          => float
+    [zmin]          => float        // Present only for Record Type 15
+    [zmax]          => float        // Present only for Record Type 15
+    [mmin]          => float/false  // Present only for Record Types 15 and 25
+    [mmax]          => float/false  // Present only for Record Types 15 and 25
+  )
+  [numparts]     => integer
+  [parts]        => Array(
+    []              => Array(
+      [numrings]       => integer
+      [rings]          => Array(
+        []                => Array(
+          [numpoints]        => integer
+          [points]           => Array(
+            []                  => Array(
+              [x]                  => float
+              [y]                  => float
+              [z]                  => float        // Present only for Record Type 15
+              [m]                  => float/false  // Present only for Record Types 15 and 25
+            )
+          )
+        )
+      )
+    )
+  )
+  [wkt]          => string  // Present only when format ShapeFile::GEOMETRY_WKT is enabled
+  [geojson]      => string  // Present only when formats ShapeFile::GEOMETRY_GEOJSON_GEOMETRY or ShapeFile::GEOMETRY_GEOJSON_FEATURE are enabled
+)
+```
 
 
 ### GEOMETRY_WKT
@@ -357,107 +478,102 @@ MULTIPOLYGONZM(((5 5 0 2, 6 6 0 2, 7 5 0 2, 5 5 0 2)), ((0 0 0 2, 0 4 0 2, 4 4 0
 ```
 
 
-### GEOMETRY_ARRAY / GEOMETRY_BOTH
-```php?start_inline=1
---- Record Type  0: Null
+### GEOMETRY_GEOJSON_GEOMETRY / GEOMETRY_GEOJSON_FEATURE
+```
+--- Record Type 0: Null
 null
 
---- Record Types  1: Point,  11: PointZ,  21: PointM
-Array(
-  [x]   => float
-  [y]   => float
-  [z]   => float        // Present only for Record Type 11
-  [m]   => float/false  // Present only for Record Types 11 and 21
-  [wkt] => string       // Present only for format ShapeFile::GEOMETRY_BOTH
-)
+--- Record Types  1: Point,  11: PointZ
+{
+    "type": "Point", 
+    "coordinates": [x, y, z]
+}
 
---- Record Types  8: MultiPoint,  18: MultiPointZ,  28: MultiPointM
-Array(
-  [bounding_box] => Array(
-    [xmin]          => float
-    [ymin]          => float
-    [xmax]          => float
-    [ymax]          => float
-    [zmin]          => float        // Present only for Record Type 18
-    [zmax]          => float        // Present only for Record Type 18
-    [mmin]          => float/false  // Present only for Record Types 18 and 28
-    [mmax]          => float/false  // Present only for Record Types 18 and 28
-  )
-  [numpoints]    => integer
-  [points]       => Array(
-    []              => Array(
-      [x]              => float
-      [y]              => float
-      [z]              => float        // Present only for Record Type 18
-      [m]              => float/false  // Present only for Record Types 18 and 28
-    )
-  )
-  [wkt]          => string  // Present only for format ShapeFile::GEOMETRY_BOTH
-)
+--- Record Types  8: MultiPoint,  18: MultiPointZ
+{
+    "type": "MultiPoint", 
+    "coordinates": [
+        [x, y, z], ...
+    ]
+}
 
---- Record Types  3: PolyLine,  13: PolyLineZ,  23: PolyLineM
-Array(
-  [bounding_box] => Array(
-    [xmin]          => float
-    [ymin]          => float
-    [xmax]          => float
-    [ymax]          => float
-    [zmin]          => float        // Present only for Record Type 13
-    [zmax]          => float        // Present only for Record Type 13
-    [mmin]          => float/false  // Present only for Record Types 13 and 23
-    [mmax]          => float/false  // Present only for Record Types 13 and 23
-  )
-  [numparts]     => integer
-  [parts]        => Array(
-    []              => Array(
-      [numpoints]      => integer
-      [points]         => Array(
-        []                => Array(
-          [x]                => float
-          [y]                => float
-          [z]                => float        // Present only for Record Type 13
-          [m]                => float/false  // Present only for Record Types 13 and 23
-        )
-      )
-    )
-  )
-  [wkt]          => string  // Present only for format ShapeFile::GEOMETRY_BOTH
-)
+--- Record Types  3: PolyLine,  13: PolyLineZ
+{
+    "type": "LineString", 
+    "coordinates": [
+        [x, y, z], ...
+    ]
+}
 
---- Record Types  5: Polygon,  15: PolygonZ,  25: PolygonM
-Array(
-  [bounding_box] => Array(
-    [xmin]          => float
-    [ymin]          => float
-    [xmax]          => float
-    [ymax]          => float
-    [zmin]          => float        // Present only for Record Type 15
-    [zmax]          => float        // Present only for Record Type 15
-    [mmin]          => float/false  // Present only for Record Types 15 and 25
-    [mmax]          => float/false  // Present only for Record Types 15 and 25
-  )
-  [numparts]     => integer
-  [parts]        => Array(
-    []              => Array(
-      [numrings]       => integer
-      [rings]          => Array(
-        []                => Array(
-          [numpoints]        => integer
-          [points]           => Array(
-            []                  => Array(
-              [x]                  => float
-              [y]                  => float
-              [z]                  => float        // Present only for Record Type 15
-              [m]                  => float/false  // Present only for Record Types 15 and 25
-            )
-          )
-        )
-      )
-    )
-  )
-  [wkt]          => string  // Present only for format ShapeFile::GEOMETRY_BOTH
-)
+{
+    "type": "MultiLineString", 
+    "coordinates": [
+        [
+            [x, y, z], 
+            ...
+        ],
+        ...
+    ]
+}
+
+--- Record Types  5: Polygon,  15: PolygonZ
+{
+    "type": "Polygon", 
+    "coordinates": [
+        [
+            [x, y, z],
+            ...
+        ],
+        ...
+    ]
+}
+
+{
+    "type": "MultiPolygon", 
+    "coordinates": [
+        [
+            [
+                [x, y, z],
+                ...
+            ],
+            ...
+        ], 
+        ...
+    ]
+}
 ```
+
+Note that *M* geometries are *not* supported by GeoJSON format, but I decided to extend it in order to deal with *measured Shapefiles*.
+You will find some `PointM`, `MultiPointM`, `LineStringM`, `MultiLineStringM`, `PolygonM`, `MultiPolygonM` geometry types and the coordinates will be expressed in either `[x, y, z, m]` or `[x, y, m]` depending on the Shapefile type and flags set.
+Use the [ShapeFile::FLAG_SUPPRESS_M](#flags) flag if you prefer to ignore the *M* dimension and be fully compliant to [RFC 7946](https://tools.ietf.org/html/rfc7946).
+
+
+### GEOMETRY_GEOJSON_FEATURE
+This format packs a `bbox` object and all the dbf `properties` into a single GeoJSON *feature*, ready to go.
+
+```
+{
+    "type": "Feature",
+    "bbox": [
+        xmin,   
+        ymin,   
+        zmin,   // Present only for 3dz and 4d geometries 
+        mmin,   // Present only for measured geometries
+        xmax,   
+        ymax,   
+        zmax,   // Present only for 3dz and 4d geometries 
+        mmax    // Present only for measured geometries
+    ],
+    "geometry": {
+        // A regular geometry object as described before
+    },
+    "properties": {
+        "name": "value",
+        ...
+    }
+}
+```
+
 
 
 ## Error Codes
@@ -479,7 +595,7 @@ Code    Type                        Description
 
 
 ## Extending the Library
-Starting from version 2.3.0 the main `ShapeFile` class can be easily extended thanks to the protected method `init()`:
+The main `ShapeFile` class can be easily extended thanks to the protected method `init()`:
 
 ```php?start_inline=1
 protected void ShapeFile::init(resource $shp_handle, int $shp_size, resource $shx_handle, int $shx_size, resource $dbf_handle, int $dbf_size [, string $prj_contents = null [, int $flags = 0]]);
@@ -620,6 +736,9 @@ try {
     // Open shapefile
     $ShapeFile = new ShapeFile('data.shp');
     
+    // Sets default return format
+    $ShapeFile->setDefaultGeometryFormat(Shapefile::GEOMETRY_WKT | Shapefile::GEOMETRY_GEOJSON_GEOMETRY);
+    
     // Read all the records using a foreach loop
     foreach ($ShapeFile as $i => $record) {
         if ($record['dbf']['_deleted']) continue;
@@ -645,6 +764,7 @@ Well, after more than 10 years working with GIS related technology, I have yet t
 
 
 ## History
+*20 November 2017* - [Version 2.4.0](/posts/php-shapefile-2.4.0/)
 *14 September 2017* - [Version 2.3.0](/posts/php-shapefile-2.3.0/)
 *23 November 2016* - [Version 2.2.0](/posts/php-shapefile-2.2.0/)
 *17 November 2016* - [Version 2.1.0](/posts/php-shapefile-2.1.0/)
