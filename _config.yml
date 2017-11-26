@@ -42,7 +42,7 @@ plugins :
 
 assets : 
   sources       : [_assets, labs]
-  assets        : ["[^_]*(?!_assets\\/).*"]
+  #assets        : ["[^_]*(?!_assets\\/).*"]
   destination   : "/assets"
   digest        : true
   source_maps   : false

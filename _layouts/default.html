@@ -66,8 +66,8 @@
         
         {% asset js/main.js %}
         {% for filename in page.assets.js %}
+            <!-- '{{ filename }}' -->
             {% asset '{{ filename }}' %}
-            <!-- {{ filename }} -->
         {% endfor %}
     </body>
 </html>
