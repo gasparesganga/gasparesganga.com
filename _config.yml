@@ -43,14 +43,18 @@ assets :
   sources       : [_assets, labs]
   assets        : ["[^_]*(?!_assets\\/).*"]
   prefix        : /assets
-  cache         : .asset-cache
-  cache_type    : memory
   digest        : true
-  compress      :
-    js  : false
-    css : false
-  features      :
-    automatic_img_size  : false
-    automatic_img_alt   : true
-    liquid              : false
-    integrity           : false
+  source_maps   : false
+  destination   : "/assets"
+  compression   : true
+  gzip          : false
+  defaults      :
+    js  : { integrity: true }
+    css : { integrity: true }
+    img : { integrity: true }
+  caching       :
+    type    : memory
+    enabled : true
+  precompile    : []
+  plugins       :
+    css : { autoprefixer: {}}

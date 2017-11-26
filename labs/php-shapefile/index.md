@@ -62,7 +62,7 @@ try {
     $ShapeFile = new ShapeFile('data.shp');
     
     // Read all the records
-    while ($record = $ShapeFile->getRecord(Shapefile::GEOMETRY_WKT)) {
+    while ($record = $ShapeFile->getRecord(ShapeFile::GEOMETRY_WKT)) {
         if ($record['dbf']['_deleted']) continue;
         // Geometry
         print_r($record['shp']);
@@ -737,7 +737,7 @@ try {
     $ShapeFile = new ShapeFile('data.shp');
     
     // Sets default return format
-    $ShapeFile->setDefaultGeometryFormat(Shapefile::GEOMETRY_WKT | Shapefile::GEOMETRY_GEOJSON_GEOMETRY);
+    $ShapeFile->setDefaultGeometryFormat(ShapeFile::GEOMETRY_WKT | ShapeFile::GEOMETRY_GEOJSON_GEOMETRY);
     
     // Read all the records using a foreach loop
     foreach ($ShapeFile as $i => $record) {
