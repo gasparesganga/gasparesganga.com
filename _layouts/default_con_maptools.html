@@ -8,13 +8,13 @@
         <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
         <meta name="author" content="{{ site.author }}">
         {% include site_url.html %}
-        <link rel="icon" href="{% asset_path img/favicon.ico %}">
+        {% asset img/favicon.ico %}
         <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site_url }}/feed.xml">
         <link rel="canonical" href="{{ site_url }}{{ page.url | replace: 'index.html', '' }}">
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic">
-        {% style css/style.scss %}
+        {% asset css/style.scss %}
         {% for filename in page.assets.css %}
-            {% style '{{ filename }}' %}
+            {% asset '{{ filename }}' %}
         {% endfor %}
         {% if jekyll.environment == "production" %}
             <script>
@@ -31,14 +31,14 @@
         <header>
             <div id="profile">
                 <div id="profile_pic">
-                    <a href="/">{% img img/logo_no_bg.svg alt:'logo' %}</a>
+                    <a href="/">{% asset img/logo_no_bg.svg alt:'logo' %}</a>
                 </div>
                 <div id="profile_title">Gaspare Sganga</div>
                 <div id="profile_details">
                     <p>IT Manager, GIS Analyst & Lead Developer <a href="https://www.setin.srl">@setin</a>.</p>
                     <p>Freelance Developer & Consultant.</p>
                 </div>
-                <div id="profile_feed"><a href="/feed.xml" title="RSS Feed">{% img img/rss.gif %}</a></div>
+                <div id="profile_feed"><a href="/feed.xml" title="RSS Feed">{% asset img/rss.gif %}</a></div>
             </div>
             <nav id="menu">
                 <a href="/">About</a>
@@ -46,8 +46,8 @@
                 <a href="/posts/">Posts</a>
             </nav>
             <div id="header_actions">
-                <a href="#">{% img img/maptools.svg %}<span>MapTools</span></a>
-                <a href="/coffee/">{% img img/coffee.svg alt:'coffee' %}<span>Buy me a coffee?</span></a>
+                <a href="#">{% asset img/maptools.svg %}<span>MapTools</span></a>
+                <a href="/coffee/">{% asset img/coffee.svg alt:'coffee' %}<span>Buy me a coffee?</span></a>
             </div>
         </header>
         
@@ -61,9 +61,9 @@
             © 2014 - {{'now' | date: "%Y"}} Gaspare Sganga
         </footer>
         
-        {% javascript js/main.js %}
+        {% asset js/main.js %}
         {% for filename in page.assets.js %}
-            {% javascript '{{ filename }}' %}
+            {% asset '{{ filename }}' %}
         {% endfor %}
     </body>
 </html>
