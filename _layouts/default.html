@@ -8,7 +8,8 @@
         <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
         <meta name="author" content="{{ site.author }}">
         {% include site_url.html %}
-        <link rel="icon" href="{{ assets['img/favicon.ico'].digest_path }}">
+        
+        {% asset img/favicon.ico %}
         <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site_url }}{{ site.social.feed }}">
         <link rel="canonical" href="{{ site_url }}{{ page.url | replace: 'index.html', '' }}">
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic">
@@ -65,8 +66,9 @@
         </footer>
         
         {% asset js/main.js %}
-        {% for filename in page.assetsZ.js %}
+        {% for filename in page.assets.js %}
             {% asset '{{ filename }}' %}
+            <!-- {{ filename }} -->
         {% endfor %}
     </body>
 </html>
