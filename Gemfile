@@ -4,4 +4,5 @@ group :jekyll_plugins do
   gem "jekyll-assets"
   gem "jekyll-paginate"
   gem "autoprefixer-rails"
+  gem "uglifier"
 end

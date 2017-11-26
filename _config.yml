@@ -38,6 +38,7 @@ plugins :
   - jekyll-assets
   - jekyll-paginate
   - autoprefixer-rails
+  - uglifier
 
 assets : 
   sources       : [_assets, labs]
