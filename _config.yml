@@ -55,7 +55,7 @@ assets :
     img : { integrity: true }
   caching       :
     type    : memory
-    enabled : true
+    enabled : false
   precompile    : []
   plugins       :
     css : { autoprefixer: {}}
