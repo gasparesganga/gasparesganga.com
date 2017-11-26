@@ -8,7 +8,7 @@
         <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
         <meta name="author" content="{{ site.author }}">
         {% include site_url.html %}
-        {% asset img/favicon.ico %}
+        <link rel="icon" href="{{ assets['img/favicon.ico'].filename }}">
         <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site_url }}{{ site.social.feed }}">
         <link rel="canonical" href="{{ site_url }}{{ page.url | replace: 'index.html', '' }}">
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic">
