@@ -19,7 +19,6 @@ assets      :
     - jquery-message-box/_assets/demo.css
   js    :
     - js/jquery-3.1.1.min.js
-    - js/jquery-2.1.3.min.js
     - jquery-message-box/_assets/messagebox.min.js
     - jquery-message-box/_assets/demo.js
 ---

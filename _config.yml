@@ -43,7 +43,7 @@ plugins :
 assets : 
   sources       : [_assets, labs]
   #assets        : ["[^_]*(?!_assets\\/).*"]
-  destination   : "/assets"
+  destination   : /assets
   digest        : true
   source_maps   : false
   #compression   : true
@@ -54,7 +54,8 @@ assets :
     css : { integrity: true }
     img : { integrity: true }
   caching       :
-    type    : memory
+    path    : .asset-cache
+    type    : file
     enabled : false
   precompile    : []
   plugins       :
