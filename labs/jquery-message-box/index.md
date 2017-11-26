@@ -13,7 +13,7 @@ getit       :
     version : 2.2.1
     files   : [src/messagebox.min.js, src/messagebox.css]
 
-assets      :
+assetsZ      :
   css   :
     - jquery-message-box/_assets/messagebox.css
     - jquery-message-box/_assets/demo.css
