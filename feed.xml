@@ -6,15 +6,15 @@
     <channel>
 		<title>{{ site.title | xml_escape }}</title>
 		<description>{{ site.description | xml_escape }}</description>		
-		<link>{{ vars.site_url }}</link>
-		<atom:link href="{{ vars.site_url }}/feed.xml" rel="self" type="application/rss+xml" />
+		<link>{{ vars__site_url }}</link>
+		<atom:link href="{{ vars__site_url }}/feed.xml" rel="self" type="application/rss+xml" />
 		{% for post in site.posts limit:10 %}
 			<item>
 				<title>{{ post.title | xml_escape }}</title>
 				<description>{{ post.description | xml_escape }}</description>
 				<pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-				<link>{{ vars.site_url }}{{ post.url }}</link>
-				<guid isPermaLink="true">{{ vars.site_url }}{{ post.url }}</guid>
+				<link>{{ vars__site_url }}{{ post.url }}</link>
+				<guid isPermaLink="true">{{ vars__site_url }}{{ post.url }}</guid>
 			</item>
 		{% endfor %}
 	</channel>

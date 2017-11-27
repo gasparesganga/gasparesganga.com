@@ -49,11 +49,11 @@ assets :
   compression   : false
   gzip          : false
   defaults      :
-    js  : { integrity: true }
-    css : { integrity: true }
-    img : { integrity: true }
+    js      : { integrity: true }
+    css     : { integrity: true }
+    img     : { integrity: true }
   caching       :
     enabled : false
   precompile    : []
   plugins       :
-    css : { autoprefixer: {}}
+    css     : { autoprefixer: {}}
