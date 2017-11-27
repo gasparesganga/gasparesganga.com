@@ -2,23 +2,23 @@
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	{% if jekyll.environment == "production" %}{% assign site_url = site.production_url %}{% else %}{% assign site_url = site.development_url %}{% endif %}
+	{% include vars.html %}
     <url>
-		<loc>{{ site_url }}</loc>
+		<loc>{{ vars.site_url }}</loc>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>{{ site_url }}/labs/</loc>
+		<loc>{{ vars.site_url }}/labs/</loc>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>{{ site_url }}/posts/</loc>
+		<loc>{{ vars.site_url }}/posts/</loc>
 		<priority>1.0</priority>
 	</url>
 	{% for lab in site.pages %}
 		{% if lab.layout == "lab" %}
 			<url>
-				<loc>{{ site_url }}{{ lab.url | replace: '/index.html', '' }}</loc>
+				<loc>{{ vars.site_url }}{{ lab.url | replace: '/index.html', '' }}</loc>
 				<lastmod>{{ lab.updated | date: "%Y-%m-%d" }}</lastmod>
 				<priority>1.0</priority>
 			</url>
@@ -26,13 +26,13 @@
 	{% endfor %}
 	{% for post in site.posts %}
 		<url>
-			<loc>{{ site_url }}{{ post.url }}</loc>
+			<loc>{{ vars.site_url }}{{ post.url }}</loc>
 			<lastmod>{{ post.date | date: "%Y-%m-%d" }}</lastmod>
 			<priority>1.0</priority>
 		</url>
 	{% endfor %}
     <url>
-		<loc>{{ site_url }}/coffee/</loc>
+		<loc>{{ vars.site_url }}/coffee/</loc>
 		<priority>1.0</priority>
 	</url>
 </urlset>

@@ -1,6 +1,6 @@
 ---
 ---
-{% include site_url.html %}
-Sitemap: {{ site_url }}/sitemap.xml
+{% include vars.html %}
+Sitemap: {{ vars.site_url }}/sitemap.xml
 User-agent: *
 Disallow: /assets/

@@ -27,7 +27,6 @@ include :
 
 exclude :
   - .asset-cache
-  - browserslist
   - Gemfile
   - Gemfile.lock
   - LICENSE
@@ -54,8 +53,6 @@ assets :
     css : { integrity: true }
     img : { integrity: true }
   caching       :
-    path    : .asset-cache
-    type    : file
     enabled : false
   precompile    : []
   plugins       :

@@ -7,16 +7,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
         <meta name="author" content="{{ site.author }}">
-        {% include site_url.html %}
+        {% include vars.html %}
         {% asset img/favicon.ico %}
-        <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site_url }}{{ site.social.feed }}">
-        <link rel="canonical" href="{{ site_url }}{{ page.url | replace: 'index.html', '' }}">
+        <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ vars.site_url }}{{ site.social.feed }}">
+        <link rel="canonical" href="{{ vars.site_url }}{{ page.url | replace: 'index.html', '' }}">
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic">
         {% asset css/style.scss %}
         {% for filename in page.assets.css %}
             {% asset '{{ filename }}' %}
         {% endfor %}
-        {% if jekyll.environment == "production" %}
+        {% if vars.production %}
             <script>
                 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
                 ga('create', 'UA-56444798-1', 'auto');
@@ -26,6 +26,11 @@
             <!-- DRAFT DRAFT DRAFT DRAFT DRAFT DRAFT DRAFT DRAFT DRAFT DRAFT -->
         {% endif %}
     </head>
+    <!--
+        {% for v in vars %}
+            {{ v }}
+        {% endfor %}
+    -->
     
     <body>
         <header>

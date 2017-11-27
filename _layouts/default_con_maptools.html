@@ -7,10 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
         <meta name="author" content="{{ site.author }}">
-        {% include site_url.html %}
+        {% include vars.html %}
         {% asset img/favicon.ico %}
-        <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site_url }}/feed.xml">
-        <link rel="canonical" href="{{ site_url }}{{ page.url | replace: 'index.html', '' }}">
+        <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ vars.site_url }}/feed.xml">
+        <link rel="canonical" href="{{ vars.site_url }}{{ page.url | replace: 'index.html', '' }}">
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic">
         {% asset css/style.scss %}
         {% for filename in page.assets.css %}
