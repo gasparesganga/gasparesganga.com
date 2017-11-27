@@ -15,7 +15,7 @@ AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css a
         Header set Expires "Fri, 31 Dec 1999 00:00:00 GMT"
     </ifModule>
 </FilesMatch>
-{% endaw %}
+{% endraw %}
 
 ########## Rewrites & Redirects ##########
 RewriteEngine On
