@@ -27,7 +27,9 @@
         {% endif %}
     </head>
     <!--
-        {{ vars__production }}
+        {% if vars__production == false %}
+            Development!
+        {% endif %}
     -->
     
     <body>

@@ -4,8 +4,8 @@
 ########## Compress text files ##########
 AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/javascript application/json image/svg+xml
 
-{% raw %}
-########## Prevent html files cache ########## 
+
+########## Prevent html files cache ##########
 <FilesMatch ".(html|htm)$">
     FileETag None
     <ifModule mod_headers.c>
@@ -15,7 +15,7 @@ AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css a
         Header set Expires "Fri, 31 Dec 1999 00:00:00 GMT"
     </ifModule>
 </FilesMatch>
-{% endraw %}
+
 
 ########## Rewrites & Redirects ##########
 RewriteEngine On
