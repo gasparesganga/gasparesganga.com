@@ -1,6 +1,7 @@
 ---
 layout      : default
 permalink   : /coffee/
+background  : img/rex.jpg
 ---
 <h1>Buy me a coffee?</h1>
 
@@ -10,6 +11,11 @@ permalink   : /coffee/
     <br>
     Then, by all means, go for it!
 </p>
+
+
+<div class="1" style="background-image: url('{{ assets["{{ page.background }}"].digest_path }}');">
+{% capture background_digest_path %}{{ assets["{{ page.background }}"].digest_path }}{% endcapture %}
+<div class="2" style="background-image: url('{{ background_digest_path }}');">
 
 <div id="coffee_buttons">
     <a class="button" href="{{ site.social.paypal }}/1eur">
