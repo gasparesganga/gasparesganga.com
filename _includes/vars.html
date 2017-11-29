@@ -1,0 +1,7 @@
+{% if jekyll.environment == "production" %}
+    {% assign flag_production   = true %}
+    {% assign site_url          = site.production_url %}
+{% else %}
+    {% assign flag_production   = false %}
+    {% assign site_url          = site.development_url %}
+{% endif %}

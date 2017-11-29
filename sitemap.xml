@@ -2,7 +2,7 @@
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	{% if jekyll.environment == "production" %}{% assign site_url = site.production_url %}{% else %}{% assign site_url = site.development_url %}{% endif %}
+	{% include vars.html %}
     <url>
 		<loc>{{ site_url }}</loc>
 		<priority>1.0</priority>

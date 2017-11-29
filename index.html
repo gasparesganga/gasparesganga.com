@@ -3,7 +3,7 @@ layout  : default
 ---
 <h1>About</h1>
 <p>
-    My journey as a computer programmer started in <a href="{% asset_path img/rex.jpg %}">1998</a> with Visual Basic 6, 
+    My journey as a computer programmer started in <a href="{% asset img/rex.jpg @path %}">1998</a> with Visual Basic 6, 
     which remained my favourite developing tool for many years 
     before I specialized in Databases, GIS/Spatial technologies and Web programming.
 </p>
@@ -25,11 +25,11 @@ layout  : default
         If you wish to receive updates about my new posts and releases you can:
     </p>
     <ul>
-        <li><a class="about_contacts_icon" href="{{ site.social.feed }}">{% img img/feed.svg alt:'feed' %}</a><span>Subscribe to this website's <a href="{{ site.social.feed }}">RSS Feed</a></span></li>
-        <li><a class="about_contacts_icon" href="{{ site.social.twitter }}">{% img img/twitter.svg alt:'twitter' %}</a><span>Follow me on <a href="{{ site.social.twitter }}">Twitter</a></span></li>
-        <li><a class="about_contacts_icon" href="{{ site.social.github }}">{% img img/github.svg alt:'github' %}</a><span>Follow me on <a href="{{ site.social.github }}">GitHub</a></span></li>
+        <li><a class="about_contacts_icon" href="{{ site.social.feed }}">{% asset img/feed.svg alt:'feed' %}</a><span>Subscribe to this website's <a href="{{ site.social.feed }}">RSS Feed</a></span></li>
+        <li><a class="about_contacts_icon" href="{{ site.social.twitter }}">{% asset img/twitter.svg alt:'twitter' %}</a><span>Follow me on <a href="{{ site.social.twitter }}">Twitter</a></span></li>
+        <li><a class="about_contacts_icon" href="{{ site.social.github }}">{% asset img/github.svg alt:'github' %}</a><span>Follow me on <a href="{{ site.social.github }}">GitHub</a></span></li>
     </ul>
     <p>
-        Or you can send an <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#103;&#097;&#115;&#112;&#097;&#114;&#101;&#115;&#103;&#097;&#110;&#103;&#097;&#046;&#099;&#111;&#109;">email</a> to get in contact with me.
+        Or you can send an <span id="emailobfuscator"></span> to get in contact with me.
     </p>
 </div>

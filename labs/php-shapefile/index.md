@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP ShapeFile
 description : PHP library to read any ESRI Shapefile and its associated DBF into a PHP Array, WKT or GeoJSON
-updated     : 2017-11-20
+updated     : 2017-11-30
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -62,7 +62,7 @@ try {
     $ShapeFile = new ShapeFile('data.shp');
     
     // Read all the records
-    while ($record = $ShapeFile->getRecord(Shapefile::GEOMETRY_WKT)) {
+    while ($record = $ShapeFile->getRecord(ShapeFile::GEOMETRY_WKT)) {
         if ($record['dbf']['_deleted']) continue;
         // Geometry
         print_r($record['shp']);
@@ -737,7 +737,7 @@ try {
     $ShapeFile = new ShapeFile('data.shp');
     
     // Sets default return format
-    $ShapeFile->setDefaultGeometryFormat(Shapefile::GEOMETRY_WKT | Shapefile::GEOMETRY_GEOJSON_GEOMETRY);
+    $ShapeFile->setDefaultGeometryFormat(ShapeFile::GEOMETRY_WKT | ShapeFile::GEOMETRY_GEOJSON_GEOMETRY);
     
     // Read all the records using a foreach loop
     foreach ($ShapeFile as $i => $record) {
@@ -764,6 +764,7 @@ Well, after more than 10 years working with GIS related technology, I have yet t
 
 
 ## History
+*30 November 2017* - [Version 2.4.1](/posts/php-shapefile-2.4.1/)
 *20 November 2017* - [Version 2.4.0](/posts/php-shapefile-2.4.0/)
 *14 September 2017* - [Version 2.3.0](/posts/php-shapefile-2.3.0/)
 *23 November 2016* - [Version 2.2.0](/posts/php-shapefile-2.2.0/)
