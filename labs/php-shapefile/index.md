@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP ShapeFile
 description : PHP library to read any ESRI Shapefile and its associated DBF into a PHP Array, WKT or GeoJSON
-updated     : 2017-11-28
+updated     : 2017-11-30
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -764,7 +764,7 @@ Well, after more than 10 years working with GIS related technology, I have yet t
 
 
 ## History
-*28 November 2017* - [Version 2.4.1](/posts/php-shapefile-2.4.1/)
+*30 November 2017* - [Version 2.4.1](/posts/php-shapefile-2.4.1/)
 *20 November 2017* - [Version 2.4.0](/posts/php-shapefile-2.4.0/)
 *14 September 2017* - [Version 2.3.0](/posts/php-shapefile-2.3.0/)
 *23 November 2016* - [Version 2.2.0](/posts/php-shapefile-2.2.0/)

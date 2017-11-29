@@ -47,8 +47,7 @@ assets :
   destination   : /assets
   digest        : true
   source_maps   : false
-  #compression   : true
-  compression   : false
+  compression   : true
   gzip          : false
   defaults      :
     js      : { integrity: true }
