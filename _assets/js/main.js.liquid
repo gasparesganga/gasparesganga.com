@@ -1,0 +1,20 @@
+//= require ../_js/backtotop.js
+//= require ../_js/emailobfuscator.js
+
+
+(function(window, undefined){
+    // Back to top button
+    BackToTop.init(document.getElementById("backtotop"), {
+        speed           : 500,
+        threshold       : 10,
+        visibleClass    : "visible"
+    });
+    
+    // Email
+    var emailWrapper = document.getElementById("emailobfuscator");
+    if (emailWrapper) EmailObfuscator.init(emailWrapper, {
+        address : "{{ site.social.email }}",
+        text    : "email",
+        title   : "Show email address"
+    });
+})(window);

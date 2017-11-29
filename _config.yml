@@ -4,6 +4,7 @@ author          : Gaspare Sganga
 production_url  : https://gasparesganga.com
 development_url : https://test.gasparesganga.com
 social          :
+  email     : "&#116;&#99;&#97;&#116;&#110;&#111;&#99;&#124;&#109;&#111;&#99;&#46;&#97;&#103;&#110;&#97;&#103;&#115;&#101;&#114;&#97;&#112;&#115;&#97;&#103;"
   disqus    : gasparesganga
   feed      : /feed.xml
   github    : https://github.com/gasparesganga
@@ -42,6 +43,7 @@ plugins :
 assets : 
   sources       : [_assets, labs]
   #precompile  : ["[^_]*(?!_assets\\/).*"]
+  precompile    : []
   destination   : /assets
   digest        : true
   source_maps   : false
