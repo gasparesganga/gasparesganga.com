@@ -41,7 +41,7 @@ plugins :
 
 assets : 
   sources       : [_assets, labs]
-  #assets        : ["[^_]*(?!_assets\\/).*"]
+  #precompile  : ["[^_]*(?!_assets\\/).*"]
   destination   : /assets
   digest        : true
   source_maps   : false
