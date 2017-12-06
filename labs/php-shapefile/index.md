@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP ShapeFile
 description : PHP library to read any ESRI Shapefile and its associated DBF into a PHP Array, WKT or GeoJSON
-updated     : 2017-11-30
+updated     : 2017-12-06
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -10,10 +10,10 @@ getit       :
 ---
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
-{% capture expire_date %}{{'2017-12-31' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2018-01-15' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>20 November 2017 :</b> Version 2.4.0 released. See the <a href="/posts/php-shapefile-2.4.0/">release notes</a>.
+    <b>6 December 2017 :</b> Version 2.4.2 released. See the <a href="/posts/php-shapefile-2.4.2/">release notes</a>.
 </div>
 {% endif %}
 
@@ -543,9 +543,9 @@ null
 }
 ```
 
-Note that *M* geometries are not supported by the GeoJSON format, but I decided to extend it in order to deal with *measured Shapefiles*.
-You will find some `PointM`, `MultiPointM`, `LineStringM`, `MultiLineStringM`, `PolygonM`, `MultiPolygonM` geometry types and the coordinates will be expressed in either `[x, y, z, m]` or `[x, y, m]` depending on the Shapefile type and flags set.
-Use the [ShapeFile::FLAG_SUPPRESS_M](#flags) flag if you prefer to ignore the *M* dimension and be fully compliant to [RFC 7946](https://tools.ietf.org/html/rfc7946).
+Note that, complying to [section 3.1.6 of RFC 7946](https://tools.ietf.org/html/rfc7946#section-3.1.6), the *orientation* of Polygons and MultiPolygons inner and outer rings in GeoJSON output is reversed compared to how they are stored in ESRI Shapefiles. The library takes care of that under the hood and you will find the correct order of the points in GeoJSON output.
+
+Also, a clarification is required for *M* geometries: they are not supported by the GeoJSON format but I decided to extend it in order to deal with *measured Shapefiles*. You will find some `PointM`, `MultiPointM`, `LineStringM`, `MultiLineStringM`, `PolygonM`, `MultiPolygonM` geometry types and the coordinates will be expressed in either `[x, y, z, m]` or `[x, y, m]` depending on the Shapefile type and flags set. Use the [ShapeFile::FLAG_SUPPRESS_M](#flags) flag if you prefer to ignore the *M* dimension and be fully compliant to [RFC 7946](https://tools.ietf.org/html/rfc7946).
 
 
 ### GEOMETRY_GEOJSON_FEATURE
@@ -764,6 +764,7 @@ Well, after more than 10 years working with GIS related technology, I have yet t
 
 
 ## History
+*6 December 2017* - [Version 2.4.2](/posts/php-shapefile-2.4.2/)
 *30 November 2017* - [Version 2.4.1](/posts/php-shapefile-2.4.1/)
 *20 November 2017* - [Version 2.4.0](/posts/php-shapefile-2.4.0/)
 *14 September 2017* - [Version 2.3.0](/posts/php-shapefile-2.3.0/)
