@@ -28,6 +28,7 @@ include :
 
 exclude :
   - .asset-cache
+  - .jekyll-cache
   - Gemfile
   - Gemfile.lock
   - LICENSE
@@ -54,7 +55,8 @@ assets :
     css     : { integrity: true }
     img     : { integrity: true }
   caching       :
-    enabled : false
-  precompile    : []
+    path    : ".jekyll-cache/assets"
+    type    : file
+    enabled : true
   plugins       :
     css     : { autoprefixer: {}}
