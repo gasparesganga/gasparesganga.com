@@ -543,7 +543,7 @@ null
 }
 ```
 
-Note that, complying to [section 3.1.6 of RFC 7946](https://tools.ietf.org/html/rfc7946#section-3.1.6), the *orientation* of Polygons and MultiPolygons inner and outer rings in GeoJSON output is reversed compared to how they are stored in ESRI Shapefiles. The library takes care of that under the hood and you will note how the order of points is different in GeoJSON output.
+Note that, complying to [section 3.1.6 of RFC 7946](https://tools.ietf.org/html/rfc7946#section-3.1.6), the *orientation* of Polygons and MultiPolygons inner and outer rings in GeoJSON output is reversed compared to how they are stored in ESRI Shapefiles. The library takes care of that under the hood and you will find the correct order of the points in GeoJSON output.
 
 Also, a clarification is required for *M* geometries: they are not supported by the GeoJSON format but I decided to extend it in order to deal with *measured Shapefiles*. You will find some `PointM`, `MultiPointM`, `LineStringM`, `MultiLineStringM`, `PolygonM`, `MultiPolygonM` geometry types and the coordinates will be expressed in either `[x, y, z, m]` or `[x, y, m]` depending on the Shapefile type and flags set. Use the [ShapeFile::FLAG_SUPPRESS_M](#flags) flag if you prefer to ignore the *M* dimension and be fully compliant to [RFC 7946](https://tools.ietf.org/html/rfc7946).
 
