@@ -1,7 +1,7 @@
 ---
 layout      : post
 title       : jQuery LoadingOverlay 1.6.0
-description : Last enhancement before next major release
+description : Last enhancements before next major release
 tags        : [Releases, Javascript, jQuery, Plugin, LoadingOverlay]
 ---
 
