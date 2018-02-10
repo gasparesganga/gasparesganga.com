@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery LoadingOverlay
 description : A flexible loading overlay jQuery Plugin
-updated     : 2017-09-29
+updated     : 2018-02-10
 getit       :
   github        : gasparesganga/jquery-loading-overlay
   download      : true
@@ -10,7 +10,7 @@ getit       :
   bower         : gasparesganga-jquery-loading-overlay
   cdn           :
     name    : gasparesganga-jquery-loading-overlay
-    version : 1.5.4
+    version : 1.6.0
     files   : [src/loadingoverlay.min.js, extras/loadingoverlay_progress/loadingoverlay_progress.min.js]
 
 assets      :
@@ -25,10 +25,10 @@ assets      :
 
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
-{% capture expire_date %}{{'2017-10-31' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2018-03-31' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>29 September 2017 :</b> Version 1.5.4 released. See <a href="/posts/jquery-loading-overlay-1.5.4/">release notes</a>.
+    <b>10 February 2018 :</b> Version 1.6.0 released. See <a href="/posts/jquery-loading-overlay-1.6.0/">release notes</a>.
 </div>
 {% endif %}
 
@@ -298,6 +298,7 @@ var interval  = setInterval(function(){
 
 ##### Customization
 You can customize the look of the progress bar and text passing and object with `bar` and `text` properties to the new instance. Any CSS property is accepted.
+You can pass a boolean value `false` to the `text` property to disable it.
 
 ```javascript
 var progressCustom = new LoadingOverlayProgress({
@@ -318,6 +319,7 @@ var progressCustom = new LoadingOverlayProgress({
 
 
 ## History
+*10 February 2018* - [Version 1.6.0](/posts/jquery-loading-overlay-1.6.0/)
 *29 September 2017* - [Version 1.5.4](/posts/jquery-loading-overlay-1.5.4/)
 *27 January 2017* - [Version 1.5.3](/posts/jquery-loading-overlay-1.5.3/)
 *9 December 2016* - [Version 1.5.2](/posts/jquery-loading-overlay-1.5.2/)
