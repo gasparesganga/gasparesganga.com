@@ -10,7 +10,7 @@ getit       :
   bower         : gasparesganga-jquery-loading-overlay
   cdn           :
     name    : gasparesganga-jquery-loading-overlay
-    version : 1.5.4
+    version : 1.6.0
     files   : [src/loadingoverlay.min.js, extras/loadingoverlay_progress/loadingoverlay_progress.min.js]
 
 assets      :
