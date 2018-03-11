@@ -49,8 +49,7 @@ $(function(){
         _example2Active = true;
         element.LoadingOverlay("show", {
             color           : "rgba(165, 190, 100, 0.5)",
-            size            : "30%",
-            resizeInterval  : 50
+            size            : 30
         });
         element.animate({
             height  : h * 2,
@@ -77,7 +76,7 @@ $(function(){
     $("#example3").on("click", function(event){
         $.LoadingOverlay("show", {
             image       : "",
-            fontawesome : "fa fa-spinner fa-spin"
+            fontawesome : "fa fa-cog fa-spin"
         });
         setTimeout(function(){
             $.LoadingOverlay("hide");

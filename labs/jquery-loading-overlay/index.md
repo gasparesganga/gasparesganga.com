@@ -1,8 +1,8 @@
 ---
 layout      : lab
 title       : jQuery LoadingOverlay
-description : A flexible loading overlay jQuery Plugin
-updated     : 2018-02-10
+description : A flexible loading overlay jQuery plugin
+updated     : 2018-03-xx
 getit       :
   github        : gasparesganga/jquery-loading-overlay
   download      : true
@@ -10,8 +10,8 @@ getit       :
   bower         : gasparesganga-jquery-loading-overlay
   cdn           :
     name    : gasparesganga-jquery-loading-overlay
-    version : 1.6.0
-    files   : [src/loadingoverlay.min.js, extras/loadingoverlay_progress/loadingoverlay_progress.min.js]
+    version : 2.0.0
+    files   : [dist/loadingoverlay.min.js]
 
 assets      :
   css   :
@@ -19,16 +19,15 @@ assets      :
   js    :
     - js/jquery-3.1.1.min.js
     - jquery-loading-overlay/_assets/loadingoverlay.min.js
-    - jquery-loading-overlay/_assets/loadingoverlay_progress.min.js
     - jquery-loading-overlay/_assets/demo.js
 ---
 
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
-{% capture expire_date %}{{'2018-03-31' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2018-04-30' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>10 February 2018 :</b> Version 1.6.0 released. See <a href="/posts/jquery-loading-overlay-1.6.0/">release notes</a>.
+    <b>XX March 2018 :</b> Version 2.0.0 released. See <a href="/posts/jquery-loading-overlay-2.0.0/">release notes</a> for migration guide and breaking changes!
 </div>
 {% endif %}
 
@@ -59,13 +58,13 @@ assets      :
 
 
 ## Features
+* Easy *plug-and-play* default behaviour yet fully configurable for advanced uses
 * Shows a loading overlay on the whole page or over single DOM elements
-* Tracks a *counter* to allow multiple calls on single target
 * Can auto resize according to its container (very useful if used over a DOM element being filled meanwhile)
+* Tracks a *counter* to allow multiple calls on single target
+* Can show an image, some text, a progress bar or even a custom element to provide feedback to the user
 * Compatible with [Font Awesome](https://fortawesome.github.io/Font-Awesome/)
-* Can show a custom element to provide feedback to the user
-* Completely configurable
-* No external CSS, small footprint
+* No external CSS, high performances
 
 
 
@@ -74,11 +73,11 @@ There are three different methods, one to attach a LoadingOverlay to the `body` 
 
 ### *$.LoadingOverlay(action [,options])*
 Shows the LoadingOverlay with a fixed position, covering the whole page. Optionally pass some `options` to it.
-This method doesn't return anything.
+This method doesn't return anything. See [Actions](#actions) for details.
 
 ### *$(selector).LoadingOverlay(action [,options])*
-Attach the LoadingOverlay to a single DOM element or a set of DOM elements. Optionally pass some `options` to it.
-This method returns a *jQuery object* or a set of *jQuery objects* *(depending on the selector used)* and is **chainable**.
+Attach the LoadingOverlay to a single *DOM element* or a set of *DOM elements*. Optionally pass some `options` to it.
+This method returns a *jQuery object* or a set of *jQuery objects* *(depending on the selector used)* and is **chainable**. See [Actions](#actions) for details.
 
 ### *$.LoadingOverlaySetup(options)*
 Set default `options` for all future calls to **`$.LoadingOverlay()`** and **`$(selector).LoadingOverlay()`**.
@@ -86,64 +85,204 @@ Set default `options` for all future calls to **`$.LoadingOverlay()`** and **`$(
 
 
 ## Actions
-The **`$.LoadingOverlay()`** and **`$(selector).LoadingOverlay()`** methods have two variants, corresponding to two *Actions*:
+The **`$.LoadingOverlay()`** and **`$(selector).LoadingOverlay()`** methods have four variants, corresponding to four *Actions*:
 
 ##### Show
 **`$[(selector)].LoadingOverlay("show" [,options])`**
-Shows a LoadingOverlay, or increases the *counter* if it's already shown. Optionally you can pass a set of `options`, but note that they only take effect if the LoadingOverlay is not shown yet on the element.
+Shows a LoadingOverlay, or increases the *counter* if it's been already shown. Optionally you can pass a set of `options`, but note that they only take effect if the LoadingOverlay has not been shown yet on the element.
 
 ##### Hide
 **`$[(selector)].LoadingOverlay("hide" [,force])`**
-Hides the LoadingOverlay or decreases the *counter* if it's more than 1. You can optionally pass a boolean parameter `force` to hide the LoadingOverlay even if the counter hasn't reached `0`.
+Hides the LoadingOverlay or decreases the *counter* if it's higher than `1`. You can optionally pass a boolean parameter `force` to hide the LoadingOverlay even if the counter hasn't reached `0`.
 
+##### Text
+**`$[(selector)].LoadingOverlay("text", value)`**
+Update the text currently shown with the one passed to the `value` parameter. Pass boolean value `false` to hide the text element.
+Note that this *action* only works if LoadingOverlay was initialized with some [text](#text).
+
+##### Progress
+**`$[(selector)].LoadingOverlay("progress", value)`**
+Update the progress bar with the `value` parameter. Pass boolean value `false` to hide the progress bar.
+Note that this *action* only works if LoadingOverlay was initialized with [progress](#text) option set to `true`.
 
 
 ## Options and defaults values
 ```javascript
-color           : "rgba(255, 255, 255, 0.8)"    // String
-custom          : ""                            // String/DOM Element/jQuery Object
-fade            : true                          // Boolean/Integer/String/Array
-fontawesome     : ""                            // String
-image           : "data:image/gif;base64,..."   // String
-imagePosition   : "center center"               // String
-maxSize         : "100px"                       // Integer/String
-minSize         : "20px"                        // Integer/String
-resizeInterval  : 50                            // Integer
-size            : "50%"                         // Integer/String
-zIndex          : 9999                          // Integer
+// Background
+background              : "rgba(255, 255, 255, 0.8)"        // String
+backgroundClass         : ""                                // String
+// Image
+image                   : "data:image/svg+xml;base64,..."   // String
+imageAnimation          : "2000ms rotate_right"             // String/Boolean
+imageAutoResize         : true                              // Boolean
+imageResizeFactor       : 1                                 // Float
+imageColor              : "#202020"                         // String
+imageClass              : ""                                // String
+imageOrder              : 1                                 // Integer
+// Font Awesome
+fontawesome             : ""                                // String
+fontawesomeAutoResize   : true                              // Boolean
+fontawesomeResizeFactor : 1                                 // Float
+fontawesomeColor        : "#202020"                         // String
+fontawesomeOrder        : 2                                 // Integer
+// Custom
+custom                  : ""                                // String/DOM Element/jQuery Object
+customAnimation         : false                             // String/Boolean
+customAutoResize        : true                              // Boolean
+customResizeFactor      : 1                                 // Float
+customOrder             : 3                                 // Integer
+// Text
+text                    : ""                                // String
+textAnimation           : false                             // String
+textAutoResize          : true                              // Boolean
+textResizeFactor        : 0.5                               // Float
+textColor               : "#202020"                         // String
+textClass               : ""                                // String
+textOrder               : 4                                 // Integer
+// Progress
+progress                : false                             // Boolean
+progressAutoResize      : true                              // Boolean
+progressResizeFactor    : 0.25                              // Float
+progressColor           : "#a0a0a0"                         // String
+progressClass           : ""                                // String
+progressOrder           : 5                                 // Integer
+progressSpeed           : 200                               // Integer
+progressMin             : 0                                 // Float
+progressMax             : 100                               // Float
+// Sizing
+size                    : 50                                // Float/String
+minSize                 : 20                                // Integer/String
+maxSize                 : 120                               // Integer/String
+// Misc
+direction               : "column"                          // String
+fade                    : [400, 200]                        // Array/Boolean/Integer/String
+resizeInterval          : 50                                // Integer
+zIndex                  : 2147483647                        // Integer
 ```
 
-##### `color`
-CSS background-color property. Use `rgba()` to set the opacity.
+##### `background`
+Overlay's CSS background-color property. Use `rgba()` to set the opacity. Keep in mind that if `backgroundClass` is provided then `background` option is ignored.
 
-##### `custom`
-A *DOM element*, *jQuery object* or plain *HTML* to append to the LoadingOverlay. You can use this feature to display some feedback for your user *(see [example 4](#example-4---show-a-countdown-in-a-custom-element) )*.
-Use an empty string `""` or `false` to disable the feature.
-
-##### `fade`
-Controls the *fade in* and *fade out* durations. It can be either `0` or `false` to disable it *(meaning a zero duration)*, an *integer* or *string* to set equal *fade in* and *fade out* durations *(ie. `400` or `"fast"` or `"slow"`)* or a two-elements *array* to set specific *fade in* and *fade out* durations *(ie. `[600, 300]`)*. You can also pass the boolean value `true`, which is treated like `[400, 200]`.
-
-##### `fontawesome`
-**Class(es)** of the [Font Awesome](https://fortawesome.github.io/Font-Awesome/) icon to use. Note that you must include the Font Awesome *stylesheet* in your project if you wish to use this feature. Use an empty string `""` or `false` to disable the feature.
+##### `backgroundClass`
+Sets a custom CSS class for the background. Keep in mind that if `backgroundClass` is provided then `background` option is ignored.
 
 ##### `image`
-*URL* of the image to show. Use an empty string `""` or `false` to show no image.
+*URL* of the image to show. It supports both raster images and vectorial SVGs. You can use *base64* encoding too (the default value is actually a *base64* representation of a SVG image). Set to an empty string `""` or `false` to show no image.
 
-##### `imagePosition`
-This option is mapped directly to *CSS* `background-position` property to customize the position of the image.
+##### `imageAnimation`
+Controls the animation of the *image* element. See [animations](#animations).
 
-##### `maxSize`
-Maximun size of image in **pixels**. Set it to `0` or `false` for no limit.
+##### `imageAutoResize`
+Controls the auto resizing of the *image* element. Set to `false` to disable it.
 
-##### `minSize`
-Minimun size of image in **pixels**. Set it to `0` or `false` for no limit.
+##### `imageResizeFactor`
+Controls the proportion between the *image* element and the [size](#size) parameter.
 
-##### `resizeInterval`
-Specifies an interval in **milliseconds** to resize and reposition the LoadingOverlay according to its container. This is useful when the container element changes size and/or position while the LoadingOverlay is being shown.
-Set it to `0` or `false` to disable this feature.
+##### `imageColor`
+Image *fill* color. This setting has effect only on *SVG* images and will be useless with raster images *(JPG, PNG, GIF, etc.)*. You can use any CSS valid expression, included `rgba()`. Note that if `imageClass` is provided then `imageColor` is ignored.
+
+##### `imageClass`
+Sets a custom CSS class for the *image* element. Note that if `imageClass` is provided then `imageColor` is ignored.
+
+##### `imageOrder`
+Sets the order of the *image* element relative to the others.
+
+##### `fontawesome`
+**Class(es)** of the [Font Awesome](https://fortawesome.github.io/Font-Awesome/) icon to use. Note that you must include Font Awesome in your project if you wish to use this feature. Use an empty string `""` or `false` to disable the feature.
+
+##### `fontawesomeAutoResize`
+Controls the auto resizing of the *fontawesome* element. Set to `false` to disable it.
+
+##### `fontawesomeResizeFactor`
+Controls the proportion between the *fontawesome* element and the [size](#size) parameter.
+
+##### `fontawesomeColor`
+Sets the color of the *fontawesome* element. You can use any CSS valid expression, included `rgba()`.
+
+##### `fontawesomeOrder`
+Sets the order of the *fontawesome* element relative to the others.
+
+##### `custom`
+A *DOM element*, *jQuery object* or plain *HTML* to append to the LoadingOverlay. Use an empty string `""` or `false` to disable the feature.
+
+##### `customAnimation`
+Controls the animation of the *custom* element. See [animations](#animations).
+
+##### `customAutoResize`
+Controls the auto resizing of the *custom* element. Set to `false` to disable it.
+
+##### `customResizeFactor`
+Controls the proportion between the *custom* element and the [size](#size) parameter.
+
+##### `customOrder`
+Sets the order of the *custom* element relative to the others.
+
+##### `text`
+Displays a *text* element in the LoadingOverlay. Use an empty string `""` or `false` to disable the feature.
+
+##### `textAnimation`
+Controls the animation of the *text* element. See [animations](#animations).
+
+##### `textAutoResize`
+Controls the auto resizing of the *text* element. Set to `false` to disable it.
+
+##### `textResizeFactor`
+Controls the proportion between the *text* element and the [size](#size) parameter.
+
+##### `textColor`
+Sets the color of the *text* element. You can use any CSS valid expression, included `rgba()`. Note that if `textClass` is provided then `textColor` is ignored.
+
+##### `textClass`
+Sets a custom CSS class for the *text* element. Note that if `textClass` is provided then `textColor` is ignored.
+
+##### `textOrder`
+Sets the order of the *text* element relative to the others.
+
+##### `progress`
+Displays a *progress bar* element in the LoadingOverlay. Use `false` to disable the feature.
+
+##### `progressAutoResize`
+Controls the auto resizing of the *progress* element. Set to `false` to disable it.
+
+##### `progressResizeFactor`
+Controls the proportion between the *progress* element and the [size](#size) parameter.
+
+##### `progressColor`
+Sets the color of the *progress* element. You can use any CSS valid expression, included `rgba()`. Note that if `progressClass` is provided then `progressColor` is ignored.
+
+##### `progressClass`
+Sets a custom CSS class for the *progress* element. Note that if `progressClass` is provided then `progressColor` is ignored.
+
+##### `progressOrder`
+Sets the order of the *progress* element relative to the others.
+
+##### `progressSpeed`
+Controls the animation speed in **milliseconds** of the progress bar when its value is updated. Set to `0` to disable smooth animation.
+
+##### `progressMin`
+Sets the minimum value for the *progress* element.
+
+##### `progressMax`
+Sets the maximum value for the *progress* element.
 
 ##### `size`
-Size of image in **percentage**. Use `0` or `false` to disable image resizing.
+Size of elements in **percentage** relative to the LoadingOverlay. Note that the computed value will be constrained between `minSize` and `maxSize`. Each element will then be resized according to the computed value and its *Resize Factor*.
+Use `0` or `false` if you wish to fully control the size of the elements via custom classes.
+
+##### `minSize`
+Minimun size of elements in **pixels**. Set it to `0` or `false` for no limit.
+
+##### `maxSize`
+Maximun size of elements in **pixels**. Set it to `0` or `false` for no limit.
+
+##### `direction`
+Sets the arrangement of the elements in the LoadingOverlay. It can be `"column"` or `"row"`.
+
+##### `fade`
+Controls the *fade in* and *fade out* durations. Use `0` or `false` to disable it *(meaning a zero duration)*, an *integer* or *string* to set equal *fade in* and *fade out* times *(ie. `400` or `"fast"` or `"slow"`)* or a two-elements *array* to set respectively *fade in* and *fade out* durations *(ie. `[600, 300]`)*. Boolean value `true` will be treated like default value `[400, 200]`.
+
+##### `resizeInterval`
+Specifies an interval in **milliseconds** to resize and reposition the LoadingOverlay according to its container. This is useful when the container element changes size and/or position while the LoadingOverlay is being shown. Set it to `0` or `false` to disable this feature.
 
 ##### `zIndex`
 Use this to explicitly set a `z-index` for the overlay. This is useful when LoadingOverlay is used with other *z-index intensive* libraries like Bootstrap.
@@ -319,6 +458,7 @@ var progressCustom = new LoadingOverlayProgress({
 
 
 ## History
+*xx March 2018* - [Version 2.0.0](/posts/jquery-loading-overlay-2.0.0/)
 *10 February 2018* - [Version 1.6.0](/posts/jquery-loading-overlay-1.6.0/)
 *29 September 2017* - [Version 1.5.4](/posts/jquery-loading-overlay-1.5.4/)
 *27 January 2017* - [Version 1.5.3](/posts/jquery-loading-overlay-1.5.3/)
