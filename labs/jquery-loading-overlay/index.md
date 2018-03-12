@@ -14,12 +14,13 @@ getit       :
     files   : [dist/loadingoverlay.min.js]
 
 assets      :
-  css   :
-    - jquery-loading-overlay/_assets/font-awesome-4.6.3/font-awesome.scss
+#  css   :
+#    - jquery-loading-overlay/_assets/font-awesome-4.6.3/font-awesome.scss
   js    :
     - js/jquery-3.1.1.min.js
     - jquery-loading-overlay/_assets/loadingoverlay.min.js
     - jquery-loading-overlay/_assets/demo.js
+    - https://use.fontawesome.com/releases/v5.0.8/js/all.js
 ---
 
 
