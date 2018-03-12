@@ -104,7 +104,7 @@ Note that this *action* only works if LoadingOverlay was initialized with some [
 ##### Progress
 **`$[(selector)].LoadingOverlay("progress", value)`**
 Update the progress bar with the `value` parameter. Pass boolean value `false` to hide the progress bar.
-Note that this *action* only works if LoadingOverlay was initialized with [progress](#text) option set to `true`.
+Note that this *action* only works if LoadingOverlay was initialized with [progress](#progress) option set to `true`.
 
 
 ## Options and defaults values
