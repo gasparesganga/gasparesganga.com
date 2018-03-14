@@ -14,10 +14,8 @@ getit       :
     files   : [dist/loadingoverlay.min.js]
 
 assets      :
-#  css   :
-#    - jquery-loading-overlay/_assets/font-awesome-4.6.3/font-awesome.scss
   js    :
-    - js/jquery-3.1.1.min.js
+    - js/jquery-3.3.1.min.js
     - jquery-loading-overlay/_assets/loadingoverlay.min.js
     - jquery-loading-overlay/_assets/demo.js
     - https://use.fontawesome.com/releases/v5.0.8/js/all.js
@@ -44,8 +42,8 @@ assets      :
 - [Methods](#methods)
 - [Actions](#actions)
 - [Options and defaults values](#options-and-defaults-values)
+- [Animations](#animations)
 - [Examples](#examples)
-- [Extras](#extras)
 - [History](#history)
 - [Comments and Ideas](#comments-and-ideas)
 
@@ -290,6 +288,29 @@ Use this to explicitly set a `z-index` for the overlay. This is useful when Load
 
 
 
+## Animations
+LoadingOverlay takes advantage of CSS animations and offers 4 different *built-in* keyframes animations:
+- `rotate_right`
+- `rotate_left`
+- `fadein`
+- `pulse`
+
+Elements animation properties `imageAnimation`, `customAnimation` and `textAnimation` accept a space-separated string XXXXXXXXXXXXXXXXXXXXX
+Note that **both** parameters are optional and they default to `"2000ms rotate_right"` when only one is specified:
+```javascript
+// These are the same:
+"rotate_right 2s"
+"2000ms"
+"rotate_right"
+
+// And so are these:
+"2000ms pulse"
+"pulse"
+```
+If you prefer to rely on your custom animations altogether you can disable then setting `imageAnimation`, `customAnimation` and `textAnimation` to `false`, providing animations through custom CSS classes.
+
+
+
 ## Examples
 
 ### Example 1 - Whole page Overlay 
@@ -317,17 +338,53 @@ $("#element").LoadingOverlay("hide", true);
 {% include_relative _demo.html demo="example2" %}
 
 
-### Example 3 - Use Font Awesome spinner instead of gif image
+### Example 3 - Showcase of different elements
 ```javascript
+// Font Awesome
 $.LoadingOverlay("show", {
     image       : "",
-    fontawesome : "fa fa-spinner fa-spin"
+    fontawesome : "fa fa-cog fa-spin"
+});
+
+// Text
+$.LoadingOverlay("show", {
+    image       : "",
+    text        : "Loading..."
+});
+
+// Progress
+$.LoadingOverlay("show", {
+    image       : "",
+    progress    : true
+});
+var interval  = setInterval(function(){
+    if (count >= 100) {
+        clearInterval(interval);
+        $.LoadingOverlay("hide");
+        return;
+    }
+    count += 10;
+    $.LoadingOverlay("progress", count);
+}, 300);
+
+// Custom
+var customElement = $("<div>", {
+    "css"   : {
+        "border"    : "2px dashed gold",
+        "padding"   : "5px"
+    },
+    "class" : "your-custom-class",
+    "text"  : "Just a test"
+});
+$.LoadingOverlay("show", {
+    image       : "",
+    custom      : customElement
 });
 ```
 {% include_relative _demo.html demo="example3" %}
 
 
-### Example 4 - Show a countdown in a custom element
+### Example 4 - Complete playground
 ```javascript
 var count           = 5;
 var customElement   = $("<div>", {
@@ -356,7 +413,21 @@ var interval = setInterval(function(){
 {% include_relative _demo.html demo="example4" %}
 
 
-### Example 5 - Display a LoadingOverlay during each Ajax request
+### Example 5 - Set Defaults
+```javascript
+$.LoadingOverlaySetup({
+    background      : "rgba(0, 0, 0, 0.5)",
+    image           : "img/custom.svg",
+    imageAnimation  : "1.5s fadein",
+    imageColor      : "#ffcc00"
+});
+
+$.LoadingOverlay("show");
+```
+{% include_relative _demo.html demo="example5" %}
+
+
+### Example 6 - Display a LoadingOverlay during each Ajax request
 You can rely on [.ajaxStart()](https://api.jquery.com/ajaxStart/) and [.ajaxStop()](https://api.jquery.com/ajaxStop/) to show and hide the LoadingOverlay during every Ajax request:
 
 ```javascript
@@ -379,81 +450,6 @@ $(document).ajaxComplete(function(event, jqxhr, settings){
     $.LoadingOverlay("hide");
 });
 // Now try to make a few Ajax calls, a LoadingOverlay will be shown until the last call is completed!
-```
-
-
-### Example 6 - Play with extreme fade durations
-```javascript
-$.LoadingOverlay("show", {
-    fade  : [2000, 1000]
-});
-```
-{% include_relative _demo.html demo="example6" %}
-
-
-### Example 7 - Set Defaults
-```javascript
-$.LoadingOverlaySetup({
-    color           : "rgba(0, 0, 0, 0.4)",
-    image           : "img/custom_loading.gif",
-    maxSize         : "80px",
-    minSize         : "20px",
-    resizeInterval  : 0,
-    size            : "50%"
-});
-```
-
-
-
-## Extras
-With release 1.2 I have started to include some **extras** to accomodate feedback and requests by the users, yet avoiding to bloat the plugin with *non-essential functionalities* that are really case-specific. They can be thought as *plugin modules* of LoadingOverlay that provide additional features.
-
-### Progress
-This *extra* provides basic *progress bar loader* functionality.
-The idea is very similar to the one that led to the `custom` option: providing some feedback to the user while the LoadingOverlay is being shown.
-In some cases, a kind of *progress bar* could fit this need very well. So instead of creating your own progress bar, you can use an instance of `LoadingOverlayProgress`.
-The code is easily customizable for your specific taste, but you can use it right out-of-the-box since some customization options are available and should be enough for most cases:
-
-```javascript
-// Initialize Progress and show LoadingOverlay
-var progress = new LoadingOverlayProgress();
-$.LoadingOverlay("show", {
-    custom  : progress.Init()
-});
-
-// Simulate some action:
-var count     = 0;
-var interval  = setInterval(function(){
-    if (count >= 100) {
-        clearInterval(interval);
-        delete progress;
-        $.LoadingOverlay("hide");
-        return;
-    }
-    count++;
-    progress.Update(count);
-}, 100)
-```
-{% include_relative _demo.html demo="extraprogress1" %}
-
-##### Customization
-You can customize the look of the progress bar and text passing and object with `bar` and `text` properties to the new instance. Any CSS property is accepted.
-You can pass a boolean value `false` to the `text` property to disable it.
-
-```javascript
-var progressCustom = new LoadingOverlayProgress({
-    bar     : {
-        "background"    : red,
-        "top"           : "50px",
-        "height"        : "30px",
-        "border-radius" : "15px"
-    },
-    text    : {
-        "color"         : red,
-        "font-family"   : "monospace",
-        "top"           : "25px"
-    }
-});
 ```
 
 
