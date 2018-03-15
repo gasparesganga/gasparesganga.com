@@ -104,7 +104,7 @@ $(function(){
             text        : "Loading..."
         });
         setTimeout(function(){
-            $.LoadingOverlay("text", "Yep, still loading...);
+            $.LoadingOverlay("text", "Yep, still loading...");
         }, 3000);
         setHideTimeout(5000);
     });
@@ -151,39 +151,36 @@ $(function(){
             imageOrder              : $("#example4_imageOrder").val(),
             
             fontawesome             : $("#example4_fontawesome").val(),
-            /*fontawesomeAutoResize   : true,
-            fontawesomeResizeFactor : 1,
-            fontawesomeColor        : "#202020",
-            fontawesomeOrder        : 2,
-            // Custom
-            custom                  : "",
-            customAnimation         : false,
-            customAutoResize        : true,
-            customResizeFactor      : 1,
-            customOrder             : 3,
-            // Text
-            text                    : "",
-            textAnimation           : false,
-            textAutoResize          : true,
-            textResizeFactor        : 0.5,
-            textColor               : "#202020",
-            textClass               : "",
-            textOrder               : 4,
-            // Progress
-            progress                : false,
-            progressAutoResize      : true,
-            progressResizeFactor    : 0.25,
-            progressColor           : "#a0a0a0",
-            progressClass           : "",
-            progressOrder           : 5,
-            progressSpeed           : 200,
-            progressMin             : 0,
-            progressMax             : 100,*/
-            // Sizing
+            fontawesomeAutoResize   : true,
+            //fontawesomeResizeFactor : 1,
+            //fontawesomeColor        : "#202020",
+            //fontawesomeOrder        : 2,
+            //
+            //custom                  : "",
+            //customAnimation         : false,
+            //customAutoResize        : true,
+            //customResizeFactor      : 1,
+            //customOrder             : 3,
+            //
+            //text                    : "",
+            //textAnimation           : false,
+            //textAutoResize          : true,
+            //textResizeFactor        : 0.5,
+            //textColor               : "#202020",
+            //textOrder               : 4,
+            //
+            //progress                : false,
+            //progressAutoResize      : true,
+            //progressResizeFactor    : 0.25,
+            //progressColor           : "#a0a0a0",
+            //progressClass           : "",
+            //progressOrder           : 5,
+            //progressSpeed           : 200,
+            //progressMin             : 0,
+            //progressMax             : 100,
             size                    : $("#example4_size").val(),
             maxSize                 : $("#example4_maxSize").val(),
             minSize                 : $("#example4_minSize").val(),
-            // Misc
             direction               : $("#example4_direction").val(),
             fade                    : [$("#example4_fade1").val(), $("#example4_fade2").val()],
             resizeInterval          : $("#example4_resizeInterval").val(),

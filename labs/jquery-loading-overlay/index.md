@@ -356,7 +356,7 @@ $.LoadingOverlay("show", {
     text        : "Loading..."
 });
 setTimeout(function(){
-    $.LoadingOverlay("text", "Yep, still loading...);
+    $.LoadingOverlay("text", "Yep, still loading...");
 }, 3000);
 
 // Progress
