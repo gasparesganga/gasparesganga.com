@@ -103,7 +103,10 @@ $(function(){
             image       : "",
             text        : "Loading..."
         });
-        setHideTimeout();
+        setTimeout(function(){
+            $.LoadingOverlay("text", "Yep, still loading...);
+        }, 3000);
+        setHideTimeout(5000);
     });
     
     $("#example3c").on("click", function(event){
@@ -138,22 +141,55 @@ $(function(){
         Example 4
     ***************************************************************************/
     $("#example4").on("click", function(event){
-        var count           = 5;
-        var customElement   = $("<div>", {
-            id      : "countdown",
-            css     : {
-                "font-size" : "50px"
-            },
-            text    : count
-        });
-        
         $.LoadingOverlay("show", {
-            image   : "",
-            custom  : customElement
+            background              : $("#example4_background").val(),
+            image                   : $("#example4_image").val(),
+            imageAnimation          : $("#example4_imageAnimationd").val(),
+            imageAutoResize         : $("#example4_imageAutoResize").prop("checked"),
+            imageResizeFactor       : $("#example4_imageResizeFactord").val(),
+            imageColor              : $("#example4_imageColor").val(),
+            imageOrder              : $("#example4_imageOrder").val(),
+            
+            fontawesome             : $("#example4_fontawesome").val(),
+            /*fontawesomeAutoResize   : true,
+            fontawesomeResizeFactor : 1,
+            fontawesomeColor        : "#202020",
+            fontawesomeOrder        : 2,
+            // Custom
+            custom                  : "",
+            customAnimation         : false,
+            customAutoResize        : true,
+            customResizeFactor      : 1,
+            customOrder             : 3,
+            // Text
+            text                    : "",
+            textAnimation           : false,
+            textAutoResize          : true,
+            textResizeFactor        : 0.5,
+            textColor               : "#202020",
+            textClass               : "",
+            textOrder               : 4,
+            // Progress
+            progress                : false,
+            progressAutoResize      : true,
+            progressResizeFactor    : 0.25,
+            progressColor           : "#a0a0a0",
+            progressClass           : "",
+            progressOrder           : 5,
+            progressSpeed           : 200,
+            progressMin             : 0,
+            progressMax             : 100,*/
+            // Sizing
+            size                    : $("#example4_size").val(),
+            maxSize                 : $("#example4_maxSize").val(),
+            minSize                 : $("#example4_minSize").val(),
+            // Misc
+            direction               : $("#example4_direction").val(),
+            fade                    : [$("#example4_fade1").val(), $("#example4_fade2").val()],
+            resizeInterval          : $("#example4_resizeInterval").val(),
+            zIndex                  : $("#example4_zIndex").val(),
         });
-        
-        
-        setProgressInterval();
+        setHideTimeout(parseInt($("#example4_timeout").val(), 10));
     });
     
     
@@ -164,7 +200,7 @@ $(function(){
     $("#example5").on("click", function(event){
         $.LoadingOverlay("show", {
             background      : "rgba(0, 0, 0, 0.5)",
-            image           : "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MjAgNDIwIj48cGF0aCBkPSJNMjEwLjM4OSwwLjAwMUM5NC4zODEsMC4wMDEsMCw5NC4zODIsMCwyMTAuMzg5YzAsMTE2LjAwNiw5NC4zODEsMjEwLjM4NywyMTAuMzg5LDIxMC4zODcgczIxMC4zODgtOTQuMzgxLDIxMC4zODgtMjEwLjM4N0M0MjAuNzc3LDk0LjM4MiwzMjYuMzk2LDAuMDAxLDIxMC4zODksMC4wMDF6IE0yMTAuMzg5LDM4Ni41IGMtOTcuMTAyLDAtMTc2LjEwOS03OS4wMTItMTc2LjEwOS0xNzYuMTExYzAtOTcuMTAxLDc5LjAwNy0xNzYuMTA5LDE3Ni4xMDktMTc2LjEwOWM5Ny4xMDEsMCwxNzYuMTA5LDc5LjAwOCwxNzYuMTA5LDE3Ni4xMDkgQzM4Ni40OTgsMzA3LjQ4OSwzMDcuNDksMzg2LjUsMjEwLjM4OSwzODYuNXogTTMxOS4wNjEsMTU2LjI3NWMzLjUxNiw1LjA5NCwyLjI0LDEyLjA3Mi0yLjg1NCwxNS41OWwtMTAxLjU1NCw3MC4xNjMgYy0xLjkwNiwxLjMxMi00LjEzNiwxLjk4LTYuMzcyLDEuOThjLTEuNzgxLDAtMy41Ny0wLjQyNy01LjIwNy0xLjI4Yy0zLjY4NC0xLjk0Ny02LTUuNzYyLTYtOS45MjZWODIuNjM5IGMwLTYuMTg2LDUuMDIxLTExLjIwNywxMS4yMDctMTEuMjA3YzYuMTg4LDAsMTEuMjA2LDUuMDIxLDExLjIwNiwxMS4yMDd2MTI4LjhsODMuOTc5LTU4LjAyIEMzMDguNTY4LDE0OS45MTcsMzE1LjU1OSwxNTEuMTk1LDMxOS4wNjEsMTU2LjI3NXoiLz48L3N2Zz4=",
+            image           : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 420 420'><path d='M210.389,0.001C94.381,0.001,0,94.382,0,210.389c0,116.006,94.381,210.387,210.389,210.387 s210.388-94.381,210.388-210.387C420.777,94.382,326.396,0.001,210.389,0.001z M210.389,386.5 c-97.102,0-176.109-79.012-176.109-176.111c0-97.101,79.007-176.109,176.109-176.109c97.101,0,176.109,79.008,176.109,176.109 C386.498,307.489,307.49,386.5,210.389,386.5z M319.061,156.275c3.516,5.094,2.24,12.072-2.854,15.59l-101.554,70.163 c-1.906,1.312-4.136,1.98-6.372,1.98c-1.781,0-3.57-0.427-5.207-1.28c-3.684-1.947-6-5.762-6-9.926V82.639 c0-6.186,5.021-11.207,11.207-11.207c6.188,0,11.206,5.021,11.206,11.207v128.8l83.979-58.02 C308.568,149.917,315.559,151.195,319.061,156.275z'/></svg>",
             imageAnimation  : "1.5s fadein",
             imageColor      : "#ffcc00"
         });

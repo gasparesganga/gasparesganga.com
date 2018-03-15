@@ -8,10 +8,11 @@
 <button id="example1">Whole page Overlay</button>
 
 
-{% when "example2" %}
-<button id="example2a">Single element Overlay</button>
-<button id="example2b">Test auto resizing</button>
-
+{% when "example2" %}<
+<div style="">
+    <button id="example2a">Single element Overlay</button>
+    <button id="example2b">Test auto resizing</button>
+</div>
 
 {% when "example3" %}
 <button id="example3a">Font Awesome</button>
@@ -21,7 +22,37 @@
 
 
 {% when "example4" %}
-<button id="example4">Show a countdown in a custom element</button>
+<div>background : <input id="example4_background" type="text" value="rgba(255, 255, 255, 0.8)"></div>
+
+<div>image              : <input id="example4_image" type="text" placeholder="Inline SVG, URL, base64-encoded image" value='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><ellipse rx="80" ry="80" cx="500" cy="90"/><ellipse rx="80" ry="80" cx="500" cy="910"/><ellipse rx="80" ry="80" cx="90" cy="500"/><ellipse rx="80" ry="80" cx="910" cy="500"/><ellipse rx="80" ry="80" cx="212" cy="212"/><ellipse rx="80" ry="80" cx="788" cy="212"/><ellipse rx="80" ry="80" cx="212" cy="788"/><ellipse rx="80" ry="80" cx="788" cy="788"/></svg>'></div>
+<div>imageAnimation     : <input id="example4_imageAnimation" type="checkbox" checked></div>
+<div>imageAutoResize    : <input id="example4_imageAutoResize" type="text" value=""></div>
+<div>imageResizeFactor  : <input id="example4_imageResizeFactor" type="text" value="1"></div>
+<div>imageColor         : <input id="example4_imageColor" type="text" value="#202020"></div>
+<div>imageOrder         : <input id="example4_imageOrder" type="text" value="1"></div>
+
+<div>fontawesome : <input id="example4_fontawesome" type="text" value=""></div>
+
+
+
+<div>size : <input id="example4_size" type="text" value="50"></div>
+<div>maxSize : <input id="example4_maxSize" type="text" value="120"></div>
+<div>minSize : <input id="example4_minSize" type="text" value="20"></div>
+
+<div>
+    direction : 
+    <select id="example4_direction">
+        <option value="column" selected>column</option>
+        <option value="row">row</option>
+    </select>
+</div>
+<div>fade : <input id="example4_fade1" type="text" value="400"> <input id="example4_fade2" type="text" value="200"></div>
+<div>resizeInterval : <input id="example4_resizeInterval" type="text" value="50"></div>
+<div>zIndex : <input id="example4_zIndex" type="text" value="2147483647"></div>
+
+<div>Close After        : <input id="example4_timeout" type="text" value="5000"> ms</div>
+
+<button id="example4">Show LoadingOverlay</button>
 
 
 {% when "example5" %}
