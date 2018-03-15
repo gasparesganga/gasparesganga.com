@@ -9,5 +9,5 @@ else
     export DEPLOY_PATH=test
 fi
 
-bundle exec jekyll build
+bundle exec jekyll build -V
 lftp -e "mirror -R -e _site $DEPLOY_PATH; quit" -u $DEPLOY_USER,$DEPLOY_PASS sftp://$DEPLOY_HOST
