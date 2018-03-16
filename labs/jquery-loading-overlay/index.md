@@ -14,6 +14,8 @@ getit       :
     files   : [dist/loadingoverlay.min.js]
 
 assets      :
+  css   :
+    - jquery-loading-overlay/_assets/demo.css
   js    :
     - js/jquery-3.3.1.min.js
     - jquery-loading-overlay/_assets/loadingoverlay.min.js
