@@ -40,6 +40,10 @@ The single most important change is related to the `color` option which has been
 These changes shouldn't break many existing projects using LoadingOverlay, since most of them are likely to be using the default settings. 
 
 
+### Wait, wait, wait... I see a v2.0.1 already
+Yep, *they see me releasin', they hatin'*... A couple of bugfixes were necessary for Chrome and Edge, read the details [here](/posts/jquery-loading-overlay-2.0.1/).
+
+
 ## Download and documentation
 
 Go to the Lab page: [LoadingOverlay](/labs/jquery-loading-overlay/)
