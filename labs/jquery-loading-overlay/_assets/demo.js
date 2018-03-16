@@ -7,7 +7,9 @@ $(function(){
     }
     
     function setProgressInterval(delay){
-        var interval  = setInterval(function(){
+        delay = delay || 3000;
+        var count    = 0
+        var interval = setInterval(function(){
             if (count >= 100) {
                 clearInterval(interval);
                 $.LoadingOverlay("hide");
@@ -15,7 +17,7 @@ $(function(){
             }
             count += 10;
             $.LoadingOverlay("progress", count);
-        }, 300);
+        }, delay / 10);
     }
     
     
@@ -105,7 +107,7 @@ $(function(){
         });
         setTimeout(function(){
             $.LoadingOverlay("text", "Yep, still loading...");
-        }, 3000);
+        }, 2500);
         setHideTimeout(5000);
     });
     
@@ -122,11 +124,13 @@ $(function(){
         // Custom
         var customElement = $("<div>", {
             "css"   : {
-                "border"    : "2px dashed gold",
-                "padding"   : "5px"
+                "border"        : "4px dashed gold",
+                "font-size"     : "40px",
+                "text-align"    : "center",
+                "padding"       : "10px"
             },
             "class" : "your-custom-class",
-            "text"  : "Just a test"
+            "text"  : "Custom!"
         });
         $.LoadingOverlay("show", {
             image       : "",
@@ -140,53 +144,70 @@ $(function(){
     /***************************************************************************
         Example 4
     ***************************************************************************/
+    // Boolean
+    $.each(["true", "false"], function(i, value){
+        $("<option>", {
+            "text"  : value,
+            "value" : value
+        }).appendTo(".example4_boolean");
+    });
+    // Animations
+    $("<option>", {
+        "text"  : "",
+        "value" : ""
+    }).appendTo(".example4_animations");
+    $.each(["rotate_right", "rotate_left", "fadein", "pulse"], function(i, value){
+        $("<option>", {
+            "text"  : value,
+            "value" : value
+        }).appendTo(".example4_animations");
+    });
+    // Select default values
+    $(".example4_boolean, .example4_animations").each(function(){
+        var $this = $(this);
+        $this.val($this.data("value") + "");
+    });
+    
     $("#example4").on("click", function(event){
         $.LoadingOverlay("show", {
             background              : $("#example4_background").val(),
+            
             image                   : $("#example4_image").val(),
-            imageAnimation          : $("#example4_imageAnimationd").val(),
-            imageAutoResize         : $("#example4_imageAutoResize").prop("checked"),
-            imageResizeFactor       : $("#example4_imageResizeFactord").val(),
+            imageAnimation          : $("#example4_imageAnimation1").val() + " " + $("#example4_imageAnimation2").val(),
+            imageAutoResize         : $("#example4_imageAutoResize").val() === "true",
+            imageResizeFactor       : $("#example4_imageResizeFactor").val(),
             imageColor              : $("#example4_imageColor").val(),
             imageOrder              : $("#example4_imageOrder").val(),
             
             fontawesome             : $("#example4_fontawesome").val(),
-            fontawesomeAutoResize   : true,
-            //fontawesomeResizeFactor : 1,
-            //fontawesomeColor        : "#202020",
-            //fontawesomeOrder        : 2,
-            //
-            //custom                  : "",
-            //customAnimation         : false,
-            //customAutoResize        : true,
-            //customResizeFactor      : 1,
-            //customOrder             : 3,
-            //
-            //text                    : "",
-            //textAnimation           : false,
-            //textAutoResize          : true,
-            //textResizeFactor        : 0.5,
-            //textColor               : "#202020",
-            //textOrder               : 4,
-            //
-            //progress                : false,
-            //progressAutoResize      : true,
-            //progressResizeFactor    : 0.25,
-            //progressColor           : "#a0a0a0",
-            //progressClass           : "",
-            //progressOrder           : 5,
-            //progressSpeed           : 200,
-            //progressMin             : 0,
-            //progressMax             : 100,
+            fontawesomeAnimation    : $("#example4_fontawesomeAnimation1").val() + " " + $("#example4_fontawesomeAnimation2").val(),
+            fontawesomeAutoResize   : $("#example4_fontawesomeAutoResize").val() === "true",
+            fontawesomeResizeFactor : $("#example4_fontawesomeResizeFactor").val(),
+            fontawesomeColor        : $("#example4_fontawesomeColor").val(),
+            fontawesomeOrder        : $("#example4_fontawesomeOrder").val(),
+            
+            text                    : $("#example4_text").val(),
+            textAnimation           : $("#example4_textAnimation1").val() + " " + $("#example4_textAnimation2").val(),
+            textAutoResize          : $("#example4_textAutoResize").val() === "true",
+            textResizeFactor        : $("#example4_textResizeFactor").val(),
+            textColor               : $("#example4_textColor").val(),
+            textOrder               : $("#example4_textOrder").val(),
+            
+            progress                : $("#example4_progress").val() === "true",
+            progressAutoResize      : $("#example4_progressAutoResize").val() === "true",
+            progressResizeFactor    : $("#example4_progressResizeFactor").val(),
+            progressColor           : $("#example4_progressColor").val(),
+            progressOrder           : $("#example4_progressOrder").val(),
+            progressSpeed           : $("#example4_progressSpeed").val(),
+            
             size                    : $("#example4_size").val(),
             maxSize                 : $("#example4_maxSize").val(),
             minSize                 : $("#example4_minSize").val(),
             direction               : $("#example4_direction").val(),
             fade                    : [$("#example4_fade1").val(), $("#example4_fade2").val()],
-            resizeInterval          : $("#example4_resizeInterval").val(),
-            zIndex                  : $("#example4_zIndex").val(),
+            resizeInterval          : $("#example4_resizeInterval").val()
         });
-        setHideTimeout(parseInt($("#example4_timeout").val(), 10));
+        setProgressInterval(parseInt($("#example4_timeout").val(), 10));
     });
     
     

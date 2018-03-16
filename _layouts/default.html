@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic">
         {% asset css/style.scss %}
         {% for filename in page.assets.css %}
-            {%- assign prot = filename | slice: 0, 4 -%}
+            {% assign prot = filename | slice: 0, 4 %}
             {%- if prot == 'http' -%}
                 <link rel="stylesheet" href="{{ filename }}">
             {%- else -%}
@@ -71,7 +71,7 @@
         
         {% asset js/main.js %}
         {% for filename in page.assets.js %}
-            {%- assign prot = filename | slice: 0, 4 -%}
+            {% assign prot = filename | slice: 0, 4 %}
             {%- if prot == 'http' -%}
                 <script type="text/javascript" src="{{ filename }}"></script>
             {%- else -%}

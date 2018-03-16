@@ -22,7 +22,7 @@ Version 2 is finally here! It includes some tiny breaking changes, so it is a go
 - A bunch of new options:
   * `background`, `backgroundClass`
   * `imageAnimation`, `imageAutoResize`, `imageResizeFactor`, `imageColor`, `imageClass`, `imageOrder`
-  * `fontawesomeAutoResize`, `fontawesomeResizeFactor`, `fontawesomeColor`, `fontawesomeOrder`
+  * `fontawesomeAnimation`, `fontawesomeAutoResize`, `fontawesomeResizeFactor`, `fontawesomeColor`, `fontawesomeOrder`
   * `customAnimation`, `customAutoResize`, `customResizeFactor`, `customOrder`
   * `text`, `textAnimation`, `textAutoResize`, `textResizeFactor`, `textColor`, `textClass`, `textOrder`
   * `progress`, `progressAutoResize`, `progressResizeFactor`, `progressColor`, `progressClass`, `progressOrder`, `progressSpeed`, `progressMin`, `progressMax`

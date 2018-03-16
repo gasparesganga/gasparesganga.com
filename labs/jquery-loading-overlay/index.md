@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery LoadingOverlay
 description : A flexible loading overlay jQuery plugin
-updated     : 2018-03-15
+updated     : 2018-03-16
 getit       :
   github        : gasparesganga/jquery-loading-overlay
   download      : true
@@ -18,7 +18,7 @@ assets      :
     - js/jquery-3.3.1.min.js
     - jquery-loading-overlay/_assets/loadingoverlay.min.js
     - jquery-loading-overlay/_assets/demo.js
-    - https://use.fontawesome.com/releases/v5.0.8/js/all.js
+    - "https://use.fontawesome.com/releases/v5.0.8/js/all.js"
 ---
 
 
@@ -26,7 +26,7 @@ assets      :
 {% capture expire_date %}{{'2018-04-30' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>15 March 2018 :</b> Version 2.0.0 released. See <a href="/posts/jquery-loading-overlay-2.0.0/">release notes</a> for migration guide and breaking changes!
+    <b>16 March 2018 :</b> Version 2.0.0 released. See <a href="/posts/jquery-loading-overlay-2.0.0/">release notes</a> for migration guide and breaking changes!
 </div>
 {% endif %}
 
@@ -120,6 +120,7 @@ imageClass              : ""                                // String
 imageOrder              : 1                                 // Integer
 // Font Awesome
 fontawesome             : ""                                // String
+fontawesomeAnimation    : false                             // String/Boolean
 fontawesomeAutoResize   : true                              // Boolean
 fontawesomeResizeFactor : 1                                 // Float
 fontawesomeColor        : "#202020"                         // String
@@ -166,7 +167,7 @@ Overlay's CSS background-color property. Use `rgba()` to set the opacity. Keep i
 Sets a custom CSS class for the background. Keep in mind that if `backgroundClass` is provided then `background` option is ignored.
 
 ##### `image`
-*URL* or inline representation of the image to show. It supports both raster images and vectorial SVGs. You can pass an inline SVG, a path to a file or even use a *base64-encoded* image or SVG (ie. `"data:image/png;base64,..."`). Set to an empty string `""` or `false` to show no image.
+*URL* or inline representation of the image to show. It supports both raster images and vectorial SVGs. You can pass an inline SVG, a path to a file or even use a *base64-encoded* image or SVG (e.g. `"data:image/png;base64,..."`). Set to an empty string `""` or `false` to show no image.
 
 ##### `imageAnimation`
 Controls the animation of the *image* element. See [animations](#animations).
@@ -187,7 +188,10 @@ Sets a custom CSS class for the *image* element. Note that if `imageClass` is pr
 Sets the order of the *image* element relative to the others.
 
 ##### `fontawesome`
-**Class(es)** of the [Font Awesome](https://fortawesome.github.io/Font-Awesome/) icon to use. Note that you must include Font Awesome in your project if you wish to use this feature. Use an empty string `""` or `false` to disable the feature.
+**Class(es)** of the [Font Awesome](https://fontawesome.com) icon to use. Note that you must include Font Awesome in your project if you wish to use this feature. Use an empty string `""` or `false` to disable the feature.
+
+##### `fontawesomeAnimation`
+You can rely on Font Awesome native classes to animate the icon *(e.g. `fa-spin` or `fa-pulse`)* and pass them directly to `fontawesome` option, but of course you can also enjoy the full power of LoadingOverlay animations as with any other element type. See [animations](#animations) for details.
 
 ##### `fontawesomeAutoResize`
 Controls the auto resizing of the *fontawesome* element. Set to `false` to disable it.
@@ -265,8 +269,8 @@ Sets the minimum value for the *progress* element.
 Sets the maximum value for the *progress* element.
 
 ##### `size`
-Size of elements expressed in **percentage** relative to the LoadingOverlay size. Note that the computed value will be constrained between `minSize` and `maxSize`. Each element will then be resized according to the computed value and its *Resize Factor*.
-You can specify a fixed size expressed in any CSS unit passing a *string* (options `minSize` and `maxSize` will be ignored in this case).
+Size of elements expressed in **percentage** relative to the LoadingOverlay size. Note that the computed value will be constrained between `minSize` and `maxSize`. You can specify a fixed size expressed in any CSS unit passing a *string* (options `minSize` and `maxSize` will be ignored in this case).
+Each element will then be resized according to the computed value and its *Resize Factor*.
 Use `0` or `false` if you wish to fully control the size of the elements via custom classes.
 
 ##### `minSize`
@@ -279,7 +283,7 @@ Maximun size of elements in **pixels**. Set it to `0` or `false` for no limit.
 Sets the arrangement of the elements in the LoadingOverlay. It can be `"column"` or `"row"`.
 
 ##### `fade`
-Controls the *fade in* and *fade out* durations. Use `0` or `false` to disable it *(meaning a zero duration)*, an *integer* or *string* to set equal *fade in* and *fade out* times *(ie. `400` or `"fast"` or `"slow"`)* or a two-elements *array* to set respectively *fade in* and *fade out* durations *(ie. `[600, 300]`)*. Boolean value `true` will be treated like default value `[400, 200]`.
+Controls the *fade in* and *fade out* durations, expressed in **milliseconds**. Use `0` or `false` to disable it *(meaning a zero duration)*, an *integer* or *string* to set equal *fade in* and *fade out* times or a two-elements *array* to set respectively *fade in* and *fade out* durations *(e.g. `[600, 300]`)*. Boolean value `true` will be treated like default value `[400, 200]`.
 
 ##### `resizeInterval`
 Specifies an interval in **milliseconds** to resize and reposition the LoadingOverlay according to its container. This is useful when the container element changes size and/or position while the LoadingOverlay is being shown. Set it to `0` or `false` to disable this feature.
@@ -296,7 +300,7 @@ LoadingOverlay takes advantage of CSS animations and offers 4 different *built-i
 - **`fadein`**
 - **`pulse`**
 
-Elements animation properties `imageAnimation`, `customAnimation` and `textAnimation` accept a space-separated string with **name** and **duration**.
+Elements animation properties `imageAnimation`, `fontawesomeAnimation`, `customAnimation` and `textAnimation` accept a space-separated string with **name** and **duration**.
 Note that **both** parameters are optional and they default to **`"rotate_right 2000ms "`** when only one is specified:
 ```javascript
 // These are the same:
@@ -349,7 +353,6 @@ $.LoadingOverlay("show", {
     fontawesome : "fa fa-cog fa-spin"
 });
 
-
 // Text
 $.LoadingOverlay("show", {
     image       : "",
@@ -357,13 +360,14 @@ $.LoadingOverlay("show", {
 });
 setTimeout(function(){
     $.LoadingOverlay("text", "Yep, still loading...");
-}, 3000);
+}, 2500);
 
 // Progress
 $.LoadingOverlay("show", {
     image       : "",
     progress    : true
 });
+var count     = 0;
 var interval  = setInterval(function(){
     if (count >= 100) {
         clearInterval(interval);
@@ -374,15 +378,16 @@ var interval  = setInterval(function(){
     $.LoadingOverlay("progress", count);
 }, 300);
 
-
 // Custom
 var customElement = $("<div>", {
     "css"   : {
-        "border"    : "2px dashed gold",
-        "padding"   : "5px"
+        "border"        : "4px dashed gold",
+        "font-size"     : "40px",
+        "text-align"    : "center",
+        "padding"       : "10px"
     },
     "class" : "your-custom-class",
-    "text"  : "Just a test"
+    "text"  : "Custom!"
 });
 $.LoadingOverlay("show", {
     image       : "",
@@ -393,9 +398,6 @@ $.LoadingOverlay("show", {
 
 
 ### Example 4 - Complete playground
-```javascript
-
-```
 {% include_relative _demo.html demo="example4" %}
 
 
@@ -441,7 +443,7 @@ $(document).ajaxComplete(function(event, jqxhr, settings){
 
 
 ## History
-*15 March 2018* - [Version 2.0.0](/posts/jquery-loading-overlay-2.0.0/)
+*16 March 2018* - [Version 2.0.0](/posts/jquery-loading-overlay-2.0.0/)
 *10 February 2018* - [Version 1.6.0](/posts/jquery-loading-overlay-1.6.0/)
 *29 September 2017* - [Version 1.5.4](/posts/jquery-loading-overlay-1.5.4/)
 *27 January 2017* - [Version 1.5.3](/posts/jquery-loading-overlay-1.5.3/)
