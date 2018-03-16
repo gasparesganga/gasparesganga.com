@@ -10,7 +10,7 @@ getit       :
   bower         : gasparesganga-jquery-loading-overlay
   cdn           :
     name    : gasparesganga-jquery-loading-overlay
-    version : 2.0.0
+    version : 2.0.1
     files   : [dist/loadingoverlay.min.js]
 
 assets      :
@@ -445,6 +445,7 @@ $(document).ajaxComplete(function(event, jqxhr, settings){
 
 
 ## History
+*16 March 2018* - [Version 2.0.1](/posts/jquery-loading-overlay-2.0.1/)
 *16 March 2018* - [Version 2.0.0](/posts/jquery-loading-overlay-2.0.0/)
 *10 February 2018* - [Version 1.6.0](/posts/jquery-loading-overlay-1.6.0/)
 *29 September 2017* - [Version 1.5.4](/posts/jquery-loading-overlay-1.5.4/)
