@@ -1,0 +1,63 @@
+.example_buttons button {
+    display : inline;
+}
+
+
+#example4_inputs > div {
+    display     : block;
+    margin-top  : 1.5rem;
+}
+    #example4_inputs > div > div {
+        display     : block;
+        margin      : 0.5rem 0;
+        font-family : monospace;
+        font-size   : 0.82rem;
+    }
+
+#example4_inputs label {
+    display : inline-block;
+    width   : 11rem;
+}
+#example4_inputs span {
+    display : inline;
+}
+#example4_inputs input[type=text],
+#example4_inputs select {
+    display     : inline-block;
+    box-sizing  : border-box;
+    text-align  : left;
+    font-family : monospace;
+    font-size   : 0.82rem;
+}
+
+
+.example4_size_s {
+    width   : 3rem;
+}
+.example4_size_m {
+    width   : 4rem;
+}
+.example4_size_l {
+    width   : 7.5rem;
+}
+.example4_size_xl {
+    width   : 12rem;
+}
+
+.example4_animations {
+    margin-left : 0.5rem;
+}
+
+@media (max-width: 450px) {
+    #example4_inputs label {
+        display : inline;
+        width   : auto;
+    }
+}
+@media (max-width: 400px) {
+    #example4_inputs span {
+        display : block;
+        width   : 100%;
+        margin-bottom   : 0.7rem;
+    }
+}
