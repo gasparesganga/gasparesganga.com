@@ -120,20 +120,20 @@ imageClass              : ""                                // String
 imageOrder              : 1                                 // Integer
 // Font Awesome
 fontawesome             : ""                                // String
-fontawesomeAnimation    : false                             // String/Boolean
+fontawesomeAnimation    : ""                                // String/Boolean
 fontawesomeAutoResize   : true                              // Boolean
 fontawesomeResizeFactor : 1                                 // Float
 fontawesomeColor        : "#202020"                         // String
 fontawesomeOrder        : 2                                 // Integer
 // Custom
 custom                  : ""                                // String/DOM Element/jQuery Object
-customAnimation         : false                             // String/Boolean
+customAnimation         : ""                                // String/Boolean
 customAutoResize        : true                              // Boolean
 customResizeFactor      : 1                                 // Float
 customOrder             : 3                                 // Integer
 // Text
 text                    : ""                                // String
-textAnimation           : false                             // String
+textAnimation           : ""                                // String
 textAutoResize          : true                              // Boolean
 textResizeFactor        : 0.5                               // Float
 textColor               : "#202020"                         // String

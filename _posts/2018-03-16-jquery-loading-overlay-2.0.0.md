@@ -12,13 +12,16 @@ Version 2 is finally here! It includes some tiny breaking changes, so it is a go
 ### What's new in version 2.0.0
 - SVG images support
 - CSS3 animations support
-- Bundled 4 different keyframes animations: `rotate_right`, `rotate_left`, `fadein` and `pulse`
+- 4 different built-in keyframes animations: `rotate_right`, `rotate_left`, `fadein` and `pulse`
 - Text element support
-- Progress element support *(basically what Extra Progress was doing in v1.x)*
+- Progress element support *(basically what Extra Progress was doing in v1)*
+- New *actions* `text` and `progress`
 - `color` option is now named `background`
 - Default image is a modern, lightweight and customizable SVG instead of the old fashioned GIF
 - Default `maxSize` increased to `120px`
 - Fixed size support *(don't fancy dynamic scaling? Here you go!)*
+- Javascript sourcemaps
+- New folder structure, with source files under `src/` and production files under `dist/`
 - A bunch of new options:
   * `background`, `backgroundClass`
   * `imageAnimation`, `imageAutoResize`, `imageResizeFactor`, `imageColor`, `imageClass`, `imageOrder`
@@ -32,7 +35,7 @@ All these new options might seem overwhelming at first, but if you look closely 
 The code size has grown three times but performances have increased, taking full advantage of CSS3 animations *(let's put those graphic accelerator cards to good use!)* and SVG images.
 
 
-### Breaking changes amd important notes on upgrading from v1.x.x
+### Breaking changes amd important notes on upgrading from v1
 The single most important change is related to the `color` option which has been replaced by `background`, while `imagePosition` has been removed entirely.
 These changes shouldn't break many existing projects using LoadingOverlay, since most of them are likely to be using the default settings. 
 
