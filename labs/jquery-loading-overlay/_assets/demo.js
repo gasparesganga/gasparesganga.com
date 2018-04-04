@@ -176,7 +176,7 @@ $(function(){
             imageAnimation          : $("#example4_imageAnimation1").val() + " " + $("#example4_imageAnimation2").val(),
             imageAutoResize         : $("#example4_imageAutoResize").val() === "true",
             imageResizeFactor       : $("#example4_imageResizeFactor").val(),
-            imageColor              : $("#example4_imageColor").val(),
+            imageColor              : $("#example4_imageColor1").val() + " " + $("#example4_imageColor2").val()
             imageOrder              : $("#example4_imageOrder").val(),
             
             fontawesome             : $("#example4_fontawesome").val(),
@@ -198,6 +198,7 @@ $(function(){
             progressResizeFactor    : $("#example4_progressResizeFactor").val(),
             progressColor           : $("#example4_progressColor").val(),
             progressOrder           : $("#example4_progressOrder").val(),
+            progressFixedPosition   : $("#example4_progressFixedPosition").val(),
             progressSpeed           : $("#example4_progressSpeed").val(),
             
             size                    : $("#example4_size").val(),
