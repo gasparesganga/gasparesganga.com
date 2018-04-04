@@ -35,9 +35,9 @@ assets      :
 </div>
 {% endif %}
 
-<div class="alert">
+<!--<div class="alert">
     <b>Do you like this plugin? Great! Then why don't you try my other <a href="/labs/">jQuery plugins</a>?</b>
-</div>
+</div>-->
 
 
 ## Contents
@@ -101,7 +101,7 @@ Hides the LoadingOverlay or decreases the *counter* if it's higher than `1`. You
 
 ##### Resize
 **`$[(selector)].LoadingOverlay("resize")`**
-Force LoadingOverlay resizing. This is especially useful when you decide to disable the [auto resize](#resizeInterval) feature and you want to manually control it when you page changes.
+Force LoadingOverlay resizing. This is especially useful when you decide to disable the [auto resize](#resizeinterval) feature and you want to manually control it when you page changes.
 
 ##### Text
 **`$[(selector)].LoadingOverlay("text", value)`**
@@ -189,7 +189,7 @@ Controls the auto resizing of the *image* element. Set to `false` to disable it.
 Controls the proportion between the *image* element and the [size](#size) parameter.
 
 ##### `imageColor`
-Image *fill* and *stroke* color. This setting has effect only on *SVG* images and will be useless with raster images *(JPG, PNG, GIF, etc.)*. Use a single string value to specify only the *fill* color, or a two-elements array to set *fill* and *stroke* respectively. You can use any CSS valid expression, included `rgba()`. Use an empty string `""`, empty array `[]` or `false` to leave them unspecified. Note that if `imageClass` is provided then `imageColor` is ignored.
+Image *fill* and *stroke* colors. This setting has effect only on *SVG* images and will be useless with raster images *(JPG, PNG, GIF, etc.)*. Use a single string value to specify only the *fill* color, or a two-elements array to set *fill* and *stroke* respectively. You can use any CSS valid expression, included `rgba()`. Use an empty string `""`, empty array `[]` or `false` to leave them unspecified. Note that if `imageClass` is provided then `imageColor` is ignored.
 
 ##### `imageClass`
 Sets a custom CSS class for the *image* element. Use an empty string `""` or `false` to disable it. Note that if `imageClass` is provided then `imageColor` is ignored.
@@ -270,7 +270,10 @@ Sets a custom CSS class for the *progress* element. Use an empty string `""` or 
 Sets the order of the *progress* element relative to the others.
 
 ##### `progressFixedPosition`
-Set a fixed position for the *progress* element. It accepts a space-separated string with **position** and optional **margin**. **Position** value can be either `top` or `bottom` while optional **margin** can be expressed in any CSS unit. Note that enabling this option will take the *progress* element out of the order flow and `progressOrder` will be ignored.
+Set a fixed position for the *progress* element. It accepts a space-separated string with **position** and optional **margin**.
+**Position** value can be either `top` or `bottom` while optional **margin** can be expressed in any CSS unit.
+Note that enabling this option will take the *progress* element out of the order flow and `progressOrder` will be ignored.
+Example values: `"top"`, `"bottom"`, `"top 20px"`, `"10% top"`, `"5rem bottom"`, `"bottom 2vh"`, etc.
 
 ##### `progressSpeed`
 Controls the animation speed in **milliseconds** of the progress bar when its value is updated. Set to `0` to disable smooth animation.

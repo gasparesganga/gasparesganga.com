@@ -198,7 +198,7 @@ $(function(){
             progressResizeFactor    : $("#example4_progressResizeFactor").val(),
             progressColor           : $("#example4_progressColor").val(),
             progressOrder           : $("#example4_progressOrder").val(),
-            progressFixedPosition   : $("#example4_progressFixedPosition").val(),
+            progressFixedPosition   : $("#example4_progressFixedPosition1").val() + " " + $("#example4_progressFixedPosition2").val(),
             progressSpeed           : $("#example4_progressSpeed").val(),
             
             size                    : $("#example4_size").val(),
