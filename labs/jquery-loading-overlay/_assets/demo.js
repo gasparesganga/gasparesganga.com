@@ -152,16 +152,20 @@ $(function(){
         }).appendTo(".example4_boolean");
     });
     // Animations
-    $("<option>", {
-        "text"  : "",
-        "value" : ""
-    }).appendTo(".example4_animations");
-    $.each(["rotate_right", "rotate_left", "fadein", "pulse"], function(i, value){
+    $.each(["", "rotate_right", "rotate_left", "fadein", "pulse"], function(i, value){
         $("<option>", {
             "text"  : value,
             "value" : value
         }).appendTo(".example4_animations");
     });
+    // progressFixedPosition
+    $.each(["", "top", "bottom"], function(i, value){
+        $("<option>", {
+            "text"  : value,
+            "value" : value
+        }).appendTo("#example4_progressFixedPosition1");
+    });    
+    
     // Select default values
     $(".example4_boolean, .example4_animations").each(function(){
         var $this = $(this);
@@ -176,7 +180,7 @@ $(function(){
             imageAnimation          : $("#example4_imageAnimation1").val() + " " + $("#example4_imageAnimation2").val(),
             imageAutoResize         : $("#example4_imageAutoResize").val() === "true",
             imageResizeFactor       : $("#example4_imageResizeFactor").val(),
-            imageColor              : $("#example4_imageColor").val(),
+            imageColor              : $("#example4_imageColor1").val() + " " + $("#example4_imageColor2").val(),
             imageOrder              : $("#example4_imageOrder").val(),
             
             fontawesome             : $("#example4_fontawesome").val(),
@@ -198,6 +202,7 @@ $(function(){
             progressResizeFactor    : $("#example4_progressResizeFactor").val(),
             progressColor           : $("#example4_progressColor").val(),
             progressOrder           : $("#example4_progressOrder").val(),
+            progressFixedPosition   : $("#example4_progressFixedPosition1").val() + " " + $("#example4_progressFixedPosition2").val(),
             progressSpeed           : $("#example4_progressSpeed").val(),
             
             size                    : $("#example4_size").val(),
