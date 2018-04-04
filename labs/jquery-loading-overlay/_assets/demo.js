@@ -152,16 +152,20 @@ $(function(){
         }).appendTo(".example4_boolean");
     });
     // Animations
-    $("<option>", {
-        "text"  : "",
-        "value" : ""
-    }).appendTo(".example4_animations");
-    $.each(["rotate_right", "rotate_left", "fadein", "pulse"], function(i, value){
+    $.each(["", "rotate_right", "rotate_left", "fadein", "pulse"], function(i, value){
         $("<option>", {
             "text"  : value,
             "value" : value
         }).appendTo(".example4_animations");
     });
+    // progressFixedPosition
+    $.each(["", "top", "bottom"], function(i, value){
+        $("<option>", {
+            "text"  : value,
+            "value" : value
+        }).appendTo(".example4_progressFixedPosition1");
+    });    
+    
     // Select default values
     $(".example4_boolean, .example4_animations").each(function(){
         var $this = $(this);
