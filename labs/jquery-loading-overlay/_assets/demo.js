@@ -176,7 +176,7 @@ $(function(){
             imageAnimation          : $("#example4_imageAnimation1").val() + " " + $("#example4_imageAnimation2").val(),
             imageAutoResize         : $("#example4_imageAutoResize").val() === "true",
             imageResizeFactor       : $("#example4_imageResizeFactor").val(),
-            imageColor              : $("#example4_imageColor1").val() + " " + $("#example4_imageColor2").val()
+            imageColor              : $("#example4_imageColor1").val() + " " + $("#example4_imageColor2").val(),
             imageOrder              : $("#example4_imageOrder").val(),
             
             fontawesome             : $("#example4_fontawesome").val(),
