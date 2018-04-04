@@ -163,7 +163,7 @@ $(function(){
         $("<option>", {
             "text"  : value,
             "value" : value
-        }).appendTo(".example4_progressFixedPosition1");
+        }).appendTo("#example4_progressFixedPosition1");
     });    
     
     // Select default values
