@@ -764,7 +764,7 @@ Well, after more than 10 years working with GIS related technology, I have yet t
 
 
 ## History
-*7 April 2017* - [Version 2.4.3](/posts/php-shapefile-2.4.3/)
+*7 April 2018* - [Version 2.4.3](/posts/php-shapefile-2.4.3/)
 *6 December 2017* - [Version 2.4.2](/posts/php-shapefile-2.4.2/)
 *30 November 2017* - [Version 2.4.1](/posts/php-shapefile-2.4.1/)
 *20 November 2017* - [Version 2.4.0](/posts/php-shapefile-2.4.0/)
