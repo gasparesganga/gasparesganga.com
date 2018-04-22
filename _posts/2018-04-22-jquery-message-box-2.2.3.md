@@ -9,7 +9,7 @@ tags        : [Releases, Javascript, jQuery, Plugin, MessageBox, Modal, Dialog, 
 ### What's new in Version 2.2.3
 - Some more browser compatibility code embellishments
 
-IE compatibility styff mostly, pretty underwhelming, uh?
+IE compatibility stuff mostly, pretty underwhelming, uh?
 
 
 ## Download and documentation
