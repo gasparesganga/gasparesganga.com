@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery LoadingOverlay
 description : A flexible loading overlay jQuery plugin
-updated     : 2018-04-04
+updated     : 2018-04-22
 getit       :
   github        : gasparesganga/jquery-loading-overlay
   download      : true
@@ -10,7 +10,7 @@ getit       :
   bower         : gasparesganga-jquery-loading-overlay
   cdn           :
     name    : gasparesganga-jquery-loading-overlay
-    version : 2.1.0
+    version : 2.1.1
     files   : [dist/loadingoverlay.min.js]
 
 assets      :
@@ -28,10 +28,7 @@ assets      :
 {% capture expire_date %}{{'2018-04-30' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>16 March 2018 :</b> Version 2.0.0 released. See <a href="/posts/jquery-loading-overlay-2.0.0/">release notes</a> for migration guide and breaking changes!
-</div>
-<div class="alert">
-    <b>4 April 2018 :</b> Time passes and version 2.1.0 is already here. See <a href="/posts/jquery-loading-overlay-2.1.0/">release notes</a> too.
+    <b>22 April 2018 :</b> Version 2.1.1 released. See <a href="/posts/jquery-loading-overlay-2.1.1/">release notes</a>.
 </div>
 {% endif %}
 
@@ -459,6 +456,7 @@ $(document).ajaxComplete(function(event, jqxhr, settings){
 
 
 ## History
+*22 April 2018* - [Version 2.1.1](/posts/jquery-loading-overlay-2.1.1/)
 *4 April 2018* - [Version 2.1.0](/posts/jquery-loading-overlay-2.1.0/)
 *20 March 2018* - [Version 2.0.2](/posts/jquery-loading-overlay-2.0.2/)
 *16 March 2018* - [Version 2.0.1](/posts/jquery-loading-overlay-2.0.1/)
