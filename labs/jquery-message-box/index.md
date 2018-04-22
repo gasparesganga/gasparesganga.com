@@ -10,7 +10,7 @@ getit       :
   bower         : gasparesganga-jquery-message-box
   cdn           :
     name    : gasparesganga-jquery-message-box
-    version : 2.2.2
+    version : 2.2.3
     files   : [src/messagebox.min.js, src/messagebox.css]
 
 assets      :
@@ -28,7 +28,7 @@ assets      :
 {% capture expire_date %}{{'2018-05-31' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>22 April 2018 :</b> Version 2.2.2 released: see <a href="/posts/jquery-message-box-2.2.2">release notes</a>
+    <b>22 April 2018 :</b> Version 2.2.3 released: see <a href="/posts/jquery-message-box-2.2.3">release notes</a>
 </div>
 {% endif %}
 
@@ -747,6 +747,7 @@ My little personal tribute to Visual Basic 6 `MsgBox()` function.
 
 
 ## History
+*22 April 2018* - [Version 2.2.3](/posts/jquery-message-box-2.2.3/)
 *22 April 2018* - [Version 2.2.2](/posts/jquery-message-box-2.2.2/)
 *18 February 2017* - [Version 2.2.1](/posts/jquery-message-box-2.2.1/)
 *24 January 2017* - [Version 2.2.0](/posts/jquery-message-box-2.2.0/)
