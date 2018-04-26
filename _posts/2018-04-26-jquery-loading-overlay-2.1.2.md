@@ -1,6 +1,7 @@
 ---
 layout      : post
 title       : jQuery LoadingOverlay 2.1.2
+description : Fixes a bug introduced in v2.1.1
 tags        : [Releases, Javascript, jQuery, Plugin, LoadingOverlay]
 ---
 
