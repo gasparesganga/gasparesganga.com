@@ -9,7 +9,7 @@ tags        : [Releases, Javascript, jQuery, Plugin, LoadingOverlay]
 ### What's fixed in version 2.1.3
 - Package.json `main` path fix
 
-A *type* had been there for a while going unnoticed... Path is correctly pointing to `dist/loadingoverlay.min.js` now.
+A *typo* had been there going unnoticed for a while... Main path is correctly pointing to `dist/loadingoverlay.min.js` now.
 
 
 ## Download and documentation
