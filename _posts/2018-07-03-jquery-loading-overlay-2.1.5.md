@@ -11,7 +11,7 @@ tags        : [Releases, Javascript, jQuery, Plugin, LoadingOverlay]
 - Clear orphaned intervals when target element is arbitrary removed from DOM
 
 #### Toggle LoadingOverlay visibility according to target element
-Sometimes a target element can be temporarly hidden *(eg. inside a tab panel)*, so LoadingOverlay now toggles his shown/hidden status according to that.
+Sometimes a target element can be temporarily hidden *(eg. inside a tab panel)*, so LoadingOverlay now toggles his shown/hidden status according to that.
 The idea came from an user with this [pull request](https://github.com/gasparesganga/jquery-loading-overlay/pull/35). I changed it a bit to better fit into the repository code.
 
 #### Clear orphaned intervals when target element is arbitrary removed from DOM
