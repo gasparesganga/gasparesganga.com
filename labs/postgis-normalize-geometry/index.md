@@ -134,7 +134,7 @@ Those will successfully normalize geometries like:
 LINESTRING(0 0, 2 2, 0 4, -5 4, 0 4.001, 2 6)
 POLYGON((0 0, 1 1, 2 1, 3 0.5, 2 -3, 3 0.499, 0 0))
 ```
-<img asset src="postgis-normalize-geometry/_assets/example1a.png" alt="example1a" style="width:100%; max-width:800px;">
+<img src="{% asset postgis-normalize-geometry/_assets/example1a.png @path %}" alt="example1a" style="width:100%; max-width:800px;">
 
 into:
 
@@ -142,7 +142,7 @@ into:
 LINESTRING(0 0, 2 2, 0 4, 2 6)
 POLYGON((0 0, 1 1, 2 1, 3 0.5, 0 0))
 ```
-<img asset src="postgis-normalize-geometry/_assets/example1b.png" alt="example1b" style="width:100%; max-width:800px;">
+<img src="{% asset postgis-normalize-geometry/_assets/example1b.png @path %}" alt="example1b" style="width:100%; max-width:800px;">
 
 
 ### Example 2 - Filter single parts of multigeometries
@@ -192,7 +192,7 @@ FROM (
 ) AS s;
 ```
 
-<img asset src="postgis-normalize-geometry/_assets/example3.png" alt="example3" style="width:100%; max-width:1000px;">
+<img src="{% asset postgis-normalize-geometry/_assets/example3.png @path %}" alt="example3" style="width:100%; max-width:1000px;">
 
 
 ## History
