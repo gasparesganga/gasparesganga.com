@@ -1,6 +1,6 @@
 ---
 layout      : post
-title       : PostGIS NormalizeGeometry release
+title       : PostGIS normalize_geometry release
 description : It works, for real!
 tags        : [Releases, PostGIS, PostgreSQL, PL/pgSQL]
 ---
@@ -18,4 +18,4 @@ This means that if you find any problem with it, the cause could be either that 
 
 ## Download and documentation
 
-Go to the Lab page: [PostGIS NormalizeGeometry](/labs/postgis-normalize-geometry/)
+Go to the Lab page: [PostGIS normalize_geometry](/labs/postgis-normalize-geometry/)
