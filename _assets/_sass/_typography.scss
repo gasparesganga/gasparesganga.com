@@ -88,14 +88,6 @@ blockquote {
 }
 
 
-button,
-input[type="button"],
-.button {
-    @extend %button;
-    min-width   : 10rem;
-}
-
-
 pre, code {
     font-size           : 0.85rem;
     background-color    : $color_code;

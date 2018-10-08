@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery MessageBox
 description : A jQuery Plugin to replace Javascript's window.alert(), window.confirm() and window.prompt() functions
-updated     : 2018-04-22
+updated     : 2018-10-08
 getit       :
   github        : gasparesganga/jquery-message-box
   download      : true
@@ -10,12 +10,12 @@ getit       :
   bower         : gasparesganga-jquery-message-box
   cdn           :
     name    : gasparesganga-jquery-message-box
-    version : 2.2.3
-    files   : [src/messagebox.min.js, src/messagebox.css]
+    version : 3.0.0
+    files   : [dist/messagebox.min.js, dist/messagebox.min.css]
 
 assets      :
   css   :
-    - jquery-message-box/_assets/messagebox.css
+    - jquery-message-box/_assets/messagebox.min.css
     - jquery-message-box/_assets/demo.css
   js    :
     - js/jquery-3.1.1.min.js
@@ -25,10 +25,10 @@ assets      :
 
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
-{% capture expire_date %}{{'2018-05-31' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2018-11-31' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>22 April 2018 :</b> Version 2.2.3 released: see <a href="/posts/jquery-message-box-2.2.3">release notes</a>
+    <b>08 October 2018 :</b> Version 3.0.0 released: see <a href="/posts/jquery-message-box-3.0.0">release notes</a>!
 </div>
 {% endif %}
 
@@ -81,18 +81,20 @@ Set default [options](#options-and-defaults-values) for all future calls to **`$
 
 ## Options and defaults values
 ```javascript
-buttonDone   : "OK"         // String / Object / Boolean
-buttonFail   : undefined    // String / Object / Boolean
-buttonsOrder : "done fail"  // String
-customClass  : ""           // String
-filterDone   : undefined    // Function
-filterFail   : undefined    // Function
-input        : false        // Boolean / String / Array / Object / jQuery object / DOM element
-message      : ""           // String / jQuery object / DOM Element
-queue        : true         // Boolean
-speed        : 200          // Integer / String
-top          : "25%"        // Integer / String
-width        : undefined    // Integer / String
+buttonDone          : "OK"         // String / Object / Boolean
+buttonFail          : undefined    // String / Object / Boolean
+buttonsOrder        : "done fail"  // String
+customClass         : ""           // String
+customOverlayClass  : ""           // String
+filterDone          : undefined    // Function
+filterFail          : undefined    // Function
+input               : false        // Boolean / String / Array / Object / jQuery object / DOM element
+message             : ""           // String / jQuery object / DOM Element
+queue               : true         // Boolean
+speed               : 200          // Integer / String
+title               : ""           // String / Boolean
+top                 : "25%"        // Integer / String
+width               : undefined    // Integer / String
 ```
 
 ##### `buttonDone`
@@ -110,6 +112,9 @@ Defines the order in which `buttonDone` and `buttonFail` are shown from left to 
 
 ##### `customClass`
 You can specify one or more CSS classes separated by a space here. They will be appended to the MessageBox to customize its appearance.
+
+##### `customOverlayClass`
+You can specify one or more CSS classes separated by a space here to customize the *overlay* appearance behind the actual MessageBox.
 
 ##### `filterDone`
 Here you can pass a **function** that will be executed before resolving the MessageBox deferred and calling any eventual `.done()` handler. See [Filters](#filters) for details.
@@ -131,6 +136,9 @@ If `true` the MessageBox will be placed into the *queue* to be shown after all t
 ##### `speed`
 Speed in milliseconds. It is passed directly to jQuery's [.animate()](http://api.jquery.com/animate/) function, so you can use supported strings as well.
 
+##### `title`
+Use this option to show a title on top of the MessageBox.
+
 ##### `top`
 Distance from the top of the viewport. Set it to `"auto"` to vertically center the MessageBox, or use a numeric value *(assumed to be in **pixels**)* or any other CSS-compatible unit *(eg. `"10%"`)* to manually place it.
 Note that specifying a value different than `"auto"` will imply the proportional calulation of the MessageBox's maximum height, overriding any CSS `max-height` rule *(ie. `top : "10%"` will set a `max-height` of `"85%"`)*.
@@ -147,9 +155,9 @@ If two simple buttons triggering the `.done()` and `.fail()` handlers are not en
 // Each property represents a button. Here is a template with default values:
 {
     name : {
-        class   : undefined // String
-        text    : ""        // String
-        keyCode : undefined // Integer / String / Array
+        customClass : undefined   // String
+        text        : ""          // String
+        keyCode     : undefined   // Integer / String / Array
     },
     ...
 }
@@ -178,7 +186,7 @@ You can also pass a simple *string* to the button definition instead of a comple
 ##### `name`
 Each object represents a button. Its `name` will be returned as [button](#button) argument for the [handler function](#handlers).
 
-##### `class`
+##### `customClass`
 You can specify one or more CSS classes separated by a space to customize the button. See [Example 7](#example-7---customize-it).
 
 ##### `text`
@@ -190,7 +198,7 @@ The keyboard's [keyCode](https://developer.mozilla.org/en-US/docs/Web/API/Keyboa
 
 
 ## Custom Inputs configuration
-The [input](#input) option is very versatile. It can accept a ***boolean*** or a ***string*** to show a simple *textbox*, an ***array*** to create multiple textboxes in the most simple and straightforward way, or an ***object*** to define complex of different *inputs* and/or *select boxes*, providing additional properties.
+The [input](#input) option is very versatile. It can accept a ***boolean*** or a ***string*** to show a simple *textbox*, an ***array*** to create multiple textboxes in the most simple and straightforward way, or an ***object*** to define complex combinations of different *inputs* and/or *select boxes*, providing additional properties.
 All the input's properties are **optional** *(in case of `selects` a warning will be thrown if no `option` is provided, though)*. Check [Example 5](#example-5---inputs-capabilities) to see custom inputs in action.
 
 ```javascript
@@ -200,13 +208,15 @@ All the input's properties are **optional** *(in case of `selects` a warning wil
 // Object: each property represents an <input> or <select>. Additional details may be provided. Here is a template with default values:
 {
     name : {
-        type        : "text"            // String
-        label       : undefined         // String
-        title       : undefined         // String
-        default     : undefined         // String
-        autotrim    : true              // Boolean      - Only applicable to type == "text or "password"
-        maxlength   : undefined         // Integer      - Only applicable to type == "text or "password"
-        options     : {"" : "&nbsp;"}   // Object/Array - Only applicable to type == "select"
+        type            : "text"            // String
+        label           : undefined         // String
+        title           : undefined         // String
+        defaultValue    : undefined         // String/Boolean
+        customClass     : undefined         // String
+        autotrim        : true              // Boolean      - Only applicable to type == "text or "password"
+        maxlength       : undefined         // Integer      - Only applicable to type == "text or "password"
+        message         : undefined         // String       - Only applicable to type == "caption"
+        options         : {"" : "&nbsp;"}   // Object/Array - Only applicable to type == "select"
     },
     ...
 }
@@ -216,25 +226,31 @@ All the input's properties are **optional** *(in case of `selects` a warning wil
 Each object represents an input/select. Its `name` will be returned as a `key` of the [data](#data) object passed to the [handler function](#handlers).
 
 ##### `type`
-It can be `"text"`, `"password"` or `"select"`. Default is `"text"`.
+It can be `"text"`, `"password"`, `"select"`, `"checkbox"` or `"caption"`. Default is `"text"`.
 
 ##### `label`
-If provided, the input/select will be wrapped by a `<label>` having this value as caption.
+If provided, a label will be shown on top of the input/select having this value as text.
 
 ##### `title`
 If provided, the input/select will have this value as `title` and `placeholder` *HTML attributes*.
 
-##### `default`
-You can use this property to provide a default value. In case of a `select` type the **value** of the default option here, not the text.
+##### `defaultValue`
+You can use this property to provide a default value. In case of a `select` type the **value** of the default option here, not the text. For `checkbox` inputs pass *boolean* `true` or `false`.
+
+##### `customClass`
+You can specify one or more CSS classes separated by a space to customize the input.
 
 ##### `autotrim`
-Only applicable to `"text"` and `"password"` types. If set to `true` it will auotmatically remove spaces, non-breaking spaces and tabs from the beginning and the end of the inputted string value.
+Only applicable to `"text"` and `"password"` types. If set to `true` it will auotmatically remove spaces, non-breaking spaces and tabs from the beginning and the end of the input string value.
 
 ##### `maxlength`
 Only applicable to `"text"` and `"password"` types. If provided, sets a maximum length for the typed string.
 
+##### `message`
+Only applicable to `"caption"` type. You can pass a string, raw *HTML*, a *DOM element* or even a *jQuery object/collection*. When `"caption"` type is used, only this property and `customClass` are taken into account.
+
 ##### `options`
-Only applicable to `"select"` types. It can be either an ***object*** or an ***array***. *HTML* is supported for values.
+Only applicable to `"select"` type. It can be either an ***object*** or an ***array***. *HTML* is supported for values.
 
 ```javascript
 // Object: you can specify values and displayed texts separately
@@ -270,8 +286,8 @@ $.MessageBox({
 ```
 
 #### `data`
-It holds the input value(s) provided by the user. In case of a simple `textbox` *(ie. the `input` parameter was set simply to `true`)* it returns the actual ***string*** typed by the user.
-If multiple inputs were defined using [custom inputs configuration](#custom-inputs-configuration), it returns an ***object*** having the names of the inputs as keys and the values typed/chosen by the user as values.
+It holds the input value(s) provided by the user. In case of a simple `textbox` *(ie. the `input` parameter was simply set to `true`)* it returns the actual ***string*** typed by the user.
+If multiple inputs were defined using [custom inputs configuration](#custom-inputs-configuration), it returns an ***array*** of values or an ***object*** having the names of the inputs as keys and the values typed/chosen by the user as values.
 
 #### `button`
 If you have defined a [custom buttons configuration](#custom-buttons-configuration) it returns the `name` of the clicked button, otherwise it will default to `"buttonDone"` or `"buttonFail"`.
@@ -284,16 +300,16 @@ Filters functions can be defined using the `filterDone` and `filterFail` options
 The returned value determines the outcome of the filter:
 
 ##### Boolean value `false`
-The execution is blocked and the MessageBox remains visible.
+The execution is **blocked** and the MessageBox remains visible.
 
 ##### *String* or *(jQuery) Object*
-The *String*, *DOM Object/Collection* or *jQuery Object/Collection* is appended to an error message, the execution is blocked and the MessageBox remains visible.
+The *String*, *DOM Object/Collection* or *jQuery Object/Collection* is appended to an error message, the execution is **blocked** and the MessageBox remains visible.
 
 ##### Javascript [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) object
-The `Error.message` property is used as error message, the execution is blocked and the MessageBox remains visible. Note that to be recognized as such, jQuery 1.9.0+ is required.
+The `Error.message` property is used as error message, the execution is **blocked** and the MessageBox remains visible. Note that to be recognized as such, jQuery 1.9.0+ is required.
 
 ##### Anything else
-The filter is ignored and the execution continues normally.
+The filter is ignored and the execution **continues** normally.
 
 
 #### What if a filter function returns a *Deferred/Promise*?
@@ -303,7 +319,7 @@ In case a *Deferred* or *Promise* is returned by a filter function, the outcome 
 The value returned by the resolved deferred/promise is checked and treated the same way as it were returned directly by the filter function. See above.
 
 ##### Rejected deferred/promise
-The execution is blocked and the MessageBox remains visible. If an optional *String*, a *DOM Object/Collection* or a *jQuery Object/Collection* value is passed during rejection, it will be appended to an error message and displayed to the user.
+The execution is **blocked** and the MessageBox remains visible. If an optional *String*, a *DOM Object/Collection* or a *jQuery Object/Collection* value is passed during rejection, it will be appended to an error message and displayed to the user.
 
 
 Due to the great flexibility offered, it sounds more complicated than it really is. Check [Example 6](#example-6---filters-and-validation) to see filters in action.
@@ -345,7 +361,7 @@ $.MessageBox({
 
 
 ### Example 2 - Build a wrapper function for common cases
-If you feel lazy or often need the same option, you can use some *wrapper functions*:
+If you feel lazy or often need the same option configuration, you can use some *wrapper functions*:
 
 ```javascript
 // Wrapper functions
@@ -368,7 +384,7 @@ function MessageBoxPrompt(message){
 MessageBoxConfirm("Is this simple enough?").done(function(){
     // Do something in response to YES
 }).fail(function(){
-    // Do something in response to No
+    // Do something in response to NO
 });
 
 // Concise Prompt
@@ -447,7 +463,7 @@ $.MessageBox({
     console.log("Button: " + button);
 });
 
-// Shorthand: define only the buttons' name and text
+// Shorthand: define only the buttons name and text
 $.MessageBox({
     buttonDone  : {
         yes         : "Yes",
@@ -469,7 +485,7 @@ $.MessageBox({
 
 
 ### Example 5 - Inputs capabilities
-Here is a demonstration of the input capabilities. Values will appear in the box below.
+Here is a demonstration of the input capabilities. Return values will appear in the box below.
 
 ```javascript
 // Simple textbox
@@ -501,42 +517,53 @@ $.MessageBox({
     message : "<b>Here is a complex form with different input types!</b>",
     input   : {
         text1    : {
-            type        : "text",
-            label       : "Some text:",
-            title       : "Input some text"
+            type         : "text",
+            label        : "Some text:",
+            title        : "Input some text"
         },
         text2    : {
-            type        : "text",
-            label       : "Some other text (max 10 characters and default value):",
-            title       : "Input some other text",
-            default     : "Hi!",
-            maxlength   : 10
+            type         : "text",
+            label        : "Some text (max 10 characters):",
+            title        : "Input some other text",
+            defaultValue : "Hi!",
+            maxlength    : 10
         },
-        password : {
-            type    : "password",
-            label   : "Secret password:",
-            title   : "Type password here"
+        password1 : {
+            type         : "password",
+            label        : "Secret password:",
+            title        : "Type password here"
+        },
+        checkbox1 : {
+            type         : "checkbox",
+            label        : "A good ol' checkbox:",
+            title        : "Check or uncheck this, no big deal"
+        },
+        dummy_caption : {
+            type         : "caption",
+            message      : "This is a <b>caption</b>, sometimes you might need one",
+            title        : "aaaaaaaaaa"
         },
         select1 : {
-            type    : "select",
-            label   : "Select with values same as displayed texts:",
-            title   : "Select a letter",
-            options : ["A", "B", "C", "D", "E"]
+            type         : "select",
+            label        : "Select with values same as displayed texts:",
+            title        : "Select a letter",
+            options      : ["A", "B", "C", "D", "E"]
         },
         select2 : {
-            type    : "select",
-            label   : "Select with values and texts specified and a default choice selected:",
-            title   : "Select S",
-            options : {
-                "A"   : "Letter A",
-                "B"   : "Letter B",
-                "C"   : "Letter C",
-                "D"   : "Letter D",
-                "E"   : "Letter E"
+            type         : "select",
+            label        : "Select with values and texts specified and a default choice selected:",
+            title        : "Select S",
+            options      : {
+                "A" : "Letter A",
+                "B" : "Letter B",
+                "C" : "Letter C",
+                "D" : "Letter D",
+                "E" : "Letter E"
             },
-            default : "C"
+            defaultValue : "C"
         }
-    }
+    },
+    top     : "auto"
 }).done(function(data){
     console.log(data);
 });
@@ -674,59 +701,85 @@ And here is another server-side PHP example for the **Ajax with HTTP status code
 
 
 ### Example 7 - Customize it!
-You can customize the whole MessageBox using the `customClass` option.
-Or you can customize single buttons using the `class` property in the button definition. Don't forget to use the `.messagebox_buttons` in your CSS in this case! See the example code:
+You can customize the whole MessageBox using `customClass` and `customOverlayClass` options .
+Or you can customize single buttons and inputs using `customClass` property in their definition. Don't forget to use the `.messagebox_buttons` in your CSS in this case! See the example code:
 
 ```javascript
 // Custom MessageBox
 $.MessageBox({
-    customClass : "custom_messagebox",
-    message     : "You can customize the MessageBox using the <i>customClass</i> option"
+    customClass         : "custom_messagebox",
+    customOverlayClass  : "custom_messagebox_overlay",
+    message             : "Radius... radius everywhere! <i>(and green too)</i>",
+    title               : "A NICE TITLE, WHY NOT?"
 });
+```
 
+```css
+.custom_messagebox_overlay {
+    background-color    : rgba(220, 240, 175, 0.5);
+    border              : 10px solid rgba(150, 190, 85, 0.6);
+}
+.custom_messagebox {
+    background-color    : #ddf0b0;
+    border              : 1px solid #99bb55;
+    border-radius       : 20px;
+}
+    .custom_messagebox .messagebox_title,
+    .custom_messagebox .messagebox_buttons {
+        background-color    : #ccea88;
+    }
+        .custom_messagebox .messagebox_buttons button {
+            background-color    : #ddf0b0;
+            border-radius       : 20px;
+        }
+```
+{% include_relative _demo.html demo="example7a" %}
+<br>
+
+```javascript
 // Custom Buttons
 $.MessageBox({
     buttonDone  : {
         cool : {
-            text    : "Cool",
-            class   : "custom_button",
-            keyCode : 13
+            text        : "Cool",
+            customClass : "custom_button",
+            keyCode     : 13
         }
     },
     buttonFail  : "Boring",
-    message     : "You can customize single buttons using their <i>class</i> property"
+    input       : {
+        input1    : {
+            type        : "text",
+            label       : "A custom input",
+            customClass : "custom_input"
+        }
+    },
+    message     : "You can customize single buttons or inputs using their <i>customClass</i> property"
 });
 ```
 
-CSS:
-
 ```css
-.custom_messagebox {
-    background-color    : #ddf0b0;
-    border              : 1px solid #99bb55;
+.custom_input {
+    border-radius   : 10px;
+    padding-left    : 10px;
+    padding-right   : 10px;
 }
-    .custom_messagebox .messagebox_buttons {
-        background-color    : #ccea88;
-        border-top          : 1px solid #99bb55;
-    }
-
-
-/* DON'T FORGET TO USE ".messagebox_buttons" CLASS HERE! */
-.messagebox_buttons .custom_button {
+.custom_button {
+    color               : #ffffff;
+    background-color    : #0a66cc;
+    border-radius       : 50px;
+}
+    .custom_button:hover {
         color               : #ffffff;
-        background-color    : #0a66cc;
+        background-color    : #4088cc;
     }
-        .messagebox_buttons .custom_button:hover {
-            color               : #ffffff;
-            background-color    : #4088cc;
-        }
-        .messagebox_buttons .custom_button:active {
-            color               : #ffffff;
-            background-color    : #0055aa;
-            box-shadow          : none;
-        } 
+    .custom_button:active {
+        color               : #ffffff;
+        background-color    : #0055aa;
+        box-shadow          : none;
+    }
 ```
-{% include_relative _demo.html demo="example7" %}
+{% include_relative _demo.html demo="example7b" %}
 
 
 ### Example 8 - Set Defaults
@@ -747,6 +800,7 @@ My little personal tribute to Visual Basic 6 `MsgBox()` function.
 
 
 ## History
+*08 October 2018* - [Version 3.0.0](/posts/jquery-message-box-3.0.0/)
 *22 April 2018* - [Version 2.2.3](/posts/jquery-message-box-2.2.3/)
 *22 April 2018* - [Version 2.2.2](/posts/jquery-message-box-2.2.2/)
 *18 February 2017* - [Version 2.2.1](/posts/jquery-message-box-2.2.1/)

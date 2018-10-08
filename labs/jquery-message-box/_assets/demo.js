@@ -259,42 +259,53 @@ $(function(){
             message : "<b>Here is a complex form with different input types!</b>",
             input   : {
                 text1    : {
-                    type        : "text",
-                    label       : "Some text:",
-                    title       : "Input some text"
+                    type         : "text",
+                    label        : "Some text:",
+                    title        : "Input some text"
                 },
                 text2    : {
-                    type        : "text",
-                    label       : "Some other text (max 10 characters and default value):",
-                    title       : "Input some other text",
-                    default     : "Hi!",
-                    maxlength   : 10
+                    type         : "text",
+                    label        : "Some text (max 10 characters):",
+                    title        : "Input some other text",
+                    defaultValue : "Hi!",
+                    maxlength    : 10
                 },
-                password : {
-                    type    : "password",
-                    label   : "Secret password:",
-                    title   : "Type password here"
+                password1 : {
+                    type         : "password",
+                    label        : "Secret password:",
+                    title        : "Type password here"
+                },
+                checkbox1 : {
+                    type         : "checkbox",
+                    label        : "A good ol' checkbox:",
+                    title        : "Check or uncheck this, no big deal"
+                },
+                dummy_caption : {
+                    type         : "caption",
+                    message      : "This is a <b>caption</b>, sometimes you might need one",
+                    title        : "aaaaaaaaaa"
                 },
                 select1 : {
-                    type    : "select",
-                    label   : "Select with values same as displayed texts:",
-                    title   : "Select a letter",
-                    options : ["A", "B", "C", "D", "E"]
+                    type         : "select",
+                    label        : "Select with values same as displayed texts:",
+                    title        : "Select a letter",
+                    options      : ["A", "B", "C", "D", "E"]
                 },
                 select2 : {
-                    type    : "select",
-                    label   : "Select with values and texts specified and a default choice selected:",
-                    title   : "Select S",
-                    options : {
-                        "A"   : "Letter A",
-                        "B"   : "Letter B",
-                        "C"   : "Letter C",
-                        "D"   : "Letter D",
-                        "E"   : "Letter E"
+                    type         : "select",
+                    label        : "Select with values and texts specified and a default choice selected:",
+                    title        : "Select S",
+                    options      : {
+                        "A" : "Letter A",
+                        "B" : "Letter B",
+                        "C" : "Letter C",
+                        "D" : "Letter D",
+                        "E" : "Letter E"
                     },
-                    default : "C"
+                    defaultValue : "C"
                 }
-            }
+            },
+            top     : "auto"
         }).done(function(data){
             Example5Log(data);
         });
@@ -425,25 +436,33 @@ $(function(){
     $("#example7_messagebox").on("click", function(event){
         // Custom MessageBox
         $.MessageBox({
-            customClass : "custom_messagebox",
-            message     : "You can customize the MessageBox using the <i>customClass</i> option"
+            customClass         : "custom_messagebox",
+            customOverlayClass  : "custom_messagebox_overlay",
+            message             : "Radius... radius everywhere! <i>(and green too)</i>",
+            title               : "A NICE TITLE, WHY NOT?"
         });
     });
     
     $("#example7_buttons").on("click", function(event){
-        // Custom Buttons
+        // Custom Inputs and Buttons
         $.MessageBox({
             buttonDone  : {
                 cool : {
-                    text    : "Cool",
-                    class   : "custom_button",
-                    keyCode : 13
+                    text        : "Cool",
+                    customClass : "custom_button",
+                    keyCode     : 13
                 }
             },
             buttonFail  : "Boring",
-            message     : "You can customize single buttons using their <i>class</i> property"
+            input       : {
+                input1    : {
+                    type        : "text",
+                    label       : "A custom input",
+                    customClass : "custom_input"
+                }
+            },
+            message     : "You can customize single buttons or inputs using their <i>customClass</i> property"
         });
     });
-    
     
 });
