@@ -735,6 +735,7 @@ $.MessageBox({
 ```
 {% include_relative _demo.html demo="example7a" %}
 
+
 ```javascript
 // Custom Buttons
 $.MessageBox({
