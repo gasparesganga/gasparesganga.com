@@ -181,6 +181,7 @@ main {
         margin-left     : 0;
         padding         : 1rem 1.2rem 1.2rem 1.2rem;
     }
+    
     a {
         color               : $color_link;
         border-bottom       : 2px solid transparent;
@@ -189,7 +190,15 @@ main {
             border-bottom   : 2px solid $color_link;
         }
     }
+    
+    button,
+    input[type="button"],
+    .button {
+        @extend %button;
+        min-width   : 10rem;
+    }
 }
+
     .list {
         list-style  : none;
         padding     : 0;
@@ -285,12 +294,6 @@ main {
             font-weight     : normal;
             font-style      : italic;
         }
-    }
-    button,
-    input[type="button"],
-    .button {
-        @extend %button;
-        min-width   : 10rem;
     }
     /*.page_actions {
         text-align  : center;

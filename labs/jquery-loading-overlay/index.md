@@ -16,24 +16,16 @@ getit       :
 assets      :
   css   :
     - jquery-loading-overlay/_assets/demo.css
+    - jquery-message-box/_assets/messagebox.min.css
   js    :
     - js/jquery-3.3.1.min.js
     - jquery-loading-overlay/_assets/loadingoverlay.min.js
     - jquery-loading-overlay/_assets/demo.js
     - "https://use.fontawesome.com/releases/v5.0.8/js/all.js"
+    - jquery-message-box/_assets/messagebox.min.js
+    - jquery-loading-overlay/_assets/banner.js
 ---
 
-
-<script>
-    $(function(){
-        setTimeout(function(){
-            $.MessageBox({
-                buttonDone  : "Dismiss",
-                message     : "I know you are here for <b>jQuery LoadingOverlay</b>, but if you like it<br>then I'm sure you will love my <a href='/labs/jquery-message-box/'><b>jQuery MessageBox</b></a> plugin too!"
-            });
-        }, 1000);
-    });
-</script>
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
 {% capture expire_date %}{{'2018-10-31' | date: '%s'}}{% endcapture %}
