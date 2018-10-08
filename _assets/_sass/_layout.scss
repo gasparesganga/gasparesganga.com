@@ -286,6 +286,12 @@ main {
             font-style      : italic;
         }
     }
+    button,
+    input[type="button"],
+    .button {
+        @extend %button;
+        min-width   : 10rem;
+    }
     /*.page_actions {
         text-align  : center;
         a {
