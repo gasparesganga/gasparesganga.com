@@ -8,26 +8,41 @@
 
 
 /***** Example 7 *****/
+.custom_messagebox_overlay {
+    background-color    : rgba(220, 240, 175, 0.5);
+    border              : 10px solid rgba(150, 190, 85, 0.6);
+}
 .custom_messagebox {
     background-color    : #ddf0b0;
     border              : 1px solid #99bb55;
+    border-radius       : 20px;
 }
+    .custom_messagebox .messagebox_title,
     .custom_messagebox .messagebox_buttons {
         background-color    : #ccea88;
-        border-top          : 1px solid #99bb55;
     }
+        .custom_messagebox .messagebox_buttons button {
+            background-color    : #ddf0b0;
+            border-radius       : 20px;
+        }
 
 
-.messagebox_buttons .custom_button {
+.custom_input {
+    border-radius   : 10px;
+    padding-left    : 10px;
+    padding-right   : 10px;
+}
+.custom_button {
+    color               : #ffffff;
+    background-color    : #0a66cc;
+    border-radius       : 50px;
+}
+    .custom_button:hover {
         color               : #ffffff;
-        background-color    : #0a66cc;
+        background-color    : #4088cc;
     }
-        .messagebox_buttons .custom_button:hover {
-            color               : #ffffff;
-            background-color    : #4088cc;
-        }
-        .messagebox_buttons .custom_button:active {
-            color               : #ffffff;
-            background-color    : #0055aa;
-            box-shadow          : none;
-        }
+    .custom_button:active {
+        color               : #ffffff;
+        background-color    : #0055aa;
+        box-shadow          : none;
+    }
