@@ -23,10 +23,11 @@ $(function(){
         .appendTo(banner);
         
         $.LoadingOverlay("show", {
-            custom  : banner,
-            image   : false,
-            size    : 530,
-            maxSize : 530
+            background  : "rgba(255,255,255,0.9)",
+            custom      : banner,
+            image       : false,
+            size        : "80%",
+            maxSize     : 530
         });
     }, 1000);
 });
