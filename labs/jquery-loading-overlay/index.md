@@ -16,13 +16,12 @@ getit       :
 assets      :
   css   :
     - jquery-loading-overlay/_assets/demo.css
-    - jquery-message-box/_assets/messagebox.min.css
+    - jquery-loading-overlay/_assets/banner.css
   js    :
     - js/jquery-3.3.1.min.js
     - jquery-loading-overlay/_assets/loadingoverlay.min.js
     - jquery-loading-overlay/_assets/demo.js
     - "https://use.fontawesome.com/releases/v5.0.8/js/all.js"
-    - jquery-message-box/_assets/messagebox.min.js
     - jquery-loading-overlay/_assets/banner.js
 ---
 
