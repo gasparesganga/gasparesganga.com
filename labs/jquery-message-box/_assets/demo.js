@@ -11,7 +11,7 @@ $(function(){
         $.MessageBox({
             buttonDone      : "OK",
             buttonFail      : "Cancel",
-            message         : "Let's try a more complex example!<br>Here are multiple fields of different types,<br>an error message will be displayed if validation fails.",
+            message         : "Let's try a more complex example:<br>here are multiple fields of different types,<br>an error message will be displayed if validation fails.",
             input           : {
                 name : {
                     type    : "text",
@@ -30,6 +30,7 @@ $(function(){
                     title   : "Something secret here"
                 }
             },
+            title           : "More complete example",
             filterDone      : function(data){
                 if (data.name === "")           return "Please insert your <b>name</b>";
                 if (data.sex === null)          return "Have you already chosen your <b>sex</b>?";
@@ -151,7 +152,8 @@ $(function(){
         $.MessageBox({
             buttonDone  : "OK",
             buttonFail  : "Cancel",
-            message     : "Some message..."
+            message     : "Some message...",
+            title       : "Simple"
         }).done(function(data, button){
             Example4Log(true, button);
         }).fail(function(data, button){
@@ -183,7 +185,8 @@ $(function(){
                 },
             },
             buttonsOrder    : "fail done",
-            message         : "How do you like it?<br>Click a button or press keys 0 to 3 on your keyboard:"
+            message         : "How do you like it?<br>Click a button or press keys 0 to 3 on your keyboard:",
+            title           : "Object"
         }).done(function(data, button){
             Example4Log(true, button);
         }).fail(function(data, button){
@@ -201,7 +204,8 @@ $(function(){
             buttonFail  : {
                 no          : "No"
             },
-            message     : "Will you marry me?"
+            message     : "Will you marry me?",
+            title       : "Shorthand"
         }).done(function(data, button){
             Example4Log(true, button);
         }).fail(function(data, button){
@@ -226,8 +230,9 @@ $(function(){
     $("#example5_simple").on("click", function(event){
         // Simpe textbox
         $.MessageBox({
-            input    : true,
-            message  : "Input some string:"
+            input   : true,
+            message : "Input some string:",
+            title   : "Simple"
         }).done(function(data){
             Example5Log(data);
         });
@@ -236,8 +241,9 @@ $(function(){
     $("#example5_default").on("click", function(event){
         // Simpe textbox with default value
         $.MessageBox({
-            input    : "Some default value",
-            message  : "Input some string (again):"
+            input   : "Some default value",
+            message : "Input some string (again):",
+            title   : "Default value"
         }).done(function(data){
             Example5Log(data);
         });
@@ -246,8 +252,9 @@ $(function(){
     $("#example5_array").on("click", function(event){
         // Multiple textboxes with default values
         $.MessageBox({
-            input    : ["Default value 1", "Default value 2", ""],
-            message  : "Now let's try with three simple textbox.<br>For the first two a default value is provided:"
+            input   : ["Default value 1", "Default value 2", ""],
+            message : "Now let's try with three simple textbox.<br>For the first two a default value is provided:",
+            title   : "Array"
         }).done(function(data){
             Example5Log(data);
         });
@@ -265,7 +272,7 @@ $(function(){
                 },
                 text2    : {
                     type         : "text",
-                    label        : "Some text (max 10 characters):",
+                    label        : "Some other text (max 10 characters):",
                     title        : "Input some other text",
                     defaultValue : "Hi!",
                     maxlength    : 10
@@ -303,9 +310,15 @@ $(function(){
                         "E" : "Letter E"
                     },
                     defaultValue : "C"
+                },
+                textarea1    : {
+                    type    : "textarea",
+                    label   : "You get to write a lot here:",
+                    title   : "You can use either \"textarea\" or \"memo\" to display this"
                 }
             },
-            top     : "auto"
+            top     : "auto",
+            title   : "Object"
         }).done(function(data){
             Example5Log(data);
         });
@@ -324,7 +337,8 @@ $(function(){
         select.append("<option>Option Three</option>");
         $.MessageBox({
             message : "Choose an Option:",
-            input   : select
+            input   : select,
+            title   : "Custom DOM/jQuery Element"
         }).done(function(data){
             Example5Log(data);
         });

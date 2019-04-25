@@ -16,7 +16,6 @@ getit       :
 assets      :
   css   :
     - jquery-loading-overlay/_assets/demo.css
-    - jquery-loading-overlay/_assets/banner.css
   js    :
     - js/jquery-3.3.1.min.js
     - jquery-loading-overlay/_assets/loadingoverlay.min.js

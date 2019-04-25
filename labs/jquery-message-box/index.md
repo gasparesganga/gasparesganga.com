@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery MessageBox
 description : A jQuery Plugin to replace Javascript's window.alert(), window.confirm() and window.prompt() functions
-updated     : 2018-10-08
+updated     : 2019-04-25
 getit       :
   github        : gasparesganga/jquery-message-box
   download      : true
@@ -10,7 +10,7 @@ getit       :
   bower         : gasparesganga-jquery-message-box
   cdn           :
     name    : gasparesganga-jquery-message-box
-    version : 3.0.0
+    version : 3.1.0
     files   : [dist/messagebox.min.js, dist/messagebox.min.css]
 
 assets      :
@@ -18,19 +18,15 @@ assets      :
     - jquery-message-box/_assets/messagebox.min.css
     - jquery-message-box/_assets/demo.css
   js    :
-    - js/jquery-3.1.1.min.js
+    - js/jquery-3.4.0.min.js
     - jquery-message-box/_assets/messagebox.min.js
     - jquery-message-box/_assets/demo.js
 ---
 
 
-{% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
-{% capture expire_date %}{{'2018-11-31' | date: '%s'}}{% endcapture %}
-{% if current_date < expire_date %}
-<div class="alert">
-    <b>08 October 2018 :</b> Version 3.0.0 released: see <a href="/posts/jquery-message-box-3.0.0">release notes</a>!
+<div class="alert" data-expire="2019-05-31">
+    <b>25 April 2019 :</b> Version 3.1.0 released: see <a href="/posts/jquery-message-box-3.1.0">release notes</a>!
 </div>
-{% endif %}
 
 
 ## Contents
@@ -197,6 +193,7 @@ The keyboard's [keyCode](https://developer.mozilla.org/en-US/docs/Web/API/Keyboa
 
 
 
+
 ## Custom Inputs configuration
 The [input](#input) option is very versatile. It can accept a ***boolean*** or a ***string*** to show a simple *textbox*, an ***array*** to create multiple textboxes in the most simple and straightforward way, or an ***object*** to define complex combinations of different *inputs* and/or *select boxes*, providing additional properties.
 All the input's properties are **optional** *(in case of `selects` a warning will be thrown if no `option` is provided, though)*. Check [Example 5](#example-5---inputs-capabilities) to see custom inputs in action.
@@ -213,10 +210,12 @@ All the input's properties are **optional** *(in case of `selects` a warning wil
         title           : undefined         // String
         defaultValue    : undefined         // String/Boolean
         customClass     : undefined         // String
-        autotrim        : true              // Boolean      - Only applicable to type == "text or "password"
-        maxlength       : undefined         // Integer      - Only applicable to type == "text or "password"
+        autotrim        : true              // Boolean      - Only applicable to type == "text", "password" and "textarea"
+        maxlength       : undefined         // Integer      - Only applicable to type == "text", "password" and "textarea"
         message         : undefined         // String       - Only applicable to type == "caption"
         options         : {"" : "&nbsp;"}   // Object/Array - Only applicable to type == "select"
+        resize          : false             // Boolean      - Only applicable to type == "textarea"
+        rows            : undefined         // Integer      - Only applicable to type == "textarea"
     },
     ...
 }
@@ -226,7 +225,7 @@ All the input's properties are **optional** *(in case of `selects` a warning wil
 Each object represents an input/select. Its `name` will be returned as a `key` of the [data](#data) object passed to the [handler function](#handlers).
 
 ##### `type`
-It can be `"text"`, `"password"`, `"select"`, `"checkbox"` or `"caption"`. Default is `"text"`.
+It can be `"text"`, `"password"`, `"select"`, `"checkbox"`, `"textarea"` (alias `"memo"`) or `"caption"`. Default is `"text"`.
 
 ##### `label`
 If provided, a label will be shown on top of the input/select having this value as text.
@@ -241,10 +240,10 @@ You can use this property to provide a default value. In case of a `select` type
 You can specify one or more CSS classes separated by a space to customize the input.
 
 ##### `autotrim`
-Only applicable to `"text"` and `"password"` types. If set to `true` it will auotmatically remove spaces, non-breaking spaces and tabs from the beginning and the end of the input string value.
+Only applicable to `"text"`, `"password"` and `"textarea"` types. If set to `true` it will auotmatically remove spaces, non-breaking spaces, newlines and tabs from the beginning and the end of the input string value.
 
 ##### `maxlength`
-Only applicable to `"text"` and `"password"` types. If provided, sets a maximum length for the typed string.
+Only applicable to `"text"` `"password"` and `"textarea"` types. If provided, sets a maximum length for the typed string.
 
 ##### `message`
 Only applicable to `"caption"` type. You can pass a string, raw *HTML*, a *DOM element* or even a *jQuery object/collection*. When `"caption"` type is used, only this property and `customClass` are taken into account.
@@ -266,6 +265,13 @@ Only applicable to `"select"` type. It can be either an ***object*** or an ***ar
     "value1", "value2", "value3" ... ]
 ]
 ```
+
+##### `resize`
+Set this option to `true` to allow **vertical** resizing.
+
+##### `rows`
+You can control the basic height of the textarea using this option. It is worth noting that a CSS `height` value used in a `customClass` will overwrite it.
+
 
 
 
@@ -361,7 +367,7 @@ $.MessageBox({
 
 
 ### Example 2 - Build a wrapper function for common cases
-If you feel lazy or often need the same option configuration, you can use some *wrapper functions*:
+If you feel *very* lazy or often need the same option configuration, you can use some *wrapper functions*:
 
 ```javascript
 // Wrapper functions
@@ -800,7 +806,8 @@ My little personal tribute to Visual Basic 6 `MsgBox()` function.
 
 
 ## History
-*08 October 2018* - [Version 3.0.0](/posts/jquery-message-box-3.0.0/)
+*25 April 2019* - [Version 3.1.0](/posts/jquery-message-box-3.1.0/)
+*8 October 2018* - [Version 3.0.0](/posts/jquery-message-box-3.0.0/)
 *22 April 2018* - [Version 2.2.3](/posts/jquery-message-box-2.2.3/)
 *22 April 2018* - [Version 2.2.2](/posts/jquery-message-box-2.2.2/)
 *18 February 2017* - [Version 2.2.1](/posts/jquery-message-box-2.2.1/)
