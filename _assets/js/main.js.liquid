@@ -17,4 +17,13 @@
         text    : "email",
         title   : "Show email address"
     });
+    
+    
+    // Alerts
+    var currentDate = new Date();
+    var alerts = document.getElementsByClassName("alert");
+    for (var i = 0; i < alerts.length; i++) {
+        if (alerts[i].dataset !== undefined && new Date(alerts[i].dataset.expire) < currentDate) alerts[i].parentNode.removeChild(alerts[i]);
+    }
+    
 })(window);
