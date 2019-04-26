@@ -21,7 +21,6 @@ assets      :
     - jquery-loading-overlay/_assets/loadingoverlay.min.js
     - jquery-loading-overlay/_assets/demo.js
     - "https://use.fontawesome.com/releases/v5.0.8/js/all.js"
-    - jquery-loading-overlay/_assets/banner.js
 ---
 
 
