@@ -22,9 +22,9 @@ getit       :
 - [Get it](#get-it)
 - [Features](#features)
 - [Basic Usage](#basic-usage)
-- [Classes](#classes)
+- [Namespaces and Classes](#namespaces-and-classes)
 - [A note about Polygons orientation](#a-note-about-polygons-orientation)
-- [Geometry input/output formats](#geometry-input-output-formats)
+- [Geometry input/output formats](#geometry-inputoutput-formats)
 - [Examples](#examples)
 - [History](#history)
 - [Comments and Ideas](#comments-and-ideas)
@@ -69,9 +69,8 @@ try {
         if ($Geometry->isDeleted()) {
             continue;
         }
-        echo "==================================================";
         // Geometry as an array
-        echo "\n\nGeometry:\n";
+        echo "\nGeometry:\n";
         print_r($Geometry->getArray());
         // WKT
         echo "\n\nWKT:\n";
@@ -82,6 +81,7 @@ try {
         // DBF data
         echo "\n\nDBF data:\n";
         print_r($Geometry->getDataArray());
+        echo "\n\n==================================================\n";
     }
 
 } catch (ShapefileException $e) {
@@ -510,7 +510,7 @@ This is the base Class for all the other Geometries. All of them expose the foll
 public Geometry::initFromArray( array $array ) : void
 ```
 
-Initializes the Geometry using a structured *Array*. See [Geometry input/output formats](#geometry-input-output-formats) for details.
+Initializes the Geometry using a structured *Array*. See [Geometry input/output formats](#geometry-inputoutput-formats) for details.
 
 #### `$array`
 The structured *Array* to initialize the Geometry with.
@@ -522,7 +522,7 @@ The structured *Array* to initialize the Geometry with.
 public Geometry::initFromWKT( string $wkt ) : void
 ```
 
-Initializes the Geometry using a WKT *String*. See [Geometry input/output formats](#geometry-input-output-formats) for details.
+Initializes the Geometry using a WKT *String*. See [Geometry input/output formats](#geometry-inputoutput-formats) for details.
 
 #### `$wkt`
 The WKT *String* to initialize the Geometry with.
@@ -534,7 +534,7 @@ The WKT *String* to initialize the Geometry with.
 public Geometry::initFromGeoJSON( string $geojson ) : void
 ```
 
-Initializes the Geometry using a GeoJSON *String*. See [Geometry input/output formats](#geometry-input-output-formats) for details.
+Initializes the Geometry using a GeoJSON *String*. See [Geometry input/output formats](#geometry-inputoutput-formats) for details.
 
 #### `$geojson`
 The GeoJSON *String* to initialize the Geometry with.
@@ -546,7 +546,7 @@ The GeoJSON *String* to initialize the Geometry with.
 public Geometry::getArray( void ) : array
 ```
 
-Converts the Geometry into a structured *Array*. See [Geometry input/output formats](#geometry-input-output-formats) for details.
+Converts the Geometry into a structured *Array*. See [Geometry input/output formats](#geometry-inputoutput-formats) for details.
 
 
 
@@ -555,7 +555,7 @@ Converts the Geometry into a structured *Array*. See [Geometry input/output form
 public Geometry::getWKT( void ) : string
 ```
 
-Converts the Geometry into a WKT *String*. See [Geometry input/output formats](#geometry-input-output-formats) for details.
+Converts the Geometry into a WKT *String*. See [Geometry input/output formats](#geometry-inputoutput-formats) for details.
 
 
 
@@ -564,7 +564,7 @@ Converts the Geometry into a WKT *String*. See [Geometry input/output formats](#
 public Geometry::getGeoJSON( [, bool $flag_bbox = true  [, bool $flag_feature = false ]] ) : string
 ```
 
-Converts the Geometry into a GeoJSON *String*. See [Geometry input/output formats](#geometry-input-output-formats) for details.
+Converts the Geometry into a GeoJSON *String*. See [Geometry input/output formats](#geometry-inputoutput-formats) for details.
 
 #### `$flag_bbox`
 Boolean flag to include a `"bbox"` member into the GeoJSON output. It defaults to `true` for all the Geometries but Points, where it defaults to `false`.
@@ -1149,20 +1149,20 @@ Gets the number of Polygons in the Collection.
 ## A note about Polygons orientation
 ESRI Shapefile specifications establish clockwise direction for Polygons external rings and counterclockwise direction for internal ones.
 Simple Features and GeoJSON, on the other hand, dictate the opposite. There is a lot of confusion about this subject and the expression *right-hand rule* is used for both scenarios.
-To make things even more confusing, many Simple Features implementations will not reject Polygons not complying to the specification, nor should proper GeoJSON parsers (see the note in [section 3.1.6](https://tools.ietf.org/html/rfc7946#section-3.1.6)).
+It is worth noting that many Simple Features implementations (such as PostGIS) will not reject Polygons not complying to the specification, nor should proper GeoJSON parsers (see the note in [section 3.1.6](https://tools.ietf.org/html/rfc7946#section-3.1.6)).
 
-This library gives the greatest flexibility to the programmer through the `Shapefile::OPTION_INVERT_POLYGONS_ORIENTATION` option. By default it is set to `true`, meaning it assumes external rings are clockwise in Shapefiles and it will convert them in counterclockwise when **reading** them; likewise when **writing** a Shapefile it will assume provided input Polygons have counterclockwise external rings and it will invert them before **writing** them into the Shapefile, complying to ESRI specifications.
+This library gives the greatest flexibility to the programmer through the `Shapefile::OPTION_INVERT_POLYGONS_ORIENTATION` option. By default it is set to `true`, meaning it assumes external rings are clockwise in Shapefiles so it will convert them in counterclockwise when **reading** them; likewise when **writing** a Shapefile it will assume provided input Polygons have counterclockwise external rings and it will invert them before **writing** them into the Shapefile, complying to ESRI specifications.
 
 
 
 
 
 ## Geometry input/output formats
-Starting from v3 of this library, geometries are represented by specific classes that extend a [Geometry](#class-shapefilegeometrygeometry) abstract base class.
+Starting from v3 of this library, geometries are represented by specific [classes](#namespaces-and-classes) that extend a [Geometry](#class-shapefilegeometrygeometry) abstract base class.
 When reading from Shapefiles, multi `MULTI*`, 3dz `* Z`, 3dm `* M` and  4d `* ZM` geometries are recognized as such, unless some specific options like `Shapefile::OPTION_SUPPRESS_Z` and `Shapefile::OPTION_SUPPRESS_M` are being used.
 ESRI Shapefile specifications allow a special *"no data"* value for *M coordinates*, which is represented by *Boolean* `false` value in this library.
 
-The structure of [getArray](#geometrygetarray), [getWKT](#geometrygetwkt) and [getGeoJSON](#geometrygetgeojson) methods is given below.
+The structure of [getArray](#geometrygetarray), [getWKT](#geometrygetwkt) and [getGeoJSON](#geometrygetgeojson) methods output is given below.
 
 
 ### Point geometries
@@ -1578,7 +1578,7 @@ ESEMPIO VERIFICA TIPO EXCEPTION!
 
 
 ## Wait, what about *MultiPatch* shape types?
-Well, after more than 15 years working with GIS related technologies, I have yet to see a *MultiPatch* Shapefile. Supporting them is not currently in the todo list.
+Well, after more than ~~5~~ ~~10~~ ~~15~~ **many** years working with GIS related technologies, I have yet to see a *MultiPatch* Shapefile. Supporting them is not currently in the todo list.
 
 
 ## History
