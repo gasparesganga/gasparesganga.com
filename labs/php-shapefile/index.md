@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP Shapefile
 description : PHP library to read and write ESRI Shapefiles, compatible with WKT and GeoJSON
-updated     : 2019-xx-xx
+updated     : 2019-08-30
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -10,10 +10,10 @@ getit       :
 ---
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
-{% capture expire_date %}{{'2018-04-31' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2019-10-31' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>xx Xxxxxxx 2019 :</b> Version 3.0.0 released! See the <a href="/posts/php-shapefile-3.0.0/">release notes</a>.
+    <b>30 August 2019 :</b> Version 3.0.0 released! See the <a href="/posts/php-shapefile-3.0.0/">release notes</a>.
 </div>
 {% endif %}
 
@@ -37,10 +37,10 @@ getit       :
 
 
 ## Features
-- Supports all kinds of Shapefiles, including Z and M ones
-- Provides WKT/EWKT and GeoJSON output
+- Reads and writes all kinds of Shapefiles, including Z and M ones
+- Supports WKT/EWKT and GeoJSON input and output
 - Completely standalone library
-- Very fast and lightweight
+- Very fast and lightweight on memory
 - Sequential read or random access to specific records
 - Implements the [Iterator](https://php.net/manual/en/class.iterator.php) interface
 - PHP 5.4+ compatible
@@ -72,26 +72,26 @@ try {
             continue;
         }
         
-        // Geometry as an array
+         // Print Geometry as an Array
         print_r($Geometry->getArray());
         
-        // WKT
+        // Print Geometry as WKT
         print_r($Geometry->getWKT());
         
-        // GeoJSON
+        // Print Geometry as GeoJSON
         print_r($Geometry->getGeoJSON());
         
-        // DBF data
+        // Print DBF data
         print_r($Geometry->getDataArray());
     }
 
 } catch (ShapefileException $e) {
     // Print detailed error information
-    echo $e->getErrorType() . ' - ' . $e->getMessage();
-    if ($e->getDetails()) {
-        echo ' - ' . $e->getDetails();
-    }
-    exit();
+    exit(
+        "Error Type: "  . $e->getErrorType()
+        . "\nMessage: " . $e->getMessage()
+        . "\nDetails: " . $e->getDetails()
+    );
 }
 ```
 
@@ -133,11 +133,11 @@ try {
 
 } catch (ShapefileException $e) {
     // Print detailed error information
-    echo $e->getErrorType() . ' - ' . $e->getMessage();
-    if ($e->getDetails()) {
-        echo ' - ' . $e->getDetails();
-    }
-    exit();
+    exit(
+        "Error Type: "  . $e->getErrorType()
+        . "\nMessage: " . $e->getMessage()
+        . "\nDetails: " . $e->getDetails()
+    );
 }
 ```
 
@@ -166,7 +166,7 @@ In addition, under the `Shapefile\Geometry` Namespace there is the Abstract Clas
 
 
 ## Class Shapefile\ShapefileAutoloader
-This is a simple static class which provides autoloading capabilities for the library. Use the static method `Shapefile\ShapefileAutoloader::register()` as shown in the [example](#basic-usage) to register the PHP Shapefile autoloader.
+This is a simple static class which provides autoloading capabilities for the library. Use the static method **`Shapefile\ShapefileAutoloader::register()`** as shown in the [example](#basic-usage) to register the PHP Shapefile autoloader.
 
 
 
@@ -174,8 +174,8 @@ This is a simple static class which provides autoloading capabilities for the li
 ## Class Shapefile\ShapefileException
 A custom exception which extends PHP native [Exception](https://php.net/manual/en/language.exceptions.php) class. It can be used to isolate PHP Shapefile related exceptions. It adds 2 custom methods `getErrorType()` and `getDetails()`. See it in action in the [example above](#basic-usage).
 
-- [getErrorType](#shapefileexceptiongeterrortype
-- [getShapeType](#shapefileexceptiongetdetails
+- [getErrorType](#shapefileexceptiongeterrortype)
+- [getShapeType](#shapefileexceptiongetdetails)
 
 
 ### ShapefileException::getErrorType
@@ -1479,13 +1479,13 @@ Supported file types are:
  `Shapefile::FILE_SHP` : Required. Geometries file.
  `Shapefile::FILE_SHX` : Required. Index file.
  `Shapefile::FILE_DBF` : Required. Attributes file.
- `Shapefile::FILE_DBT` : Optional. Extended *memo* attributes file.
+ `Shapefile::FILE_DBT` : Optional. Extended *Memo* attributes file.
  `Shapefile::FILE_PRJ` : Optional. WKT projection file.
- `Shapefile::FILE_CPG` : Optional. *.dbf* charset file. 
+ `Shapefile::FILE_CPG` : Optional. *DBF* charset file. 
 
 
 ### Closing files / Releasing the handles
-This library adopts a *PDO-like* behaviour when it comes to close open files and release their handles: they are closed upon object destruction. This means that if you want to close open files 
+This library adopts a *PDO-like* behaviour when it comes to closing open files and releasing their handles: they are closed upon object destruction. This means that if you want to close open files, simply set the ShapefileReader or ShapefileWriter instance to `null`:
 ```php?start_inline=1
 $Shapefile = null;
 ```
@@ -1812,25 +1812,25 @@ The structure of [getArray](#geometrygetarray), [getWKT](#geometrygetwkt) and [g
 Despite some misleading information that can be found on the internet, *DBF* files that come with ESRI Shapefiles must follow dBase III PLUS specifications and not dBase IV ones.
 It is true dBase III PLUS and dBase IV are quite similar, but the differences between them are enough to prevent a perfectly compliant ESRI Shapefile parser from opening/reading a file using the wrong version specs.
 More specifically, the full original version required by ESRI Shapefile standard is ***dBase III PLUS without memo files***, which stores all the data as `ISO-8859-1`-encoded text.
-However, I took some *licences* and included custom charsets (*CPG* files) and memo fields support (*DBT* files) in this library, because a lot of modern software is using those features and they have become a *de facto* standard for Shapefiles.
+However, I took some *licences* and included custom charsets (*CPG* files) and memo fields (*DBT* files) support in this library, because a lot of modern software is using those features and they have become a *de facto* standard for Shapefiles.
 
-Having clarified that, there are a couple of implications and things to keep in mind when using this library:
+Having clarified that, there are a couple of implications and things to keep in mind when using the library:
 
-#### Numbers are stored as text in *DBF* files
+### Numbers are stored as text in *DBF* files
 When **reading** a Shapefile, this library ***will not*** try to convert integer and floating point numbers to such. Instead, they will be returned as text, leaving complete freedom about data conversion and/or interpretation to the programmer. ShapefileReader [getFieldDecimals](#shapefilereadergetfielddecimals) method comes in handy for accurate conversion, but keep in mind that there is a lot of software out there creating *not really compliant or accurate* Shapefiles and the value returned by this method is often just *descriptive* or even plainly wrong in relation to the actual data stored in the *DBF* file (that's the reason why this library does not attempt an automatic conversion in the first place).
-When **writing** a Shapefile, the library will take care of formal compliance to field *size* and *decimals* values, e.g.: the value `123.99` in a field of *size* 10 with 5 *decimals* will be formatted as `123.9900`. If the lenght of the formatted value exceeds field *size*, a ShapeFileException with error `Shapefile::ERR_INPUT_NUMERIC_VALUE_OVERFLOW` will be thrown (e.g.: trying to store the value `123456.99` in a field of of *size* 10 with 5 *decimals* would produce `123456.9900` and raise the exception).
+When **writing** a Shapefile, the library will take care of formal compliance to field *size* and *decimals* values, truncating eventual exceeding decimal parts, e.g.: the value `123.123456` in a field of *size* 10 with 5 *decimals* will be formatted as `123.1234`. If the lenght of the formatted value exceeds field *size*, a ShapeFileException with error `Shapefile::ERR_INPUT_NUMERIC_VALUE_OVERFLOW` will be thrown (e.g.: trying to store the value `123456.99` in a field of of *size* 10 with 5 *decimals* would produce `123456.9900` and raise the exception).
 
-#### Dates are returned as text in ISO format or as `DateTime` objects
+### Dates are returned as text in ISO format or as `DateTime` objects
 Depending on the state of `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES` and `Shapefile::OPTION_DBF_RETURN_DATES_AS_OBJECTS` options, ShapefileReader Class will try to validate dates and return them as text in ISO ***YYYY-MM-DD*** format, as a [DateTime](#https://www.php.net/manual/en/class.datetime.php) object or as `null` in case of an invalid date when `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES` is enabled.
 
-#### Logical values are converted to the right type
+### Logical values are converted to the right type
 Logical values are parsed, converted and returned as `boolean`. Beware that `null` values are allowed for `Shapefile::DBF_TYPE_LOGICAL` fields (internally stored as `"?"`), thus possible return values are `true`, `false` and `null`.
 
-#### Strings charset conversion
+### Strings charset conversion
 When **reading** a Shapefile, if `Shapefile::OPTION_DBF_CONVERT_TO_UTF8` is enabled, all strings will be converted to **UTF-8** from the charset specified in the *CPG* file or with [setCharset](#shapefilereadersetcharset) method. It is important to perform the conversion directly into the library because strings are whitespace-padded into *DBF* files and *trimming* them to remove useless padding before converting to *UTF-8* might mess up the actual encoding (*DBF* specs assume strings are stored as `ISO-8859-1`, where each character is always a single byte).
 When **writing** a Shapefile, it is up to you to provide input strings encoded in the same charset specified with [setCharset](#shapefilewritersetcharset) method. Keep in mind that dBase specifications only allow `ISO-8859-1` encoding where each character occupy one single byte. Using a different charset encoding will likely reduce the effective maximun size of 254 characters allowed for a field (e.g.: for `UTF-8` strings, more than one byte per character might be used). Longer strings will be truncated according to the specified field size, of course.
 
-#### Memo fields
+### Memo fields
 Memo fields do not have a size limitation by design (even though original specs did not allow *DBT* files larger than 2GB). They store text in 512bytes consecutive blocks of *plain text* and their content is treated the same way as character fields (see above for charset conversion implications).
 
 
@@ -1893,11 +1893,11 @@ try {
     
 } catch (ShapefileException $e) {
     // Print detailed error information
-    echo $e->getErrorType() . ' - ' . $e->getMessage();
-    if ($e->getDetails()) {
-        echo ' - ' . $e->getDetails();
-    }
-    exit();
+    exit(
+        "Error Type: "  . $e->getErrorType()
+        . "\nMessage: " . $e->getMessage()
+        . "\nDetails: " . $e->getDetails()
+    );
 }
 echo "</pre>";
 ```
@@ -1956,7 +1956,7 @@ Well, after more than 15 years working with GIS related technologies, I have yet
 
 
 ## History
-*xx Xxxxx 2019* - [Version 3.0.0](/posts/php-shapefile-3.0.0/)
+*30 August 2019* - [Version 3.0.0](/posts/php-shapefile-3.0.0/)
 *7 April 2018* - [Version 2.4.3](/posts/php-shapefile-2.4.3/)
 *6 December 2017* - [Version 2.4.2](/posts/php-shapefile-2.4.2/)
 *30 November 2017* - [Version 2.4.1](/posts/php-shapefile-2.4.1/)
