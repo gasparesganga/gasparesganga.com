@@ -1,20 +1,20 @@
 ---
 layout      : post
 title       : PHP Shapefile 3.0.0
-description : Finally v3 is here!
+description : Finally v3 is here and it can write Shapefiles!
 tags        : [Releases, PHP, ESRI, ShapeFile, GIS]
 ---
 
 
-After a *loooong* time thinking about, drafting, starting developing, freezing the process, adding improvements and repeating all of this again and again, PHP Shapefile 3.0.0 is finally out.
+After a *loooong* time thinking about it, drafting, starting developing, freezing the process, adding improvements and repeating all of this again and again, PHP Shapefile 3.0.0 is finally out.
 And it comes with the most wanted and anticipated feature I have been getting so many emails and requests about: yes, **it can write Shapefiles too**!
-It took more time than expected for many reasons, including my very full working and personal schedule, the entry of a sponsor and its unexpected withdrawal, a complete rewrite of the library almost from scratch.
+It took more time than expected for many reasons and in the end it turned out as a complete rewrite of the library almost from scratch.
 
-The new library is based on a totally different approach than previous versions. It was born as a low level utility that I used in my company to read ESRI Shapefiles and I just needed the best performances possible and no nonsense or fancy features. It then evolved in a public open source project, to which I kept adding features and it became pretty popular, especially after the introduction of PHP 7 support and the removal of outdated [dBase](https://www.php.net/manual/en/book.dbase.php) and/or third part dependencies to read *DBF* files. Version 3 trades off some performance (not much, don't worry! After all, memory and CPU usage is not the *bottleneck* when reading or writing files on disk) in favour of a real and clean OOP approach from the beginning, getting rid of those *structured arrays* and exposing some nice *Geometry Objects*. It goes without saying that this allows an easy and logical way to build and write your Shapefiles now, passing some WKT, some GeoJSON or directly creating your Geometry Objects. Hurray!
+The new library is based on a totally different approach compared to previous versions. Initially it was born as a low level utility that I used in my company to read ESRI Shapefiles and I just needed the best performances possible and no nonsense or fancy features. It then evolved into a public open source project, to which I kept adding features and it became pretty popular, especially after the introduction of PHP 7 support and the removal of outdated [dBase](https://www.php.net/manual/en/book.dbase.php) and/or third part dependencies to read *DBF* files. Version 3 trades off some performance (not much, don't worry! After all, memory and CPU usage is not the *bottleneck* when reading or writing files on disk) in favour of a real and clean OOP approach from the beginning, getting rid of those *structured arrays* and exposing some nice *Geometry Objects*. It goes without saying that this allows an easy and logical way to build and write your Shapefiles now, passing some WKT, some GeoJSON or directly creating your Geometry Objects. Hurray!
 
 
 ### What's new in Version 3.0.0
-There are a lot of differences from v2 and it's almost silly to list *breaking changes* since the library has been basically rewritten.
+There are a lot of differences from v2 and it's almost redundant to list *breaking changes* since the library has been basically rewritten.
 The following list is not exaustive and it just represents the features and changes I could manage to keep track of. For sure there are many other that I forgot and did not make it into the list.
 
 - Complete OOP style refactoring
@@ -140,11 +140,19 @@ The following list is not exaustive and it just represents the features and chan
 
 
 ### Migrating from v2 to v3
-There are some good news:
-    - The library is still compatible with PHP 5.4+ (as odd as it might seem, in 2019 there are many production systems that still rely on a fully security-patched version of PHP 5.4 and it did not feel right to drop the support ofr them).
-    - It now exposes some nice and convenient *Geometry Objects* that behave in a predictable way and are a huge step forward compared to those clumsy *structured arrays* we had before. 
+Starting with some good news:
+- The library is still compatible with PHP 5.4+ (as odd as it might seem, in 2019 there are many production systems that still rely on a fully security-patched version of PHP 5.4 and it did not feel right to drop the support for them).
+- It now exposes some nice and convenient *Geometry Objects* that behave in a predictable way and are a huge step forward compared to those clumsy *structured arrays* we had before. 
     
-The bad one is that since the whole approach has changed, and you will need to update the code that relies to this library. Not big deal actually, here is an example of *basic usage* in v2 and in v3 to better show the differences. Please refer to the official [documentation](/labs/php-shapefile/) for a complete explaination of the library.
+The bad news are that since the whole approach has changed, you will need to update the code that relies on this library. Not big deal actually, **breaking changes** can be summarized as follows:
+- New folder structure
+- Constructor bitwise flags replaced by constructor options array
+- Namespaces (and Classes) names case normalization
+- Different Shapefile reader Class name
+- Different name and output format of main Shapefile reader method
+- ShapefileException error codes replaced by error types
+
+Here is an example of *basic usage* in v2 and in v3 to better show the differences:
 
 #### Reading Shapefiles - Version 2
 ```php?start_inline=1
@@ -158,18 +166,16 @@ use ShapeFile\ShapeFileException;
 
 try {
     // Open shapefile
-    $ShapeFile = new ShapeFile('data.shp');
+    $ShapeFile = new ShapeFile('/path/to/file.shp', ShapeFile::FLAG_SUPPRESS_Z | ShapeFile::FLAG_SUPPRESS_M);
     
-    // Read all the records
+    // Read all the records as WKT
     while ($record = $ShapeFile->getRecord(ShapeFile::GEOMETRY_WKT)) {
         // Skip the record if marked as "deleted"
         if ($record['dbf']['_deleted']) {
             continue;
         }
-        
         // Print Geometry as WKT
         print_r($record['shp']);
-        
         // Print DBF data
         print_r($record['dbf']);
     }
@@ -196,24 +202,19 @@ use Shapefile\ShapefileReader;
 
 try {
     // Open Shapefile
-    $Shapefile = new ShapefileReader('/path/to/file.shp');
+    $Shapefile = new ShapefileReader('/path/to/file.shp', [
+        Shapefile::OPTION_SUPPRESS_M => true,
+        Shapefile::OPTION_SUPPRESS_Z => true,
+    ]);
     
-    // Read all the records
+    // Read all the records as WKT
     while ($Geometry = $Shapefile->fetchRecord()) {
         // Skip the record if marked as "deleted"
         if ($Geometry->isDeleted()) {
             continue;
         }
-        
-        // Print Geometry as an Array
-        print_r($Geometry->getArray());
-        
         // Print Geometry as WKT
-        print_r($Geometry->getWKT());
-        
-        // Print Geometry as GeoJSON
-        print_r($Geometry->getGeoJSON());
-        
+        print_r($Geometry->getWKT());   
         // Print DBF data
         print_r($Geometry->getDataArray());
     }

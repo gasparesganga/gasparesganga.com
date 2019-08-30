@@ -105,6 +105,7 @@ Shapefile\ShapefileAutoloader::register();
 use Shapefile\Shapefile;
 use Shapefile\ShapefileException;
 use Shapefile\ShapefileWriter;
+use Shapefile\Geometry\Point;
 
 try {
     // Open Shapefile
@@ -175,7 +176,7 @@ This is a simple static class which provides autoloading capabilities for the li
 A custom exception which extends PHP native [Exception](https://php.net/manual/en/language.exceptions.php) class. It can be used to isolate PHP Shapefile related exceptions. It adds 2 custom methods `getErrorType()` and `getDetails()`. See it in action in the [example above](#basic-usage).
 
 - [getErrorType](#shapefileexceptiongeterrortype)
-- [getShapeType](#shapefileexceptiongetdetails)
+- [getDetails](#shapefileexceptiongetdetails)
 
 
 ### ShapefileException::getErrorType
@@ -1497,7 +1498,7 @@ To answer the question "why not a *close()* method?" For the same reason as ther
 
 
 ## A note about Polygons orientation
-ESRI Shapefile specifications establish clockwise direction for Polygons external rings and counterclockwise direction for internal ones.
+ESRI Shapefile specifications establish clockwise orientation for Polygons external rings and counterclockwise orientation for internal ones.
 Simple Features and GeoJSON, on the other hand, dictate the opposite. There is a lot of confusion about this subject and the expression *right-hand rule* is used for both scenarios.
 It is worth noting that many Simple Features implementations (such as PostGIS) will not reject Polygons not complying to the specification, nor should proper GeoJSON parsers (see the note in [section 3.1.6](https://tools.ietf.org/html/rfc7946#section-3.1.6)).
 
@@ -1886,11 +1887,6 @@ try {
     print_r($Shapefile->getFields());
     echo "\n\n";
     
-    // Get DBF Fields
-    echo "DBF Fields : ";
-    print_r($Shapefile->getFields());
-    echo "\n\n";
-    
 } catch (ShapefileException $e) {
     // Print detailed error information
     exit(
@@ -1930,6 +1926,11 @@ try {
 
 ### Example 3 - Build a complex Geometry out of simple ones
 ```php?start_inline=1
+// Import classes
+use Shapefile\Geometry\Point;
+use Shapefile\Geometry\Linestring;
+use Shapefile\Geometry\Polygon;
+
 // Build a Linestring passing an array of Points to its constructor
 $Linestring1 = new Linestring([
     new Point(0, 0),
