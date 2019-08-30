@@ -10,4 +10,4 @@ else
 fi
 
 bundle exec jekyll build
-lftp -e "mirror -R -e _site $DEPLOY_PATH; quit" -u $DEPLOY_USER,$DEPLOY_PASS sftp://$DEPLOY_HOST
+lftp -c "set sftp:auto-confirm yes ; open -u $DEPLOY_USER,$DEPLOY_PASS sftp://$DEPLOY_HOST ; mirror -R -e _site $DEPLOY_PATH ; quit"
