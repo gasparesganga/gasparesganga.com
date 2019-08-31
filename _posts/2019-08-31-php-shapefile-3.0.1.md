@@ -13,8 +13,9 @@ How *embarassing* is having to release a bugfix the day after a major release ju
 - Year in the release date of v3.0.0 in CHANGELOG file.
 
 
-**Still, the big news is [v3.0.0 release](/posts/php-shapefile-3.0.1/), please refer to [it](/posts/php-shapefile-3.0.1/) for breakthrough changes.**
-
+<br>
+**Still, the big news are about [v3.0.0 release](/posts/php-shapefile-3.0.0/), please refer to [it](/posts/php-shapefile-3.0.0/) for breakthrough changes.**
+<br>
   
 ## Download and documentation
 
