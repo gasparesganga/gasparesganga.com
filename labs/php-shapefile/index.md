@@ -285,7 +285,7 @@ Here are the supported options and their default values:
  `Shapefile::OPTION_DBF_CONVERT_TO_UTF8` : Default = `true`. Converts from input charset to *UTF-8* all strings read from the *.dbf* file.
  `Shapefile::OPTION_DBF_FORCE_ALL_CAPS` : Default = `false`. Forces all column names in upper case in the *.dbf* file.
  `Shapefile::OPTION_DBF_IGNORED_FIELDS` : Default = `[]`. Array containing the names of the fields to ignore from the *.dbf* file.
- `Shapefile::OPTION_DBF_NULL_PADDING_CHAR` : Default = `null`. Defines a null padding character to represent `null` values in the *.dbf* file.
+ `Shapefile::OPTION_DBF_NULL_PADDING_CHAR` : Default = `null`. Defines a null padding character used in the *.dbf* file to represent `null` values.
  `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES` : Default = `true`. Returns a `null` value for invalid dates when reading *.dbf* files.
  `Shapefile::OPTION_DBF_RETURN_DATES_AS_OBJECTS` : Default = `false`. Returns dates as `DateTime` objects instead of ISO strings (`YYYY-MM-DD`).
  `Shapefile::OPTION_ENFORCE_POLYGON_CLOSED_RINGS` : Default = `true`. Enforces all Polygons rings to be closed.
@@ -543,7 +543,7 @@ $Shapefile = new ShapefileWriter('myshape.shp', [
 Here are the supported options and their default values:
  `Shapefile::OPTION_CPG_ENABLE_FOR_DEFAULT_CHARSET` : Default = `false`. Writes a *.cpg* file (if there is one open) also when DBF data charset is the default one.
  `Shapefile::OPTION_DBF_FORCE_ALL_CAPS` : Default = `false`. Forces all column names in upper case in the *.dbf* file.
- `Shapefile::OPTION_DBF_NULL_PADDING_CHAR` : Default = `null`. Defines a null padding character to represent `null` values in the *.dbf* file.
+ `Shapefile::OPTION_DBF_NULL_PADDING_CHAR` : Default = `null`. Defines a null padding character to use in the *.dbf* file to represent `null` values.
  `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES` : Default = `true`. Nullify invalid dates when writing *.dbf* files.
  `Shapefile::OPTION_DELETE_EMPTY_FILES` : Default = `true`. Deletes empty files after closing them (only if they weren't passed as resource handles).
  `Shapefile::OPTION_ENFORCE_GEOMETRY_DATA_STRUCTURE` : Default = `true`. Enforces Geometries to have all data fields defined in Shapefile (otherwise `null` will be assumed).
