@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery MessageBox
 description : A jQuery Plugin to replace Javascript's window.alert(), window.confirm() and window.prompt() functions
-updated     : 2019-04-25
+updated     : 2019-10-07
 getit       :
   github        : gasparesganga/jquery-message-box
   download      : true
@@ -10,7 +10,7 @@ getit       :
   bower         : gasparesganga-jquery-message-box
   cdn           :
     name    : gasparesganga-jquery-message-box
-    version : 3.1.0
+    version : 3.2.0
     files   : [dist/messagebox.min.js, dist/messagebox.min.css]
 
 assets      :
@@ -24,8 +24,8 @@ assets      :
 ---
 
 
-<div class="alert" data-expire="2019-05-31">
-    <b>25 April 2019 :</b> Version 3.1.0 released: see <a href="/posts/jquery-message-box-3.1.0">release notes</a>!
+<div class="alert" data-expire="2019-10-31">
+    <b>7 October 2019 :</b> Version 3.2.0 released: see <a href="/posts/jquery-message-box-3.2.0">release notes</a>!
 </div>
 
 
@@ -216,6 +216,7 @@ All the input's properties are **optional** *(in case of `selects` a warning wil
         options         : {"" : "&nbsp;"}   // Object/Array - Only applicable to type == "select"
         resize          : false             // Boolean      - Only applicable to type == "textarea"
         rows            : undefined         // Integer      - Only applicable to type == "textarea"
+        htmlAttributes  : {}                // Object       - Only applicable to type == "text", "password", "date", "time", "number", "color" and "email"
     },
     ...
 }
@@ -225,7 +226,7 @@ All the input's properties are **optional** *(in case of `selects` a warning wil
 Each object represents an input/select. Its `name` will be returned as a `key` of the [data](#data) object passed to the [handler function](#handlers).
 
 ##### `type`
-It can be `"text"`, `"password"`, `"select"`, `"checkbox"`, `"textarea"` (alias `"memo"`) or `"caption"`. Default is `"text"`.
+It can be `"text"`, `"password"`, `"date"`, `"time"`, `"number"`, `"color"`, `"email"`, `"select"`, `"checkbox"`, `"textarea"` (alias `"memo"`) or `"caption"`. Default is `"text"`.
 
 ##### `label`
 If provided, a label will be shown on top of the input/select having this value as text.
@@ -253,7 +254,7 @@ Only applicable to `"select"` type. It can be either an ***object*** or an ***ar
 
 ```javascript
 // Object: you can specify values and displayed texts separately
-{
+options : {
     "value1"  : "Displayed text 1",
     "value2"  : "Displayed text 2",
     "value3"  : "Displayed text 3"
@@ -261,7 +262,7 @@ Only applicable to `"select"` type. It can be either an ***object*** or an ***ar
 }
 
 // Array: values are the same as displayed texts
-[
+options : [
     "value1", "value2", "value3" ... ]
 ]
 ```
@@ -272,6 +273,14 @@ Set this option to `true` to allow **vertical** resizing.
 ##### `rows`
 You can control the basic height of the textarea using this option. It is worth noting that a CSS `height` value used in a `customClass` will overwrite it.
 
+##### `htmlAttributes`
+HTML5 input types such as `"date"`, `"time"`, `"number"`, `"color"` and `"email"` offer some specific attributes (e.g.: `min` and `max` for `<input type="date">`). You can pass them as an object using this option.
+```javascript
+htmlAttributes : {
+    "min"  : "2019-01-01",
+    "max"  : "2019-12-31"
+}
+```
 
 
 
@@ -806,6 +815,7 @@ My little personal tribute to Visual Basic 6 `MsgBox()` function.
 
 
 ## History
+*7 October 2019* - [Version 3.2.0](/posts/jquery-message-box-3.2.0/)
 *25 April 2019* - [Version 3.1.0](/posts/jquery-message-box-3.1.0/)
 *8 October 2018* - [Version 3.0.0](/posts/jquery-message-box-3.0.0/)
 *22 April 2018* - [Version 2.2.3](/posts/jquery-message-box-2.2.3/)
