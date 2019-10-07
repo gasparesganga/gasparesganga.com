@@ -1,7 +1,7 @@
 ---
 layout      : post
 title       : jQuery MessageBox 3.2.0
-description : New input types: date, time, number, color, email
+description : "New input types: date, time, number, color, email"
 tags        : [Releases, Javascript, jQuery, Plugin, MessageBox, Modal, Dialog, Alert, Confirm, Prompt]
 ---
 
