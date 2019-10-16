@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery MessageBox
 description : A jQuery Plugin to replace Javascript's window.alert(), window.confirm() and window.prompt() functions
-updated     : 2019-10-07
+updated     : 2019-10-16
 getit       :
   github        : gasparesganga/jquery-message-box
   download      : true
@@ -10,7 +10,7 @@ getit       :
   bower         : gasparesganga-jquery-message-box
   cdn           :
     name    : gasparesganga-jquery-message-box
-    version : 3.2.0
+    version : 3.2.1
     files   : [dist/messagebox.min.js, dist/messagebox.min.css]
 
 assets      :
@@ -815,6 +815,7 @@ My little personal tribute to Visual Basic 6 `MsgBox()` function.
 
 
 ## History
+*16 October 2019* - [Version 3.2.1](/posts/jquery-message-box-3.2.1/)
 *7 October 2019* - [Version 3.2.0](/posts/jquery-message-box-3.2.0/)
 *25 April 2019* - [Version 3.1.0](/posts/jquery-message-box-3.1.0/)
 *8 October 2018* - [Version 3.0.0](/posts/jquery-message-box-3.0.0/)
