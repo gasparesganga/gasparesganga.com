@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP Shapefile
 description : PHP library to read and write ESRI Shapefiles, compatible with WKT and GeoJSON
-updated     : 2019-09-23
+updated     : 2019-10-30
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -10,10 +10,10 @@ getit       :
 ---
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
-{% capture expire_date %}{{'2019-10-31' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2019-11-30' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>30 August 2019 :</b> Version 3.0.0 released! See the <a href="/posts/php-shapefile-3.0.0/">release notes</a>.
+    <b>30 October 2019 :</b> Version 3.1.0 released: see the <a href="/posts/php-shapefile-3.1.0/">release notes</a>.
 </div>
 {% endif %}
 
@@ -87,11 +87,9 @@ try {
 
 } catch (ShapefileException $e) {
     // Print detailed error information
-    exit(
-        "Error Type: "  . $e->getErrorType()
+    echo "Error Type: " . $e->getErrorType()
         . "\nMessage: " . $e->getMessage()
-        . "\nDetails: " . $e->getDetails()
-    );
+        . "\nDetails: " . $e->getDetails();
 }
 ```
 
@@ -134,11 +132,9 @@ try {
 
 } catch (ShapefileException $e) {
     // Print detailed error information
-    exit(
-        "Error Type: "  . $e->getErrorType()
+    echo "Error Type: " . $e->getErrorType()
         . "\nMessage: " . $e->getMessage()
-        . "\nDetails: " . $e->getDetails()
-    );
+        . "\nDetails: " . $e->getDetails();
 }
 ```
 
@@ -152,8 +148,10 @@ There are 2 Namespaces, `Shapefile` and `Shapefile\Geometry`, containing the fol
 
 - [Shapefile\ShapefileAutoloader](#class-shapefileshapefileautoloader)
 - [Shapefile\ShapefileException](#class-shapefileshapefileexception)
+- [Abstract Shapefile\Shapefile](#class-shapefileshapefile)
 - [Shapefile\ShapefileReader](#class-shapefileshapefilereader)
 - [Shapefile\ShapefileWriter](#class-shapefileshapefilewriter)
+- [Abstract Shapefile\Geometry\Geometry](#class-shapefilegeometrygeometry)
 - [Shapefile\Geometry\Point](#class-shapefilegeometrypoint)
 - [Shapefile\Geometry\MultiPoint](#class-shapefilegeometrymultipoint)
 - [Shapefile\Geometry\Linestring](#class-shapefilegeometrylinestring)
@@ -162,7 +160,7 @@ There are 2 Namespaces, `Shapefile` and `Shapefile\Geometry`, containing the fol
 - [Shapefile\Geometry\MultiPolygon](#class-shapefilegeometrymultipolygon)
 
 To keep things easy and tidy, all package-wide constants are exposed by `Shapefile\Shapefile` Abstract Class, e.g.: `Shapefile::OPTION_SUPPRESS_Z`.
-In addition, under the `Shapefile\Geometry` Namespace there is the Abstract Class [Geometry](#class-shapefilegeometrygeometry) that provides some common functionalities to all other Geometries.
+
 
 
 
@@ -186,48 +184,47 @@ public ShapefileException::getErrorType( void ) : string
 
 Gets internal error type as a string. Useful to react to specific errors.
 Here are all possible error types:
- `Shapefile::ERR_UNDEFINED` : Undefined error.
- `Shapefile::ERR_FILE_MISSING` : A required file is missing.
- `Shapefile::ERR_FILE_EXISTS` : Check if the file exists and is readable and/or writable.
- `Shapefile::ERR_FILE_INVALID_RESOURCE` : File pointer resource not valid.
- `Shapefile::ERR_FILE_OPEN` : Unable to open file.
- `Shapefile::ERR_FILE_READING` : Error during binary file reading.
- `Shapefile::ERR_FILE_WRITING` : Error during binary file writing.
- `Shapefile::ERR_SHP_TYPE_NOT_SUPPORTED` : Shape type not supported.
- `Shapefile::ERR_SHP_TYPE_NOT_SET` : Shape type not set.
- `Shapefile::ERR_SHP_TYPE_ALREADY_SET` : Shape type has already been set.
- `Shapefile::ERR_SHP_GEOMETRY_TYPE_NOT_COMPATIBLE` : Geometry type must be compatible with Shapefile shape type.
- `Shapefile::ERR_SHP_MISMATCHED_BBOX` : Bounding box must have the same dimensions as the Shapefile (2D, 3D or 4D).
- `Shapefile::ERR_SHP_FILE_ALREADY_INITIALIZED` : Cannot change Shapefile definition after it has been initialized with data.
- `Shapefile::ERR_SHP_WRONG_RECORD_TYPE` : Wrong record shape type.
- `Shapefile::ERR_DBF_FILE_NOT_VALID` : DBF file doesn't seem to be a valid dBase III or dBase IV format.
- `Shapefile::ERR_DBF_MISMATCHED_FILE` : Mismatched DBF file. Number of records not corresponding to the SHP file.
- `Shapefile::ERR_DBF_EOF_REACHED` : End of DBF file reached. Number of records not corresponding to the SHP file.
- `Shapefile::ERR_DBF_MAX_FIELD_COUNT_REACHED` : Cannot add other fields, maximum number of fields in a DBF file reached.
- `Shapefile::ERR_DBF_FIELD_NAME_NOT_UNIQUE` : Field name must be unique in DBF file.
- `Shapefile::ERR_DBF_FIELD_NAME_NOT_VALID` : Field name can be maximum 10 characters and contain only numbers, digits and underscores.
- `Shapefile::ERR_DBF_FIELD_TYPE_NOT_VALID` : Field type must be CHAR, DATE, LOGICAL, MEMO or NUMERIC.
- `Shapefile::ERR_DBF_FIELD_SIZE_NOT_VALID` : Field size incorrect according to its type.
- `Shapefile::ERR_DBF_FIELD_DECIMALS_NOT_VALID` : Field decimals incorrect according to its type.
- `Shapefile::ERR_DBF_CHARSET_CONVERSION` : Error during conversion from provided DBF input charset to *UTF-8*.
- `Shapefile::ERR_DBT_EOF_REACHED` : End of DBT file reached. File might be corrupted.
- `Shapefile::ERR_GEOM_NOT_EMPTY` : Cannot reinitialize non-empty Geometry.
- `Shapefile::ERR_GEOM_COORD_VALUE_NOT_VALID` : Invalid coordinate value.
- `Shapefile::ERR_GEOM_MISMATCHED_DIMENSIONS` : All geometries in a collection must have the same dimensions (2D, 3D or 4D).
- `Shapefile::ERR_GEOM_MISMATCHED_BBOX` : Bounding box must have the same dimensions as the Geometry (2D, 3D or 4D).
- `Shapefile::ERR_GEOM_MISSING_FIELD` : Geometry is missing a field defined in the Shapefile.
- `Shapefile::ERR_GEOM_POINT_NOT_VALID` : A Point can be either EMPTY or al least 2D.
- `Shapefile::ERR_GEOM_POLYGON_OPEN_RING` : Polygons cannot contain open rings.
- `Shapefile::ERR_GEOM_POLYGON_AREA_TOO_SMALL` : Polygon Area too small, cannot determine vertices orientation.
- `Shapefile::ERR_GEOM_POLYGON_NOT_VALID` : Polygon not valid or Polygon Area too small. Please check the geometries before reading the Shapefile.
- `Shapefile::ERR_INPUT_RECORD_NOT_FOUND` : Record index not found (check the total number of records in the SHP file).
- `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` : Field not found.
- `Shapefile::ERR_INPUT_GEOMETRY_TYPE_NOT_VALID` : Geometry type not valid. Must be of specified type.
- `Shapefile::ERR_INPUT_GEOMETRY_INDEX_NOT_VALID` : Geometry index not valid (check the total number of geometries in the collection).
- `Shapefile::ERR_INPUT_ARRAY_NOT_VALID` : Array not valid.
- `Shapefile::ERR_INPUT_WKT_NOT_VALID` : WKT not valid.
- `Shapefile::ERR_INPUT_GEOJSON_NOT_VALID` : GeoJSON not valid.
- `Shapefile::ERR_INPUT_NUMERIC_VALUE_OVERFLOW` : Integer value overflows field size definition.
+- `Shapefile::ERR_UNDEFINED` : Undefined error.
+- `Shapefile::ERR_FILE_MISSING` : A required file is missing.
+- `Shapefile::ERR_FILE_EXISTS` : Check if the file exists and is readable and/or writable.
+- `Shapefile::ERR_FILE_INVALID_RESOURCE` : File pointer resource not valid.
+- `Shapefile::ERR_FILE_OPEN` : Unable to open file.
+- `Shapefile::ERR_FILE_READING` : Error during binary file reading.
+- `Shapefile::ERR_FILE_WRITING` : Error during binary file writing.
+- `Shapefile::ERR_SHP_TYPE_NOT_SUPPORTED` : Shape type not supported.
+- `Shapefile::ERR_SHP_TYPE_NOT_SET` : Shape type not set.
+- `Shapefile::ERR_SHP_TYPE_ALREADY_SET` : Shape type has already been set.
+- `Shapefile::ERR_SHP_GEOMETRY_TYPE_NOT_COMPATIBLE` : Geometry type must be compatible with Shapefile shape type.
+- `Shapefile::ERR_SHP_MISMATCHED_BBOX` : Bounding box must have the same dimensions as the Shapefile (2D, 3D or 4D).
+- `Shapefile::ERR_SHP_FILE_ALREADY_INITIALIZED` : Cannot change Shapefile definition after it has been initialized with data.
+- `Shapefile::ERR_SHP_WRONG_RECORD_TYPE` : Wrong record shape type.
+- `Shapefile::ERR_DBF_FILE_NOT_VALID` : DBF file doesn't seem to be a valid dBase III or dBase IV format.
+- `Shapefile::ERR_DBF_MISMATCHED_FILE` : Mismatched DBF file. Number of records not corresponding to the SHP file.
+- `Shapefile::ERR_DBF_EOF_REACHED` : End of DBF file reached. Number of records not corresponding to the SHP file.
+- `Shapefile::ERR_DBF_MAX_FIELD_COUNT_REACHED` : Cannot add other fields, maximum number of fields in a DBF file reached.
+- `Shapefile::ERR_DBF_FIELD_NAME_NOT_VALID` : Too many field names conflicting.
+- `Shapefile::ERR_DBF_FIELD_TYPE_NOT_VALID` : Field type must be CHAR, DATE, LOGICAL, MEMO or NUMERIC.
+- `Shapefile::ERR_DBF_FIELD_SIZE_NOT_VALID` : Field size incorrect according to its type.
+- `Shapefile::ERR_DBF_FIELD_DECIMALS_NOT_VALID` : Field decimals incorrect according to its type.
+- `Shapefile::ERR_DBF_CHARSET_CONVERSION` : Error during conversion from provided DBF input charset to *UTF-8*.
+- `Shapefile::ERR_DBT_EOF_REACHED` : End of DBT file reached. File might be corrupted.
+- `Shapefile::ERR_GEOM_NOT_EMPTY` : Cannot reinitialize non-empty Geometry.
+- `Shapefile::ERR_GEOM_COORD_VALUE_NOT_VALID` : Invalid coordinate value.
+- `Shapefile::ERR_GEOM_MISMATCHED_DIMENSIONS` : All geometries in a collection must have the same dimensions (2D, 3D or 4D).
+- `Shapefile::ERR_GEOM_MISMATCHED_BBOX` : Bounding box must have the same dimensions as the Geometry (2D, 3D or 4D).
+- `Shapefile::ERR_GEOM_MISSING_FIELD` : Geometry is missing a field defined in the Shapefile.
+- `Shapefile::ERR_GEOM_POINT_NOT_VALID` : A Point can be either EMPTY or al least 2D.
+- `Shapefile::ERR_GEOM_POLYGON_OPEN_RING` : Polygons cannot contain open rings.
+- `Shapefile::ERR_GEOM_POLYGON_AREA_TOO_SMALL` : Polygon Area too small, cannot determine vertices orientation.
+- `Shapefile::ERR_GEOM_POLYGON_NOT_VALID` : Polygon not valid or Polygon Area too small. Please check the geometries before reading the Shapefile.
+- `Shapefile::ERR_INPUT_RECORD_NOT_FOUND` : Record index not found (check the total number of records in the SHP file).
+- `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` : Field not found.
+- `Shapefile::ERR_INPUT_GEOMETRY_TYPE_NOT_VALID` : Geometry type not valid. Must be of specified type.
+- `Shapefile::ERR_INPUT_GEOMETRY_INDEX_NOT_VALID` : Geometry index not valid (check the total number of geometries in the collection).
+- `Shapefile::ERR_INPUT_ARRAY_NOT_VALID` : Array not valid.
+- `Shapefile::ERR_INPUT_WKT_NOT_VALID` : WKT not valid.
+- `Shapefile::ERR_INPUT_GEOJSON_NOT_VALID` : GeoJSON not valid.
+- `Shapefile::ERR_INPUT_NUMERIC_VALUE_OVERFLOW` : Integer value overflows field size definition.
 
 
 
@@ -241,21 +238,233 @@ Gets additional details about the error. It might return an empty string if no d
 
 
 
+## Class Shapefile\Shapefile
+This is the base Abstract Class for both `ShapefileReader` and `ShapefileWriter`. It cannot be directly instantiated, but exposes the following public methods for Classes than extend it:
+
+- [isZ](#shapefileisz)
+- [isM](#shapefileism)
+- [getShapeType](#shapefilegetshapetype)
+- [getBoundingBox](#shapefilegetboundingbox)
+- [getPRJ](#shapefilegetprj)
+- [getCharset](#shapefilegetcharset)
+- [setCharset](#shapefilesetcharset)
+- [getFieldsNames](#shapefilegetfieldsnames)
+- [getField](#shapefilegetfield)
+- [getFieldType](#shapefilegetfieldtype)
+- [getFieldSize](#shapefilegetfieldsize)
+- [getFieldDecimals](#shapefilegetfielddecimals)
+- [getFields](#shapefilegetfields)
+- [getTotRecords](#shapefilegettotrecords)
+
+
+
+### Shapefile::isZ
+```php?start_inline=1
+public Shapefile::isZ( void ) : bool
+```
+
+Returns `true` if the Shapefile is of type *Z* or `false` if it isn't.
+
+
+
+### Shapefile::isM
+```php?start_inline=1
+public Shapefile::isM( void ) : bool
+```
+
+Returns `true` if the Shapefile is of type *M* or `false` if it isn't. Please note that *Z* Shapefiles include *M* dimension too.
+
+
+
+### Shapefile::getShapeType
+```php?start_inline=1
+public Shapefile::getShapeType( [ int $format ] ) : mixed
+```
+
+Gets the Shapefile type as either text or number. Possible output values are:
+- `Shapefile::SHAPE_TYPE_NULL` : 0 - Null Shape.
+- `Shapefile::SHAPE_TYPE_POINT` : 1 - Point.
+- `Shapefile::SHAPE_TYPE_POLYLINE` : 3 - PolyLine.
+- `Shapefile::SHAPE_TYPE_POLYGON` : 5 - Polygon.
+- `Shapefile::SHAPE_TYPE_MULTIPOINT` : 8 - MultiPoint.
+- `Shapefile::SHAPE_TYPE_POINTZ` : 11 - PointZ.
+- `Shapefile::SHAPE_TYPE_POLYLINEZ` : 13 - PolyLineZ.
+- `Shapefile::SHAPE_TYPE_POLYGONZ` : 15 - PolygonZ.
+- `Shapefile::SHAPE_TYPE_MULTIPOINTZ` : 18 - MultiPointZ.
+- `Shapefile::SHAPE_TYPE_POINTM` : 21 - PointM.
+- `Shapefile::SHAPE_TYPE_POLYLINEM` : 23 - PolyLineM.
+- `Shapefile::SHAPE_TYPE_POLYGONM` : 25 - PolygonM.
+- `Shapefile::SHAPE_TYPE_MULTIPOINTM` : 28 - MultiPointM.
+    
+
+#### `$format`
+It specifies the return format and can be one of:
+ `Shapefile::FORMAT_INT` : Integer (*Default*)
+ `Shapefile::FORMAT_STR` : String
+
+
+
+### Shapefile::getBoundingBox
+```php?start_inline=1
+public Shapefile::getBoundingBox( void ) : array
+```
+
+Returns the whole Shapefile bounding box as an *Array*:
+
+```php?start_inline=1
+[
+    [xmin] => float
+    [xmax] => float
+    [ymin] => float
+    [ymax] => float
+    [zmin] => float        // Present only in Z Shapefiles
+    [zmax] => float        // Present only in Z Shapefiles
+    [mmin] => float/false  // Present only in M and Z Shapefiles
+    [mmax] => float/false  // Present only in M and Z Shapefiles
+]
+```
+*"No data"* values set for *M coordinates* in the shapefiles are returned as *Boolean* `false`.
+Eventual `Shapefile::OPTION_SUPPRESS_Z` and `Shapefile::OPTION_SUPPRESS_M` options set with [ShapefileReader constructor](#shapefilereader__construct) or [ShapefileWriter constructor](#shapefilewriter__construct) will effectively condition the output.
+
+
+
+### Shapefile::getPRJ
+```php?start_inline=1
+public Shapefile::getPRJ( void ) : string
+```
+
+Returns the raw WKT string from the *.prj* file. If there's no *.prj* file then `null` is returned.
+
+
+
+### Shapefile::getCharset
+```php?start_inline=1
+public Shapefile::getCharset( void ) : string
+```
+
+Returns the value read from the *.cpg* file, set with [setCharset](#shapefilereadersetcharset) method, or the default one: `'ISO-8859-1'`.
+Note that `ShapefileReader` Class will use this information to convert data read from the files to *UTF-8* when option `Shapefile::OPTION_DBF_CONVERT_TO_UTF8` is enabled. See [Strings charset conversion](#strings-charset-conversion) for details.
+
+
+
+### Shapefile::setCharset
+```php?start_inline=1
+public Shapefile::setCharset( mixed $charset ) : void
+```
+
+When called from a `ShapefileReader` instance it sets the charset used to convert strings to *UTF-8* when option `Shapefile::OPTION_DBF_CONVERT_TO_UTF8` is enabled. It will overwrite the one read from the *.cpg* file.
+When called from a `ShapefileWriter` instance it sets the charset that will be written into the *.cpg* file. Note that **no conversion is carried out by the library when writing Shapefiles**, see [Strings charset conversion](#strings-charset-conversion) for details.
+
+#### `$charset`
+A string containing the charset name or a falsy value (e.g.: `false` or empty string `""`) to reset it to default `'ISO-8859-1'`.
+
+
+
+### Shapefile::getFieldsNames
+```php?start_inline=1
+public Shapefile::getFieldsNames( void ) : array
+```
+
+Returns an *Array* of all fields names found in the Shapefile.
+
+
+
+
+### Shapefile::getField
+```php?start_inline=1
+public Shapefile::getField( string $name ) : array
+```
+
+Returns an *Array* representing the specified field definition:
+
+```php?start_inline=1
+[
+    [type]      => string
+    [size]      => int
+    [decimals]  => int
+]
+```
+
+#### `$name`
+The name of the field to return. If it does not exist, a ShapeFileException with `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` error will be thrown.
+
+
+
+### Shapefile::getFieldType
+```php?start_inline=1
+public Shapefile::getFieldType( string $name ) : string
+```
+
+Returns a *String* representing the specified field type. It can be one of:
+- `Shapefile::DBF_TYPE_CHAR` : String.
+- `Shapefile::DBF_TYPE_DATE` : Date.
+- `Shapefile::DBF_TYPE_LOGICAL` : Logical/Boolean.
+- `Shapefile::DBF_TYPE_MEMO` : Memo (requires a *.dbt* file).
+- `Shapefile::DBF_TYPE_NUMERIC` : Numeric.
+- `Shapefile::DBF_TYPE_FLOAT` : Floating point numbers. *This is actually **not** part of dBaseIII PLUS specifications, but since there are many Shapefiles out there using it, it has been included in this library*.
+
+#### `$name`
+The name of the field to return. If it does not exist, a ShapeFileException with `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` error will be thrown.
+
+
+
+### Shapefile::getFieldSize
+```php?start_inline=1
+public Shapefile::getFieldSize( string $name ) : int
+```
+
+Returns the lenght of the specified field. Note that all data is stored as a *String* into *.dbf* files.
+
+#### `$name`
+The name of the field to return. If it does not exist, a ShapeFileException with `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` error will be thrown.
+
+
+
+### Shapefile::getFieldDecimals
+```php?start_inline=1
+public Shapefile::getFieldDecimals( string $name ) : int
+```
+
+Returns the lenght of the decimal part of the specified field. This makes sense only for fields of type `Shapefile::DBF_TYPE_NUMERIC`.
+
+#### `$name`
+The name of the field to return. If it does not exist, a ShapeFileException with `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` error will be thrown.
+
+
+
+### Shapefile::getFields
+```php?start_inline=1
+public Shapefile::getFields( void ) : array
+```
+
+Returns and *Array* representing the fields definition in the *.dbf* file:
+
+```php?start_inline=1
+[
+    [fieldname] => [
+        [type]      => string
+        [size]      => int
+        [decimals]  => int
+    ]
+]
+```
+
+
+
+### Shapefile::getTotRecords
+```php?start_inline=1
+public Shapefile::getTotRecords( void ) : integer
+```
+
+Returns the number of records present in the Shapefile.
+
+
+
+
 ## Class Shapefile\ShapefileReader
-The Shapefile reading Class that exposes the following public methods:
+The Shapefile reading Class that exposes all the public methods of the [Shapefile](#class-shapefileshapefile) base Class, plus the following ones:
 
 - [__construct](#shapefilereader__construct)
-- [getShapeType](#shapefilereadergetshapetype)
-- [getBoundingBox](#shapefilereadergetboundingbox)
-- [getPRJ](#shapefilereadergetprj)
-- [getCharset](#shapefilereadergetcharset)
-- [setCharset](#shapefilereadersetcharset)
-- [getField](#shapefilereadergetfield)
-- [getFieldType](#shapefilereadergetfieldtype)
-- [getFieldSize](#shapefilereadergetfieldsize)
-- [getFieldDecimals](#shapefilereadergetfielddecimals)
-- [getFields](#shapefilereadergetfields)
-- [getTotRecords](#shapefilereadergettotrecords)
 - [getCurrentRecord](#shapefilereadergetcurrentrecord)
 - [setCurrentRecord](#shapefilereadersetcurrentrecord)
 - [fetchRecord](#shapefilereaderfetchrecord)
@@ -282,191 +491,19 @@ $Shapefile = new ShapefileReader('myshape.shp', [
 ```
 
 Here are the supported options and their default values:
- `Shapefile::OPTION_DBF_CONVERT_TO_UTF8` : Default = `true`. Converts from input charset to *UTF-8* all strings read from the *.dbf* file.
- `Shapefile::OPTION_DBF_FORCE_ALL_CAPS` : Default = `false`. Forces all column names in upper case in the *.dbf* file.
- `Shapefile::OPTION_DBF_IGNORED_FIELDS` : Default = `[]`. Array containing the names of the fields to ignore from the *.dbf* file.
- `Shapefile::OPTION_DBF_NULL_PADDING_CHAR` : Default = `null`. Defines a null padding character used in the *.dbf* file to represent `null` values.
- `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES` : Default = `true`. Returns a `null` value for invalid dates when reading *.dbf* files.
- `Shapefile::OPTION_DBF_RETURN_DATES_AS_OBJECTS` : Default = `false`. Returns dates as `DateTime` objects instead of ISO strings (`YYYY-MM-DD`).
- `Shapefile::OPTION_ENFORCE_POLYGON_CLOSED_RINGS` : Default = `true`. Enforces all Polygons rings to be closed.
- `Shapefile::OPTION_FORCE_MULTIPART_GEOMETRIES` : Default = `false`. Reads all Geometries as Multi (ESRI specs do not distinguish between LineString/MultiLinestring and Polygon/MultiPolygon).
- `Shapefile::OPTION_IGNORE_GEOMETRIES_BBOXES` : Default = `false`. Ignores geometries bounding boxes read from shapefile and computes some real ones instead.
- `Shapefile::OPTION_IGNORE_SHAPEFILE_BBOX` : Default = `false`. Ignores bounding box read from shapefile and computes a real one instead.
- `Shapefile::OPTION_INVERT_POLYGONS_ORIENTATION` : Default = `true`. Reverses polygons orientation (see [this note about Polygons orientation](#a-note-about-polygons-orientation)).
- `Shapefile::OPTION_SUPPRESS_M` : Default = `false`. Ignores *M dimension* from Shapefile.
- `Shapefile::OPTION_SUPPRESS_Z` : Default = `false`. Ignores *Z dimension* from Shapefile.
-
-
-
-### ShapefileReader::getShapeType
-```php?start_inline=1
-public ShapefileReader::getShapeType( [ int $format ] ) : mixed
-```
-
-Gets the Shapefile type as either text or number. Possible output values are:
- `Shapefile::SHAPE_TYPE_NULL` : 0 - Null Shape.
- `Shapefile::SHAPE_TYPE_POINT` : 1 - Point.
- `Shapefile::SHAPE_TYPE_POLYLINE` : 3 - PolyLine.
- `Shapefile::SHAPE_TYPE_POLYGON` : 5 - Polygon.
- `Shapefile::SHAPE_TYPE_MULTIPOINT` : 8 - MultiPoint.
- `Shapefile::SHAPE_TYPE_POINTZ` : 11 - PointZ.
- `Shapefile::SHAPE_TYPE_POLYLINEZ` : 13 - PolyLineZ.
- `Shapefile::SHAPE_TYPE_POLYGONZ` : 15 - PolygonZ.
- `Shapefile::SHAPE_TYPE_MULTIPOINTZ` : 18 - MultiPointZ.
- `Shapefile::SHAPE_TYPE_POINTM` : 21 - PointM.
- `Shapefile::SHAPE_TYPE_POLYLINEM` : 23 - PolyLineM.
- `Shapefile::SHAPE_TYPE_POLYGONM` : 25 - PolygonM.
- `Shapefile::SHAPE_TYPE_MULTIPOINTM` : 28 - MultiPointM.
-    
-
-#### `$format`
-It specifies the return format and can be one of:
- `Shapefile::FORMAT_INT` : Integer (*Default*)
- `Shapefile::FORMAT_STR` : String
-
-
-
-### getBoundingBox
-```php?start_inline=1
-public ShapefileReader::getBoundingBox( void ) : array
-```
-
-Returns the whole Shapefile bounding box as an *Array*:
-
-```php?start_inline=1
-[
-    [xmin] => float
-    [xmax] => float
-    [ymin] => float
-    [ymax] => float
-    [zmin] => float        // Present only in Z Shapefiles
-    [zmax] => float        // Present only in Z Shapefiles
-    [mmin] => float/false  // Present only in M and Z Shapefiles
-    [mmax] => float/false  // Present only in M and Z Shapefiles
-]
-```
-*"No data"* values set for *M coordinates* in the shapefiles are returned as *Boolean* `false`.
-Eventual `Shapefile::OPTION_SUPPRESS_Z` and `Shapefile::OPTION_SUPPRESS_M` options set with the [__constructor](#shapefilereader__construct) will effectively condition the output.
-
-
-
-### ShapefileReader::getPRJ
-```php?start_inline=1
-public ShapefileReader::getPRJ( void ) : string
-```
-
-Returns the raw WKT string from the *.prj* file. If there's no *.prj* file then `null` is returned.
-
-
-
-### ShapefileReader::getCharset
-```php?start_inline=1
-public ShapefileReader::getCharset( void ) : string
-```
-
-Returns the value read from the *.cpg* file, set with [setCharset](#shapefilereadersetcharset) method, or the default one: `'ISO-8859-1'`.
-Note that the library will use this information to convert data read from the files to *UTF-8* when option `Shapefile::OPTION_DBF_CONVERT_TO_UTF8` is enabled. See [Strings charset conversion](#strings-charset-conversion) for details.
-
-
-### ShapefileReader::setCharset
-```php?start_inline=1
-public ShapefileReader::setCharset( mixed $charset ) : void
-```
-
-Sets the charset used to convert strings to *UTF-8* when option `Shapefile::OPTION_DBF_CONVERT_TO_UTF8` is enabled. It will overwrite the one read from the *.cpg* file.
-
-#### `$charset`
-A string containing the charset name or a falsy value (e.g.: `false` or empty string `""`) to reset it to default `'ISO-8859-1'`.
-
-
-
-### ShapefileReader::getField
-```php?start_inline=1
-public ShapefileReader::getField( string $name ) : array
-```
-
-Returns an *Array* representing the specified field definition:
-
-```php?start_inline=1
-[
-    [type]      => string
-    [size]      => int
-    [decimals]  => int
-]
-```
-
-#### `$name`
-The name of the field to return.
-
-
-
-### ShapefileReader::getFieldType
-```php?start_inline=1
-public ShapefileReader::getFieldType( string $name ) : string
-```
-
-Returns a *String* representing the specified field type. It can be one of:
- `Shapefile::DBF_TYPE_CHAR` : String.
- `Shapefile::DBF_TYPE_DATE` : Date.
- `Shapefile::DBF_TYPE_LOGICAL` : Logical/Boolean.
- `Shapefile::DBF_TYPE_MEMO` : Memo (requires a *.dbt* file).
- `Shapefile::DBF_TYPE_NUMERIC` : Numeric.
- `Shapefile::DBF_TYPE_FLOAT` : Floating point numbers. *This is actually **not** part of dBaseIII PLUS specifications, but since there are many Shapefiles out there using it, it has been included in this library*.
-
-#### `$name`
-The name of the field to return.
-
-
-
-### ShapefileReader::getFieldSize
-```php?start_inline=1
-public ShapefileReader::getFieldSize( string $name ) : int
-```
-
-Returns the lenght of the specified field. Note that all data is stored as a *String* into *.dbf* files.
-
-#### `$name`
-The name of the field to return.
-
-
-
-### ShapefileReader::getFieldDecimals
-```php?start_inline=1
-public ShapefileReader::getFieldDecimals( string $name ) : int
-```
-
-Returns the lenght of the decimal part of the specified field. This makes sense only for fields of type `Shapefile::DBF_TYPE_NUMERIC`.
-
-#### `$name`
-The name of the field to return.
-
-
-
-### ShapefileReader::getFields
-```php?start_inline=1
-public ShapefileReader::getFields( void ) : array
-```
-
-Returns and *Array* representing the fields definition in the *.dbf* file:
-
-```php?start_inline=1
-[
-    [fieldname] => [
-        [type]      => string
-        [size]      => int
-        [decimals]  => int
-    ]
-]
-```
-
-
-
-### ShapefileReader::getTotRecords
-```php?start_inline=1
-public ShapefileReader::getTotRecords( void ) : integer
-```
-
-Returns the number of records present in the Shapefile.
+- **`Shapefile::OPTION_DBF_CONVERT_TO_UTF8`** : Default = `true`. Converts from input charset to *UTF-8* all strings read from the *.dbf* file.
+- **`Shapefile::OPTION_DBF_FORCE_ALL_CAPS`** : Default = `false`. Forces all column names in upper case in the *.dbf* file.
+- **`Shapefile::OPTION_DBF_IGNORED_FIELDS`** : Default = `[]`. Array containing the names of the fields to ignore from the *.dbf* file.
+- **`Shapefile::OPTION_DBF_NULL_PADDING_CHAR`** : Default = `null`. Defines a null padding character used in the *.dbf* file to represent `null` values.
+- **`Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES`** : Default = `true`. Returns a `null` value for invalid dates when reading *.dbf* files.
+- **`Shapefile::OPTION_DBF_RETURN_DATES_AS_OBJECTS`** : Default = `false`. Returns dates as `DateTime` objects instead of ISO strings (`YYYY-MM-DD`).
+- **`Shapefile::OPTION_ENFORCE_POLYGON_CLOSED_RINGS`** : Default = `true`. Enforces all Polygons rings to be closed.
+- **`Shapefile::OPTION_FORCE_MULTIPART_GEOMETRIES`** : Default = `false`. Reads all Geometries as Multi (ESRI specs do not distinguish between LineString/MultiLinestring and Polygon/MultiPolygon).
+- **`Shapefile::OPTION_IGNORE_GEOMETRIES_BBOXES`** : Default = `false`. Ignores geometries bounding boxes read from shapefile and computes some real ones instead.
+- **`Shapefile::OPTION_IGNORE_SHAPEFILE_BBOX`** : Default = `false`. Ignores bounding box read from shapefile and computes a real one instead.
+- **`Shapefile::OPTION_INVERT_POLYGONS_ORIENTATION`** : Default = `true`. Reverses polygons orientation (see [this note about Polygons orientation](#a-note-about-polygons-orientation)).
+- **`Shapefile::OPTION_SUPPRESS_M`** : Default = `false`. Ignores *M dimension* from Shapefile.
+- **`Shapefile::OPTION_SUPPRESS_Z`** : Default = `false`. Ignores *Z dimension* from Shapefile.
 
 
 
@@ -503,14 +540,13 @@ When the last record is reached, the cursor will be set to the special value `Sh
 
 
 ## Class Shapefile\ShapefileWriter
-The Shapefile writing Class that exposes the following public methods:
+The Shapefile writing Class that exposes all the public methods of the [Shapefile](#class-shapefileshapefile) base Class, plus the following ones:
 
 - [__construct](#shapefilewriter__construct)
 - [setShapeType](#shapefilewritersetshapetype)
 - [setCustomBoundingBox](#shapefilewritersetcustomboundingbox)
 - [resetCustomBoundingBox](#shapefilewriterresetcustomboundingbox)
 - [setPRJ](#shapefilewritersetprj)
-- [setCharset](#shapefilewritersetcharset)
 - [addCharField](#shapefilewriteraddcharfield)
 - [addDateField](#shapefilewriteradddatefield)
 - [addLogicalField](#shapefilewriteraddlogicalfield)
@@ -519,6 +555,7 @@ The Shapefile writing Class that exposes the following public methods:
 - [addFloatField](#shapefilewriteraddfloatfield)
 - [addField](#shapefilewriteraddfield)
 - [writeRecord](#shapefilewriterwriterecord)
+- [flushBuffer](#shapefilewriterflushbuffer)
 
 
 ### ShapefileWriter::__construct
@@ -536,20 +573,21 @@ Use the `$options` array parameter to pass some options and change the behaviour
 $Shapefile = new ShapefileWriter('myshape.shp', [
     Shapefile::OPTION_DBF_FORCE_ALL_CAPS        => true,
     Shapefile::OPTION_DBF_NULL_PADDING_CHAR     => '*',
-    Shapefile::OPTION_OVERWRITE_EXISTING_FILES  => true,
+    Shapefile::OPTION_EXISTING_FILES_MODE       => Shapefile::MODE_OVERWRITE,
 ]);
 ```
 
 Here are the supported options and their default values:
- `Shapefile::OPTION_CPG_ENABLE_FOR_DEFAULT_CHARSET` : Default = `false`. Writes a *.cpg* file (if there is one open) also when DBF data charset is the default one.
- `Shapefile::OPTION_DBF_FORCE_ALL_CAPS` : Default = `false`. Forces all column names in upper case in the *.dbf* file.
- `Shapefile::OPTION_DBF_NULL_PADDING_CHAR` : Default = `null`. Defines a null padding character to use in the *.dbf* file to represent `null` values.
- `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES` : Default = `true`. Nullify invalid dates when writing *.dbf* files.
- `Shapefile::OPTION_DELETE_EMPTY_FILES` : Default = `true`. Deletes empty files after closing them (only if they weren't passed as resource handles).
- `Shapefile::OPTION_ENFORCE_GEOMETRY_DATA_STRUCTURE` : Default = `true`. Enforces Geometries to have all data fields defined in Shapefile (otherwise `null` will be assumed).
- `Shapefile::OPTION_OVERWRITE_EXISTING_FILES` : Default = `false`. Overwrites existing files with the same name, otherwise a ShapeFileException with `Shapefile::ERR_FILE_EXISTS` error will be thrown.
- `Shapefile::OPTION_SUPPRESS_M` : Default = `false`. Ignores *M dimension* in Geometries.
- `Shapefile::OPTION_SUPPRESS_Z` : Default = `false`. Ignores *Z dimension* in Geometries.
+- **`Shapefile::OPTION_BUFFERED_RECORDS`** : Default = `10`. Number of records to keep into memory buffer before writing them. Use a value equal or less than `0` to keep all records into a buffer and write them at once.
+- **`Shapefile::OPTION_CPG_ENABLE_FOR_DEFAULT_CHARSET`** : Default = `false`. Writes a *.cpg* file (if there is one open) also when DBF data charset is the default one.
+- **`Shapefile::OPTION_DBF_FORCE_ALL_CAPS`** : Default = `false`. Forces all column names in upper case in the *.dbf* file.
+- **`Shapefile::OPTION_DBF_NULL_PADDING_CHAR`** : Default = `null`. Defines a null padding character to use in the *.dbf* file to represent `null` values.
+- **`Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES`** : Default = `true`. Nullify invalid dates when writing *.dbf* files.
+- **`Shapefile::OPTION_DELETE_EMPTY_FILES`** : Default = `true`. Deletes empty files after closing them (only if they weren't passed as resource handles).
+- **`Shapefile::OPTION_ENFORCE_GEOMETRY_DATA_STRUCTURE`** : Default = `true`. Enforces Geometries to have all data fields defined in Shapefile (otherwise `null` will be assumed).
+- **`Shapefile::OPTION_EXISTING_FILES_MODE`** : Default = `Shapefile::MODE_PRESERVE`. Defines behaviour with existing files with the same name. Possible values are `Shapefile::MODE_PRESERVE` (a ShapeFileException with `Shapefile::ERR_FILE_EXISTS` error will be thrown), `Shapefile::MODE_APPEND` (new records will be appended to existing files), `Shapefile::MODE_OVERWRITE` (existing files will be completely overwritten).
+- **`Shapefile::OPTION_SUPPRESS_M`** : Default = `false`. Ignores *M dimension* in Geometries.
+- **`Shapefile::OPTION_SUPPRESS_Z`** : Default = `false`. Ignores *Z dimension* in Geometries.
 
 
 
@@ -562,19 +600,19 @@ Sets the Shapefile type.
 
 #### `$type`
 Shape type. It can be on of the following:
- `Shapefile::SHAPE_TYPE_NULL` : 0 - Null Shape.
- `Shapefile::SHAPE_TYPE_POINT` : 1 - Point.
- `Shapefile::SHAPE_TYPE_POLYLINE` : 3 - PolyLine.
- `Shapefile::SHAPE_TYPE_POLYGON` : 5 - Polygon.
- `Shapefile::SHAPE_TYPE_MULTIPOINT` : 8 - MultiPoint.
- `Shapefile::SHAPE_TYPE_POINTZ` : 11 - PointZ.
- `Shapefile::SHAPE_TYPE_POLYLINEZ` : 13 - PolyLineZ.
- `Shapefile::SHAPE_TYPE_POLYGONZ` : 15 - PolygonZ.
- `Shapefile::SHAPE_TYPE_MULTIPOINTZ` : 18 - MultiPointZ.
- `Shapefile::SHAPE_TYPE_POINTM` : 21 - PointM.
- `Shapefile::SHAPE_TYPE_POLYLINEM` : 23 - PolyLineM.
- `Shapefile::SHAPE_TYPE_POLYGONM` : 25 - PolygonM.
- `Shapefile::SHAPE_TYPE_MULTIPOINTM` : 28 - MultiPointM.
+- `Shapefile::SHAPE_TYPE_NULL` : 0 - Null Shape.
+- `Shapefile::SHAPE_TYPE_POINT` : 1 - Point.
+- `Shapefile::SHAPE_TYPE_POLYLINE` : 3 - PolyLine.
+- `Shapefile::SHAPE_TYPE_POLYGON` : 5 - Polygon.
+- `Shapefile::SHAPE_TYPE_MULTIPOINT` : 8 - MultiPoint.
+- `Shapefile::SHAPE_TYPE_POINTZ` : 11 - PointZ.
+- `Shapefile::SHAPE_TYPE_POLYLINEZ` : 13 - PolyLineZ.
+- `Shapefile::SHAPE_TYPE_POLYGONZ` : 15 - PolygonZ.
+- `Shapefile::SHAPE_TYPE_MULTIPOINTZ` : 18 - MultiPointZ.
+- `Shapefile::SHAPE_TYPE_POINTM` : 21 - PointM.
+- `Shapefile::SHAPE_TYPE_POLYLINEM` : 23 - PolyLineM.
+- `Shapefile::SHAPE_TYPE_POLYGONM` : 25 - PolygonM.
+- `Shapefile::SHAPE_TYPE_MULTIPOINTM` : 28 - MultiPointM.
 
 
 
@@ -611,89 +649,66 @@ PRJ well-known-text. Pass a falsy value (e.g.: `false` or empty string `""`) to 
 
 
 
-### ShapefileWriter::setCharset
-```php?start_inline=1
-public ShapefileWriter::setCharset( mixed $charset ) : void
-```
-
-Sets the charset that will be written into the *.cpg* file. Note that **no conversion is carried out by the library when writing Shapefiles**, see [Strings charset conversion](#strings-charset-conversion) for details.
-
-#### `$charset`
-A string containing the charset name or a falsy value (e.g.: `false` or empty string `""`) to reset it to default `'ISO-8859-1'`.
-
-
-
 ### ShapefileWriter::addCharField
 ```php?start_inline=1
-public ShapefileWriter::addCharField( string $name [, int $size = 254 [, bool $flag_sanitize_name = true ]] ) : string
+public ShapefileWriter::addCharField( string $name [, int $size = 254 ] ) : string
 ```
 
 Adds a char field (type `Shapefile::DBF_TYPE_CHAR`) to the Shapefile definition. It returns the effective field name after eventual sanitization.
 
 #### `$name`
-Name of the field. Maximum 10 characters. Only letters, numbers and underscores are allowed. If `$flag_sanitize_name` is set to `true`, the library will normalize the name to comply with those requirements
+Name of the field. Maximum 10 characters. Only letters, numbers and underscores are allowed. Invalid or duplicated names will be silently *sanitized*, meaning that they will be truncated at 10 characters, not allowed characters replaced with underscores and in case of resulting duplicated names or conflicts, a serial number from `_1` to `99` will be added.
 
 #### `$size`
 Lenght of the field, between 1 and 254 characters. Defaults to 254.
 
-#### `$flag_sanitize_name`
-Leaving this flag to `true`, the library will replace not allowed characters with underscores and truncate large names to 10 characters.
 
 
 ### ShapefileWriter::addDateField
 ```php?start_inline=1
-public ShapefileWriter::addDateField( string $name [, bool $flag_sanitize_name = true ] ) : string
+public ShapefileWriter::addDateField( string $name ) : string
 ```
 
 Adds a date field (type `Shapefile::DBF_TYPE_DATE`) to the Shapefile definition. It returns the effective field name after eventual sanitization.
 
 #### `$name`
-Name of the field. Maximum 10 characters. Only letters, numbers and underscores are allowed. If `$flag_sanitize_name` is set to `true`, the library will normalize the name to comply with those requirements
-
-#### `$flag_sanitize_name`
-Leaving this flag to `true`, the library will replace not allowed characters with underscores and truncate large names to 10 characters.
+Name of the field. Maximum 10 characters. Only letters, numbers and underscores are allowed. Invalid or duplicated names will be silently *sanitized*, meaning that they will be truncated at 10 characters, not allowed characters replaced with underscores and in case of resulting duplicated names or conflicts, a serial number from `_1` to `99` will be added.
 
 
 
 ### ShapefileWriter::addLogicalField
 ```php?start_inline=1
-public ShapefileWriter::addLogicalField( string $name [, bool $flag_sanitize_name = true ] ) : string
+public ShapefileWriter::addLogicalField( string $name ) : string
 ```
 
 Adds a logical field (type `Shapefile::DBF_TYPE_LOGICAL`) to the Shapefile definition. It returns the effective field name after eventual sanitization.
 
 #### `$name`
-Name of the field. Maximum 10 characters. Only letters, numbers and underscores are allowed. If `$flag_sanitize_name` is set to `true`, the library will normalize the name to comply with those requirements
-
-#### `$flag_sanitize_name`
-Leaving this flag to `true`, the library will replace not allowed characters with underscores and truncate large names to 10 characters.
+Name of the field. Maximum 10 characters. Only letters, numbers and underscores are allowed. Invalid or duplicated names will be silently *sanitized*, meaning that they will be truncated at 10 characters, not allowed characters replaced with underscores and in case of resulting duplicated names or conflicts, a serial number from `_1` to `99` will be added.
 
 
 
 ### ShapefileWriter::addMemoField
 ```php?start_inline=1
-public ShapefileWriter::addMemoField( string $name [, bool $flag_sanitize_name = true ] ) : string
+public ShapefileWriter::addMemoField( string $name ) : string
 ```
 
 Adds a memo field (type `Shapefile::DBF_TYPE_MEMO`) to the Shapefile definition. It returns the effective field name after eventual sanitization.
 
 #### `$name`
-Name of the field. Maximum 10 characters. Only letters, numbers and underscores are allowed. If `$flag_sanitize_name` is set to `true`, the library will normalize the name to comply with those requirements
-
-#### `$flag_sanitize_name`
-Leaving this flag to `true`, the library will replace not allowed characters with underscores and truncate large names to 10 characters.
+Name of the field. Maximum 10 characters. Only letters, numbers and underscores are allowed. Invalid or duplicated names will be silently *sanitized*, meaning that they will be truncated at 10 characters, not allowed characters replaced with underscores and in case of resulting duplicated names or conflicts, a serial number from `_1` to `99` will be added.
 
 
 
 ### ShapefileWriter::addNumericField
 ```php?start_inline=1
-public ShapefileWriter::addNumericField( string $name [, int $size = 10 [, int $decimals = 0 [, bool $flag_sanitize_name = true ]]] ) : string
+public ShapefileWriter::addNumericField( string $name [, int $size = 10 [, int $decimals = 0 ]] ) : string
 ```
 
 Adds a numeric field (type `Shapefile::DBF_TYPE_NUMERIC`) to the Shapefile definition. It returns the effective field name after eventual sanitization.
 
 #### `$name`
-Name of the field. Maximum 10 characters. Only letters, numbers and underscores are allowed. If `$flag_sanitize_name` is set to `true`, the library will normalize the name to comply with those requirements
+Name of the field. Maximum 10 characters. Only letters, numbers and underscores are allowed. Invalid or duplicated names will be silently *sanitized*, meaning that they will be truncated at 10 characters, not allowed characters replaced with underscores and in case of resulting duplicated names or conflicts, a serial number from `_1` to `99` will be added.
 
 #### `$size`
 Lenght of the field, between 1 and 254 characters. Defaults to 10.
@@ -701,14 +716,11 @@ Lenght of the field, between 1 and 254 characters. Defaults to 10.
 #### `$decimals`
 Number of decimal digits. Defaults to 0, meaning an *integer* number. See [DBF data input/output](#dbf-data-inputoutput) section for details.
 
-#### `$flag_sanitize_name`
-Leaving this flag to `true`, the library will replace not allowed characters with underscores and truncate large names to 10 characters.
-
 
 
 ### ShapefileWriter::addFloatField
 ```php?start_inline=1
-public ShapefileWriter::addFloatField( string $name [, int $size = 20 [, int $decimals = 10 [, bool $flag_sanitize_name = true ]]] ) : string
+public ShapefileWriter::addFloatField( string $name [, int $size = 20 [, int $decimals = 10 ]] ) : string
 ```
 
 Adds a float field (type `Shapefile::DBF_TYPE_FLOAT`) to the Shapefile definition. It returns the effective field name after eventual sanitization.
@@ -716,7 +728,7 @@ Note that this field type is actually **not** part of dBaseIII PLUS original spe
 
 
 #### `$name`
-Name of the field. Maximum 10 characters. Only letters, numbers and underscores are allowed. If `$flag_sanitize_name` is set to `true`, the library will normalize the name to comply with those requirements
+Name of the field. Maximum 10 characters. Only letters, numbers and underscores are allowed. Invalid or duplicated names will be silently *sanitized*, meaning that they will be truncated at 10 characters, not allowed characters replaced with underscores and in case of resulting duplicated names or conflicts, a serial number from `_1` to `99` will be added.
 
 #### `$size`
 Lenght of the field, between 1 and 254 characters. Defaults to 20.
@@ -724,29 +736,26 @@ Lenght of the field, between 1 and 254 characters. Defaults to 20.
 #### `$decimals`
 Number of decimal digits. Defaults to 10. Number of decimal digits cannot be 0 for this field type. See [DBF data input/output](#dbf-data-inputoutput) section for details.
 
-#### `$flag_sanitize_name`
-Leaving this flag to `true`, the library will replace not allowed characters with underscores and truncate large names to 10 characters.
-
 
 
 ### ShapefileWriter::addField
 ```php?start_inline=1
-public ShapefileWriter::addField( string $name, string $type, int $size, int $decimals [, bool $flag_sanitize_name = true ] ) : string
+public ShapefileWriter::addField( string $name, string $type, int $size, int $decimals ) : string
 ```
 
 Adds a field to the Shapefile definition. This is a kind of *low level* method that allows to add a field of any type. It returns the effective field name after eventual sanitization.
 
 #### `$name`
-Name of the field. Maximum 10 characters. Only letters, numbers and underscores are allowed. If `$flag_sanitize_name` is set to `true`, the library will normalize the name to comply with those requirements
+Name of the field. Maximum 10 characters. Only letters, numbers and underscores are allowed. Invalid or duplicated names will be silently *sanitized*, meaning that they will be truncated at 10 characters, not allowed characters replaced with underscores and in case of resulting duplicated names or conflicts, a serial number from `_1` to `99` will be added.
 
 #### `$type`
 Type of the field. It can be one of:
- `Shapefile::DBF_TYPE_CHAR` : String.
- `Shapefile::DBF_TYPE_DATE` : Date.
- `Shapefile::DBF_TYPE_LOGICAL` : Logical/Boolean.
- `Shapefile::DBF_TYPE_MEMO` : Memo (requires a *.dbt* file).
- `Shapefile::DBF_TYPE_NUMERIC` : Numeric.
- `Shapefile::DBF_TYPE_FLOAT` : Floating point numbers. *This is actually **not** part of dBaseIII PLUS specifications, but since there are many Shapefiles out there using it, it has been included in this library*.
+- `Shapefile::DBF_TYPE_CHAR` : String.
+- `Shapefile::DBF_TYPE_DATE` : Date.
+- `Shapefile::DBF_TYPE_LOGICAL` : Logical/Boolean.
+- `Shapefile::DBF_TYPE_MEMO` : Memo (requires a *.dbt* file).
+- `Shapefile::DBF_TYPE_NUMERIC` : Numeric.
+- `Shapefile::DBF_TYPE_FLOAT` : Floating point numbers. *This is actually **not** part of dBaseIII PLUS specifications, but since there are many Shapefiles out there using it, it has been included in this library*.
 
 
 #### `$size`
@@ -754,9 +763,6 @@ Lenght of the field, between 1 and 254 characters.
 
 #### `$decimals`
 Number of decimal digits for numeric types.
-
-#### `$flag_sanitize_name`
-Leaving this flag to `true`, the library will replace not allowed characters with underscores and truncate large names to 10 characters.
 
 
 
@@ -773,9 +779,20 @@ Depending on the state of `Shapefile::OPTION_ENFORCE_GEOMETRY_DATA_STRUCTURE` op
 
 
 
+### ShapefileWriter::flushBuffer
+```php?start_inline=1
+public ShapefileWriter::flushBuffer( void ) : void
+```
+
+Writes memory buffers to files. This will effectively reset the record counter that causes automatic buffer flushing according to the value specified with `Shapefile::OPTION_BUFFERED_RECORDS` constructor option.
+
+
+
+
+
 
 ## Class Shapefile\Geometry\Geometry
-This is the base Class for all the other Geometries. All of them expose the following public methods:
+This is the base Abstract Class for all the other Geometries. It cannot be directly instantiated, but exposes the following public methods for Classes than extend it:
 
 - [initFromArray](#geometryinitfromarray)
 - [initFromWKT](#geometryinitfromwkt)
@@ -1470,19 +1487,20 @@ $Shapefile = new ShapefileReader([
 
 // Writing files
 $Shapefile = new ShapefileWriter([
-    Shapefile::FILE_SHP => fopen('/path/to/file.shp', 'wb'),
-    Shapefile::FILE_SHX => fopen('/path/to/file.shx', 'wb'),
-    Shapefile::FILE_DBF => fopen('/path/to/file.dbf', 'wb'),
+    Shapefile::FILE_SHP => fopen('/path/to/file.shp', 'c+b'),
+    Shapefile::FILE_SHX => fopen('/path/to/file.shx', 'c+b'),
+    Shapefile::FILE_DBF => fopen('/path/to/file.dbf', 'c+b'),
 ]);
 ```
+Keep in mind that in order for `Shapefile::MODE_APPEND` to work as expected when passing resource handles to `ShapefileWriter` constructor, resource handles access mode must be for **binary reading and writing**. The library internally uses `c+b`, but as any of `r+b`, `wb`, `w+b`, `xb`, `x+b`, `cb` and `c+b` will work just fine.
 
 Supported file types are: 
- `Shapefile::FILE_SHP` : Required. Geometries file.
- `Shapefile::FILE_SHX` : Required. Index file.
- `Shapefile::FILE_DBF` : Required. Attributes file.
- `Shapefile::FILE_DBT` : Optional. Extended *Memo* attributes file.
- `Shapefile::FILE_PRJ` : Optional. WKT projection file.
- `Shapefile::FILE_CPG` : Optional. *DBF* charset file. 
+- `Shapefile::FILE_SHP` : Required. Geometries file.
+- `Shapefile::FILE_SHX` : Required. Index file.
+- `Shapefile::FILE_DBF` : Required. Attributes file.
+- `Shapefile::FILE_DBT` : Optional. Extended *Memo* attributes file.
+- `Shapefile::FILE_PRJ` : Optional. WKT projection file.
+- `Shapefile::FILE_CPG` : Optional. *DBF* charset file. 
 
 
 ### Closing files / Releasing the handles
@@ -1889,11 +1907,9 @@ try {
     
 } catch (ShapefileException $e) {
     // Print detailed error information
-    exit(
-        "Error Type: "  . $e->getErrorType()
+    echo "Error Type: " . $e->getErrorType()
         . "\nMessage: " . $e->getMessage()
-        . "\nDetails: " . $e->getDetails()
-    );
+        . "\nDetails: " . $e->getDetails();
 }
 echo "</pre>";
 ```
@@ -1957,6 +1973,7 @@ Well, after more than 15 years working with GIS related technologies, I have yet
 
 
 ## History
+*30 October 2019* - [Version 3.1.0](/posts/php-shapefile-3.1.0/)
 *23 September 2019* - [Version 3.0.2](/posts/php-shapefile-3.0.2/)
 *31 August 2019* - [Version 3.0.1](/posts/php-shapefile-3.0.1/)
 *30 August 2019* - [Version 3.0.0](/posts/php-shapefile-3.0.0/)
