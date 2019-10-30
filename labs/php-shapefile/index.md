@@ -304,7 +304,7 @@ It specifies the return format and can be one of:
 
 
 
-### getBoundingBox
+### Shapefile::getBoundingBox
 ```php?start_inline=1
 public Shapefile::getBoundingBox( void ) : array
 ```
@@ -1492,15 +1492,15 @@ $Shapefile = new ShapefileWriter([
     Shapefile::FILE_DBF => fopen('/path/to/file.dbf', 'c+b'),
 ]);
 ```
-Keep in mind that in order for `Shapefile::MODE_APPEND` to work as expected when passing resource handles to `ShapefileWriter` constructor, resource handles access mode must be for **binary reading and writing**. The library internally uses `c+b`, but as any of 'r+b', 'wb', 'w+b', 'xb', 'x+b', 'cb' and 'c+b' will work just fine.
+Keep in mind that in order for `Shapefile::MODE_APPEND` to work as expected when passing resource handles to `ShapefileWriter` constructor, resource handles access mode must be for **binary reading and writing**. The library internally uses `c+b`, but as any of `r+b`, `wb`, `w+b`, `xb`, `x+b`, `cb` and `c+b` will work just fine.
 
 Supported file types are: 
- `Shapefile::FILE_SHP` : Required. Geometries file.
- `Shapefile::FILE_SHX` : Required. Index file.
- `Shapefile::FILE_DBF` : Required. Attributes file.
- `Shapefile::FILE_DBT` : Optional. Extended *Memo* attributes file.
- `Shapefile::FILE_PRJ` : Optional. WKT projection file.
- `Shapefile::FILE_CPG` : Optional. *DBF* charset file. 
+- `Shapefile::FILE_SHP` : Required. Geometries file.
+- `Shapefile::FILE_SHX` : Required. Index file.
+- `Shapefile::FILE_DBF` : Required. Attributes file.
+- `Shapefile::FILE_DBT` : Optional. Extended *Memo* attributes file.
+- `Shapefile::FILE_PRJ` : Optional. WKT projection file.
+- `Shapefile::FILE_CPG` : Optional. *DBF* charset file. 
 
 
 ### Closing files / Releasing the handles
