@@ -2,7 +2,7 @@
 layout      : post
 title       : PHP Shapefile 3.0.0
 description : Finally v3 is here and it can write Shapefiles!
-tags        : [Releases, PHP, ESRI, ShapeFile, GIS]
+tags        : [Releases, PHP, ESRI, Shapefile, GIS]
 ---
 
 

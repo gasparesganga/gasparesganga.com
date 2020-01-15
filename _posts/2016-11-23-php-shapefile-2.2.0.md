@@ -2,7 +2,7 @@
 layout      : post
 title       : PHP ShapeFile 2.2.0
 description : Random access to specific record, handling of unexpected bytes in the files and Iterator interface
-tags        : [Releases, PHP, ESRI, ShapeFile, GIS]
+tags        : [Releases, PHP, ESRI, Shapefile, GIS]
 ---
 
 I stumbled across some shapefiles which seemed to be corrupted, even if many GIS softwares were still perfectly capable of reading them.

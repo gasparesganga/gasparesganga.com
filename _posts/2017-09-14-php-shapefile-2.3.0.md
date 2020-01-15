@@ -2,7 +2,7 @@
 layout      : post
 title       : PHP ShapeFile 2.3.0
 description : Main ShapeFile class can now be easily extended
-tags        : [Releases, PHP, ESRI, ShapeFile, GIS]
+tags        : [Releases, PHP, ESRI, Shapefile, GIS]
 ---
 
 It's been a long time since the last update to this library. In the meanwhile it has been gaining popularity and I have received a few requests as well.

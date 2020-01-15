@@ -2,7 +2,7 @@
 layout      : post
 title       : PHP ShapeFile 2.0.0
 description : Z and M shapes support, PHP 7 compatible, dropped XBase dependency, PSR-compliant code and more!
-tags        : [Releases, PHP, ESRI, ShapeFile, GIS]
+tags        : [Releases, PHP, ESRI, Shapefile, GIS]
 ---
 
 

@@ -2,7 +2,7 @@
 layout      : post
 title       : PHP Shapefile 3.1.1
 description : A couple of trivial bugfixes
-tags        : [Releases, PHP, ESRI, ShapeFile, GIS]
+tags        : [Releases, PHP, ESRI, Shapefile, GIS]
 ---
 
 
