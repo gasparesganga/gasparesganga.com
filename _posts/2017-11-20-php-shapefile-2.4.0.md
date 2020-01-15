@@ -2,7 +2,7 @@
 layout      : post
 title       : PHP ShapeFile 2.4.0
 description : Added GeoJSON output format
-tags        : [Releases, PHP, ESRI, ShapeFile, GIS]
+tags        : [Releases, PHP, ESRI, Shapefile, GIS]
 ---
 
 

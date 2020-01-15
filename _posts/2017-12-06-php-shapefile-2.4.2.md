@@ -2,7 +2,7 @@
 layout      : post
 title       : PHP ShapeFile 2.4.2
 description : Fixed orientation of inner and outer rings in GeoJSON output
-tags        : [Releases, PHP, ESRI, ShapeFile, GIS]
+tags        : [Releases, PHP, ESRI, Shapefile, GIS]
 ---
 
 

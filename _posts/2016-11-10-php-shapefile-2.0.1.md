@@ -2,7 +2,7 @@
 layout      : post
 title       : PHP ShapeFile 2.0.1
 description : PHP 7 Uniform Variable Syntax bugfix
-tags        : [Releases, PHP, ESRI, ShapeFile, GIS]
+tags        : [Releases, PHP, ESRI, Shapefile, GIS]
 ---
 
 

@@ -2,7 +2,7 @@
 layout      : post
 title       : PHP ShapeFile version 1.1
 description : Version 1.1 released, with some minor improvements
-tags        : [Releases, PHP, ShapeFile, GIS]
+tags        : [Releases, PHP, Shapefile, GIS]
 ---
 
 

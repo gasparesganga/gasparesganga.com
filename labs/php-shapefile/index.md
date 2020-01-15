@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP Shapefile
 description : PHP library to read and write ESRI Shapefiles, compatible with WKT and GeoJSON
-updated     : 2019-11-10
+updated     : 2020-01-15
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -498,7 +498,7 @@ Here are the supported options and their default values:
 - **`Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES`** : Default = `true`. Returns a `null` value for invalid dates when reading *.dbf* files.
 - **`Shapefile::OPTION_DBF_RETURN_DATES_AS_OBJECTS`** : Default = `false`. Returns dates as `DateTime` objects instead of ISO strings (`YYYY-MM-DD`).
 - **`Shapefile::OPTION_ENFORCE_POLYGON_CLOSED_RINGS`** : Default = `true`. Enforces all Polygons rings to be closed.
-- **`Shapefile::OPTION_FORCE_MULTIPART_GEOMETRIES`** : Default = `false`. Reads all Geometries as Multi (ESRI specs do not distinguish between LineString/MultiLinestring and Polygon/MultiPolygon).
+- **`Shapefile::OPTION_FORCE_MULTIPART_GEOMETRIES`** : Default = `false`. Reads Polyline and Polygon Geometries as Multi (ESRI specs do not distinguish between Linestring/MultiLinestring and Polygon/MultiPolygon).
 - **`Shapefile::OPTION_IGNORE_GEOMETRIES_BBOXES`** : Default = `false`. Ignores geometries bounding boxes read from shapefile and computes some real ones instead.
 - **`Shapefile::OPTION_IGNORE_SHAPEFILE_BBOX`** : Default = `false`. Ignores bounding box read from shapefile and computes a real one instead.
 - **`Shapefile::OPTION_INVERT_POLYGONS_ORIENTATION`** : Default = `true`. Reverses polygons orientation (see [this note about Polygons orientation](#a-note-about-polygons-orientation)).
@@ -1973,6 +1973,7 @@ Well, after more than 15 years working with GIS related technologies, I have yet
 
 
 ## History
+*15 January 2020* - [Version 3.1.2](/posts/php-shapefile-3.1.2/)
 *10 November 2019* - [Version 3.1.1](/posts/php-shapefile-3.1.1/)
 *30 October 2019* - [Version 3.1.0](/posts/php-shapefile-3.1.0/)
 *23 September 2019* - [Version 3.0.2](/posts/php-shapefile-3.0.2/)

@@ -2,7 +2,7 @@
 layout      : post
 title       : PHP Shapefile 3.0.2
 description : PHP7 Warning bugfix
-tags        : [Releases, PHP, ESRI, ShapeFile, GIS]
+tags        : [Releases, PHP, ESRI, Shapefile, GIS]
 ---
 
 

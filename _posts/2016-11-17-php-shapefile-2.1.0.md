@@ -2,7 +2,7 @@
 layout      : post
 title       : PHP ShapeFile 2.1.0
 description : New public method getDBFFields()
-tags        : [Releases, PHP, ESRI, ShapeFile, GIS]
+tags        : [Releases, PHP, ESRI, Shapefile, GIS]
 ---
 
 

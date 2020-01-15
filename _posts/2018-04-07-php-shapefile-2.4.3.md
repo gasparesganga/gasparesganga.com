@@ -2,7 +2,7 @@
 layout      : post
 title       : PHP ShapeFile 2.4.3
 description : Fixed bug in binary reading function
-tags        : [Releases, PHP, ESRI, ShapeFile, GIS]
+tags        : [Releases, PHP, ESRI, Shapefile, GIS]
 ---
 
 
