@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP Shapefile
 description : PHP library to read and write ESRI Shapefiles, compatible with WKT and GeoJSON
-updated     : 2020-01-15
+updated     : 2020-02-02
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -1634,7 +1634,7 @@ The structure of [getArray](#geometrygetarray), [getWKT](#geometrygetwkt) and [g
 
 - GeoJSON Geometry:
     {
-        "type": "Linestring" / "LinestringM",
+        "type": "LineString" / "LineStringM",
         "bbox": [xmin, ymin, zmin, mmin, xmax, ymax, zmax, mmax],
         "coordinates": [
             [x, y, z, m]
@@ -1645,7 +1645,7 @@ The structure of [getArray](#geometrygetarray), [getWKT](#geometrygetwkt) and [g
     {
         "type": "Feature",
         "geometry": {
-            "type": "Linestring" / "LinestringM",
+            "type": "LineString" / "LineStringM",
             "bbox": [xmin, ymin, zmin, mmin, xmax, ymax, zmax, mmax],
             "coordinates": [
                 [x, y, z, m]
@@ -1683,7 +1683,7 @@ The structure of [getArray](#geometrygetarray), [getWKT](#geometrygetwkt) and [g
 
 - GeoJSON Geometry:
     {
-        "type": "MultiLinestring" / "MultiLinestringM"
+        "type": "MultiLineString" / "MultiLineStringM"
         "coordinates": [
             [
                 [x, y, z, m]
@@ -1695,7 +1695,7 @@ The structure of [getArray](#geometrygetarray), [getWKT](#geometrygetwkt) and [g
     {
         "type": "Feature",
         "geometry": {
-            "type": "MultiLinestring" / "MultiLinestringM",
+            "type": "MultiLineString" / "MultiLineStringM",
             "bbox": [xmin, ymin, zmin, mmin, xmax, ymax, zmax, mmax],
             "coordinates": [
                 [
@@ -1973,6 +1973,7 @@ Well, after more than 15 years working with GIS related technologies, I have yet
 
 
 ## History
+*2 February 2020* - [Version 3.1.3](/posts/php-shapefile-3.1.3/)
 *15 January 2020* - [Version 3.1.2](/posts/php-shapefile-3.1.2/)
 *10 November 2019* - [Version 3.1.1](/posts/php-shapefile-3.1.1/)
 *30 October 2019* - [Version 3.1.0](/posts/php-shapefile-3.1.0/)
