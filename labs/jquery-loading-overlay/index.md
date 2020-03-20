@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery LoadingOverlay
 description : A flexible loading overlay jQuery plugin
-updated     : 2018-09-24
+updated     : 2020-03-20
 getit       :
   github        : gasparesganga/jquery-loading-overlay
   download      : true
@@ -10,14 +10,14 @@ getit       :
   bower         : gasparesganga-jquery-loading-overlay
   cdn           :
     name    : gasparesganga-jquery-loading-overlay
-    version : 2.1.6
+    version : 2.1.7
     files   : [dist/loadingoverlay.min.js]
 
 assets      :
   css   :
     - jquery-loading-overlay/_assets/demo.css
   js    :
-    - js/jquery-3.3.1.min.js
+    - js/jquery-3.4.1.min.js
     - jquery-loading-overlay/_assets/loadingoverlay.min.js
     - jquery-loading-overlay/_assets/demo.js
     - "https://use.fontawesome.com/releases/v5.0.8/js/all.js"
@@ -456,6 +456,7 @@ $(document).ajaxComplete(function(event, jqxhr, settings){
 
 
 ## History
+*20 March 2020* - [Version 2.1.7](/posts/jquery-loading-overlay-2.1.7/)
 *24 September 2018* - [Version 2.1.6](/posts/jquery-loading-overlay-2.1.6/)
 *3 July 2018* - [Version 2.1.5](/posts/jquery-loading-overlay-2.1.5/)
 *7 June 2018* - [Version 2.1.4](/posts/jquery-loading-overlay-2.1.4/)
