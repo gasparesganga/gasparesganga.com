@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP Shapefile
 description : PHP library to read and write ESRI Shapefiles, compatible with WKT and GeoJSON
-updated     : 2020-02-02
+updated     : 2020-04-09
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -491,6 +491,7 @@ $Shapefile = new ShapefileReader('myshape.shp', [
 ```
 
 Here are the supported options and their default values:
+- **`Shapefile::OPTION_DBF_ALLOW_FIELD_SIZE_255`** : Default = `false`. Allows a maximum field size of 255 bytes instead of 254 bytes in the *.dbf* file.
 - **`Shapefile::OPTION_DBF_CONVERT_TO_UTF8`** : Default = `true`. Converts from input charset to *UTF-8* all strings read from the *.dbf* file.
 - **`Shapefile::OPTION_DBF_FORCE_ALL_CAPS`** : Default = `false`. Forces all column names in upper case in the *.dbf* file.
 - **`Shapefile::OPTION_DBF_IGNORED_FIELDS`** : Default = `[]`. Array containing the names of the fields to ignore from the *.dbf* file.
@@ -580,6 +581,7 @@ $Shapefile = new ShapefileWriter('myshape.shp', [
 Here are the supported options and their default values:
 - **`Shapefile::OPTION_BUFFERED_RECORDS`** : Default = `10`. Number of records to keep into memory buffer before writing them. Use a value equal or less than `0` to keep all records into a buffer and write them at once.
 - **`Shapefile::OPTION_CPG_ENABLE_FOR_DEFAULT_CHARSET`** : Default = `false`. Writes a *.cpg* file (if there is one open) also when DBF data charset is the default one.
+- **`Shapefile::OPTION_DBF_ALLOW_FIELD_SIZE_255`** : Default = `false`. Allows a maximum field size of 255 bytes instead of 254 bytes in the *.dbf* file.
 - **`Shapefile::OPTION_DBF_FORCE_ALL_CAPS`** : Default = `false`. Forces all column names in upper case in the *.dbf* file.
 - **`Shapefile::OPTION_DBF_NULL_PADDING_CHAR`** : Default = `null`. Defines a null padding character to use in the *.dbf* file to represent `null` values.
 - **`Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES`** : Default = `true`. Nullify invalid dates when writing *.dbf* files.
@@ -1973,6 +1975,7 @@ Well, after more than 15 years working with GIS related technologies, I have yet
 
 
 ## History
+*9 April 2020* - [Version 3.2.0](/posts/php-shapefile-3.2.0/)
 *2 February 2020* - [Version 3.1.3](/posts/php-shapefile-3.1.3/)
 *15 January 2020* - [Version 3.1.2](/posts/php-shapefile-3.1.2/)
 *10 November 2019* - [Version 3.1.1](/posts/php-shapefile-3.1.1/)
