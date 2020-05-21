@@ -8,6 +8,10 @@ Options -Indexes
 AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/javascript application/json image/svg+xml
 
 
+########## Enable HSTS ##########
+Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+
 ########## Prevent html files cache ##########
 <FilesMatch ".(html|htm)$">
     FileETag None

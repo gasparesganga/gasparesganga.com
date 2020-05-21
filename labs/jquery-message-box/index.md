@@ -2,7 +2,7 @@
 layout      : lab
 title       : jQuery MessageBox
 description : A jQuery Plugin to replace Javascript's window.alert(), window.confirm() and window.prompt() functions
-updated     : 2019-10-16
+updated     : 2020-05-21
 getit       :
   github        : gasparesganga/jquery-message-box
   download      : true
@@ -10,7 +10,7 @@ getit       :
   bower         : gasparesganga-jquery-message-box
   cdn           :
     name    : gasparesganga-jquery-message-box
-    version : 3.2.1
+    version : 3.2.2
     files   : [dist/messagebox.min.js, dist/messagebox.min.css]
 
 assets      :
@@ -511,7 +511,7 @@ $.MessageBox({
     console.log(data);
 });
 
-// Simpe textbox with default value
+// Simple textbox with default value
 $.MessageBox({
     input    : "Some default value",
     message  : "Input some string (again):"
@@ -555,8 +555,7 @@ $.MessageBox({
         },
         dummy_caption : {
             type         : "caption",
-            message      : "This is a <b>caption</b>, sometimes you might need one",
-            title        : "aaaaaaaaaa"
+            message      : "This is a <b>caption</b>, sometimes you might need one"
         },
         select1 : {
             type         : "select",
@@ -815,6 +814,7 @@ My little personal tribute to Visual Basic 6 `MsgBox()` function.
 
 
 ## History
+*21 May 2020* - [Version 3.2.2](/posts/jquery-message-box-3.2.2/)
 *16 October 2019* - [Version 3.2.1](/posts/jquery-message-box-3.2.1/)
 *7 October 2019* - [Version 3.2.0](/posts/jquery-message-box-3.2.0/)
 *25 April 2019* - [Version 3.1.0](/posts/jquery-message-box-3.1.0/)
