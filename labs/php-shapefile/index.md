@@ -146,6 +146,19 @@ Check the [Examples](#examples) section for more usage hints.
 ## Namespaces and Classes
 There are 2 Namespaces, `Shapefile` and `Shapefile\Geometry`, containing the following Classes:
 
+- Shapefile\\**[ShapefileAutoloader](#class-shapefileshapefileautoloader)**
+- Shapefile\\**[ShapefileException](#class-shapefileshapefileexception)**
+- *Abstract* Shapefile\\**[Shapefile](#class-shapefileshapefile)**
+- Shapefile\\**[ShapefileReader](#class-shapefileshapefilereader)**
+- Shapefile\\**[ShapefileWriter](#class-shapefileshapefilewriter)**
+- *Abstract* Shapefile\Geometry\\**[Geometry](#class-shapefilegeometrygeometry)**
+- Shapefile\Geometry\\**[Point](#class-shapefilegeometrypoint)**
+- Shapefile\Geometry\\**[MultiPoint](#class-shapefilegeometrymultipoint)**
+- Shapefile\Geometry\\**[Linestring](#class-shapefilegeometrylinestring)**
+- Shapefile\Geometry\\**[MultiLinestring](#class-shapefilegeometrymultilinestring)**
+- Shapefile\Geometry\\**[Polygon](#class-shapefilegeometrypolygon)**
+- Shapefile\Geometry\\**[MultiPolygon](#class-shapefilegeometrymultipolygon)**
+
 - <a href="#class-shapefileshapefileautoloader">Shapefile&#92;<b>ShapefileAutoloader</b></a>
 - <a href="#class-shapefileshapefileexception">Shapefile&#92;<b>ShapefileException</b></a>
 - <a href="#class-shapefileshapefile">Abstract Shapefile&#92;<b>Shapefile</b></a>
@@ -188,49 +201,55 @@ public ShapefileException::getErrorType( void ) : string
 
 Gets internal error type as a string. Useful to react to specific errors.
 Here are all possible error types:
+
 | Error | Description |
 | ----- | ----------- |
-| `Shapefile::ERR_UNDEFINED` | Undefined error. |
-| `Shapefile::ERR_FILE_MISSING` | A required file is missing. |
-| `Shapefile::ERR_FILE_EXISTS` | Check if the file exists and is readable and/or writable. |
-| `Shapefile::ERR_FILE_INVALID_RESOURCE` | File pointer resource not valid. |
-| `Shapefile::ERR_FILE_OPEN` | Unable to open file. |
-| `Shapefile::ERR_FILE_READING` | Error during binary file reading. |
-| `Shapefile::ERR_FILE_WRITING` | Error during binary file writing. |
-| `Shapefile::ERR_SHP_TYPE_NOT_SUPPORTED` | Shape type not supported. |
-| `Shapefile::ERR_SHP_TYPE_NOT_SET` | Shape type not set. |
-| `Shapefile::ERR_SHP_TYPE_ALREADY_SET` | Shape type has already been set. |
-| `Shapefile::ERR_SHP_GEOMETRY_TYPE_NOT_COMPATIBLE` | Geometry type must be compatible with Shapefile shape type. |
-| `Shapefile::ERR_SHP_MISMATCHED_BBOX` | Bounding box must have the same dimensions as the Shapefile (2D, 3D or 4D). |
-| `Shapefile::ERR_SHP_FILE_ALREADY_INITIALIZED` | Cannot change Shapefile definition after it has been initialized with data. |
-| `Shapefile::ERR_SHP_WRONG_RECORD_TYPE` | Wrong record shape type. |
-| `Shapefile::ERR_DBF_FILE_NOT_VALID` | DBF file doesn't seem to be a valid dBase III or dBase IV format. |
-| `Shapefile::ERR_DBF_MISMATCHED_FILE` | Mismatched DBF file. Number of records not corresponding to the SHP file. |
-| `Shapefile::ERR_DBF_EOF_REACHED` | End of DBF file reached. Number of records not corresponding to the SHP file. |
-| `Shapefile::ERR_DBF_MAX_FIELD_COUNT_REACHED` | Cannot add other fields, maximum number of fields in a DBF file reached. |
-| `Shapefile::ERR_DBF_FIELD_NAME_NOT_VALID` | Too many field names conflicting. |
-| `Shapefile::ERR_DBF_FIELD_TYPE_NOT_VALID` | Field type must be CHAR, DATE, LOGICAL, MEMO or NUMERIC. |
-| `Shapefile::ERR_DBF_FIELD_SIZE_NOT_VALID` | Field size incorrect according to its type. |
-| `Shapefile::ERR_DBF_FIELD_DECIMALS_NOT_VALID` | Field decimals incorrect according to its type. |
-| `Shapefile::ERR_DBF_CHARSET_CONVERSION` | Error during conversion from provided DBF input charset to *UTF-8*. |
-| `Shapefile::ERR_DBT_EOF_REACHED` | End of DBT file reached. File might be corrupted. |
-| `Shapefile::ERR_GEOM_NOT_EMPTY` | Cannot reinitialize non-empty Geometry. |
-| `Shapefile::ERR_GEOM_COORD_VALUE_NOT_VALID` | Invalid coordinate value. |
-| `Shapefile::ERR_GEOM_MISMATCHED_DIMENSIONS` | All geometries in a collection must have the same dimensions (2D, 3D or 4D). |
-| `Shapefile::ERR_GEOM_MISMATCHED_BBOX` | Bounding box must have the same dimensions as the Geometry (2D, 3D or 4D). |
-| `Shapefile::ERR_GEOM_MISSING_FIELD` | Geometry is missing a field defined in the Shapefile. |
-| `Shapefile::ERR_GEOM_POINT_NOT_VALID` | A Point can be either EMPTY or al least 2D. |
-| `Shapefile::ERR_GEOM_POLYGON_OPEN_RING` | Polygons cannot contain open rings. |
-| `Shapefile::ERR_GEOM_POLYGON_WRONG_ORIENTATION` | Polygon orientation not compliant with Shapefile specifications. |
-| `Shapefile::ERR_GEOM_RING_AREA_TOO_SMALL` | Ring area too small. Cannot determine ring orientation. |
-| `Shapefile::ERR_INPUT_RECORD_NOT_FOUND` | Record index not found (check the total number of records in the SHP file). |
-| `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` | Field not found. |
-| `Shapefile::ERR_INPUT_GEOMETRY_TYPE_NOT_VALID` | Geometry type not valid. Must be of specified type. |
-| `Shapefile::ERR_INPUT_GEOMETRY_INDEX_NOT_VALID` | Geometry index not valid (check the total number of geometries in the collection). |
-| `Shapefile::ERR_INPUT_ARRAY_NOT_VALID` | Array not valid. |
-| `Shapefile::ERR_INPUT_WKT_NOT_VALID` | WKT not valid. |
-| `Shapefile::ERR_INPUT_GEOJSON_NOT_VALID` | GeoJSON not valid. |
-| `Shapefile::ERR_INPUT_NUMERIC_VALUE_OVERFLOW` | Integer value overflows field size definition. |
+| Error | Description |
+| Error | Description |
+
+| Error                                             | Description |
+| ------------------------------------------------- | ----------- |
+| `Shapefile::ERR_UNDEFINED`                        | Undefined error |
+| `Shapefile::ERR_FILE_MISSING`                     | A required file is missing |
+| `Shapefile::ERR_FILE_EXISTS`                      | Check if the file exists and is readable and/or writable |
+| `Shapefile::ERR_FILE_INVALID_RESOURCE`            | File pointer resource not valid |
+| `Shapefile::ERR_FILE_OPEN`                        | Unable to open file |
+| `Shapefile::ERR_FILE_READING`                     | Error during binary file reading |
+| `Shapefile::ERR_FILE_WRITING`                     | Error during binary file writing |
+| `Shapefile::ERR_SHP_TYPE_NOT_SUPPORTED`           | Shape type not supported |
+| `Shapefile::ERR_SHP_TYPE_NOT_SET`                 | Shape type not set |
+| `Shapefile::ERR_SHP_TYPE_ALREADY_SET`             | Shape type has already been set |
+| `Shapefile::ERR_SHP_GEOMETRY_TYPE_NOT_COMPATIBLE` | Geometry type must be compatible with Shapefile shape type |
+| `Shapefile::ERR_SHP_MISMATCHED_BBOX`              | Bounding box must have the same dimensions as the Shapefile (2D, 3D or 4D) |
+| `Shapefile::ERR_SHP_FILE_ALREADY_INITIALIZED`     | Cannot change Shapefile definition after it has been initialized with data |
+| `Shapefile::ERR_SHP_WRONG_RECORD_TYPE`            | Wrong record shape type |
+| `Shapefile::ERR_DBF_FILE_NOT_VALID`               | DBF file doesn't seem to be a valid dBase III or dBase IV format |
+| `Shapefile::ERR_DBF_MISMATCHED_FILE`              | Mismatched DBF file. Number of records not corresponding to the SHP file |
+| `Shapefile::ERR_DBF_EOF_REACHED`                  | End of DBF file reached. Number of records not corresponding to the SHP file |
+| `Shapefile::ERR_DBF_MAX_FIELD_COUNT_REACHED`      | Cannot add other fields, maximum number of fields in a DBF file reached |
+| `Shapefile::ERR_DBF_FIELD_NAME_NOT_VALID`         | Too many field names conflicting |
+| `Shapefile::ERR_DBF_FIELD_TYPE_NOT_VALID`         | Field type must be CHAR, DATE, LOGICAL, MEMO or NUMERIC |
+| `Shapefile::ERR_DBF_FIELD_SIZE_NOT_VALID`         | Field size incorrect according to its type |
+| `Shapefile::ERR_DBF_FIELD_DECIMALS_NOT_VALID`     | Field decimals incorrect according to its type |
+| `Shapefile::ERR_DBF_CHARSET_CONVERSION`           | Error during conversion from provided DBF input charset to *UTF-8* |
+| `Shapefile::ERR_DBT_EOF_REACHED`                  | End of DBT file reached. File might be corrupted |
+| `Shapefile::ERR_GEOM_NOT_EMPTY`                   | Cannot reinitialize non-empty Geometry |
+| `Shapefile::ERR_GEOM_COORD_VALUE_NOT_VALID`       | Invalid coordinate value |
+| `Shapefile::ERR_GEOM_MISMATCHED_DIMENSIONS`       | All geometries in a collection must have the same dimensions (2D, 3D or 4D) |
+| `Shapefile::ERR_GEOM_MISMATCHED_BBOX`             | Bounding box must have the same dimensions as the Geometry (2D, 3D or 4D) |
+| `Shapefile::ERR_GEOM_MISSING_FIELD`               | Geometry is missing a field defined in the Shapefile |
+| `Shapefile::ERR_GEOM_POINT_NOT_VALID`             | A Point can be either EMPTY or al least 2D |
+| `Shapefile::ERR_GEOM_POLYGON_OPEN_RING`           | Polygons cannot contain open rings |
+| `Shapefile::ERR_GEOM_POLYGON_WRONG_ORIENTATION`   | Polygon orientation not compliant with Shapefile specifications |
+| `Shapefile::ERR_GEOM_RING_AREA_TOO_SMALL`         | Ring area too small. Cannot determine ring orientation |
+| `Shapefile::ERR_INPUT_RECORD_NOT_FOUND`           | Record index not found (check the total number of records in the SHP file) |
+| `Shapefile::ERR_INPUT_FIELD_NOT_FOUND`            | Field not found |
+| `Shapefile::ERR_INPUT_GEOMETRY_TYPE_NOT_VALID`    | Geometry type not valid. Must be of specified type |
+| `Shapefile::ERR_INPUT_GEOMETRY_INDEX_NOT_VALID`   | Geometry index not valid (check the total number of geometries in the collection) |
+| `Shapefile::ERR_INPUT_ARRAY_NOT_VALID`            | Array not valid |
+| `Shapefile::ERR_INPUT_WKT_NOT_VALID`              | WKT not valid |
+| `Shapefile::ERR_INPUT_GEOJSON_NOT_VALID`          | GeoJSON not valid |
+| `Shapefile::ERR_INPUT_NUMERIC_VALUE_OVERFLOW`     | Integer value overflows field size definition |
 
 #### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 

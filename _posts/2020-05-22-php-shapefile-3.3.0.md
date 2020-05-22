@@ -52,7 +52,7 @@ In order to have clearer idea of new default behaviour (which is no different th
     - `Shapefile::ERR_GEOM_RING_NOT_ENOUGH_VERTICES`
 - Other constants:
     - `Shapefile::UNDEFINED`
-- Library implements a *fluent interface* that allows method chaining.
+- Library implements a *fluent interface* that allows method chaining (*Actually I am not a fan of this, but I reckon many developers like it, hence here it is*).
 - Code is now PSR-12 compliant
 - Deprecated `Shapefile\ShapefileReader` [constructor options](/labs/php-shapefile/#shapefilereader__construct) that will disappear in the next releases:
     - `Shapefile::OPTION_ENFORCE_POLYGON_CLOSED_RINGS`. Use `Shapefile::OPTION_POLYGON_CLOSED_RINGS_ACTION` instead.
@@ -60,7 +60,7 @@ In order to have clearer idea of new default behaviour (which is no different th
 - Deprecated [error constants](/labs/php-shapefile/#shapefileexceptiongeterrortype) that will disappear in the next releases:
     - `Shapefile::ERR_GEOM_POLYGON_AREA_TOO_SMALL`. Use `Shapefile::ERR_GEOM_RING_AREA_TOO_SMALL` instead.
     - `Shapefile::ERR_GEOM_POLYGON_NOT_VALID`. Use `Shapefile::ERR_GEOM_POLYGON_WRONG_ORIENTATION` instead.
-
+- Improved documentation navigation and format.
 
   
 ## Download and documentation
