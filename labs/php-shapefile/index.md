@@ -146,18 +146,18 @@ Check the [Examples](#examples) section for more usage hints.
 ## Namespaces and Classes
 There are 2 Namespaces, `Shapefile` and `Shapefile\Geometry`, containing the following Classes:
 
-- [Shapefile\**ShapefileAutoloader**](#class-shapefileshapefileautoloader)
-- [Shapefile\**ShapefileException**](#class-shapefileshapefileexception)
-- [Abstract Shapefile\Shapefile](#class-shapefileshapefile)
-- [Shapefile\ShapefileReader](#class-shapefileshapefilereader)
-- [Shapefile\ShapefileWriter](#class-shapefileshapefilewriter)
-- [Abstract Shapefile\Geometry\Geometry](#class-shapefilegeometrygeometry)
-- [Shapefile\Geometry\Point](#class-shapefilegeometrypoint)
-- [Shapefile\Geometry\MultiPoint](#class-shapefilegeometrymultipoint)
-- [Shapefile\Geometry\Linestring](#class-shapefilegeometrylinestring)
-- [Shapefile\Geometry\MultiLinestring](#class-shapefilegeometrymultilinestring)
-- [Shapefile\Geometry\Polygon](#class-shapefilegeometrypolygon)
-- [Shapefile\Geometry\MultiPolygon](#class-shapefilegeometrymultipolygon)
+- <a href="#class-shapefileshapefileautoloader">Shapefile\<b>ShapefileAutoloader</b></a>
+- <a href="#class-shapefileshapefileexception">Shapefile\<b>ShapefileException</b></a>
+- <a href="#class-shapefileshapefile">Abstract Shapefile\<b>Shapefile</b></a>
+- <a href="#class-shapefileshapefilereader">Shapefile\<b>ShapefileReader</b></a>
+- <a href="#class-shapefileshapefilewriter">Shapefile\<b>ShapefileWriter</b></a>
+- <a href="#class-shapefilegeometrygeometry">Abstract Shapefile\Geometry\<b>Geometry</b></a>
+- <a href="#class-shapefilegeometrypoint">Shapefile\Geometry\<b>Point</b></a>
+- <a href="#class-shapefilegeometrymultipoint">Shapefile\Geometry\<b>MultiPoint</b></a>
+- <a href="#class-shapefilegeometrylinestring">Shapefile\Geometry\<b>Linestring</b></a>
+- <a href="#class-shapefilegeometrymultilinestring">Shapefile\Geometry\<b>MultiLinestring</b></a>
+- <a href="#class-shapefilegeometrypolygon">Shapefile\Geometry\<b>Polygon</b></a>
+- <a href="#class-shapefilegeometrymultipolygon">Shapefile\Geometry\<b>MultiPolygon</b></a>
 
 To keep things easy and tidy, all package-wide constants are exposed by <code>Shapefile\<b>Shapefile</b></code> Abstract Class, e.g.: `Shapefile::OPTION_SUPPRESS_Z`.
 
@@ -261,9 +261,10 @@ This is the base Abstract Class for both `ShapefileReader` and `ShapefileWriter`
 - [getFields](#shapefilegetfields)
 - [getTotRecords](#shapefilegettotrecords)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
 
-### Shapefile::isZ
+### [Shapefile](#class-shapefileshapefile)::isZ
 ```php?start_inline=1
 public Shapefile::isZ( void ) : bool
 ```
@@ -272,7 +273,7 @@ Returns `true` if the Shapefile is of type *Z* or `false` if it isn't.
 
 
 
-### Shapefile::isM
+### [Shapefile](#class-shapefileshapefile)::isM
 ```php?start_inline=1
 public Shapefile::isM( void ) : bool
 ```
@@ -281,7 +282,7 @@ Returns `true` if the Shapefile is of type *M* or `false` if it isn't. Please no
 
 
 
-### Shapefile::getShapeType
+### [Shapefile](#class-shapefileshapefile)::getShapeType
 ```php?start_inline=1
 public Shapefile::getShapeType( [ int $format ] ) : mixed
 ```
@@ -309,7 +310,7 @@ It specifies the return format and can be one of:
 
 
 
-### Shapefile::getBoundingBox
+### [Shapefile](#class-shapefileshapefile)::getBoundingBox
 ```php?start_inline=1
 public Shapefile::getBoundingBox( void ) : array
 ```
@@ -333,7 +334,7 @@ Eventual `Shapefile::OPTION_SUPPRESS_Z` and `Shapefile::OPTION_SUPPRESS_M` optio
 
 
 
-### Shapefile::getPRJ
+### [Shapefile](#class-shapefileshapefile)::getPRJ
 ```php?start_inline=1
 public Shapefile::getPRJ( void ) : string
 ```
@@ -342,7 +343,7 @@ Returns the raw WKT string from the *.prj* file. If there's no *.prj* file then 
 
 
 
-### Shapefile::getCharset
+### [Shapefile](#class-shapefileshapefile)::getCharset
 ```php?start_inline=1
 public Shapefile::getCharset( void ) : string
 ```
@@ -352,7 +353,7 @@ Note that `ShapefileReader` Class will use this information to convert data read
 
 
 
-### Shapefile::setCharset
+### [Shapefile](#class-shapefileshapefile)::setCharset
 ```php?start_inline=1
 public Shapefile::setCharset( mixed $charset ) : self
 ```
@@ -366,7 +367,7 @@ A string containing the charset name or a falsy value (e.g.: `false` or empty st
 
 
 
-### Shapefile::getFieldsNames
+### [Shapefile](#class-shapefileshapefile)::getFieldsNames
 ```php?start_inline=1
 public Shapefile::getFieldsNames( void ) : array
 ```
@@ -376,7 +377,7 @@ Returns an *Array* of all fields names found in the Shapefile.
 
 
 
-### Shapefile::getField
+### [Shapefile](#class-shapefileshapefile)::getField
 ```php?start_inline=1
 public Shapefile::getField( string $name ) : array
 ```
@@ -396,7 +397,7 @@ The name of the field to return. If it does not exist, a `Shapefile::ERR_INPUT_F
 
 
 
-### Shapefile::getFieldType
+### [Shapefile](#class-shapefileshapefile)::getFieldType
 ```php?start_inline=1
 public Shapefile::getFieldType( string $name ) : string
 ```
@@ -414,7 +415,7 @@ The name of the field to return. If it does not exist, a `Shapefile::ERR_INPUT_F
 
 
 
-### Shapefile::getFieldSize
+### [Shapefile](#class-shapefileshapefile)::getFieldSize
 ```php?start_inline=1
 public Shapefile::getFieldSize( string $name ) : int
 ```
@@ -426,7 +427,7 @@ The name of the field to return. If it does not exist, a `Shapefile::ERR_INPUT_F
 
 
 
-### Shapefile::getFieldDecimals
+### [Shapefile](#class-shapefileshapefile)::getFieldDecimals
 ```php?start_inline=1
 public Shapefile::getFieldDecimals( string $name ) : int
 ```
@@ -438,7 +439,7 @@ The name of the field to return. If it does not exist, a `Shapefile::ERR_INPUT_F
 
 
 
-### Shapefile::getFields
+### [Shapefile](#class-shapefileshapefile)::getFields
 ```php?start_inline=1
 public Shapefile::getFields( void ) : array
 ```
@@ -457,7 +458,7 @@ Returns and *Array* representing the fields definition in the *.dbf* file:
 
 
 
-### Shapefile::getTotRecords
+### [Shapefile](#class-shapefileshapefile)::getTotRecords
 ```php?start_inline=1
 public Shapefile::getTotRecords( void ) : int
 ```
@@ -475,9 +476,10 @@ The Shapefile reading Class that exposes all the public methods of the [Shapefil
 - [setCurrentRecord](#shapefilereadersetcurrentrecord)
 - [fetchRecord](#shapefilereaderfetchrecord)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
 
-### ShapefileReader::__construct
+### [ShapefileReader](#class-shapefileshapefilereader)::__construct
 ```php?start_inline=1
 public ShapefileReader::__construct( mixed $files [, array $options = array() ] )
 ```
@@ -515,7 +517,7 @@ Here are the supported options and their default values:
 
 
 
-### ShapefileReader::getCurrentRecord
+### [ShapefileReader](#class-shapefileshapefilereader)::getCurrentRecord
 ```php?start_inline=1
 public ShapefileReader::getCurrentRecord( void ) : int
 ```
@@ -524,7 +526,7 @@ Returns the index of the current record. Note that record count starts from `1` 
 
 
 
-### ShapefileReader::setCurrentRecord
+### [ShapefileReader](#class-shapefileshapefilereader)::setCurrentRecord
 ```php?start_inline=1
 public ShapefileReader::setCurrentRecord( int $index ) : self
 ```
@@ -537,7 +539,7 @@ The index of the record. Note that record count starts from `1` in Shapefiles.
 
 
 
-### ShapefileReader::fetchRecord
+### [ShapefileReader](#class-shapefileshapefilereader)::fetchRecord
 ```php?start_inline=1
 public Shapefile::fetchRecord( void ) : Geometry
 ```
@@ -566,8 +568,10 @@ The Shapefile writing Class that exposes all the public methods of the [Shapefil
 - [writeRecord](#shapefilewriterwriterecord)
 - [flushBuffer](#shapefilewriterflushbuffer)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
-### ShapefileWriter::__construct
+
+### [ShapefileWriter](#class-shapefileshapefilewriter)::__construct
 ```php?start_inline=1
 public ShapefileWriter::__construct( mixed $files [, array $options = array() ] )
 ```
@@ -601,7 +605,7 @@ Here are the supported options and their default values:
 
 
 
-### ShapefileWriter::setShapeType
+### [ShapefileWriter](#class-shapefileshapefilewriter)::setShapeType
 ```php?start_inline=1
 public ShapefileWriter::setShapeType( [ int $type ] ) : self
 ```
@@ -627,7 +631,7 @@ Shape type. It can be on of the following:
 
 
 
-### ShapefileWriter::setCustomBoundingBox
+### [ShapefileWriter](#class-shapefileshapefilewriter)::setCustomBoundingBox
 ```php?start_inline=1
 public ShapefileWriter::setCustomBoundingBox( array $bounding_box ) : self
 ```
@@ -640,7 +644,7 @@ Associative array with the `xmin`, `xmax`, `ymin`, `ymax` and optional `zmin`, `
 
 
 
-### ShapefileWriter::resetCustomBoundingBox
+### [ShapefileWriter](#class-shapefileshapefilewriter)::resetCustomBoundingBox
 ```php?start_inline=1
 public ShapefileWriter::resetCustomBoundingBox( void ) : self
 ```
@@ -650,7 +654,7 @@ Returns self instance to provide a *fluent interface*.
 
 
 
-### ShapefileWriter::setPRJ
+### [ShapefileWriter](#class-shapefileshapefilewriter)::setPRJ
 ```php?start_inline=1
 public ShapefileWriter::setPRJ( string $prj ) : self
 ```
@@ -663,7 +667,7 @@ PRJ well-known-text. Pass a falsy value (e.g.: `false` or empty string `""`) to 
 
 
 
-### ShapefileWriter::addCharField
+### [ShapefileWriter](#class-shapefileshapefilewriter)::addCharField
 ```php?start_inline=1
 public ShapefileWriter::addCharField( string $name [, int $size = 254 ] ) : string
 ```
@@ -678,7 +682,7 @@ Lenght of the field, between 1 and 254 characters. Defaults to 254.
 
 
 
-### ShapefileWriter::addDateField
+### [ShapefileWriter](#class-shapefileshapefilewriter)::addDateField
 ```php?start_inline=1
 public ShapefileWriter::addDateField( string $name ) : string
 ```
@@ -690,7 +694,7 @@ Name of the field. Maximum 10 characters. Only letters, numbers and underscores 
 
 
 
-### ShapefileWriter::addLogicalField
+### [ShapefileWriter](#class-shapefileshapefilewriter)::addLogicalField
 ```php?start_inline=1
 public ShapefileWriter::addLogicalField( string $name ) : string
 ```
@@ -702,7 +706,7 @@ Name of the field. Maximum 10 characters. Only letters, numbers and underscores 
 
 
 
-### ShapefileWriter::addMemoField
+### [ShapefileWriter](#class-shapefileshapefilewriter)::addMemoField
 ```php?start_inline=1
 public ShapefileWriter::addMemoField( string $name ) : string
 ```
@@ -714,7 +718,7 @@ Name of the field. Maximum 10 characters. Only letters, numbers and underscores 
 
 
 
-### ShapefileWriter::addNumericField
+### [ShapefileWriter](#class-shapefileshapefilewriter)::addNumericField
 ```php?start_inline=1
 public ShapefileWriter::addNumericField( string $name [, int $size = 10 [, int $decimals = 0 ]] ) : string
 ```
@@ -732,7 +736,7 @@ Number of decimal digits. Defaults to 0, meaning an *integer* number. See [DBF d
 
 
 
-### ShapefileWriter::addFloatField
+### [ShapefileWriter](#class-shapefileshapefilewriter)::addFloatField
 ```php?start_inline=1
 public ShapefileWriter::addFloatField( string $name [, int $size = 20 [, int $decimals = 10 ]] ) : string
 ```
@@ -752,7 +756,7 @@ Number of decimal digits. Defaults to 10. Number of decimal digits cannot be 0 f
 
 
 
-### ShapefileWriter::addField
+### [ShapefileWriter](#class-shapefileshapefilewriter)::addField
 ```php?start_inline=1
 public ShapefileWriter::addField( string $name, string $type, int $size, int $decimals ) : string
 ```
@@ -780,7 +784,7 @@ Number of decimal digits for numeric types.
 
 
 
-### ShapefileWriter::writeRecord
+### [ShapefileWriter](#class-shapefileshapefilewriter)::writeRecord
 ```php?start_inline=1
 public ShapefileWriter::writeRecord( Geometry $Geometry ) : self
 ```
@@ -794,7 +798,7 @@ Depending on the state of `Shapefile::OPTION_ENFORCE_GEOMETRY_DATA_STRUCTURE` op
 
 
 
-### ShapefileWriter::flushBuffer
+### [ShapefileWriter](#class-shapefileshapefilewriter)::flushBuffer
 ```php?start_inline=1
 public ShapefileWriter::flushBuffer( void ) : self
 ```
@@ -829,8 +833,10 @@ This is the base Abstract Class for all the other Geometries. It cannot be direc
 - [getDataArray](#geometrygetdataarray)
 - [setDataArray](#geometrysetdataarray)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
-### Geometry::initFromArray
+
+### [Geometry](#class-shapefilegeometrygeometry)::initFromArray
 ```php?start_inline=1
 public Geometry::initFromArray( array $array ) : self
 ```
@@ -843,7 +849,7 @@ The structured *Array* to initialize the Geometry with.
 
 
 
-### Geometry::initFromWKT
+### [Geometry](#class-shapefilegeometrygeometry)::initFromWKT
 ```php?start_inline=1
 public Geometry::initFromWKT( string $wkt ) : self
 ```
@@ -856,7 +862,7 @@ The WKT *String* to initialize the Geometry with.
 
 
 
-### Geometry::initFromGeoJSON
+### [Geometry](#class-shapefilegeometrygeometry)::initFromGeoJSON
 ```php?start_inline=1
 public Geometry::initFromGeoJSON( string $geojson ) : self
 ```
@@ -869,7 +875,7 @@ The GeoJSON *String* to initialize the Geometry with.
 
 
 
-### Geometry::getArray
+### [Geometry](#class-shapefilegeometrygeometry)::getArray
 ```php?start_inline=1
 public Geometry::getArray( void ) : array
 ```
@@ -878,7 +884,7 @@ Converts the Geometry into a structured *Array*. See [Geometry input/output form
 
 
 
-### Geometry::getWKT
+### [Geometry](#class-shapefilegeometrygeometry)::getWKT
 ```php?start_inline=1
 public Geometry::getWKT( void ) : string
 ```
@@ -887,7 +893,7 @@ Converts the Geometry into a WKT *String*. See [Geometry input/output formats](#
 
 
 
-### Geometry::getGeoJSON
+### [Geometry](#class-shapefilegeometrygeometry)::getGeoJSON
 ```php?start_inline=1
 public Geometry::getGeoJSON( [, bool $flag_bbox = true  [, bool $flag_feature = false ]] ) : string
 ```
@@ -902,7 +908,7 @@ Boolean flag to output a complete `"Feature"` object with all the data instead o
 
 
 
-### Geometry::getBoundingBox
+### [Geometry](#class-shapefilegeometrygeometry)::getBoundingBox
 ```php?start_inline=1
 public Geometry::getBoundingBox( void ) : array
 ```
@@ -925,7 +931,7 @@ Returns the Geometry bounding box as an *Array*:
 
 
 
-### Geometry::setCustomBoundingBox
+### [Geometry](#class-shapefilegeometrygeometry)::setCustomBoundingBox
 ```php?start_inline=1
 public Geometry::setCustomBoundingBox( array $bounding_box ) : self
 ```
@@ -938,7 +944,7 @@ The bounding box array with `"xmin"`, `"xmax"`, `"ymin"`, `"ymax"`, and optional
 
 
 
-### Geometry::resetCustomBoundingBox
+### [Geometry](#class-shapefilegeometrygeometry)::resetCustomBoundingBox
 ```php?start_inline=1
 public Geometry::resetCustomBoundingBox( void ) : self
 ```
@@ -948,7 +954,7 @@ Returns self instance to provide a *fluent interface*.
 
 
 
-### Geometry::isEmpty
+### [Geometry](#class-shapefilegeometrygeometry)::isEmpty
 ```php?start_inline=1
 public Geometry::isEmpty( void ) : bool
 ```
@@ -957,7 +963,7 @@ Returns `true` if the Geometry is *empty* or `false` if it isn't.
 
 
 
-### Geometry::isZ
+### [Geometry](#class-shapefilegeometrygeometry)::isZ
 ```php?start_inline=1
 public Geometry::isZ( void ) : bool
 ```
@@ -966,7 +972,7 @@ Returns `true` if the Geometry has the *Z dimension* or `false` if it doesn't.
 
 
 
-### Geometry::isM
+### [Geometry](#class-shapefilegeometrygeometry)::isM
 ```php?start_inline=1
 public Geometry::isM( void ) : bool
 ```
@@ -975,7 +981,7 @@ Returns `true` if the Geometry has the *M dimension* or `false` if it doesn't.
 
 
 
-### Geometry::isDeleted
+### [Geometry](#class-shapefilegeometrygeometry)::isDeleted
 ```php?start_inline=1
 public Geometry::isDeleted( void ) : bool
 ```
@@ -984,7 +990,7 @@ Returns `true` if the record is marked as *deleted* in the *.dbf* file `false` i
 
 
 
-### Geometry::setFlagDeleted
+### [Geometry](#class-shapefilegeometrygeometry)::setFlagDeleted
 ```php?start_inline=1
 public Geometry::isDeleted( bool $value ) : self
 ```
@@ -997,7 +1003,7 @@ Returns self instance to provide a *fluent interface*.
 
 
 
-### Geometry::getData
+### [Geometry](#class-shapefilegeometrygeometry)::getData
 ```php?start_inline=1
 public Geometry::getData( string $fieldname ) : mixed
 ```
@@ -1009,7 +1015,7 @@ The field name to get the data for.
 
 
 
-### Geometry::setData
+### [Geometry](#class-shapefilegeometrygeometry)::setData
 ```php?start_inline=1
 public Geometry::setData( string $fieldname, mixed $value) : self
 ```
@@ -1025,7 +1031,7 @@ The value to assign to the specified field in the Geometry.
 
 
 
-### Geometry::getDataArray
+### [Geometry](#class-shapefilegeometrygeometry)::getDataArray
 ```php?start_inline=1
 public Geometry::getDataArray( void ) : array
 ```
@@ -1033,7 +1039,7 @@ public Geometry::getDataArray( void ) : array
 Gets all the data of the Geometry as an associative *Array*. Refer to the [DBF data input/output](#dbf-data-inputoutput) section for details.
 
 
-### Geometry::setDataArray
+### [Geometry](#class-shapefilegeometrygeometry)::setDataArray
 ```php?start_inline=1
 public Geometry::setDataArray( array $data ) : self
 ```
@@ -1056,8 +1062,10 @@ Point Geometry Class. It exposes all the public methods of the [Geometry](#class
 - [getZ](#pointgetz)
 - [getM](#pointgetm)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
-### Point::__construct
+
+### [Point](#class-shapefilegeometrypoint)::__construct
 ```php?start_inline=1
 public Point::__construct( [float $x = null, float $y = null [, float $z = null [, float $m = null ]]] )
 ```
@@ -1079,7 +1087,7 @@ Value for M coordinate.
 
 
 
-### Point::getX
+### [Point](#class-shapefilegeometrypoint)::getX
 ```php?start_inline=1
 public Point::getX( void ) : float
 ```
@@ -1088,7 +1096,7 @@ Returns the value of the X coordinate.
 
 
 
-### Point::getY
+### [Point](#class-shapefilegeometrypoint)::getY
 ```php?start_inline=1
 public Point::getY( void ) : float
 ```
@@ -1097,7 +1105,7 @@ Returns the value of the Y coordinate.
 
 
 
-### Point::getZ
+### [Point](#class-shapefilegeometrypoint)::getZ
 ```php?start_inline=1
 public Point::getZ( void ) : float
 ```
@@ -1106,7 +1114,7 @@ Returns the value of the Z coordinate.
 
 
 
-### Point::getM
+### [Point](#class-shapefilegeometrypoint)::getM
 ```php?start_inline=1
 public Point::getM( void ) : float
 ```
@@ -1125,8 +1133,10 @@ MultiPoint Geometry Class. It exposes all the public methods of the [Geometry](#
 - [getPoints](#multipointgetpoints)
 - [getNumPoints](#multipointgetnumpoints)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
-### MultiPoint::__construct
+
+### [MultiPoint](#class-shapefilegeometrymultipoint)::__construct
 ```php?start_inline=1
 public MultiPoint::__construct( [ Points[] $points ] )
 ```
@@ -1138,7 +1148,7 @@ Array of [Point](#class-shapefilegeometrypoint) Geometries.
 
 
 
-### MultiPoint::addPoint
+### [MultiPoint](#class-shapefilegeometrymultipoint)::addPoint
 ```php?start_inline=1
 public MultiPoint::addPoint( Point $Point ) : self
 ```
@@ -1151,7 +1161,7 @@ Returns self instance to provide a *fluent interface*.
 
 
 
-### MultiPoint::getPoint
+### [MultiPoint](#class-shapefilegeometrymultipoint)::getPoint
 ```php?start_inline=1
 public MultiPoint::getPoint( int $index ) : Point
 ```
@@ -1163,7 +1173,7 @@ Index of the [Point](#class-shapefilegeometrypoint) Geometry to retrieve.
 
 
 
-### MultiPoint::getPoints
+### [MultiPoint](#class-shapefilegeometrymultipoint)::getPoints
 ```php?start_inline=1
 public MultiPoint::getPoints( void ) : Point[]
 ```
@@ -1172,7 +1182,7 @@ Gets all the Points from the Collection as an array of [Point](#class-shapefileg
 
 
 
-### MultiPoint::getNumPoints
+### [MultiPoint](#class-shapefilegeometrymultipoint)::getNumPoints
 ```php?start_inline=1
 public MultiPoint::getNumPoints( void ) : int
 ```
@@ -1196,8 +1206,10 @@ Linestring Geometry Class. It exposes all the public methods of the [Geometry](#
 - [forceCounterClockwise](#linestringforcecounterclockwise)
 - [forceClosedRing](#linestringforceclosedring)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
-### Linestring::__construct
+
+### [Linestring](#class-shapefilegeometrylinestring)::__construct
 ```php?start_inline=1
 public Linestring::__construct( [ Points[] $points ] )
 ```
@@ -1209,7 +1221,7 @@ Array of [Point](#class-shapefilegeometrypoint) Geometries.
 
 
 
-### Linestring::addPoint
+### [Linestring](#class-shapefilegeometrylinestring)::addPoint
 ```php?start_inline=1
 public Linestring::addPoint( Point $Point ) : self
 ```
@@ -1222,7 +1234,7 @@ Returns self instance to provide a *fluent interface*.
 
 
 
-### Linestring::getPoint
+### [Linestring](#class-shapefilegeometrylinestring)::getPoint
 ```php?start_inline=1
 public Linestring::getPoint( int $index ) : Point
 ```
@@ -1234,7 +1246,7 @@ Index of the [Point](#class-shapefilegeometrypoint) Geometry to retrieve.
 
 
 
-### Linestring::getPoints
+### [Linestring](#class-shapefilegeometrylinestring)::getPoints
 ```php?start_inline=1
 public Linestring::getPoints( void ) : Point[]
 ```
@@ -1243,7 +1255,7 @@ Gets all the Points from the Collection as an array of [Point](#class-shapefileg
 
 
 
-### Linestring::getNumPoints
+### [Linestring](#class-shapefilegeometrylinestring)::getNumPoints
 ```php?start_inline=1
 public Linestring::getNumPoints( void ) : int
 ```
@@ -1252,7 +1264,7 @@ Gets the number of Points in the Collection.
 
 
 
-### Linestring::isClockwise
+### [Linestring](#class-shapefilegeometrylinestring)::isClockwise
 ```php?start_inline=1
 public Linestring::isClockwise( [$flag_throw_exception = false ] ) : bool|Shapefile::UNDEFINED
 ```
@@ -1265,7 +1277,7 @@ Boolean flag to throw a `Shapefile::ERR_GEOM_RING_NOT_ENOUGH_VERTICES` Shapefile
 
 
 
-### Linestring::isClosedRing
+### [Linestring](#class-shapefilegeometrylinestring)::isClosedRing
 ```php?start_inline=1
 public Linestring::isClosedRing( void ) : bool
 ```
@@ -1274,7 +1286,7 @@ Checks whether the Linestring is a *closed ring* or not. A closed ring has at le
 
 
 
-### Linestring::forceClockwise
+### [Linestring](#class-shapefilegeometrylinestring)::forceClockwise
 ```php?start_inline=1
 public Linestring::forceClockwise( void ) : self
 ```
@@ -1285,7 +1297,7 @@ Returns self instance to provide a *fluent interface*.
 
 
 
-### Linestring::forceCounterClockwise
+### [Linestring](#class-shapefilegeometrylinestring)::forceCounterClockwise
 ```php?start_inline=1
 public Linestring::forceCounterClockwise( void ) : self
 ```
@@ -1296,7 +1308,7 @@ Returns self instance to provide a *fluent interface*.
 
 
 
-### Linestring::forceClosedRing
+### [Linestring](#class-shapefilegeometrylinestring)::forceClosedRing
 ```php?start_inline=1
 public Linestring::forceClosedRing( void ) : self
 ```
@@ -1316,8 +1328,10 @@ MultiLinestring Geometry Class. It exposes all the public methods of the [Geomet
 - [getLinestrings](#multilinestringgetlinestrings)
 - [getNumLinestrings](#multilinestringgetnumlinestrings)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
-### MultiLinestring::__construct
+
+### [MultiLinestring](#class-shapefilegeometrymultilinestring)::__construct
 ```php?start_inline=1
 public MultiLinestring::__construct( [ Linestring[] $linestrings ] )
 ```
@@ -1329,7 +1343,7 @@ Array of [Linestring](#class-shapefilegeometrylinestring) Geometries.
 
 
 
-### MultiLinestring::addLinestring
+### [MultiLinestring](#class-shapefilegeometrymultilinestring)::addLinestring
 ```php?start_inline=1
 public MultiLinestring::addLinestring( Linestring $Linestring ) : self
 ```
@@ -1342,7 +1356,7 @@ Returns self instance to provide a *fluent interface*.
 
 
 
-### MultiLinestring::getLinestring
+### [MultiLinestring](#class-shapefilegeometrymultilinestring)::getLinestring
 ```php?start_inline=1
 public MultiLinestring::getLinestring( int $index ) : Linestring
 ```
@@ -1354,7 +1368,7 @@ Index of the [Linestring](#class-shapefilegeometrylinestring) Geometry to retrie
 
 
 
-### MultiLinestring::getLinestrings
+### [MultiLinestring](#class-shapefilegeometrymultilinestring)::getLinestrings
 ```php?start_inline=1
 public MultiLinestring::getLinestrings( void ) : Linestring[]
 ```
@@ -1363,7 +1377,7 @@ Gets all the Linestrings from the Collection as an array of [Linestring](#class-
 
 
 
-### MultiLinestring::getNumLinestrings
+### [MultiLinestring](#class-shapefilegeometrymultilinestring)::getNumLinestrings
 ```php?start_inline=1
 public MultiLinestring::getNumLinestrings( void ) : int
 ```
@@ -1390,8 +1404,10 @@ It exposes all the public methods of the [Geometry](#class-shapefilegeometrygeom
 - [forceCounterClockwise](#polygonforcecounterclockwise)
 - [forceClosedRings](#polygonforceclosedrings)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
-### Polygon::__construct
+
+### [Polygon](#class-shapefilegeometrypolygon)::__construct
 ```php?start_inline=1
 public Polygon::__construct( [ Linestring[] $linestrings [, int $closed_rings = Shapefile::ACTION_CHECK [, int $force_orientation = Shapefile::ORIENTATION_COUNTERCLOCKWISE]]] )
 ```
@@ -1415,7 +1431,7 @@ Optional orientation to force for polygon rings. Possible values:
 
 
 
-### Polygon::addRing
+### [Polygon](#class-shapefilegeometrypolygon)::addRing
 ```php?start_inline=1
 public Polygon::addRing( Linestring $Linestring ) : self
 ```
@@ -1428,7 +1444,7 @@ Returns self instance to provide a *fluent interface*.
 
 
 
-### Polygon::getRing
+### [Polygon](#class-shapefilegeometrypolygon)::getRing
 ```php?start_inline=1
 public Polygon::getRing( int $index ) : Linestring
 ```
@@ -1440,7 +1456,7 @@ Index of the [Linestring](#class-shapefilegeometrylinestring) Geometry to retrie
 
 
 
-### Polygon::getRings
+### [Polygon](#class-shapefilegeometrypolygon)::getRings
 ```php?start_inline=1
 public Polygon::getRings( void ) : Linestring[]
 ```
@@ -1449,7 +1465,7 @@ Gets all the Linestrings from the Collection as an array of [Linestring](#class-
 
 
 
-### Polygon::getNumRings
+### [Polygon](#class-shapefilegeometrypolygon)::getNumRings
 ```php?start_inline=1
 public Polygon::getNumRings( void ) : int
 ```
@@ -1458,7 +1474,7 @@ Gets the number of Linestrings in the Collection.
 
 
 
-### Polygon::getOuterRing
+### [Polygon](#class-shapefilegeometrypolygon)::getOuterRing
 ```php?start_inline=1
 public Polygon::getOuterRing( void ) : Linestring
 ```
@@ -1467,7 +1483,7 @@ Gets the Polygon outer ring (that is, the ring at index `0`);
 
 
 
-### Polygon::getInnerRings
+### [Polygon](#class-shapefilegeometrypolygon)::getInnerRings
 ```php?start_inline=1
 public Polygon::getInnerRings( void ) : Linestring[]
 ```
@@ -1476,7 +1492,7 @@ Gets Polygon inners rings as an array of [Linestring](#class-shapefilegeometryli
 
 
 
-### Polygon::isClockwise
+### [Polygon](#class-shapefilegeometrypolygon)::isClockwise
 ```php?start_inline=1
 public Polygon::isClockwise( void ) : bool|Shapefile::UNDEFINED
 ```
@@ -1487,7 +1503,7 @@ Returns boolean `true` or `false` or special value `Shapefile::UNDEFINED` in cas
 
 
 
-### Polygon::isCounterClockwise
+### [Polygon](#class-shapefilegeometrypolygon)::isCounterClockwise
 ```php?start_inline=1
 public Polygon::isCounterClockwise( void ) : bool|Shapefile::UNDEFINED
 ```
@@ -1498,7 +1514,7 @@ Returns boolean `true` or `false` or special value `Shapefile::UNDEFINED` in cas
 
 
 
-### Polygon::forceClockwise
+### [Polygon](#class-shapefilegeometrypolygon)::forceClockwise
 ```php?start_inline=1
 public Polygon::forceClockwise( void ) : self
 ```
@@ -1509,7 +1525,7 @@ Returns self instance to provide a *fluent interface*.
 
 
 
-### Polygon::forceCounterClockwise
+### [Polygon](#class-shapefilegeometrypolygon)::forceCounterClockwise
 ```php?start_inline=1
 public Polygon::forceCounterClockwise( void ) : self
 ```
@@ -1520,7 +1536,7 @@ Returns self instance to provide a *fluent interface*.
 
 
 
-### Polygon::forceClosedRings
+### [Polygon](#class-shapefilegeometrypolygon)::forceClosedRings
 ```php?start_inline=1
 public Polygon::forceClosedRings( void ) : self
 ```
@@ -1545,8 +1561,10 @@ MultiPolygon Geometry Class. It exposes all the public methods of the [Geometry]
 - [forceCounterClockwise](#multipolygonforcecounterclockwise)
 - [forceClosedRings](#multipolygonforceclosedrings)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
-### MultiPolygon::__construct
+
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::__construct
 ```php?start_inline=1
 public MultiPolygon::__construct( [ Polygon[] $polygons [, int $closed_rings = Shapefile::ACTION_CHECK [, int $force_orientation = Shapefile::ORIENTATION_COUNTERCLOCKWISE]]] )
 ```
@@ -1570,7 +1588,7 @@ Optional orientation to force for polygons rings. Possible values:
 
 
 
-### MultiPolygon::addPolygon
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::addPolygon
 ```php?start_inline=1
 public MultiPolygon::addPolygon( Polygon $Polygon ) : self
 ```
@@ -1583,7 +1601,7 @@ Returns self instance to provide a *fluent interface*..
 
 
 
-### MultiPolygon::getPolygon
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::getPolygon
 ```php?start_inline=1
 public MultiPolygon::getPolygon( int $index ) : Polygon
 ```
@@ -1595,7 +1613,7 @@ Index of the [Polygon](#class-shapefilegeometrypolygon) Geometry to retrieve.
 
 
 
-### MultiPolygon::getPolygons
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::getPolygons
 ```php?start_inline=1
 public MultiPolygon::getPolygons( void ) : Polygon[]
 ```
@@ -1604,7 +1622,7 @@ Gets all the Polygons from the Collection as an array of [Polygon](#class-shapef
 
 
 
-### MultiPolygon::getNumPolygons
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::getNumPolygons
 ```php?start_inline=1
 public MultiPolygon::getNumPolygons( void ) : int
 ```
@@ -1613,7 +1631,7 @@ Gets the number of Polygons in the Collection.
 
 
 
-### MultiPolygon::isClockwise
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::isClockwise
 ```php?start_inline=1
 public Polygon::isClockwise( void ) : bool|Shapefile::UNDEFINED
 ```
@@ -1624,7 +1642,7 @@ Returns boolean `true` or `false` or special value `Shapefile::UNDEFINED` in cas
 
 
 
-### MultiPolygon::isCounterClockwise
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::isCounterClockwise
 ```php?start_inline=1
 public Polygon::isCounterClockwise( void ) : bool|Shapefile::UNDEFINED
 ```
@@ -1635,7 +1653,7 @@ Returns boolean `true` or `false` or special value `Shapefile::UNDEFINED` in cas
 
 
 
-### MultiPolygon::forceClockwise
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::forceClockwise
 ```php?start_inline=1
 public MultiPolygon::forceClockwise( void ) : self
 ```
@@ -1646,7 +1664,7 @@ Returns self instance to provide a *fluent interface*.
 
 
 
-### MultiPolygon::forceCounterClockwise
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::forceCounterClockwise
 ```php?start_inline=1
 public MultiPolygon::forceCounterClockwise( void ) : self
 ```
@@ -1657,7 +1675,7 @@ Returns self instance to provide a *fluent interface*.
 
 
 
-### MultiPolygon::forceClosedRings
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::forceClosedRings
 ```php?start_inline=1
 public MultiPolygon::forceClosedRings( void ) : self
 ```
@@ -1732,7 +1750,7 @@ To answer the question "why not a *close()* method?" For the same reason as ther
 
 ## A note about Polygons orientation
 ESRI Shapefile specifications establish clockwise orientation for Polygons outer rings and counterclockwise orientation for inner ones.
-GeoJSON on the other hand dictate the opposite, as well as Simple Features used to do (this has been dropped eventually, allowing either orientation for Polygons). There is a lot of confusion about this subject and to make things worse the expression *right-hand rule* is used for both scenarios.
+GeoJSON on the other hand dictates the opposite, as well as Simple Features used to do (this has been dropped eventually, allowing either orientation for Polygons). There is a lot of confusion about this subject and to make things worse the expression *right-hand rule* is used for both scenarios.
 It is worth noting that many Simple Features implementations (such as PostGIS) will not reject Polygons not complying with the specification, nor should proper GeoJSON parsers (see the note in [section 3.1.6](https://tools.ietf.org/html/rfc7946#section-3.1.6)).
 
 This library gives the greatest flexibility to the programmer when **reading** Shapefiles through [ShapefileReader](#shapefilereader__construct) `Shapefile::OPTION_POLYGON_ORIENTATION_READING_AUTOSENSE` and `Shapefile::OPTION_POLYGON_OUTPUT_ORIENTATION` constructor options. By default they are set respectively to `true` and `Shapefile::ORIENTATION_COUNTERCLOCKWISE`, meaning the library will be able to read a Shapefile even when it is not compliant with ESRI specs and output Polygons/MultiPolygons will be forced to have a counterclockwise orientation (that is, opposite of ESRI specs). This should ensure the widest interoperability *out-of-the-box*, but changing the value of those options will allow for every desired behaviour.
