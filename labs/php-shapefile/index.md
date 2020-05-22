@@ -146,18 +146,18 @@ Check the [Examples](#examples) section for more usage hints.
 ## Namespaces and Classes
 There are 2 Namespaces, `Shapefile` and `Shapefile\Geometry`, containing the following Classes:
 
-- <a href="#class-shapefileshapefileautoloader">Shapefile\<b>ShapefileAutoloader</b></a>
-- <a href="#class-shapefileshapefileexception">Shapefile\<b>ShapefileException</b></a>
-- <a href="#class-shapefileshapefile">Abstract Shapefile\<b>Shapefile</b></a>
-- <a href="#class-shapefileshapefilereader">Shapefile\<b>ShapefileReader</b></a>
-- <a href="#class-shapefileshapefilewriter">Shapefile\<b>ShapefileWriter</b></a>
-- <a href="#class-shapefilegeometrygeometry">Abstract Shapefile\Geometry\<b>Geometry</b></a>
-- <a href="#class-shapefilegeometrypoint">Shapefile\Geometry\<b>Point</b></a>
-- <a href="#class-shapefilegeometrymultipoint">Shapefile\Geometry\<b>MultiPoint</b></a>
-- <a href="#class-shapefilegeometrylinestring">Shapefile\Geometry\<b>Linestring</b></a>
-- <a href="#class-shapefilegeometrymultilinestring">Shapefile\Geometry\<b>MultiLinestring</b></a>
-- <a href="#class-shapefilegeometrypolygon">Shapefile\Geometry\<b>Polygon</b></a>
-- <a href="#class-shapefilegeometrymultipolygon">Shapefile\Geometry\<b>MultiPolygon</b></a>
+- <a href="#class-shapefileshapefileautoloader">Shapefile&#92;<b>ShapefileAutoloader</b></a>
+- <a href="#class-shapefileshapefileexception">Shapefile&#92;<b>ShapefileException</b></a>
+- <a href="#class-shapefileshapefile">Abstract Shapefile&#92;<b>Shapefile</b></a>
+- <a href="#class-shapefileshapefilereader">Shapefile&#92;<b>ShapefileReader</b></a>
+- <a href="#class-shapefileshapefilewriter">Shapefile&#92;<b>ShapefileWriter</b></a>
+- <a href="#class-shapefilegeometrygeometry">Abstract Shapefile\Geometry&#92;<b>Geometry</b></a>
+- <a href="#class-shapefilegeometrypoint">Shapefile\Geometry&#92;<b>Point</b></a>
+- <a href="#class-shapefilegeometrymultipoint">Shapefile\Geometry&#92;<b>MultiPoint</b></a>
+- <a href="#class-shapefilegeometrylinestring">Shapefile\Geometry&#92;<b>Linestring</b></a>
+- <a href="#class-shapefilegeometrymultilinestring">Shapefile\Geometry&#92;<b>MultiLinestring</b></a>
+- <a href="#class-shapefilegeometrypolygon">Shapefile\Geometry&#92;<b>Polygon</b></a>
+- <a href="#class-shapefilegeometrymultipolygon">Shapefile\Geometry&#92;<b>MultiPolygon</b></a>
 
 To keep things easy and tidy, all package-wide constants are exposed by <code>Shapefile\<b>Shapefile</b></code> Abstract Class, e.g.: `Shapefile::OPTION_SUPPRESS_Z`.
 
@@ -188,47 +188,49 @@ public ShapefileException::getErrorType( void ) : string
 
 Gets internal error type as a string. Useful to react to specific errors.
 Here are all possible error types:
-- `Shapefile::ERR_UNDEFINED` : Undefined error.
-- `Shapefile::ERR_FILE_MISSING` : A required file is missing.
-- `Shapefile::ERR_FILE_EXISTS` : Check if the file exists and is readable and/or writable.
-- `Shapefile::ERR_FILE_INVALID_RESOURCE` : File pointer resource not valid.
-- `Shapefile::ERR_FILE_OPEN` : Unable to open file.
-- `Shapefile::ERR_FILE_READING` : Error during binary file reading.
-- `Shapefile::ERR_FILE_WRITING` : Error during binary file writing.
-- `Shapefile::ERR_SHP_TYPE_NOT_SUPPORTED` : Shape type not supported.
-- `Shapefile::ERR_SHP_TYPE_NOT_SET` : Shape type not set.
-- `Shapefile::ERR_SHP_TYPE_ALREADY_SET` : Shape type has already been set.
-- `Shapefile::ERR_SHP_GEOMETRY_TYPE_NOT_COMPATIBLE` : Geometry type must be compatible with Shapefile shape type.
-- `Shapefile::ERR_SHP_MISMATCHED_BBOX` : Bounding box must have the same dimensions as the Shapefile (2D, 3D or 4D).
-- `Shapefile::ERR_SHP_FILE_ALREADY_INITIALIZED` : Cannot change Shapefile definition after it has been initialized with data.
-- `Shapefile::ERR_SHP_WRONG_RECORD_TYPE` : Wrong record shape type.
-- `Shapefile::ERR_DBF_FILE_NOT_VALID` : DBF file doesn't seem to be a valid dBase III or dBase IV format.
-- `Shapefile::ERR_DBF_MISMATCHED_FILE` : Mismatched DBF file. Number of records not corresponding to the SHP file.
-- `Shapefile::ERR_DBF_EOF_REACHED` : End of DBF file reached. Number of records not corresponding to the SHP file.
-- `Shapefile::ERR_DBF_MAX_FIELD_COUNT_REACHED` : Cannot add other fields, maximum number of fields in a DBF file reached.
-- `Shapefile::ERR_DBF_FIELD_NAME_NOT_VALID` : Too many field names conflicting.
-- `Shapefile::ERR_DBF_FIELD_TYPE_NOT_VALID` : Field type must be CHAR, DATE, LOGICAL, MEMO or NUMERIC.
-- `Shapefile::ERR_DBF_FIELD_SIZE_NOT_VALID` : Field size incorrect according to its type.
-- `Shapefile::ERR_DBF_FIELD_DECIMALS_NOT_VALID` : Field decimals incorrect according to its type.
-- `Shapefile::ERR_DBF_CHARSET_CONVERSION` : Error during conversion from provided DBF input charset to *UTF-8*.
-- `Shapefile::ERR_DBT_EOF_REACHED` : End of DBT file reached. File might be corrupted.
-- `Shapefile::ERR_GEOM_NOT_EMPTY` : Cannot reinitialize non-empty Geometry.
-- `Shapefile::ERR_GEOM_COORD_VALUE_NOT_VALID` : Invalid coordinate value.
-- `Shapefile::ERR_GEOM_MISMATCHED_DIMENSIONS` : All geometries in a collection must have the same dimensions (2D, 3D or 4D).
-- `Shapefile::ERR_GEOM_MISMATCHED_BBOX` : Bounding box must have the same dimensions as the Geometry (2D, 3D or 4D).
-- `Shapefile::ERR_GEOM_MISSING_FIELD` : Geometry is missing a field defined in the Shapefile.
-- `Shapefile::ERR_GEOM_POINT_NOT_VALID` : A Point can be either EMPTY or al least 2D.
-- `Shapefile::ERR_GEOM_POLYGON_OPEN_RING` : Polygons cannot contain open rings.
-- `Shapefile::ERR_GEOM_POLYGON_WRONG_ORIENTATION` : Polygon orientation not compliant with Shapefile specifications.
-- `Shapefile::ERR_GEOM_RING_AREA_TOO_SMALL` : Ring area too small. Cannot determine ring orientation.
-- `Shapefile::ERR_INPUT_RECORD_NOT_FOUND` : Record index not found (check the total number of records in the SHP file).
-- `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` : Field not found.
-- `Shapefile::ERR_INPUT_GEOMETRY_TYPE_NOT_VALID` : Geometry type not valid. Must be of specified type.
-- `Shapefile::ERR_INPUT_GEOMETRY_INDEX_NOT_VALID` : Geometry index not valid (check the total number of geometries in the collection).
-- `Shapefile::ERR_INPUT_ARRAY_NOT_VALID` : Array not valid.
-- `Shapefile::ERR_INPUT_WKT_NOT_VALID` : WKT not valid.
-- `Shapefile::ERR_INPUT_GEOJSON_NOT_VALID` : GeoJSON not valid.
-- `Shapefile::ERR_INPUT_NUMERIC_VALUE_OVERFLOW` : Integer value overflows field size definition.
+| Error | Description |
+| ----- | ----------- |
+| `Shapefile::ERR_UNDEFINED` | Undefined error. |
+| `Shapefile::ERR_FILE_MISSING` | A required file is missing. |
+| `Shapefile::ERR_FILE_EXISTS` | Check if the file exists and is readable and/or writable. |
+| `Shapefile::ERR_FILE_INVALID_RESOURCE` | File pointer resource not valid. |
+| `Shapefile::ERR_FILE_OPEN` | Unable to open file. |
+| `Shapefile::ERR_FILE_READING` | Error during binary file reading. |
+| `Shapefile::ERR_FILE_WRITING` | Error during binary file writing. |
+| `Shapefile::ERR_SHP_TYPE_NOT_SUPPORTED` | Shape type not supported. |
+| `Shapefile::ERR_SHP_TYPE_NOT_SET` | Shape type not set. |
+| `Shapefile::ERR_SHP_TYPE_ALREADY_SET` | Shape type has already been set. |
+| `Shapefile::ERR_SHP_GEOMETRY_TYPE_NOT_COMPATIBLE` | Geometry type must be compatible with Shapefile shape type. |
+| `Shapefile::ERR_SHP_MISMATCHED_BBOX` | Bounding box must have the same dimensions as the Shapefile (2D, 3D or 4D). |
+| `Shapefile::ERR_SHP_FILE_ALREADY_INITIALIZED` | Cannot change Shapefile definition after it has been initialized with data. |
+| `Shapefile::ERR_SHP_WRONG_RECORD_TYPE` | Wrong record shape type. |
+| `Shapefile::ERR_DBF_FILE_NOT_VALID` | DBF file doesn't seem to be a valid dBase III or dBase IV format. |
+| `Shapefile::ERR_DBF_MISMATCHED_FILE` | Mismatched DBF file. Number of records not corresponding to the SHP file. |
+| `Shapefile::ERR_DBF_EOF_REACHED` | End of DBF file reached. Number of records not corresponding to the SHP file. |
+| `Shapefile::ERR_DBF_MAX_FIELD_COUNT_REACHED` | Cannot add other fields, maximum number of fields in a DBF file reached. |
+| `Shapefile::ERR_DBF_FIELD_NAME_NOT_VALID` | Too many field names conflicting. |
+| `Shapefile::ERR_DBF_FIELD_TYPE_NOT_VALID` | Field type must be CHAR, DATE, LOGICAL, MEMO or NUMERIC. |
+| `Shapefile::ERR_DBF_FIELD_SIZE_NOT_VALID` | Field size incorrect according to its type. |
+| `Shapefile::ERR_DBF_FIELD_DECIMALS_NOT_VALID` | Field decimals incorrect according to its type. |
+| `Shapefile::ERR_DBF_CHARSET_CONVERSION` | Error during conversion from provided DBF input charset to *UTF-8*. |
+| `Shapefile::ERR_DBT_EOF_REACHED` | End of DBT file reached. File might be corrupted. |
+| `Shapefile::ERR_GEOM_NOT_EMPTY` | Cannot reinitialize non-empty Geometry. |
+| `Shapefile::ERR_GEOM_COORD_VALUE_NOT_VALID` | Invalid coordinate value. |
+| `Shapefile::ERR_GEOM_MISMATCHED_DIMENSIONS` | All geometries in a collection must have the same dimensions (2D, 3D or 4D). |
+| `Shapefile::ERR_GEOM_MISMATCHED_BBOX` | Bounding box must have the same dimensions as the Geometry (2D, 3D or 4D). |
+| `Shapefile::ERR_GEOM_MISSING_FIELD` | Geometry is missing a field defined in the Shapefile. |
+| `Shapefile::ERR_GEOM_POINT_NOT_VALID` | A Point can be either EMPTY or al least 2D. |
+| `Shapefile::ERR_GEOM_POLYGON_OPEN_RING` | Polygons cannot contain open rings. |
+| `Shapefile::ERR_GEOM_POLYGON_WRONG_ORIENTATION` | Polygon orientation not compliant with Shapefile specifications. |
+| `Shapefile::ERR_GEOM_RING_AREA_TOO_SMALL` | Ring area too small. Cannot determine ring orientation. |
+| `Shapefile::ERR_INPUT_RECORD_NOT_FOUND` | Record index not found (check the total number of records in the SHP file). |
+| `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` | Field not found. |
+| `Shapefile::ERR_INPUT_GEOMETRY_TYPE_NOT_VALID` | Geometry type not valid. Must be of specified type. |
+| `Shapefile::ERR_INPUT_GEOMETRY_INDEX_NOT_VALID` | Geometry index not valid (check the total number of geometries in the collection). |
+| `Shapefile::ERR_INPUT_ARRAY_NOT_VALID` | Array not valid. |
+| `Shapefile::ERR_INPUT_WKT_NOT_VALID` | WKT not valid. |
+| `Shapefile::ERR_INPUT_GEOJSON_NOT_VALID` | GeoJSON not valid. |
+| `Shapefile::ERR_INPUT_NUMERIC_VALUE_OVERFLOW` | Integer value overflows field size definition. |
 
 #### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
@@ -288,19 +290,21 @@ public Shapefile::getShapeType( [ int $format ] ) : mixed
 ```
 
 Gets the Shapefile type as either text or number. Possible output values are:
-- `Shapefile::SHAPE_TYPE_NULL` : 0 - Null Shape.
-- `Shapefile::SHAPE_TYPE_POINT` : 1 - Point.
-- `Shapefile::SHAPE_TYPE_POLYLINE` : 3 - PolyLine.
-- `Shapefile::SHAPE_TYPE_POLYGON` : 5 - Polygon.
-- `Shapefile::SHAPE_TYPE_MULTIPOINT` : 8 - MultiPoint.
-- `Shapefile::SHAPE_TYPE_POINTZ` : 11 - PointZ.
-- `Shapefile::SHAPE_TYPE_POLYLINEZ` : 13 - PolyLineZ.
-- `Shapefile::SHAPE_TYPE_POLYGONZ` : 15 - PolygonZ.
-- `Shapefile::SHAPE_TYPE_MULTIPOINTZ` : 18 - MultiPointZ.
-- `Shapefile::SHAPE_TYPE_POINTM` : 21 - PointM.
-- `Shapefile::SHAPE_TYPE_POLYLINEM` : 23 - PolyLineM.
-- `Shapefile::SHAPE_TYPE_POLYGONM` : 25 - PolygonM.
-- `Shapefile::SHAPE_TYPE_MULTIPOINTM` : 28 - MultiPointM.
+| Shape type | Int value | Description |
+| ---------- | --------- | ----------- |
+| `Shapefile::SHAPE_TYPE_NULL`          |  0 | Null Shape   |
+| `Shapefile::SHAPE_TYPE_POINT`         |  1 | Point        |
+| `Shapefile::SHAPE_TYPE_POLYLINE`      |  3 | PolyLine     |
+| `Shapefile::SHAPE_TYPE_POLYGON`       |  5 | Polygon      |
+| `Shapefile::SHAPE_TYPE_MULTIPOINT`    |  8 | MultiPoint   |
+| `Shapefile::SHAPE_TYPE_POINTZ`        | 11 | PointZ       |
+| `Shapefile::SHAPE_TYPE_POLYLINEZ`     | 13 | PolyLineZ    |
+| `Shapefile::SHAPE_TYPE_POLYGONZ`      | 15 | PolygonZ     |
+| `Shapefile::SHAPE_TYPE_MULTIPOINTZ`   | 18 | MultiPointZ  |
+| `Shapefile::SHAPE_TYPE_POINTM`        | 21 | PointM       |
+| `Shapefile::SHAPE_TYPE_POLYLINEM`     | 23 | PolyLineM    |
+| `Shapefile::SHAPE_TYPE_POLYGONM`      | 25 | PolygonM     |
+| `Shapefile::SHAPE_TYPE_MULTIPOINTM`   | 28 | MultiPointM  |
     
 
 #### `$format`
@@ -499,21 +503,23 @@ $Shapefile = new ShapefileReader('myshape.shp', [
 ```
 
 Here are the supported options and their default values:
-- **`Shapefile::OPTION_DBF_ALLOW_FIELD_SIZE_255`** : Default = `false`. Allows a maximum field size of 255 bytes instead of 254 bytes in the *.dbf* file.
-- **`Shapefile::OPTION_DBF_CONVERT_TO_UTF8`** : Default = `true`. Converts from input charset to *UTF-8* all strings read from the *.dbf* file.
-- **`Shapefile::OPTION_DBF_FORCE_ALL_CAPS`** : Default = `false`. Forces all column names in upper case in the *.dbf* file.
-- **`Shapefile::OPTION_DBF_IGNORED_FIELDS`** : Default = `[]`. Array containing the names of the fields to ignore from the *.dbf* file.
-- **`Shapefile::OPTION_DBF_NULL_PADDING_CHAR`** : Default = `null`. Defines a null padding character used in the *.dbf* file to represent `null` values.
-- **`Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES`** : Default = `true`. Returns a `null` value for invalid dates when reading *.dbf* files.
-- **`Shapefile::OPTION_DBF_RETURN_DATES_AS_OBJECTS`** : Default = `false`. Returns dates as `DateTime` objects instead of ISO strings (`YYYY-MM-DD`).
-- **`Shapefile::OPTION_FORCE_MULTIPART_GEOMETRIES`** : Default = `false`. Reads Polyline and Polygon Geometries as Multi (ESRI specs do not distinguish between Linestring/MultiLinestring and Polygon/MultiPolygon).
-- **`Shapefile::OPTION_IGNORE_GEOMETRIES_BBOXES`** : Default = `false`. Ignores geometries bounding boxes read from shapefile and computes some real ones instead.
-- **`Shapefile::OPTION_IGNORE_SHAPEFILE_BBOX`** : Default = `false`. Ignores bounding box read from shapefile and computes a real one instead.
-- **`Shapefile::OPTION_POLYGON_CLOSED_RINGS_ACTION`** : Default = `Shapefile::ACTION_CHECK`. Defines action to perform on Polygons rings. They should be closed but some software don't enforce that, creating uncompliant Shapefiles. Possible values are `Shapefile::ACTION_IGNORE`, `Shapefile::ACTION_CHECK` and `Shapefile::ACTION_FORCE`. See Polygon [__construct](#polygon__construct) option `$closed_rings` for details.
-- **`Shapefile::OPTION_POLYGON_ORIENTATION_READING_AUTOSENSE`** : Default = `true`. Allows Polygons orientation to be either clockwise or counterclockwise when reading Shapefiles (see [this note about Polygons orientation](#a-note-about-polygons-orientation)). Set it to `false` to raise a `Shapefile::ERR_GEOM_POLYGON_WRONG_ORIENTATION` ShapefileException in case of Shapefiles uncompliant with ESRI specs.
-- **`Shapefile::OPTION_POLYGON_OUTPUT_ORIENTATION`** : Default = `Shapefile::ORIENTATION_COUNTERCLOCKWISE`. Forces a specific orientation for Polygons after reading them (see [this note about Polygons orientation](#a-note-about-polygons-orientation)). Possible values are `Shapefile::ORIENTATION_CLOCKWISE`, `Shapefile::ORIENTATION_COUNTERCLOCKWISE` and `Shapefile::ORIENTATION_UNCHANGED`.
-- **`Shapefile::OPTION_SUPPRESS_M`** : Default = `false`. Ignores *M dimension* from Shapefile.
-- **`Shapefile::OPTION_SUPPRESS_Z`** : Default = `false`. Ignores *Z dimension* from Shapefile.
+| Option | Default value | Description |
+| ------ | ------------- | ----------- |
+| `Shapefile::OPTION_DBF_ALLOW_FIELD_SIZE_255`              | `false`                                   | Allows a maximum field size of 255 bytes instead of 254 bytes in the *.dbf* file |
+| `Shapefile::OPTION_DBF_CONVERT_TO_UTF8`                   | `true`                                    | Converts from input charset to *UTF-8* all strings read from the *.dbf* file |
+| `Shapefile::OPTION_DBF_FORCE_ALL_CAPS`                    | `false`                                   | Forces all column names in upper case in the *.dbf* file |
+| `Shapefile::OPTION_DBF_IGNORED_FIELDS`                    | `[]`                                      | Array containing the names of the fields to ignore from the *.dbf* file |
+| `Shapefile::OPTION_DBF_NULL_PADDING_CHAR`                 | `null`                                    | Defines a null padding character used in the *.dbf* file to represent `null` values |
+| `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES`             | `true`                                    | Returns a `null` value for invalid dates when reading *.dbf* files |
+| `Shapefile::OPTION_DBF_RETURN_DATES_AS_OBJECTS`           | `false`                                   | Returns dates as `DateTime` objects instead of ISO strings (`YYYY-MM-DD`) |
+| `Shapefile::OPTION_FORCE_MULTIPART_GEOMETRIES`            | `false`                                   | Reads Polyline and Polygon Geometries as Multi (ESRI specs do not distinguish between Linestring/MultiLinestring and Polygon/MultiPolygon) |
+| `Shapefile::OPTION_IGNORE_GEOMETRIES_BBOXES`              | `false`                                   | Ignores geometries bounding boxes read from shapefile and computes some real ones instead |
+| `Shapefile::OPTION_IGNORE_SHAPEFILE_BBOX`                 | `false`                                   | Ignores bounding box read from shapefile and computes a real one instead |
+| `Shapefile::OPTION_POLYGON_CLOSED_RINGS_ACTION`           | `Shapefile::ACTION_CHECK`                 | Defines action to perform on Polygons rings. They should be closed but some software don't enforce that, creating uncompliant Shapefiles. Possible values are `Shapefile::ACTION_IGNORE`, `Shapefile::ACTION_CHECK` and `Shapefile::ACTION_FORCE`. See Polygon [__construct](#polygon__construct) option `$closed_rings` for details |
+| `Shapefile::OPTION_POLYGON_ORIENTATION_READING_AUTOSENSE` | `true`                                    | Allows Polygons orientation to be either clockwise or counterclockwise when reading Shapefiles (see [this note about Polygons orientation](#a-note-about-polygons-orientation)). Set it to `false` to raise a `Shapefile::ERR_GEOM_POLYGON_WRONG_ORIENTATION` ShapefileException in case of Shapefiles uncompliant with ESRI specs |
+| `Shapefile::OPTION_POLYGON_OUTPUT_ORIENTATION`            | `Shapefile::ORIENTATION_COUNTERCLOCKWISE` | Forces a specific orientation for Polygons after reading them (see [this note about Polygons orientation](#a-note-about-polygons-orientation)). Possible values are `Shapefile::ORIENTATION_CLOCKWISE`, `Shapefile::ORIENTATION_COUNTERCLOCKWISE` and `Shapefile::ORIENTATION_UNCHANGED` |
+| `Shapefile::OPTION_SUPPRESS_M`                            | `false`                                   | Ignores *M dimension* from Shapefile |
+| `Shapefile::OPTION_SUPPRESS_Z`                            | `false`                                   | Ignores *Z dimension* from Shapefile |
 
 
 
@@ -591,17 +597,19 @@ $Shapefile = new ShapefileWriter('myshape.shp', [
 ```
 
 Here are the supported options and their default values:
-- **`Shapefile::OPTION_BUFFERED_RECORDS`** : Default = `10`. Number of records to keep into memory buffer before writing them. Use a value equal or less than `0` to keep all records into a buffer and write them at once.
-- **`Shapefile::OPTION_CPG_ENABLE_FOR_DEFAULT_CHARSET`** : Default = `false`. Writes a *.cpg* file (if there is one open) also when DBF data charset is the default one.
-- **`Shapefile::OPTION_DBF_ALLOW_FIELD_SIZE_255`** : Default = `false`. Allows a maximum field size of 255 bytes instead of 254 bytes in the *.dbf* file.
-- **`Shapefile::OPTION_DBF_FORCE_ALL_CAPS`** : Default = `false`. Forces all column names in upper case in the *.dbf* file.
-- **`Shapefile::OPTION_DBF_NULL_PADDING_CHAR`** : Default = `null`. Defines a null padding character to use in the *.dbf* file to represent `null` values.
-- **`Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES`** : Default = `true`. Nullify invalid dates when writing *.dbf* files.
-- **`Shapefile::OPTION_DELETE_EMPTY_FILES`** : Default = `true`. Deletes empty files after closing them (only if they weren't passed as resource handles).
-- **`Shapefile::OPTION_ENFORCE_GEOMETRY_DATA_STRUCTURE`** : Default = `true`. Enforces Geometries to have all data fields defined in Shapefile (otherwise `null` will be assumed).
-- **`Shapefile::OPTION_EXISTING_FILES_MODE`** : Default = `Shapefile::MODE_PRESERVE`. Defines behaviour with existing files with the same name. Possible values are `Shapefile::MODE_PRESERVE` (a `Shapefile::ERR_FILE_EXISTS` ShapefileException will be thrown), `Shapefile::MODE_APPEND` (new records will be appended to existing files), `Shapefile::MODE_OVERWRITE` (existing files will be completely overwritten).
-- **`Shapefile::OPTION_SUPPRESS_M`** : Default = `false`. Ignores *M dimension* in Geometries.
-- **`Shapefile::OPTION_SUPPRESS_Z`** : Default = `false`. Ignores *Z dimension* in Geometries.
+| Option | Default value | Description |
+| ------ | ------------- | ----------- |
+| `Shapefile::OPTION_BUFFERED_RECORDS`                  | `10`                          | Number of records to keep into memory buffer before writing them. Use a value equal or less than `0` to keep all records into a buffer and write them at once |
+| `Shapefile::OPTION_CPG_ENABLE_FOR_DEFAULT_CHARSET`    | `false`                       | Writes a *.cpg* file (if there is one open) also when DBF data charset is the default one |
+| `Shapefile::OPTION_DBF_ALLOW_FIELD_SIZE_255`          | `false`                       | Allows a maximum field size of 255 bytes instead of 254 bytes in the *.dbf* file |
+| `Shapefile::OPTION_DBF_FORCE_ALL_CAPS`                | `false`                       | Forces all column names in upper case in the *.dbf* file |
+| `Shapefile::OPTION_DBF_NULL_PADDING_CHAR`             | `null`                        | Defines a null padding character to use in the *.dbf* file to represent `null` values |
+| `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES`         | `true`                        | Nullify invalid dates when writing *.dbf* files |
+| `Shapefile::OPTION_DELETE_EMPTY_FILES`                | `true`                        | Deletes empty files after closing them (only if they weren't passed as resource handles) |
+| `Shapefile::OPTION_ENFORCE_GEOMETRY_DATA_STRUCTURE`   | `true`                        | Enforces Geometries to have all data fields defined in Shapefile (otherwise `null` will be assumed) |
+| `Shapefile::OPTION_EXISTING_FILES_MODE`               | `Shapefile::MODE_PRESERVE`    | Defines behaviour with existing files with the same name. Possible values are `Shapefile::MODE_PRESERVE` (a `Shapefile::ERR_FILE_EXISTS` ShapefileException will be thrown), `Shapefile::MODE_APPEND` (new records will be appended to existing files), `Shapefile::MODE_OVERWRITE` (existing files will be completely overwritten) |
+| `Shapefile::OPTION_SUPPRESS_M`                        | `false`                       | Ignores *M dimension* in Geometries |
+| `Shapefile::OPTION_SUPPRESS_Z`                        | `false`                       | Ignores *Z dimension* in Geometries |
 
 
 
@@ -615,19 +623,21 @@ Returns self instance to provide a *fluent interface*.
 
 #### `$type`
 Shape type. It can be on of the following:
-- `Shapefile::SHAPE_TYPE_NULL` : 0 - Null Shape.
-- `Shapefile::SHAPE_TYPE_POINT` : 1 - Point.
-- `Shapefile::SHAPE_TYPE_POLYLINE` : 3 - PolyLine.
-- `Shapefile::SHAPE_TYPE_POLYGON` : 5 - Polygon.
-- `Shapefile::SHAPE_TYPE_MULTIPOINT` : 8 - MultiPoint.
-- `Shapefile::SHAPE_TYPE_POINTZ` : 11 - PointZ.
-- `Shapefile::SHAPE_TYPE_POLYLINEZ` : 13 - PolyLineZ.
-- `Shapefile::SHAPE_TYPE_POLYGONZ` : 15 - PolygonZ.
-- `Shapefile::SHAPE_TYPE_MULTIPOINTZ` : 18 - MultiPointZ.
-- `Shapefile::SHAPE_TYPE_POINTM` : 21 - PointM.
-- `Shapefile::SHAPE_TYPE_POLYLINEM` : 23 - PolyLineM.
-- `Shapefile::SHAPE_TYPE_POLYGONM` : 25 - PolygonM.
-- `Shapefile::SHAPE_TYPE_MULTIPOINTM` : 28 - MultiPointM.
+| Shape type | Int value | Description |
+| ---------- | --------- | ----------- |
+| `Shapefile::SHAPE_TYPE_NULL`          |  0 | Null Shape   |
+| `Shapefile::SHAPE_TYPE_POINT`         |  1 | Point        |
+| `Shapefile::SHAPE_TYPE_POLYLINE`      |  3 | PolyLine     |
+| `Shapefile::SHAPE_TYPE_POLYGON`       |  5 | Polygon      |
+| `Shapefile::SHAPE_TYPE_MULTIPOINT`    |  8 | MultiPoint   |
+| `Shapefile::SHAPE_TYPE_POINTZ`        | 11 | PointZ       |
+| `Shapefile::SHAPE_TYPE_POLYLINEZ`     | 13 | PolyLineZ    |
+| `Shapefile::SHAPE_TYPE_POLYGONZ`      | 15 | PolygonZ     |
+| `Shapefile::SHAPE_TYPE_MULTIPOINTZ`   | 18 | MultiPointZ  |
+| `Shapefile::SHAPE_TYPE_POINTM`        | 21 | PointM       |
+| `Shapefile::SHAPE_TYPE_POLYLINEM`     | 23 | PolyLineM    |
+| `Shapefile::SHAPE_TYPE_POLYGONM`      | 25 | PolygonM     |
+| `Shapefile::SHAPE_TYPE_MULTIPOINTM`   | 28 | MultiPointM  |
 
 
 
