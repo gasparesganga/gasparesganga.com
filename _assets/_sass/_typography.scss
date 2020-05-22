@@ -106,3 +106,12 @@ pre {
         padding-left    : 0;
     }
 }
+
+
+table  {
+    border-collapse : collapse;
+
+    td, th {
+        border  : 1px solid $color_border;
+    }
+}

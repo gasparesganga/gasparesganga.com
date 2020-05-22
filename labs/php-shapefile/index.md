@@ -202,11 +202,6 @@ public ShapefileException::getErrorType( void ) : string
 Gets internal error type as a string. Useful to react to specific errors.
 Here are all possible error types:
 
-| Error | Description |
-| ----- | ----------- |
-| Error | Description |
-| Error | Description |
-
 | Error                                             | Description |
 | ------------------------------------------------- | ----------- |
 | `Shapefile::ERR_UNDEFINED`                        | Undefined error |
@@ -309,21 +304,22 @@ public Shapefile::getShapeType( [ int $format ] ) : mixed
 ```
 
 Gets the Shapefile type as either text or number. Possible output values are:
-| Shape type | Int value | Description |
-| ---------- | --------- | ----------- |
-| `Shapefile::SHAPE_TYPE_NULL`          |  0 | Null Shape   |
-| `Shapefile::SHAPE_TYPE_POINT`         |  1 | Point        |
-| `Shapefile::SHAPE_TYPE_POLYLINE`      |  3 | PolyLine     |
-| `Shapefile::SHAPE_TYPE_POLYGON`       |  5 | Polygon      |
-| `Shapefile::SHAPE_TYPE_MULTIPOINT`    |  8 | MultiPoint   |
-| `Shapefile::SHAPE_TYPE_POINTZ`        | 11 | PointZ       |
-| `Shapefile::SHAPE_TYPE_POLYLINEZ`     | 13 | PolyLineZ    |
-| `Shapefile::SHAPE_TYPE_POLYGONZ`      | 15 | PolygonZ     |
-| `Shapefile::SHAPE_TYPE_MULTIPOINTZ`   | 18 | MultiPointZ  |
-| `Shapefile::SHAPE_TYPE_POINTM`        | 21 | PointM       |
-| `Shapefile::SHAPE_TYPE_POLYLINEM`     | 23 | PolyLineM    |
-| `Shapefile::SHAPE_TYPE_POLYGONM`      | 25 | PolygonM     |
-| `Shapefile::SHAPE_TYPE_MULTIPOINTM`   | 28 | MultiPointM  |
+
+| Shape type                            | Value     | Description  |
+| ------------------------------------- | --------- | ------------ |
+| `Shapefile::SHAPE_TYPE_NULL`          |  0        | Null Shape   |
+| `Shapefile::SHAPE_TYPE_POINT`         |  1        | Point        |
+| `Shapefile::SHAPE_TYPE_POLYLINE`      |  3        | PolyLine     |
+| `Shapefile::SHAPE_TYPE_POLYGON`       |  5        | Polygon      |
+| `Shapefile::SHAPE_TYPE_MULTIPOINT`    |  8        | MultiPoint   |
+| `Shapefile::SHAPE_TYPE_POINTZ`        | 11        | PointZ       |
+| `Shapefile::SHAPE_TYPE_POLYLINEZ`     | 13        | PolyLineZ    |
+| `Shapefile::SHAPE_TYPE_POLYGONZ`      | 15        | PolygonZ     |
+| `Shapefile::SHAPE_TYPE_MULTIPOINTZ`   | 18        | MultiPointZ  |
+| `Shapefile::SHAPE_TYPE_POINTM`        | 21        | PointM       |
+| `Shapefile::SHAPE_TYPE_POLYLINEM`     | 23        | PolyLineM    |
+| `Shapefile::SHAPE_TYPE_POLYGONM`      | 25        | PolygonM     |
+| `Shapefile::SHAPE_TYPE_MULTIPOINTM`   | 28        | MultiPointM  |
     
 
 #### `$format`
@@ -522,8 +518,9 @@ $Shapefile = new ShapefileReader('myshape.shp', [
 ```
 
 Here are the supported options and their default values:
-| Option | Default value | Description |
-| ------ | ------------- | ----------- |
+
+| Option                                                    | Default value                             | Description |
+| --------------------------------------------------------- | ----------------------------------------- | ----------- |
 | `Shapefile::OPTION_DBF_ALLOW_FIELD_SIZE_255`              | `false`                                   | Allows a maximum field size of 255 bytes instead of 254 bytes in the *.dbf* file |
 | `Shapefile::OPTION_DBF_CONVERT_TO_UTF8`                   | `true`                                    | Converts from input charset to *UTF-8* all strings read from the *.dbf* file |
 | `Shapefile::OPTION_DBF_FORCE_ALL_CAPS`                    | `false`                                   | Forces all column names in upper case in the *.dbf* file |
@@ -616,8 +613,9 @@ $Shapefile = new ShapefileWriter('myshape.shp', [
 ```
 
 Here are the supported options and their default values:
-| Option | Default value | Description |
-| ------ | ------------- | ----------- |
+
+| Option                                                | Default value                 | Description |
+| ----------------------------------------------------- | ----------------------------- | ----------- |
 | `Shapefile::OPTION_BUFFERED_RECORDS`                  | `10`                          | Number of records to keep into memory buffer before writing them. Use a value equal or less than `0` to keep all records into a buffer and write them at once |
 | `Shapefile::OPTION_CPG_ENABLE_FOR_DEFAULT_CHARSET`    | `false`                       | Writes a *.cpg* file (if there is one open) also when DBF data charset is the default one |
 | `Shapefile::OPTION_DBF_ALLOW_FIELD_SIZE_255`          | `false`                       | Allows a maximum field size of 255 bytes instead of 254 bytes in the *.dbf* file |
@@ -642,21 +640,22 @@ Returns self instance to provide a *fluent interface*.
 
 #### `$type`
 Shape type. It can be on of the following:
-| Shape type | Int value | Description |
-| ---------- | --------- | ----------- |
-| `Shapefile::SHAPE_TYPE_NULL`          |  0 | Null Shape   |
-| `Shapefile::SHAPE_TYPE_POINT`         |  1 | Point        |
-| `Shapefile::SHAPE_TYPE_POLYLINE`      |  3 | PolyLine     |
-| `Shapefile::SHAPE_TYPE_POLYGON`       |  5 | Polygon      |
-| `Shapefile::SHAPE_TYPE_MULTIPOINT`    |  8 | MultiPoint   |
-| `Shapefile::SHAPE_TYPE_POINTZ`        | 11 | PointZ       |
-| `Shapefile::SHAPE_TYPE_POLYLINEZ`     | 13 | PolyLineZ    |
-| `Shapefile::SHAPE_TYPE_POLYGONZ`      | 15 | PolygonZ     |
-| `Shapefile::SHAPE_TYPE_MULTIPOINTZ`   | 18 | MultiPointZ  |
-| `Shapefile::SHAPE_TYPE_POINTM`        | 21 | PointM       |
-| `Shapefile::SHAPE_TYPE_POLYLINEM`     | 23 | PolyLineM    |
-| `Shapefile::SHAPE_TYPE_POLYGONM`      | 25 | PolygonM     |
-| `Shapefile::SHAPE_TYPE_MULTIPOINTM`   | 28 | MultiPointM  |
+
+| Shape type                            | Value     | Description  |
+| ------------------------------------- | --------- | ------------ |
+| `Shapefile::SHAPE_TYPE_NULL`          |  0        | Null Shape   |
+| `Shapefile::SHAPE_TYPE_POINT`         |  1        | Point        |
+| `Shapefile::SHAPE_TYPE_POLYLINE`      |  3        | PolyLine     |
+| `Shapefile::SHAPE_TYPE_POLYGON`       |  5        | Polygon      |
+| `Shapefile::SHAPE_TYPE_MULTIPOINT`    |  8        | MultiPoint   |
+| `Shapefile::SHAPE_TYPE_POINTZ`        | 11        | PointZ       |
+| `Shapefile::SHAPE_TYPE_POLYLINEZ`     | 13        | PolyLineZ    |
+| `Shapefile::SHAPE_TYPE_POLYGONZ`      | 15        | PolygonZ     |
+| `Shapefile::SHAPE_TYPE_MULTIPOINTZ`   | 18        | MultiPointZ  |
+| `Shapefile::SHAPE_TYPE_POINTM`        | 21        | PointM       |
+| `Shapefile::SHAPE_TYPE_POLYLINEM`     | 23        | PolyLineM    |
+| `Shapefile::SHAPE_TYPE_POLYGONM`      | 25        | PolygonM     |
+| `Shapefile::SHAPE_TYPE_MULTIPOINTM`   | 28        | MultiPointM  |
 
 
 
