@@ -106,3 +106,15 @@ pre {
         padding-left    : 0;
     }
 }
+
+
+table  {
+    display         : block;
+    overflow-x      : auto;
+    border-collapse : collapse;
+    td, th {
+        border  : 1px solid $color_text;
+        margin  : 0;
+        padding : 0.1rem 0.3rem;
+    }
+}

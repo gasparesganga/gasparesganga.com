@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP Shapefile
 description : PHP library to read and write ESRI Shapefiles, compatible with WKT and GeoJSON
-updated     : 2020-04-09
+updated     : 2020-05-23
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -10,10 +10,10 @@ getit       :
 ---
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
-{% capture expire_date %}{{'2019-11-30' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2020-06-30' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>30 October 2019 :</b> Version 3.1.0 released: see the <a href="/posts/php-shapefile-3.1.0/">release notes</a>.
+    <b>23 May 2020 :</b> Version 3.3.0 released: see the <a href="/posts/php-shapefile-3.3.0/">release notes</a>.
 </div>
 {% endif %}
 
@@ -42,9 +42,9 @@ getit       :
 - Completely standalone library
 - Very fast and lightweight on memory
 - Sequential read or random access to specific records
-- Implements the [Iterator](https://php.net/manual/en/class.iterator.php) interface
+- Implements the [Iterator](https://php.net/manual/en/class.iterator.php) and [Fluent](https://en.wikipedia.org/wiki/Fluent_interface#PHP) interfaces
 - PHP 5.4+ compatible
-- [PHP FIG](https://www.php-fig.org) [PSR-1](https://www.php-fig.org/psr/psr-1/), [PSR-2](https://www.php-fig.org/psr/psr-2/) and [PSR-4](https://www.php-fig.org/psr/psr-4/) compliant
+- [PHP FIG](https://www.php-fig.org) [PSR-1](https://www.php-fig.org/psr/psr-1/), [PSR-4](https://www.php-fig.org/psr/psr-4/) and [PSR-12](https://www.php-fig.org/psr/psr-12/) compliant
 
 
 
@@ -146,26 +146,28 @@ Check the [Examples](#examples) section for more usage hints.
 ## Namespaces and Classes
 There are 2 Namespaces, `Shapefile` and `Shapefile\Geometry`, containing the following Classes:
 
-- [Shapefile\ShapefileAutoloader](#class-shapefileshapefileautoloader)
-- [Shapefile\ShapefileException](#class-shapefileshapefileexception)
-- [Abstract Shapefile\Shapefile](#class-shapefileshapefile)
-- [Shapefile\ShapefileReader](#class-shapefileshapefilereader)
-- [Shapefile\ShapefileWriter](#class-shapefileshapefilewriter)
-- [Abstract Shapefile\Geometry\Geometry](#class-shapefilegeometrygeometry)
-- [Shapefile\Geometry\Point](#class-shapefilegeometrypoint)
-- [Shapefile\Geometry\MultiPoint](#class-shapefilegeometrymultipoint)
-- [Shapefile\Geometry\Linestring](#class-shapefilegeometrylinestring)
-- [Shapefile\Geometry\MultiLinestring](#class-shapefilegeometrymultilinestring)
-- [Shapefile\Geometry\Polygon](#class-shapefilegeometrypolygon)
-- [Shapefile\Geometry\MultiPolygon](#class-shapefilegeometrymultipolygon)
+- Shapefile\\**[ShapefileAutoloader](#class-shapefileshapefileautoloader)**
+- Shapefile\\**[ShapefileException](#class-shapefileshapefileexception)**
+- *Abstract* Shapefile\\**[Shapefile](#class-shapefileshapefile)**
+- Shapefile\\**[ShapefileReader](#class-shapefileshapefilereader)**
+- Shapefile\\**[ShapefileWriter](#class-shapefileshapefilewriter)**
+- *Abstract* Shapefile\Geometry\\**[Geometry](#class-shapefilegeometrygeometry)**
+- Shapefile\Geometry\\**[Point](#class-shapefilegeometrypoint)**
+- Shapefile\Geometry\\**[MultiPoint](#class-shapefilegeometrymultipoint)**
+- Shapefile\Geometry\\**[Linestring](#class-shapefilegeometrylinestring)**
+- Shapefile\Geometry\\**[MultiLinestring](#class-shapefilegeometrymultilinestring)**
+- Shapefile\Geometry\\**[Polygon](#class-shapefilegeometrypolygon)**
+- Shapefile\Geometry\\**[MultiPolygon](#class-shapefilegeometrymultipolygon)**
 
-To keep things easy and tidy, all package-wide constants are exposed by `Shapefile\Shapefile` Abstract Class, e.g.: `Shapefile::OPTION_SUPPRESS_Z`.
+To keep things easy and tidy, all package-wide constants are exposed by <code>Shapefile\<b>Shapefile</b></code> Abstract Class, e.g.: `Shapefile::OPTION_SUPPRESS_Z`.
 
 
 
 
 ## Class Shapefile\ShapefileAutoloader
 This is a simple static class which provides autoloading capabilities for the library. Use the static method **`Shapefile\ShapefileAutoloader::register()`** as shown in the [example](#basic-usage) to register the PHP Shapefile autoloader.
+
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
 
 
@@ -176,59 +178,65 @@ A custom exception which extends PHP native [Exception](https://php.net/manual/e
 - [getErrorType](#shapefileexceptiongeterrortype)
 - [getDetails](#shapefileexceptiongetdetails)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
-### ShapefileException::getErrorType
+
+### [ShapefileException](#class-shapefileshapefileexception)::getErrorType
 ```php?start_inline=1
 public ShapefileException::getErrorType( void ) : string
 ```
 
 Gets internal error type as a string. Useful to react to specific errors.
 Here are all possible error types:
-- `Shapefile::ERR_UNDEFINED` : Undefined error.
-- `Shapefile::ERR_FILE_MISSING` : A required file is missing.
-- `Shapefile::ERR_FILE_EXISTS` : Check if the file exists and is readable and/or writable.
-- `Shapefile::ERR_FILE_INVALID_RESOURCE` : File pointer resource not valid.
-- `Shapefile::ERR_FILE_OPEN` : Unable to open file.
-- `Shapefile::ERR_FILE_READING` : Error during binary file reading.
-- `Shapefile::ERR_FILE_WRITING` : Error during binary file writing.
-- `Shapefile::ERR_SHP_TYPE_NOT_SUPPORTED` : Shape type not supported.
-- `Shapefile::ERR_SHP_TYPE_NOT_SET` : Shape type not set.
-- `Shapefile::ERR_SHP_TYPE_ALREADY_SET` : Shape type has already been set.
-- `Shapefile::ERR_SHP_GEOMETRY_TYPE_NOT_COMPATIBLE` : Geometry type must be compatible with Shapefile shape type.
-- `Shapefile::ERR_SHP_MISMATCHED_BBOX` : Bounding box must have the same dimensions as the Shapefile (2D, 3D or 4D).
-- `Shapefile::ERR_SHP_FILE_ALREADY_INITIALIZED` : Cannot change Shapefile definition after it has been initialized with data.
-- `Shapefile::ERR_SHP_WRONG_RECORD_TYPE` : Wrong record shape type.
-- `Shapefile::ERR_DBF_FILE_NOT_VALID` : DBF file doesn't seem to be a valid dBase III or dBase IV format.
-- `Shapefile::ERR_DBF_MISMATCHED_FILE` : Mismatched DBF file. Number of records not corresponding to the SHP file.
-- `Shapefile::ERR_DBF_EOF_REACHED` : End of DBF file reached. Number of records not corresponding to the SHP file.
-- `Shapefile::ERR_DBF_MAX_FIELD_COUNT_REACHED` : Cannot add other fields, maximum number of fields in a DBF file reached.
-- `Shapefile::ERR_DBF_FIELD_NAME_NOT_VALID` : Too many field names conflicting.
-- `Shapefile::ERR_DBF_FIELD_TYPE_NOT_VALID` : Field type must be CHAR, DATE, LOGICAL, MEMO or NUMERIC.
-- `Shapefile::ERR_DBF_FIELD_SIZE_NOT_VALID` : Field size incorrect according to its type.
-- `Shapefile::ERR_DBF_FIELD_DECIMALS_NOT_VALID` : Field decimals incorrect according to its type.
-- `Shapefile::ERR_DBF_CHARSET_CONVERSION` : Error during conversion from provided DBF input charset to *UTF-8*.
-- `Shapefile::ERR_DBT_EOF_REACHED` : End of DBT file reached. File might be corrupted.
-- `Shapefile::ERR_GEOM_NOT_EMPTY` : Cannot reinitialize non-empty Geometry.
-- `Shapefile::ERR_GEOM_COORD_VALUE_NOT_VALID` : Invalid coordinate value.
-- `Shapefile::ERR_GEOM_MISMATCHED_DIMENSIONS` : All geometries in a collection must have the same dimensions (2D, 3D or 4D).
-- `Shapefile::ERR_GEOM_MISMATCHED_BBOX` : Bounding box must have the same dimensions as the Geometry (2D, 3D or 4D).
-- `Shapefile::ERR_GEOM_MISSING_FIELD` : Geometry is missing a field defined in the Shapefile.
-- `Shapefile::ERR_GEOM_POINT_NOT_VALID` : A Point can be either EMPTY or al least 2D.
-- `Shapefile::ERR_GEOM_POLYGON_OPEN_RING` : Polygons cannot contain open rings.
-- `Shapefile::ERR_GEOM_POLYGON_AREA_TOO_SMALL` : Polygon Area too small, cannot determine vertices orientation.
-- `Shapefile::ERR_GEOM_POLYGON_NOT_VALID` : Polygon not valid or Polygon Area too small. Please check the geometries before reading the Shapefile.
-- `Shapefile::ERR_INPUT_RECORD_NOT_FOUND` : Record index not found (check the total number of records in the SHP file).
-- `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` : Field not found.
-- `Shapefile::ERR_INPUT_GEOMETRY_TYPE_NOT_VALID` : Geometry type not valid. Must be of specified type.
-- `Shapefile::ERR_INPUT_GEOMETRY_INDEX_NOT_VALID` : Geometry index not valid (check the total number of geometries in the collection).
-- `Shapefile::ERR_INPUT_ARRAY_NOT_VALID` : Array not valid.
-- `Shapefile::ERR_INPUT_WKT_NOT_VALID` : WKT not valid.
-- `Shapefile::ERR_INPUT_GEOJSON_NOT_VALID` : GeoJSON not valid.
-- `Shapefile::ERR_INPUT_NUMERIC_VALUE_OVERFLOW` : Integer value overflows field size definition.
+
+| Error                                             | Description |
+| ------------------------------------------------- | ----------- |
+| `Shapefile::ERR_UNDEFINED`                        | Undefined error |
+| `Shapefile::ERR_FILE_MISSING`                     | A required file is missing |
+| `Shapefile::ERR_FILE_EXISTS`                      | Check if the file exists and is readable and/or writable |
+| `Shapefile::ERR_FILE_INVALID_RESOURCE`            | File pointer resource not valid |
+| `Shapefile::ERR_FILE_OPEN`                        | Unable to open file |
+| `Shapefile::ERR_FILE_READING`                     | Error during binary file reading |
+| `Shapefile::ERR_FILE_WRITING`                     | Error during binary file writing |
+| `Shapefile::ERR_SHP_TYPE_NOT_SUPPORTED`           | Shape type not supported |
+| `Shapefile::ERR_SHP_TYPE_NOT_SET`                 | Shape type not set |
+| `Shapefile::ERR_SHP_TYPE_ALREADY_SET`             | Shape type has already been set |
+| `Shapefile::ERR_SHP_GEOMETRY_TYPE_NOT_COMPATIBLE` | Geometry type must be compatible with Shapefile shape type |
+| `Shapefile::ERR_SHP_MISMATCHED_BBOX`              | Bounding box must have the same dimensions as the Shapefile (2D, 3D or 4D) |
+| `Shapefile::ERR_SHP_FILE_ALREADY_INITIALIZED`     | Cannot change Shapefile definition after it has been initialized with data |
+| `Shapefile::ERR_SHP_WRONG_RECORD_TYPE`            | Wrong record shape type |
+| `Shapefile::ERR_DBF_FILE_NOT_VALID`               | DBF file doesn't seem to be a valid dBase III or dBase IV format |
+| `Shapefile::ERR_DBF_MISMATCHED_FILE`              | Mismatched DBF file. Number of records not corresponding to the SHP file |
+| `Shapefile::ERR_DBF_EOF_REACHED`                  | End of DBF file reached. Number of records not corresponding to the SHP file |
+| `Shapefile::ERR_DBF_MAX_FIELD_COUNT_REACHED`      | Cannot add other fields, maximum number of fields in a DBF file reached |
+| `Shapefile::ERR_DBF_FIELD_NAME_NOT_VALID`         | Too many field names conflicting |
+| `Shapefile::ERR_DBF_FIELD_TYPE_NOT_VALID`         | Field type must be CHAR, DATE, LOGICAL, MEMO or NUMERIC |
+| `Shapefile::ERR_DBF_FIELD_SIZE_NOT_VALID`         | Field size incorrect according to its type |
+| `Shapefile::ERR_DBF_FIELD_DECIMALS_NOT_VALID`     | Field decimals incorrect according to its type |
+| `Shapefile::ERR_DBF_CHARSET_CONVERSION`           | Error during conversion from provided DBF input charset to *UTF-8* |
+| `Shapefile::ERR_DBT_EOF_REACHED`                  | End of DBT file reached. File might be corrupted |
+| `Shapefile::ERR_GEOM_NOT_EMPTY`                   | Cannot reinitialize non-empty Geometry |
+| `Shapefile::ERR_GEOM_COORD_VALUE_NOT_VALID`       | Invalid coordinate value |
+| `Shapefile::ERR_GEOM_MISMATCHED_DIMENSIONS`       | All geometries in a collection must have the same dimensions (2D, 3D or 4D) |
+| `Shapefile::ERR_GEOM_MISMATCHED_BBOX`             | Bounding box must have the same dimensions as the Geometry (2D, 3D or 4D) |
+| `Shapefile::ERR_GEOM_MISSING_FIELD`               | Geometry is missing a field defined in the Shapefile |
+| `Shapefile::ERR_GEOM_POINT_NOT_VALID`             | A Point can be either EMPTY or al least 2D |
+| `Shapefile::ERR_GEOM_POLYGON_OPEN_RING`           | Polygons cannot contain open rings |
+| `Shapefile::ERR_GEOM_POLYGON_WRONG_ORIENTATION`   | Polygon orientation not compliant with Shapefile specifications |
+| `Shapefile::ERR_GEOM_RING_AREA_TOO_SMALL`         | Ring area too small. Cannot determine ring orientation |
+| `Shapefile::ERR_INPUT_RECORD_NOT_FOUND`           | Record index not found (check the total number of records in the SHP file) |
+| `Shapefile::ERR_INPUT_FIELD_NOT_FOUND`            | Field not found |
+| `Shapefile::ERR_INPUT_GEOMETRY_TYPE_NOT_VALID`    | Geometry type not valid. Must be of specified type |
+| `Shapefile::ERR_INPUT_GEOMETRY_INDEX_NOT_VALID`   | Geometry index not valid (check the total number of geometries in the collection) |
+| `Shapefile::ERR_INPUT_ARRAY_NOT_VALID`            | Array not valid |
+| `Shapefile::ERR_INPUT_WKT_NOT_VALID`              | WKT not valid |
+| `Shapefile::ERR_INPUT_GEOJSON_NOT_VALID`          | GeoJSON not valid |
+| `Shapefile::ERR_INPUT_NUMERIC_VALUE_OVERFLOW`     | Integer value overflows field size definition |
+
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
 
-
-### ShapefileException::getDetails
+### [ShapefileException](#class-shapefileshapefileexception)::getDetails
 ```php?start_inline=1
 public ShapefileException::getDetails( void ) : string
 ```
@@ -256,9 +264,10 @@ This is the base Abstract Class for both `ShapefileReader` and `ShapefileWriter`
 - [getFields](#shapefilegetfields)
 - [getTotRecords](#shapefilegettotrecords)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
 
-### Shapefile::isZ
+### [Shapefile](#class-shapefileshapefile)::isZ
 ```php?start_inline=1
 public Shapefile::isZ( void ) : bool
 ```
@@ -267,7 +276,7 @@ Returns `true` if the Shapefile is of type *Z* or `false` if it isn't.
 
 
 
-### Shapefile::isM
+### [Shapefile](#class-shapefileshapefile)::isM
 ```php?start_inline=1
 public Shapefile::isM( void ) : bool
 ```
@@ -276,25 +285,28 @@ Returns `true` if the Shapefile is of type *M* or `false` if it isn't. Please no
 
 
 
-### Shapefile::getShapeType
+### [Shapefile](#class-shapefileshapefile)::getShapeType
 ```php?start_inline=1
 public Shapefile::getShapeType( [ int $format ] ) : mixed
 ```
 
 Gets the Shapefile type as either text or number. Possible output values are:
-- `Shapefile::SHAPE_TYPE_NULL` : 0 - Null Shape.
-- `Shapefile::SHAPE_TYPE_POINT` : 1 - Point.
-- `Shapefile::SHAPE_TYPE_POLYLINE` : 3 - PolyLine.
-- `Shapefile::SHAPE_TYPE_POLYGON` : 5 - Polygon.
-- `Shapefile::SHAPE_TYPE_MULTIPOINT` : 8 - MultiPoint.
-- `Shapefile::SHAPE_TYPE_POINTZ` : 11 - PointZ.
-- `Shapefile::SHAPE_TYPE_POLYLINEZ` : 13 - PolyLineZ.
-- `Shapefile::SHAPE_TYPE_POLYGONZ` : 15 - PolygonZ.
-- `Shapefile::SHAPE_TYPE_MULTIPOINTZ` : 18 - MultiPointZ.
-- `Shapefile::SHAPE_TYPE_POINTM` : 21 - PointM.
-- `Shapefile::SHAPE_TYPE_POLYLINEM` : 23 - PolyLineM.
-- `Shapefile::SHAPE_TYPE_POLYGONM` : 25 - PolygonM.
-- `Shapefile::SHAPE_TYPE_MULTIPOINTM` : 28 - MultiPointM.
+
+| Shape type                            | Value     | Description  |
+| ------------------------------------- | --------- | ------------ |
+| `Shapefile::SHAPE_TYPE_NULL`          |  0        | Null Shape   |
+| `Shapefile::SHAPE_TYPE_POINT`         |  1        | Point        |
+| `Shapefile::SHAPE_TYPE_POLYLINE`      |  3        | PolyLine     |
+| `Shapefile::SHAPE_TYPE_POLYGON`       |  5        | Polygon      |
+| `Shapefile::SHAPE_TYPE_MULTIPOINT`    |  8        | MultiPoint   |
+| `Shapefile::SHAPE_TYPE_POINTZ`        | 11        | PointZ       |
+| `Shapefile::SHAPE_TYPE_POLYLINEZ`     | 13        | PolyLineZ    |
+| `Shapefile::SHAPE_TYPE_POLYGONZ`      | 15        | PolygonZ     |
+| `Shapefile::SHAPE_TYPE_MULTIPOINTZ`   | 18        | MultiPointZ  |
+| `Shapefile::SHAPE_TYPE_POINTM`        | 21        | PointM       |
+| `Shapefile::SHAPE_TYPE_POLYLINEM`     | 23        | PolyLineM    |
+| `Shapefile::SHAPE_TYPE_POLYGONM`      | 25        | PolygonM     |
+| `Shapefile::SHAPE_TYPE_MULTIPOINTM`   | 28        | MultiPointM  |
     
 
 #### `$format`
@@ -304,7 +316,7 @@ It specifies the return format and can be one of:
 
 
 
-### Shapefile::getBoundingBox
+### [Shapefile](#class-shapefileshapefile)::getBoundingBox
 ```php?start_inline=1
 public Shapefile::getBoundingBox( void ) : array
 ```
@@ -328,7 +340,7 @@ Eventual `Shapefile::OPTION_SUPPRESS_Z` and `Shapefile::OPTION_SUPPRESS_M` optio
 
 
 
-### Shapefile::getPRJ
+### [Shapefile](#class-shapefileshapefile)::getPRJ
 ```php?start_inline=1
 public Shapefile::getPRJ( void ) : string
 ```
@@ -337,7 +349,7 @@ Returns the raw WKT string from the *.prj* file. If there's no *.prj* file then 
 
 
 
-### Shapefile::getCharset
+### [Shapefile](#class-shapefileshapefile)::getCharset
 ```php?start_inline=1
 public Shapefile::getCharset( void ) : string
 ```
@@ -347,20 +359,21 @@ Note that `ShapefileReader` Class will use this information to convert data read
 
 
 
-### Shapefile::setCharset
+### [Shapefile](#class-shapefileshapefile)::setCharset
 ```php?start_inline=1
-public Shapefile::setCharset( mixed $charset ) : void
+public Shapefile::setCharset( mixed $charset ) : self
 ```
 
 When called from a `ShapefileReader` instance it sets the charset used to convert strings to *UTF-8* when option `Shapefile::OPTION_DBF_CONVERT_TO_UTF8` is enabled. It will overwrite the one read from the *.cpg* file.
 When called from a `ShapefileWriter` instance it sets the charset that will be written into the *.cpg* file. Note that **no conversion is carried out by the library when writing Shapefiles**, see [Strings charset conversion](#strings-charset-conversion) for details.
+Returns self instance to provide a *fluent interface*.
 
 #### `$charset`
 A string containing the charset name or a falsy value (e.g.: `false` or empty string `""`) to reset it to default `'ISO-8859-1'`.
 
 
 
-### Shapefile::getFieldsNames
+### [Shapefile](#class-shapefileshapefile)::getFieldsNames
 ```php?start_inline=1
 public Shapefile::getFieldsNames( void ) : array
 ```
@@ -370,7 +383,7 @@ Returns an *Array* of all fields names found in the Shapefile.
 
 
 
-### Shapefile::getField
+### [Shapefile](#class-shapefileshapefile)::getField
 ```php?start_inline=1
 public Shapefile::getField( string $name ) : array
 ```
@@ -386,11 +399,11 @@ Returns an *Array* representing the specified field definition:
 ```
 
 #### `$name`
-The name of the field to return. If it does not exist, a ShapeFileException with `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` error will be thrown.
+The name of the field to return. If it does not exist, a `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` ShapefileException will be thrown.
 
 
 
-### Shapefile::getFieldType
+### [Shapefile](#class-shapefileshapefile)::getFieldType
 ```php?start_inline=1
 public Shapefile::getFieldType( string $name ) : string
 ```
@@ -404,11 +417,11 @@ Returns a *String* representing the specified field type. It can be one of:
 - `Shapefile::DBF_TYPE_FLOAT` : Floating point numbers. *This is actually **not** part of dBaseIII PLUS specifications, but since there are many Shapefiles out there using it, it has been included in this library*.
 
 #### `$name`
-The name of the field to return. If it does not exist, a ShapeFileException with `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` error will be thrown.
+The name of the field to return. If it does not exist, a `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` ShapefileException will be thrown.
 
 
 
-### Shapefile::getFieldSize
+### [Shapefile](#class-shapefileshapefile)::getFieldSize
 ```php?start_inline=1
 public Shapefile::getFieldSize( string $name ) : int
 ```
@@ -416,11 +429,11 @@ public Shapefile::getFieldSize( string $name ) : int
 Returns the lenght of the specified field. Note that all data is stored as a *String* into *.dbf* files.
 
 #### `$name`
-The name of the field to return. If it does not exist, a ShapeFileException with `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` error will be thrown.
+The name of the field to return. If it does not exist, a `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` ShapefileException will be thrown.
 
 
 
-### Shapefile::getFieldDecimals
+### [Shapefile](#class-shapefileshapefile)::getFieldDecimals
 ```php?start_inline=1
 public Shapefile::getFieldDecimals( string $name ) : int
 ```
@@ -428,11 +441,11 @@ public Shapefile::getFieldDecimals( string $name ) : int
 Returns the lenght of the decimal part of the specified field. This makes sense only for fields of type `Shapefile::DBF_TYPE_NUMERIC`.
 
 #### `$name`
-The name of the field to return. If it does not exist, a ShapeFileException with `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` error will be thrown.
+The name of the field to return. If it does not exist, a `Shapefile::ERR_INPUT_FIELD_NOT_FOUND` ShapefileException will be thrown.
 
 
 
-### Shapefile::getFields
+### [Shapefile](#class-shapefileshapefile)::getFields
 ```php?start_inline=1
 public Shapefile::getFields( void ) : array
 ```
@@ -451,9 +464,9 @@ Returns and *Array* representing the fields definition in the *.dbf* file:
 
 
 
-### Shapefile::getTotRecords
+### [Shapefile](#class-shapefileshapefile)::getTotRecords
 ```php?start_inline=1
-public Shapefile::getTotRecords( void ) : integer
+public Shapefile::getTotRecords( void ) : int
 ```
 
 Returns the number of records present in the Shapefile.
@@ -469,9 +482,10 @@ The Shapefile reading Class that exposes all the public methods of the [Shapefil
 - [setCurrentRecord](#shapefilereadersetcurrentrecord)
 - [fetchRecord](#shapefilereaderfetchrecord)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
 
-### ShapefileReader::__construct
+### [ShapefileReader](#class-shapefileshapefilereader)::__construct
 ```php?start_inline=1
 public ShapefileReader::__construct( mixed $files [, array $options = array() ] )
 ```
@@ -491,45 +505,50 @@ $Shapefile = new ShapefileReader('myshape.shp', [
 ```
 
 Here are the supported options and their default values:
-- **`Shapefile::OPTION_DBF_ALLOW_FIELD_SIZE_255`** : Default = `false`. Allows a maximum field size of 255 bytes instead of 254 bytes in the *.dbf* file.
-- **`Shapefile::OPTION_DBF_CONVERT_TO_UTF8`** : Default = `true`. Converts from input charset to *UTF-8* all strings read from the *.dbf* file.
-- **`Shapefile::OPTION_DBF_FORCE_ALL_CAPS`** : Default = `false`. Forces all column names in upper case in the *.dbf* file.
-- **`Shapefile::OPTION_DBF_IGNORED_FIELDS`** : Default = `[]`. Array containing the names of the fields to ignore from the *.dbf* file.
-- **`Shapefile::OPTION_DBF_NULL_PADDING_CHAR`** : Default = `null`. Defines a null padding character used in the *.dbf* file to represent `null` values.
-- **`Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES`** : Default = `true`. Returns a `null` value for invalid dates when reading *.dbf* files.
-- **`Shapefile::OPTION_DBF_RETURN_DATES_AS_OBJECTS`** : Default = `false`. Returns dates as `DateTime` objects instead of ISO strings (`YYYY-MM-DD`).
-- **`Shapefile::OPTION_ENFORCE_POLYGON_CLOSED_RINGS`** : Default = `true`. Enforces all Polygons rings to be closed.
-- **`Shapefile::OPTION_FORCE_MULTIPART_GEOMETRIES`** : Default = `false`. Reads Polyline and Polygon Geometries as Multi (ESRI specs do not distinguish between Linestring/MultiLinestring and Polygon/MultiPolygon).
-- **`Shapefile::OPTION_IGNORE_GEOMETRIES_BBOXES`** : Default = `false`. Ignores geometries bounding boxes read from shapefile and computes some real ones instead.
-- **`Shapefile::OPTION_IGNORE_SHAPEFILE_BBOX`** : Default = `false`. Ignores bounding box read from shapefile and computes a real one instead.
-- **`Shapefile::OPTION_INVERT_POLYGONS_ORIENTATION`** : Default = `true`. Reverses polygons orientation (see [this note about Polygons orientation](#a-note-about-polygons-orientation)).
-- **`Shapefile::OPTION_SUPPRESS_M`** : Default = `false`. Ignores *M dimension* from Shapefile.
-- **`Shapefile::OPTION_SUPPRESS_Z`** : Default = `false`. Ignores *Z dimension* from Shapefile.
+
+| Option                                                    | Default value                             | Description |
+| --------------------------------------------------------- | ----------------------------------------- | ----------- |
+| `Shapefile::OPTION_DBF_ALLOW_FIELD_SIZE_255`              | `false`                                   | Allows a maximum field size of 255 bytes instead of 254 bytes in the *.dbf* file |
+| `Shapefile::OPTION_DBF_CONVERT_TO_UTF8`                   | `true`                                    | Converts from input charset to *UTF-8* all strings read from the *.dbf* file |
+| `Shapefile::OPTION_DBF_FORCE_ALL_CAPS`                    | `false`                                   | Forces all column names in upper case in the *.dbf* file |
+| `Shapefile::OPTION_DBF_IGNORED_FIELDS`                    | `[]`                                      | Array containing the names of the fields to ignore from the *.dbf* file |
+| `Shapefile::OPTION_DBF_NULL_PADDING_CHAR`                 | `null`                                    | Defines a null padding character used in the *.dbf* file to represent `null` values |
+| `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES`             | `true`                                    | Returns a `null` value for invalid dates when reading *.dbf* files |
+| `Shapefile::OPTION_DBF_RETURN_DATES_AS_OBJECTS`           | `false`                                   | Returns dates as `DateTime` objects instead of ISO strings (`YYYY-MM-DD`) |
+| `Shapefile::OPTION_FORCE_MULTIPART_GEOMETRIES`            | `false`                                   | Reads Polyline and Polygon Geometries as Multi (ESRI specs do not distinguish between Linestring/MultiLinestring and Polygon/MultiPolygon) |
+| `Shapefile::OPTION_IGNORE_GEOMETRIES_BBOXES`              | `false`                                   | Ignores geometries bounding boxes read from shapefile and computes some real ones instead |
+| `Shapefile::OPTION_IGNORE_SHAPEFILE_BBOX`                 | `false`                                   | Ignores bounding box read from shapefile and computes a real one instead |
+| `Shapefile::OPTION_POLYGON_CLOSED_RINGS_ACTION`           | `Shapefile::ACTION_CHECK`                 | Defines action to perform on Polygons rings. They should be closed but some software don't enforce that, creating uncompliant Shapefiles. Possible values are `Shapefile::ACTION_IGNORE`, `Shapefile::ACTION_CHECK` and `Shapefile::ACTION_FORCE`. See Polygon [__construct](#polygon__construct) option `$closed_rings` for details |
+| `Shapefile::OPTION_POLYGON_ORIENTATION_READING_AUTOSENSE` | `true`                                    | Allows Polygons orientation to be either clockwise or counterclockwise when reading Shapefiles (see [this note about Polygons orientation](#a-note-about-polygons-orientation)). Set it to `false` to raise a `Shapefile::ERR_GEOM_POLYGON_WRONG_ORIENTATION` ShapefileException in case of Shapefiles uncompliant with ESRI specs |
+| `Shapefile::OPTION_POLYGON_OUTPUT_ORIENTATION`            | `Shapefile::ORIENTATION_COUNTERCLOCKWISE` | Forces a specific orientation for Polygons after reading them (see [this note about Polygons orientation](#a-note-about-polygons-orientation)). Possible values are `Shapefile::ORIENTATION_CLOCKWISE`, `Shapefile::ORIENTATION_COUNTERCLOCKWISE` and `Shapefile::ORIENTATION_UNCHANGED` |
+| `Shapefile::OPTION_SUPPRESS_M`                            | `false`                                   | Ignores *M dimension* from Shapefile |
+| `Shapefile::OPTION_SUPPRESS_Z`                            | `false`                                   | Ignores *Z dimension* from Shapefile |
 
 
 
-### ShapefileReader::getCurrentRecord
+### [ShapefileReader](#class-shapefileshapefilereader)::getCurrentRecord
 ```php?start_inline=1
-public ShapefileReader::getCurrentRecord( void ) : integer
+public ShapefileReader::getCurrentRecord( void ) : int
 ```
 
 Returns the index of the current record. Note that record count starts from `1` in Shapefiles. When the last record is reached, the special value `Shapefile::EOF` will be returned.
 
 
 
-### ShapefileReader::setCurrentRecord
+### [ShapefileReader](#class-shapefileshapefilereader)::setCurrentRecord
 ```php?start_inline=1
-public ShapefileReader::setCurrentRecord( int $index ) : void
+public ShapefileReader::setCurrentRecord( int $index ) : self
 ```
 
 Sets the index of the current record. If an invalid index is provided, this method will throw a `ShapefileException`.
+Returns self instance to provide a *fluent interface*.
 
 #### `$index`
 The index of the record. Note that record count starts from `1` in Shapefiles.
 
 
 
-### ShapefileReader::fetchRecord
+### [ShapefileReader](#class-shapefileshapefilereader)::fetchRecord
 ```php?start_inline=1
 public Shapefile::fetchRecord( void ) : Geometry
 ```
@@ -558,8 +577,10 @@ The Shapefile writing Class that exposes all the public methods of the [Shapefil
 - [writeRecord](#shapefilewriterwriterecord)
 - [flushBuffer](#shapefilewriterflushbuffer)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
-### ShapefileWriter::__construct
+
+### [ShapefileWriter](#class-shapefileshapefilewriter)::__construct
 ```php?start_inline=1
 public ShapefileWriter::__construct( mixed $files [, array $options = array() ] )
 ```
@@ -579,79 +600,89 @@ $Shapefile = new ShapefileWriter('myshape.shp', [
 ```
 
 Here are the supported options and their default values:
-- **`Shapefile::OPTION_BUFFERED_RECORDS`** : Default = `10`. Number of records to keep into memory buffer before writing them. Use a value equal or less than `0` to keep all records into a buffer and write them at once.
-- **`Shapefile::OPTION_CPG_ENABLE_FOR_DEFAULT_CHARSET`** : Default = `false`. Writes a *.cpg* file (if there is one open) also when DBF data charset is the default one.
-- **`Shapefile::OPTION_DBF_ALLOW_FIELD_SIZE_255`** : Default = `false`. Allows a maximum field size of 255 bytes instead of 254 bytes in the *.dbf* file.
-- **`Shapefile::OPTION_DBF_FORCE_ALL_CAPS`** : Default = `false`. Forces all column names in upper case in the *.dbf* file.
-- **`Shapefile::OPTION_DBF_NULL_PADDING_CHAR`** : Default = `null`. Defines a null padding character to use in the *.dbf* file to represent `null` values.
-- **`Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES`** : Default = `true`. Nullify invalid dates when writing *.dbf* files.
-- **`Shapefile::OPTION_DELETE_EMPTY_FILES`** : Default = `true`. Deletes empty files after closing them (only if they weren't passed as resource handles).
-- **`Shapefile::OPTION_ENFORCE_GEOMETRY_DATA_STRUCTURE`** : Default = `true`. Enforces Geometries to have all data fields defined in Shapefile (otherwise `null` will be assumed).
-- **`Shapefile::OPTION_EXISTING_FILES_MODE`** : Default = `Shapefile::MODE_PRESERVE`. Defines behaviour with existing files with the same name. Possible values are `Shapefile::MODE_PRESERVE` (a ShapeFileException with `Shapefile::ERR_FILE_EXISTS` error will be thrown), `Shapefile::MODE_APPEND` (new records will be appended to existing files), `Shapefile::MODE_OVERWRITE` (existing files will be completely overwritten).
-- **`Shapefile::OPTION_SUPPRESS_M`** : Default = `false`. Ignores *M dimension* in Geometries.
-- **`Shapefile::OPTION_SUPPRESS_Z`** : Default = `false`. Ignores *Z dimension* in Geometries.
+
+| Option                                                | Default value                 | Description |
+| ----------------------------------------------------- | ----------------------------- | ----------- |
+| `Shapefile::OPTION_BUFFERED_RECORDS`                  | `10`                          | Number of records to keep into memory buffer before writing them. Use a value equal or less than `0` to keep all records into a buffer and write them at once |
+| `Shapefile::OPTION_CPG_ENABLE_FOR_DEFAULT_CHARSET`    | `false`                       | Writes a *.cpg* file (if there is one open) also when DBF data charset is the default one |
+| `Shapefile::OPTION_DBF_ALLOW_FIELD_SIZE_255`          | `false`                       | Allows a maximum field size of 255 bytes instead of 254 bytes in the *.dbf* file |
+| `Shapefile::OPTION_DBF_FORCE_ALL_CAPS`                | `false`                       | Forces all column names in upper case in the *.dbf* file |
+| `Shapefile::OPTION_DBF_NULL_PADDING_CHAR`             | `null`                        | Defines a null padding character to use in the *.dbf* file to represent `null` values |
+| `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES`         | `true`                        | Nullify invalid dates when writing *.dbf* files |
+| `Shapefile::OPTION_DELETE_EMPTY_FILES`                | `true`                        | Deletes empty files after closing them (only if they weren't passed as resource handles) |
+| `Shapefile::OPTION_ENFORCE_GEOMETRY_DATA_STRUCTURE`   | `true`                        | Enforces Geometries to have all data fields defined in Shapefile (otherwise `null` will be assumed) |
+| `Shapefile::OPTION_EXISTING_FILES_MODE`               | `Shapefile::MODE_PRESERVE`    | Defines behaviour with existing files with the same name. Possible values are `Shapefile::MODE_PRESERVE` (a `Shapefile::ERR_FILE_EXISTS` ShapefileException will be thrown), `Shapefile::MODE_APPEND` (new records will be appended to existing files), `Shapefile::MODE_OVERWRITE` (existing files will be completely overwritten) |
+| `Shapefile::OPTION_SUPPRESS_M`                        | `false`                       | Ignores *M dimension* in Geometries |
+| `Shapefile::OPTION_SUPPRESS_Z`                        | `false`                       | Ignores *Z dimension* in Geometries |
 
 
 
-### ShapefileWriter::setShapeType
+### [ShapefileWriter](#class-shapefileshapefilewriter)::setShapeType
 ```php?start_inline=1
-public ShapefileWriter::setShapeType( [ int $type ] ) : void
+public ShapefileWriter::setShapeType( [ int $type ] ) : self
 ```
 
 Sets the Shapefile type.
+Returns self instance to provide a *fluent interface*.
 
 #### `$type`
 Shape type. It can be on of the following:
-- `Shapefile::SHAPE_TYPE_NULL` : 0 - Null Shape.
-- `Shapefile::SHAPE_TYPE_POINT` : 1 - Point.
-- `Shapefile::SHAPE_TYPE_POLYLINE` : 3 - PolyLine.
-- `Shapefile::SHAPE_TYPE_POLYGON` : 5 - Polygon.
-- `Shapefile::SHAPE_TYPE_MULTIPOINT` : 8 - MultiPoint.
-- `Shapefile::SHAPE_TYPE_POINTZ` : 11 - PointZ.
-- `Shapefile::SHAPE_TYPE_POLYLINEZ` : 13 - PolyLineZ.
-- `Shapefile::SHAPE_TYPE_POLYGONZ` : 15 - PolygonZ.
-- `Shapefile::SHAPE_TYPE_MULTIPOINTZ` : 18 - MultiPointZ.
-- `Shapefile::SHAPE_TYPE_POINTM` : 21 - PointM.
-- `Shapefile::SHAPE_TYPE_POLYLINEM` : 23 - PolyLineM.
-- `Shapefile::SHAPE_TYPE_POLYGONM` : 25 - PolygonM.
-- `Shapefile::SHAPE_TYPE_MULTIPOINTM` : 28 - MultiPointM.
+
+| Shape type                            | Value     | Description  |
+| ------------------------------------- | --------- | ------------ |
+| `Shapefile::SHAPE_TYPE_NULL`          |  0        | Null Shape   |
+| `Shapefile::SHAPE_TYPE_POINT`         |  1        | Point        |
+| `Shapefile::SHAPE_TYPE_POLYLINE`      |  3        | PolyLine     |
+| `Shapefile::SHAPE_TYPE_POLYGON`       |  5        | Polygon      |
+| `Shapefile::SHAPE_TYPE_MULTIPOINT`    |  8        | MultiPoint   |
+| `Shapefile::SHAPE_TYPE_POINTZ`        | 11        | PointZ       |
+| `Shapefile::SHAPE_TYPE_POLYLINEZ`     | 13        | PolyLineZ    |
+| `Shapefile::SHAPE_TYPE_POLYGONZ`      | 15        | PolygonZ     |
+| `Shapefile::SHAPE_TYPE_MULTIPOINTZ`   | 18        | MultiPointZ  |
+| `Shapefile::SHAPE_TYPE_POINTM`        | 21        | PointM       |
+| `Shapefile::SHAPE_TYPE_POLYLINEM`     | 23        | PolyLineM    |
+| `Shapefile::SHAPE_TYPE_POLYGONM`      | 25        | PolygonM     |
+| `Shapefile::SHAPE_TYPE_MULTIPOINTM`   | 28        | MultiPointM  |
 
 
 
-### ShapefileWriter::setCustomBoundingBox
+### [ShapefileWriter](#class-shapefileshapefilewriter)::setCustomBoundingBox
 ```php?start_inline=1
-public ShapefileWriter::setCustomBoundingBox( array $bounding_box ) : void
+public ShapefileWriter::setCustomBoundingBox( array $bounding_box ) : self
 ```
 
 Sets a custom bounding box for the Shapefile, ignoring the one that is computed out of all the Geometries contained into it.
+Returns self instance to provide a *fluent interface*.
 
 #### `$bounding_box`
 Associative array with the `xmin`, `xmax`, `ymin`, `ymax` and optional `zmin`, `zmax`, `mmin`, `mmax` values.
 
 
 
-### ShapefileWriter::resetCustomBoundingBox
+### [ShapefileWriter](#class-shapefileshapefilewriter)::resetCustomBoundingBox
 ```php?start_inline=1
-public ShapefileWriter::resetCustomBoundingBox( void ) : void
+public ShapefileWriter::resetCustomBoundingBox( void ) : self
 ```
 
 Resets the custom bounding box for the Shapefile, meaning the normally computed one will be written into the file.
+Returns self instance to provide a *fluent interface*.
 
 
 
-### ShapefileWriter::setPRJ
+### [ShapefileWriter](#class-shapefileshapefilewriter)::setPRJ
 ```php?start_inline=1
-public ShapefileWriter::setPRJ( string $prj ) : void
+public ShapefileWriter::setPRJ( string $prj ) : self
 ```
 
 Sets PRJ well-known-text that will be written into the *.prj* file.
+Returns self instance to provide a *fluent interface*.
 
 #### `$prj`
 PRJ well-known-text. Pass a falsy value (e.g.: `false` or empty string `""`) to delete it.
 
 
 
-### ShapefileWriter::addCharField
+### [ShapefileWriter](#class-shapefileshapefilewriter)::addCharField
 ```php?start_inline=1
 public ShapefileWriter::addCharField( string $name [, int $size = 254 ] ) : string
 ```
@@ -666,7 +697,7 @@ Lenght of the field, between 1 and 254 characters. Defaults to 254.
 
 
 
-### ShapefileWriter::addDateField
+### [ShapefileWriter](#class-shapefileshapefilewriter)::addDateField
 ```php?start_inline=1
 public ShapefileWriter::addDateField( string $name ) : string
 ```
@@ -678,7 +709,7 @@ Name of the field. Maximum 10 characters. Only letters, numbers and underscores 
 
 
 
-### ShapefileWriter::addLogicalField
+### [ShapefileWriter](#class-shapefileshapefilewriter)::addLogicalField
 ```php?start_inline=1
 public ShapefileWriter::addLogicalField( string $name ) : string
 ```
@@ -690,7 +721,7 @@ Name of the field. Maximum 10 characters. Only letters, numbers and underscores 
 
 
 
-### ShapefileWriter::addMemoField
+### [ShapefileWriter](#class-shapefileshapefilewriter)::addMemoField
 ```php?start_inline=1
 public ShapefileWriter::addMemoField( string $name ) : string
 ```
@@ -702,7 +733,7 @@ Name of the field. Maximum 10 characters. Only letters, numbers and underscores 
 
 
 
-### ShapefileWriter::addNumericField
+### [ShapefileWriter](#class-shapefileshapefilewriter)::addNumericField
 ```php?start_inline=1
 public ShapefileWriter::addNumericField( string $name [, int $size = 10 [, int $decimals = 0 ]] ) : string
 ```
@@ -720,7 +751,7 @@ Number of decimal digits. Defaults to 0, meaning an *integer* number. See [DBF d
 
 
 
-### ShapefileWriter::addFloatField
+### [ShapefileWriter](#class-shapefileshapefilewriter)::addFloatField
 ```php?start_inline=1
 public ShapefileWriter::addFloatField( string $name [, int $size = 20 [, int $decimals = 10 ]] ) : string
 ```
@@ -740,7 +771,7 @@ Number of decimal digits. Defaults to 10. Number of decimal digits cannot be 0 f
 
 
 
-### ShapefileWriter::addField
+### [ShapefileWriter](#class-shapefileshapefilewriter)::addField
 ```php?start_inline=1
 public ShapefileWriter::addField( string $name, string $type, int $size, int $decimals ) : string
 ```
@@ -768,25 +799,27 @@ Number of decimal digits for numeric types.
 
 
 
-### ShapefileWriter::writeRecord
+### [ShapefileWriter](#class-shapefileshapefilewriter)::writeRecord
 ```php?start_inline=1
-public ShapefileWriter::writeRecord( Geometry $Geometry ) : void
+public ShapefileWriter::writeRecord( Geometry $Geometry ) : self
 ```
 
 Writes a record to the Shapefile (actually, to all open files: *SHP*, *SHX*, *DBF* and optional *DBT*).
+Returns self instance to provide a *fluent interface*.
 
 #### `$Geometry`
-A `Geometry` object to be written into the Shapefile. It has to be compatible with the Shapefile shape type. If no shape type has been set, a ShapefileException with `Shapefile::ERR_SHP_TYPE_NOT_SET` error will be thrown.
-Depending on the state of `Shapefile::OPTION_ENFORCE_GEOMETRY_DATA_STRUCTURE` option, either `null` values will be used for missing data fields or a ShapefileException with `Shapefile::ERR_GEOM_MISSING_FIELD` error will be thrown.
+A `Geometry` object to be written into the Shapefile. It has to be compatible with the Shapefile shape type. If no shape type has been set, a `Shapefile::ERR_SHP_TYPE_NOT_SET` ShapefileException will be thrown.
+Depending on the state of `Shapefile::OPTION_ENFORCE_GEOMETRY_DATA_STRUCTURE` option, either `null` values will be used for missing data fields or a `Shapefile::ERR_GEOM_MISSING_FIELD` ShapefileException will be thrown.
 
 
 
-### ShapefileWriter::flushBuffer
+### [ShapefileWriter](#class-shapefileshapefilewriter)::flushBuffer
 ```php?start_inline=1
-public ShapefileWriter::flushBuffer( void ) : void
+public ShapefileWriter::flushBuffer( void ) : self
 ```
 
 Writes memory buffers to files. This will effectively reset the record counter that causes automatic buffer flushing according to the value specified with `Shapefile::OPTION_BUFFERED_RECORDS` constructor option.
+Returns self instance to provide a *fluent interface*.
 
 
 
@@ -815,44 +848,49 @@ This is the base Abstract Class for all the other Geometries. It cannot be direc
 - [getDataArray](#geometrygetdataarray)
 - [setDataArray](#geometrysetdataarray)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
-### Geometry::initFromArray
+
+### [Geometry](#class-shapefilegeometrygeometry)::initFromArray
 ```php?start_inline=1
-public Geometry::initFromArray( array $array ) : void
+public Geometry::initFromArray( array $array ) : self
 ```
 
 Initializes the Geometry using a structured *Array*. See [Geometry input/output formats](#geometry-inputoutput-formats) for details.
+Returns self instance to provide a *fluent interface*.
 
 #### `$array`
 The structured *Array* to initialize the Geometry with.
 
 
 
-### Geometry::initFromWKT
+### [Geometry](#class-shapefilegeometrygeometry)::initFromWKT
 ```php?start_inline=1
-public Geometry::initFromWKT( string $wkt ) : void
+public Geometry::initFromWKT( string $wkt ) : self
 ```
 
 Initializes the Geometry using a WKT *String*. See [Geometry input/output formats](#geometry-inputoutput-formats) for details.
+Returns self instance to provide a *fluent interface*.
 
 #### `$wkt`
 The WKT *String* to initialize the Geometry with.
 
 
 
-### Geometry::initFromGeoJSON
+### [Geometry](#class-shapefilegeometrygeometry)::initFromGeoJSON
 ```php?start_inline=1
-public Geometry::initFromGeoJSON( string $geojson ) : void
+public Geometry::initFromGeoJSON( string $geojson ) : self
 ```
 
 Initializes the Geometry using a GeoJSON *String*. See [Geometry input/output formats](#geometry-inputoutput-formats) for details.
+Returns self instance to provide a *fluent interface*.
 
 #### `$geojson`
 The GeoJSON *String* to initialize the Geometry with.
 
 
 
-### Geometry::getArray
+### [Geometry](#class-shapefilegeometrygeometry)::getArray
 ```php?start_inline=1
 public Geometry::getArray( void ) : array
 ```
@@ -861,7 +899,7 @@ Converts the Geometry into a structured *Array*. See [Geometry input/output form
 
 
 
-### Geometry::getWKT
+### [Geometry](#class-shapefilegeometrygeometry)::getWKT
 ```php?start_inline=1
 public Geometry::getWKT( void ) : string
 ```
@@ -870,7 +908,7 @@ Converts the Geometry into a WKT *String*. See [Geometry input/output formats](#
 
 
 
-### Geometry::getGeoJSON
+### [Geometry](#class-shapefilegeometrygeometry)::getGeoJSON
 ```php?start_inline=1
 public Geometry::getGeoJSON( [, bool $flag_bbox = true  [, bool $flag_feature = false ]] ) : string
 ```
@@ -885,7 +923,7 @@ Boolean flag to output a complete `"Feature"` object with all the data instead o
 
 
 
-### Geometry::getBoundingBox
+### [Geometry](#class-shapefilegeometrygeometry)::getBoundingBox
 ```php?start_inline=1
 public Geometry::getBoundingBox( void ) : array
 ```
@@ -908,28 +946,30 @@ Returns the Geometry bounding box as an *Array*:
 
 
 
-### Geometry::setCustomBoundingBox
+### [Geometry](#class-shapefilegeometrygeometry)::setCustomBoundingBox
 ```php?start_inline=1
-public Geometry::setCustomBoundingBox( array $bounding_box ) : void
+public Geometry::setCustomBoundingBox( array $bounding_box ) : self
 ```
 
 Sets a custom bounding box for the Geometry, overriding the computed one. No formal check is carried out except the compliance of dimensions.
+Returns self instance to provide a *fluent interface*.
 
 #### `$bounding_box`
 The bounding box array with `"xmin"`, `"xmax"`, `"ymin"`, `"ymax"`, and optional `"zmin"`, `"zmax"`, `"mmin"` and `"mmax"` members.
 
 
 
-### Geometry::resetCustomBoundingBox
+### [Geometry](#class-shapefilegeometrygeometry)::resetCustomBoundingBox
 ```php?start_inline=1
-public Geometry::resetCustomBoundingBox( void ) : void
+public Geometry::resetCustomBoundingBox( void ) : self
 ```
 
 Resets a previously set custom bounding box for the Geometry, causing [getBoundingBox](#geometrygetboundingbox) method to return a normally computed one.
+Returns self instance to provide a *fluent interface*.
 
 
 
-### Geometry::isEmpty
+### [Geometry](#class-shapefilegeometrygeometry)::isEmpty
 ```php?start_inline=1
 public Geometry::isEmpty( void ) : bool
 ```
@@ -938,7 +978,7 @@ Returns `true` if the Geometry is *empty* or `false` if it isn't.
 
 
 
-### Geometry::isZ
+### [Geometry](#class-shapefilegeometrygeometry)::isZ
 ```php?start_inline=1
 public Geometry::isZ( void ) : bool
 ```
@@ -947,7 +987,7 @@ Returns `true` if the Geometry has the *Z dimension* or `false` if it doesn't.
 
 
 
-### Geometry::isM
+### [Geometry](#class-shapefilegeometrygeometry)::isM
 ```php?start_inline=1
 public Geometry::isM( void ) : bool
 ```
@@ -956,7 +996,7 @@ Returns `true` if the Geometry has the *M dimension* or `false` if it doesn't.
 
 
 
-### Geometry::isDeleted
+### [Geometry](#class-shapefilegeometrygeometry)::isDeleted
 ```php?start_inline=1
 public Geometry::isDeleted( void ) : bool
 ```
@@ -965,19 +1005,20 @@ Returns `true` if the record is marked as *deleted* in the *.dbf* file `false` i
 
 
 
-### Geometry::setFlagDeleted
+### [Geometry](#class-shapefilegeometrygeometry)::setFlagDeleted
 ```php?start_inline=1
-public Geometry::isDeleted( bool $value ) : void
+public Geometry::isDeleted( bool $value ) : self
 ```
 
 Marks or unmarks the Geometry as *deleted* in the *.dbf* file. This makes sense only when writing Shapefiles.
+Returns self instance to provide a *fluent interface*.
 
 #### `$value`
 *Boolean* value of the *deleted* flag.
 
 
 
-### Geometry::getData
+### [Geometry](#class-shapefilegeometrygeometry)::getData
 ```php?start_inline=1
 public Geometry::getData( string $fieldname ) : mixed
 ```
@@ -989,12 +1030,13 @@ The field name to get the data for.
 
 
 
-### Geometry::setData
+### [Geometry](#class-shapefilegeometrygeometry)::setData
 ```php?start_inline=1
-public Geometry::setData( string $fieldname, mixed $value) : void
+public Geometry::setData( string $fieldname, mixed $value) : self
 ```
 
 Sets data value for the speficied field name. Refer to the [DBF data input/output](#dbf-data-inputoutput) section for details.
+Returns self instance to provide a *fluent interface*.
 
 #### `$fieldname`
 The field name to set the data for.
@@ -1004,7 +1046,7 @@ The value to assign to the specified field in the Geometry.
 
 
 
-### Geometry::getDataArray
+### [Geometry](#class-shapefilegeometrygeometry)::getDataArray
 ```php?start_inline=1
 public Geometry::getDataArray( void ) : array
 ```
@@ -1012,12 +1054,13 @@ public Geometry::getDataArray( void ) : array
 Gets all the data of the Geometry as an associative *Array*. Refer to the [DBF data input/output](#dbf-data-inputoutput) section for details.
 
 
-### Geometry::setDataArray
+### [Geometry](#class-shapefilegeometrygeometry)::setDataArray
 ```php?start_inline=1
-public Geometry::setDataArray( array $data ) : void
+public Geometry::setDataArray( array $data ) : self
 ```
 
 Sets all the data of the Geometry using an associative *Array*. Refer to the [DBF data input/output](#dbf-data-inputoutput) section for details.
+Returns self instance to provide a *fluent interface*.
 
 #### `$data`
 Associative *Array* containing the data to assign to the different fields in the Geometry.
@@ -1034,8 +1077,10 @@ Point Geometry Class. It exposes all the public methods of the [Geometry](#class
 - [getZ](#pointgetz)
 - [getM](#pointgetm)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
-### Point::__construct
+
+### [Point](#class-shapefilegeometrypoint)::__construct
 ```php?start_inline=1
 public Point::__construct( [float $x = null, float $y = null [, float $z = null [, float $m = null ]]] )
 ```
@@ -1057,7 +1102,7 @@ Value for M coordinate.
 
 
 
-### Point::getX
+### [Point](#class-shapefilegeometrypoint)::getX
 ```php?start_inline=1
 public Point::getX( void ) : float
 ```
@@ -1066,7 +1111,7 @@ Returns the value of the X coordinate.
 
 
 
-### Point::getY
+### [Point](#class-shapefilegeometrypoint)::getY
 ```php?start_inline=1
 public Point::getY( void ) : float
 ```
@@ -1075,7 +1120,7 @@ Returns the value of the Y coordinate.
 
 
 
-### Point::getZ
+### [Point](#class-shapefilegeometrypoint)::getZ
 ```php?start_inline=1
 public Point::getZ( void ) : float
 ```
@@ -1084,7 +1129,7 @@ Returns the value of the Z coordinate.
 
 
 
-### Point::getM
+### [Point](#class-shapefilegeometrypoint)::getM
 ```php?start_inline=1
 public Point::getM( void ) : float
 ```
@@ -1103,8 +1148,10 @@ MultiPoint Geometry Class. It exposes all the public methods of the [Geometry](#
 - [getPoints](#multipointgetpoints)
 - [getNumPoints](#multipointgetnumpoints)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
-### MultiPoint::__construct
+
+### [MultiPoint](#class-shapefilegeometrymultipoint)::__construct
 ```php?start_inline=1
 public MultiPoint::__construct( [ Points[] $points ] )
 ```
@@ -1116,19 +1163,20 @@ Array of [Point](#class-shapefilegeometrypoint) Geometries.
 
 
 
-### MultiPoint::addPoint
+### [MultiPoint](#class-shapefilegeometrymultipoint)::addPoint
 ```php?start_inline=1
-public MultiPoint::addPoint( Point $Point ) : void
+public MultiPoint::addPoint( Point $Point ) : self
 ```
 
 Adds a Point to the Collection.
+Returns self instance to provide a *fluent interface*.
 
 #### `$Point`
 [Point](#class-shapefilegeometrypoint) Geometry to add.
 
 
 
-### MultiPoint::getPoint
+### [MultiPoint](#class-shapefilegeometrymultipoint)::getPoint
 ```php?start_inline=1
 public MultiPoint::getPoint( int $index ) : Point
 ```
@@ -1140,7 +1188,7 @@ Index of the [Point](#class-shapefilegeometrypoint) Geometry to retrieve.
 
 
 
-### MultiPoint::getPoints
+### [MultiPoint](#class-shapefilegeometrymultipoint)::getPoints
 ```php?start_inline=1
 public MultiPoint::getPoints( void ) : Point[]
 ```
@@ -1149,7 +1197,7 @@ Gets all the Points from the Collection as an array of [Point](#class-shapefileg
 
 
 
-### MultiPoint::getNumPoints
+### [MultiPoint](#class-shapefilegeometrymultipoint)::getNumPoints
 ```php?start_inline=1
 public MultiPoint::getNumPoints( void ) : int
 ```
@@ -1167,10 +1215,16 @@ Linestring Geometry Class. It exposes all the public methods of the [Geometry](#
 - [getPoint](#linestringgetpoint)
 - [getPoints](#linestringgetpoints)
 - [getNumPoints](#linestringgetnumpoints)
+- [isClockwise](#linestringisclockwise)
 - [isClosedRing](#linestringisclosedring)
+- [forceClockwise](#linestringforceclockwise)
+- [forceCounterClockwise](#linestringforcecounterclockwise)
+- [forceClosedRing](#linestringforceclosedring)
+
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
 
-### Linestring::__construct
+### [Linestring](#class-shapefilegeometrylinestring)::__construct
 ```php?start_inline=1
 public Linestring::__construct( [ Points[] $points ] )
 ```
@@ -1182,19 +1236,20 @@ Array of [Point](#class-shapefilegeometrypoint) Geometries.
 
 
 
-### Linestring::addPoint
+### [Linestring](#class-shapefilegeometrylinestring)::addPoint
 ```php?start_inline=1
-public Linestring::addPoint( Point $Point ) : void
+public Linestring::addPoint( Point $Point ) : self
 ```
 
 Adds a Point to the Collection.
+Returns self instance to provide a *fluent interface*.
 
 #### `$Point`
 [Point](#class-shapefilegeometrypoint) Geometry to add.
 
 
 
-### Linestring::getPoint
+### [Linestring](#class-shapefilegeometrylinestring)::getPoint
 ```php?start_inline=1
 public Linestring::getPoint( int $index ) : Point
 ```
@@ -1206,7 +1261,7 @@ Index of the [Point](#class-shapefilegeometrypoint) Geometry to retrieve.
 
 
 
-### Linestring::getPoints
+### [Linestring](#class-shapefilegeometrylinestring)::getPoints
 ```php?start_inline=1
 public Linestring::getPoints( void ) : Point[]
 ```
@@ -1215,7 +1270,7 @@ Gets all the Points from the Collection as an array of [Point](#class-shapefileg
 
 
 
-### Linestring::getNumPoints
+### [Linestring](#class-shapefilegeometrylinestring)::getNumPoints
 ```php?start_inline=1
 public Linestring::getNumPoints( void ) : int
 ```
@@ -1224,12 +1279,57 @@ Gets the number of Points in the Collection.
 
 
 
-### Linestring::isClosedRing
+### [Linestring](#class-shapefilegeometrylinestring)::isClockwise
+```php?start_inline=1
+public Linestring::isClockwise( [$flag_throw_exception = false ] ) : bool|Shapefile::UNDEFINED
+```
+
+Checks whether a ring is clockwise or not (it works with open rings too).
+Returns boolean `true` or `false` or special value `Shapefile::UNDEFINED` in case Geometry is empty, so be sure to use the identity operator `===` to check return value.
+
+#### `$flag_throw_exception`
+Boolean flag to throw a `Shapefile::ERR_GEOM_RING_NOT_ENOUGH_VERTICES` ShapefileException if there are not enough points to determine ring direction. This method returns `Shapefile::UNDEFINED` in case this flag is set to `false` and there are not enough vertices in the Linestring.
+
+
+
+### [Linestring](#class-shapefilegeometrylinestring)::isClosedRing
 ```php?start_inline=1
 public Linestring::isClosedRing( void ) : bool
 ```
 
 Checks whether the Linestring is a *closed ring* or not. A closed ring has at least 4 vertices and the first and last ones must be the same.
+
+
+
+### [Linestring](#class-shapefilegeometrylinestring)::forceClockwise
+```php?start_inline=1
+public Linestring::forceClockwise( void ) : self
+```
+
+Forces the Linestring (or ring) to be in clockwise direction (it works with open rings too).
+It throws a `Shapefile::ERR_GEOM_RING_NOT_ENOUGH_VERTICES` ShapefileException if there are not enough points to determine current direction.
+Returns self instance to provide a *fluent interface*.
+
+
+
+### [Linestring](#class-shapefilegeometrylinestring)::forceCounterClockwise
+```php?start_inline=1
+public Linestring::forceCounterClockwise( void ) : self
+```
+
+Forces the Linestring (or ring) to be in counterclockwise direction (it works with open rings too).
+It throws a `Shapefile::ERR_GEOM_RING_NOT_ENOUGH_VERTICES` ShapefileException if there are not enough points to determine current direction.
+Returns self instance to provide a *fluent interface*.
+
+
+
+### [Linestring](#class-shapefilegeometrylinestring)::forceClosedRing
+```php?start_inline=1
+public Linestring::forceClosedRing( void ) : self
+```
+
+Forces Linestring to be a closed ring, adding a point identical to the first one in case it is missing.
+Returns self instance to provide a *fluent interface*.
 
 
 
@@ -1243,8 +1343,10 @@ MultiLinestring Geometry Class. It exposes all the public methods of the [Geomet
 - [getLinestrings](#multilinestringgetlinestrings)
 - [getNumLinestrings](#multilinestringgetnumlinestrings)
 
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
-### MultiLinestring::__construct
+
+### [MultiLinestring](#class-shapefilegeometrymultilinestring)::__construct
 ```php?start_inline=1
 public MultiLinestring::__construct( [ Linestring[] $linestrings ] )
 ```
@@ -1256,19 +1358,20 @@ Array of [Linestring](#class-shapefilegeometrylinestring) Geometries.
 
 
 
-### MultiLinestring::addLinestring
+### [MultiLinestring](#class-shapefilegeometrymultilinestring)::addLinestring
 ```php?start_inline=1
-public MultiLinestring::addLinestring( Linestring $Linestring ) : void
+public MultiLinestring::addLinestring( Linestring $Linestring ) : self
 ```
 
 Adds a Linestring to the Collection.
+Returns self instance to provide a *fluent interface*.
 
 #### `$Linestring`
 [Linestring](#class-shapefilegeometrylinestring) Geometry to add.
 
 
 
-### MultiLinestring::getLinestring
+### [MultiLinestring](#class-shapefilegeometrymultilinestring)::getLinestring
 ```php?start_inline=1
 public MultiLinestring::getLinestring( int $index ) : Linestring
 ```
@@ -1280,7 +1383,7 @@ Index of the [Linestring](#class-shapefilegeometrylinestring) Geometry to retrie
 
 
 
-### MultiLinestring::getLinestrings
+### [MultiLinestring](#class-shapefilegeometrymultilinestring)::getLinestrings
 ```php?start_inline=1
 public MultiLinestring::getLinestrings( void ) : Linestring[]
 ```
@@ -1289,7 +1392,7 @@ Gets all the Linestrings from the Collection as an array of [Linestring](#class-
 
 
 
-### MultiLinestring::getNumLinestrings
+### [MultiLinestring](#class-shapefilegeometrymultilinestring)::getNumLinestrings
 ```php?start_inline=1
 public MultiLinestring::getNumLinestrings( void ) : int
 ```
@@ -1310,11 +1413,18 @@ It exposes all the public methods of the [Geometry](#class-shapefilegeometrygeom
 - [getNumRings](#polygongetnumrings)
 - [getOuterRing](#polygongetouterring)
 - [getInnerRings](#polygongetinnerrings)
+- [isClockwise](#polygonisclockwise)
+- [isCounterClockwise](#polygoniscounterclockwise)
+- [forceClockwise](#polygonforceclockwise)
+- [forceCounterClockwise](#polygonforcecounterclockwise)
+- [forceClosedRings](#polygonforceclosedrings)
+
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
 
-### Polygon::__construct
+### [Polygon](#class-shapefilegeometrypolygon)::__construct
 ```php?start_inline=1
-public Polygon::__construct( [ Linestring[] $linestrings [, bool $flag_enforce_closed_rings = true ]] )
+public Polygon::__construct( [ Linestring[] $linestrings [, int $closed_rings = Shapefile::ACTION_CHECK [, int $force_orientation = Shapefile::ORIENTATION_COUNTERCLOCKWISE]]] )
 ```
 
 You can create an *empty* Polygon without passing any argument to its constructor and using one of [initFromArray](#geometryinitfromarray), [initFromWKT](#geometryinitfromwkt) and [initFromGeoJSON](#geometryinitfromgeojson) methods later on, or directly defining it providing an array of [Linestring](#class-shapefilegeometrylinestring) Geometries.
@@ -1322,24 +1432,34 @@ You can create an *empty* Polygon without passing any argument to its constructo
 #### `$linestrings`
 Array of [Linestring](#class-shapefilegeometrylinestring) Geometries.
 
-#### `$flag_enforce_closed_rings`
-Set this flag to `false` to prevent the Class from enforcing all its parts to be closed rings.
+#### `$closed_rings`
+Optional action to perform on polygon rings. Possible values:
+- `Shapefile::ACTION_IGNORE` : No action taken.
+- `Shapefile::ACTION_CHECK` : Checks for open rings and eventually throws a `Shapefile::ERR_GEOM_POLYGON_OPEN_RING` ShapefileException.
+- `Shapefile::ACTION_FORCE` : Forces all rings to be closed.
+
+#### `$force_orientation`
+Optional orientation to force for polygon rings. Possible values:
+- `Shapefile::ORIENTATION_CLOCKWISE` : Forces clockwise outer ring and counterclockwise inner rings.
+- `Shapefile::ORIENTATION_COUNTERCLOCKWISE` : Forces counterclockwise outer ring and clockwise inner rings.
+- `Shapefile::ORIENTATION_UNCHANGED` : Preserves original orientation.
 
 
 
-### Polygon::addRing
+### [Polygon](#class-shapefilegeometrypolygon)::addRing
 ```php?start_inline=1
-public Polygon::addRing( Linestring $Linestring ) : void
+public Polygon::addRing( Linestring $Linestring ) : self
 ```
 
 Adds a Linestring to the Collection. Keep in mind that the **first one** will be recognized as the Polygon **outer ring** and no formal checks will be made.
+Returns self instance to provide a *fluent interface*.
 
 #### `$Linestring`
 [Linestring](#class-shapefilegeometrylinestring) Geometry to add.
 
 
 
-### Polygon::getRing
+### [Polygon](#class-shapefilegeometrypolygon)::getRing
 ```php?start_inline=1
 public Polygon::getRing( int $index ) : Linestring
 ```
@@ -1351,7 +1471,7 @@ Index of the [Linestring](#class-shapefilegeometrylinestring) Geometry to retrie
 
 
 
-### Polygon::getRings
+### [Polygon](#class-shapefilegeometrypolygon)::getRings
 ```php?start_inline=1
 public Polygon::getRings( void ) : Linestring[]
 ```
@@ -1360,7 +1480,7 @@ Gets all the Linestrings from the Collection as an array of [Linestring](#class-
 
 
 
-### Polygon::getNumRings
+### [Polygon](#class-shapefilegeometrypolygon)::getNumRings
 ```php?start_inline=1
 public Polygon::getNumRings( void ) : int
 ```
@@ -1369,7 +1489,7 @@ Gets the number of Linestrings in the Collection.
 
 
 
-### Polygon::getOuterRing
+### [Polygon](#class-shapefilegeometrypolygon)::getOuterRing
 ```php?start_inline=1
 public Polygon::getOuterRing( void ) : Linestring
 ```
@@ -1378,12 +1498,66 @@ Gets the Polygon outer ring (that is, the ring at index `0`);
 
 
 
-### Polygon::getInnerRings
+### [Polygon](#class-shapefilegeometrypolygon)::getInnerRings
 ```php?start_inline=1
 public Polygon::getInnerRings( void ) : Linestring[]
 ```
 
-Gets polygon inners rings as an array of [Linestring](#class-shapefilegeometrylinestring) Geometries.
+Gets Polygon inners rings as an array of [Linestring](#class-shapefilegeometrylinestring) Geometries.
+
+
+
+### [Polygon](#class-shapefilegeometrypolygon)::isClockwise
+```php?start_inline=1
+public Polygon::isClockwise( void ) : bool|Shapefile::UNDEFINED
+```
+
+Checks whether Polygon outer ring has a clockwise orientation and all its inner rings have a counterclockwise one.
+Note that a `false` return value does not guarantee Polygon is strictly counterclockwise. Use [Polygon::forceCounterClockwise](#polygonforcecounterclockwise) to enforce that!
+Returns boolean `true` or `false` or special value `Shapefile::UNDEFINED` in case Geometry is empty, so be sure to use the identity operator `===` to check return value.
+
+
+
+### [Polygon](#class-shapefilegeometrypolygon)::isCounterClockwise
+```php?start_inline=1
+public Polygon::isCounterClockwise( void ) : bool|Shapefile::UNDEFINED
+```
+
+Checks whether Polygon outer ring has a counterclockwise orientation and all its inner rings have a clockwise one.
+Note that a `false` return value does not guarantee Polygon is strictly clockwise. Use [Polygon::forceClockwise](#polygonforceclockwise) to enforce that!
+Returns boolean `true` or `false` or special value `Shapefile::UNDEFINED` in case Geometry is empty, so be sure to use the identity operator `===` to check return value.
+
+
+
+### [Polygon](#class-shapefilegeometrypolygon)::forceClockwise
+```php?start_inline=1
+public Polygon::forceClockwise( void ) : self
+```
+
+Forces Polygon outer ring to have a clockwise orientation and all its inner rings to have a counterclockwise one.
+It throws a `Shapefile::ERR_GEOM_RING_NOT_ENOUGH_VERTICES` ShapefileException if there are not enough points in a ring to determine its direction.
+Returns self instance to provide a *fluent interface*.
+
+
+
+### [Polygon](#class-shapefilegeometrypolygon)::forceCounterClockwise
+```php?start_inline=1
+public Polygon::forceCounterClockwise( void ) : self
+```
+
+Forces Polygon outer ring to have a counterclockwise orientation and all its inner rings to have a clockwise one.
+It throws a `Shapefile::ERR_GEOM_RING_NOT_ENOUGH_VERTICES` ShapefileException if there are not enough points in a ring to determine its direction.
+Returns self instance to provide a *fluent interface*.
+
+
+
+### [Polygon](#class-shapefilegeometrypolygon)::forceClosedRings
+```php?start_inline=1
+public Polygon::forceClosedRings( void ) : self
+```
+
+Forces all Polygon rings to be closed.
+Returns self instance to provide a *fluent interface*.
 
 
 
@@ -1396,11 +1570,18 @@ MultiPolygon Geometry Class. It exposes all the public methods of the [Geometry]
 - [getPolygon](#multipolygongetpolygon)
 - [getPolygons](#multipolygongetpolygons)
 - [getNumPolygons](#multipolygongetnumpolygons)
+- [isClockwise](#multipolygonisclockwise)
+- [isCounterClockwise](#multipolygoniscounterclockwise)
+- [forceClockwise](#multipolygonforceclockwise)
+- [forceCounterClockwise](#multipolygonforcecounterclockwise)
+- [forceClosedRings](#multipolygonforceclosedrings)
+
+#### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
 
-### MultiPolygon::__construct
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::__construct
 ```php?start_inline=1
-public MultiPolygon::__construct( [ Polygon[] $polygons [, bool $flag_enforce_closed_rings = true ]] )
+public MultiPolygon::__construct( [ Polygon[] $polygons [, int $closed_rings = Shapefile::ACTION_CHECK [, int $force_orientation = Shapefile::ORIENTATION_COUNTERCLOCKWISE]]] )
 ```
 
 You can create an *empty* MultiPolygon without passing any argument to its constructor and using one of [initFromArray](#geometryinitfromarray), [initFromWKT](#geometryinitfromwkt) and [initFromGeoJSON](#geometryinitfromgeojson) methods later on, or directly defining it providing an array of [Polygon](#class-shapefilegeometrypolygon) Geometries.
@@ -1408,24 +1589,34 @@ You can create an *empty* MultiPolygon without passing any argument to its const
 #### `$polygons`
 Array of [Polygon](#class-shapefilegeometrypolygon) Geometries.
 
-#### `$flag_enforce_closed_rings`
-Set this flag to `false` to prevent the Class from enforcing all its polygons parts to be closed rings.
+#### `$closed_rings`
+Optional action to perform on polygons rings. Possible values:
+- `Shapefile::ACTION_IGNORE` : No action taken.
+- `Shapefile::ACTION_CHECK` : Checks for open rings and eventually throws a `Shapefile::ERR_GEOM_POLYGON_OPEN_RING` ShapefileException.
+- `Shapefile::ACTION_FORCE` : Forces all rings to be closed.
+
+#### `$force_orientation`
+Optional orientation to force for polygons rings. Possible values:
+- `Shapefile::ORIENTATION_CLOCKWISE` : Forces clockwise outer rings and counterclockwise inner rings.
+- `Shapefile::ORIENTATION_COUNTERCLOCKWISE` : Forces counterclockwise outer rings and clockwise inner rings.
+- `Shapefile::ORIENTATION_UNCHANGED` : Preserves original orientation.
 
 
 
-### MultiPolygon::addPolygon
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::addPolygon
 ```php?start_inline=1
-public MultiPolygon::addPolygon( Polygon $Polygon ) : void
+public MultiPolygon::addPolygon( Polygon $Polygon ) : self
 ```
 
 Adds a Polygon to the Collection.
+Returns self instance to provide a *fluent interface*..
 
 #### `$Polygon`
 [Polygon](#class-shapefilegeometrypolygon) Geometry to add.
 
 
 
-### MultiPolygon::getPolygon
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::getPolygon
 ```php?start_inline=1
 public MultiPolygon::getPolygon( int $index ) : Polygon
 ```
@@ -1437,7 +1628,7 @@ Index of the [Polygon](#class-shapefilegeometrypolygon) Geometry to retrieve.
 
 
 
-### MultiPolygon::getPolygons
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::getPolygons
 ```php?start_inline=1
 public MultiPolygon::getPolygons( void ) : Polygon[]
 ```
@@ -1446,12 +1637,66 @@ Gets all the Polygons from the Collection as an array of [Polygon](#class-shapef
 
 
 
-### MultiPolygon::getNumPolygons
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::getNumPolygons
 ```php?start_inline=1
 public MultiPolygon::getNumPolygons( void ) : int
 ```
 
 Gets the number of Polygons in the Collection.
+
+
+
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::isClockwise
+```php?start_inline=1
+public Polygon::isClockwise( void ) : bool|Shapefile::UNDEFINED
+```
+
+Checks whether all MultiPolygon outer rings have a clockwise orientation and all its inner rings have a counterclockwise one.
+Note that a `false` return value does not guarantee MultiPolygon is strictly counterclockwise. Use [MultiPolygon::forceCounterClockwise](#multipolygonforcecounterclockwise) to enforce that!
+Returns boolean `true` or `false` or special value `Shapefile::UNDEFINED` in case Geometry is empty, so be sure to use the identity operator `===` to check return value.
+
+
+
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::isCounterClockwise
+```php?start_inline=1
+public Polygon::isCounterClockwise( void ) : bool|Shapefile::UNDEFINED
+```
+
+Checks whether all MultiPolygon outer rings have a counterclockwise orientation and all its inner rings have a clockwise one.
+Note that a `false` return value does not guarantee MultiPolygon is strictly clockwise. Use [MultiPolygon::forceClockwise](#multipolygonforceclockwise) to enforce that!
+Returns boolean `true` or `false` or special value `Shapefile::UNDEFINED` in case Geometry is empty, so be sure to use the identity operator `===` to check return value.
+
+
+
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::forceClockwise
+```php?start_inline=1
+public MultiPolygon::forceClockwise( void ) : self
+```
+
+Forces all MultiPolygon outer rings to have a clockwise orientation and all its inner rings to have a counterclockwise one.
+It throws a `Shapefile::ERR_GEOM_RING_NOT_ENOUGH_VERTICES` ShapefileException if there are not enough points in a ring to determine its direction.
+Returns self instance to provide a *fluent interface*.
+
+
+
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::forceCounterClockwise
+```php?start_inline=1
+public MultiPolygon::forceCounterClockwise( void ) : self
+```
+
+Forces all MultiPolygon outer rings to have a counterclockwise orientation and all its inner rings to have a clockwise one.
+It throws a `Shapefile::ERR_GEOM_RING_NOT_ENOUGH_VERTICES` ShapefileException if there are not enough points in a ring to determine its direction.
+Returns self instance to provide a *fluent interface*.
+
+
+
+### [MultiPolygon](#class-shapefilegeometrymultipolygon)::forceClosedRings
+```php?start_inline=1
+public MultiPolygon::forceClosedRings( void ) : self
+```
+
+Forces all MultiPolygon rings to be closed.
+Returns self instance to provide a *fluent interface*.
 
 
 
@@ -1517,14 +1762,15 @@ To answer the question "why not a *close()* method?" For the same reason as ther
 
 
 
+
 ## A note about Polygons orientation
-ESRI Shapefile specifications establish clockwise orientation for Polygons external rings and counterclockwise orientation for internal ones.
-Simple Features and GeoJSON, on the other hand, dictate the opposite. There is a lot of confusion about this subject and the expression *right-hand rule* is used for both scenarios.
-It is worth noting that many Simple Features implementations (such as PostGIS) will not reject Polygons not complying to the specification, nor should proper GeoJSON parsers (see the note in [section 3.1.6](https://tools.ietf.org/html/rfc7946#section-3.1.6)).
+ESRI Shapefile specifications establish clockwise orientation for Polygons outer rings and counterclockwise orientation for inner ones.
+GeoJSON on the other hand dictates the opposite, as well as Simple Features used to do (this has been dropped eventually, allowing either orientation for Polygons). There is a lot of confusion about this subject and to make things worse the expression *right-hand rule* is used for both scenarios.
+It is worth noting that many Simple Features implementations (such as PostGIS) will not reject Polygons not complying with the specification, nor should proper GeoJSON parsers (see the note in [section 3.1.6](https://tools.ietf.org/html/rfc7946#section-3.1.6)).
 
-This library gives the greatest flexibility to the programmer when **reading** Shapefiles through the [ShapefileReader](#shapefilereader__construct) `Shapefile::OPTION_INVERT_POLYGONS_ORIENTATION` constructor option. By default it is set to `true`, meaning it assumes the Shapefile is compliant to the specs and polygons external rings are stored with clockwise orientation: leaving this option enabled it will cause the output to be Simple Features compliant, thus polygons external rings will be converted to counterclockwise orientation (inner rings are reversed too and they will be in clockwise orientation in the output).
+This library gives the greatest flexibility to the programmer when **reading** Shapefiles through [ShapefileReader](#shapefilereader__construct) `Shapefile::OPTION_POLYGON_ORIENTATION_READING_AUTOSENSE` and `Shapefile::OPTION_POLYGON_OUTPUT_ORIENTATION` constructor options. By default they are set respectively to `true` and `Shapefile::ORIENTATION_COUNTERCLOCKWISE`, meaning the library will be able to read a Shapefile even when it is not compliant with ESRI specs and output Polygons/MultiPolygons will be forced to have a counterclockwise orientation (that is, opposite of ESRI specs). This should ensure the widest interoperability *out-of-the-box*, but changing the value of those options will allow for every desired behaviour.
 
-When **writing** a Shapefile things are easier, since the library will take care of everything and produce a file compliant to ESRI specifications (it analyzes and eventually corrects polygons outer and inner rings orientation).
+When **writing** a Shapefile things are easier, since the library will take care of everything and **always** produce a file compliant with ESRI specifications: it analyzes and eventually corrects Polygons/MultiPolygons, forcing closed rings, clockwise-oriented outer rings and counterclockwise inner rings.
 
 
 
@@ -1839,7 +2085,7 @@ Having clarified that, there are a couple of implications and things to keep in 
 
 ### Numbers are stored as text in *DBF* files
 When **reading** a Shapefile, this library ***will not*** try to convert integer and floating point numbers to such. Instead, they will be returned as text, leaving complete freedom about data conversion and/or interpretation to the programmer. ShapefileReader [getFieldDecimals](#shapefilereadergetfielddecimals) method comes in handy for accurate conversion, but keep in mind that there is a lot of software out there creating *not really compliant or accurate* Shapefiles and the value returned by this method is often just *descriptive* or even plainly wrong in relation to the actual data stored in the *DBF* file (that's the reason why this library does not attempt an automatic conversion in the first place).
-When **writing** a Shapefile, the library will take care of formal compliance to field *size* and *decimals* values, truncating eventual exceeding decimal parts, e.g.: the value `123.123456` in a field of *size* 10 with 5 *decimals* will be formatted as `123.1234`. If the lenght of the formatted value exceeds field *size*, a ShapeFileException with error `Shapefile::ERR_INPUT_NUMERIC_VALUE_OVERFLOW` will be thrown (e.g.: trying to store the value `123456.99` in a field of of *size* 10 with 5 *decimals* would produce `123456.9900` and raise the exception).
+When **writing** a Shapefile, the library will take care of formal compliance to field *size* and *decimals* values, truncating eventual exceeding decimal parts, e.g.: the value `123.123456` in a field of *size* 10 with 5 *decimals* will be formatted as `123.1234`. If the lenght of the formatted value exceeds field *size*, a `Shapefile::ERR_INPUT_NUMERIC_VALUE_OVERFLOW` ShapefileException will be thrown (e.g.: trying to store the value `123456.99` in a field of of *size* 10 with 5 *decimals* would produce `123456.9900` and raise the exception).
 
 ### Dates are returned as text in ISO format or as `DateTime` objects
 Depending on the state of `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES` and `Shapefile::OPTION_DBF_RETURN_DATES_AS_OBJECTS` options, ShapefileReader Class will try to validate dates and return them as text in ISO ***YYYY-MM-DD*** format, as a [DateTime](#https://www.php.net/manual/en/class.datetime.php) object or as `null` in case of an invalid date when `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES` is enabled.
@@ -1975,6 +2221,7 @@ Well, after more than 15 years working with GIS related technologies, I have yet
 
 
 ## History
+*23 May 2020* - [Version 3.3.0](/posts/php-shapefile-3.3.0/)
 *9 April 2020* - [Version 3.2.0](/posts/php-shapefile-3.2.0/)
 *2 February 2020* - [Version 3.1.3](/posts/php-shapefile-3.1.3/)
 *15 January 2020* - [Version 3.1.2](/posts/php-shapefile-3.1.2/)
