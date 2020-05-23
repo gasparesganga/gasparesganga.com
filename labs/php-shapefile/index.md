@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP Shapefile
 description : PHP library to read and write ESRI Shapefiles, compatible with WKT and GeoJSON
-updated     : 2020-05-22
+updated     : 2020-05-23
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -13,7 +13,7 @@ getit       :
 {% capture expire_date %}{{'2020-06-30' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>22 May 2020 :</b> Version 3.3.0 released: see the <a href="/posts/php-shapefile-3.3.0/">release notes</a>.
+    <b>23 May 2020 :</b> Version 3.3.0 released: see the <a href="/posts/php-shapefile-3.3.0/">release notes</a>.
 </div>
 {% endif %}
 
@@ -158,19 +158,6 @@ There are 2 Namespaces, `Shapefile` and `Shapefile\Geometry`, containing the fol
 - Shapefile\Geometry\\**[MultiLinestring](#class-shapefilegeometrymultilinestring)**
 - Shapefile\Geometry\\**[Polygon](#class-shapefilegeometrypolygon)**
 - Shapefile\Geometry\\**[MultiPolygon](#class-shapefilegeometrymultipolygon)**
-
-- <a href="#class-shapefileshapefileautoloader">Shapefile&#92;<b>ShapefileAutoloader</b></a>
-- <a href="#class-shapefileshapefileexception">Shapefile&#92;<b>ShapefileException</b></a>
-- <a href="#class-shapefileshapefile">Abstract Shapefile&#92;<b>Shapefile</b></a>
-- <a href="#class-shapefileshapefilereader">Shapefile&#92;<b>ShapefileReader</b></a>
-- <a href="#class-shapefileshapefilewriter">Shapefile&#92;<b>ShapefileWriter</b></a>
-- <a href="#class-shapefilegeometrygeometry">Abstract Shapefile\Geometry&#92;<b>Geometry</b></a>
-- <a href="#class-shapefilegeometrypoint">Shapefile\Geometry&#92;<b>Point</b></a>
-- <a href="#class-shapefilegeometrymultipoint">Shapefile\Geometry&#92;<b>MultiPoint</b></a>
-- <a href="#class-shapefilegeometrylinestring">Shapefile\Geometry&#92;<b>Linestring</b></a>
-- <a href="#class-shapefilegeometrymultilinestring">Shapefile\Geometry&#92;<b>MultiLinestring</b></a>
-- <a href="#class-shapefilegeometrypolygon">Shapefile\Geometry&#92;<b>Polygon</b></a>
-- <a href="#class-shapefilegeometrymultipolygon">Shapefile\Geometry&#92;<b>MultiPolygon</b></a>
 
 To keep things easy and tidy, all package-wide constants are exposed by <code>Shapefile\<b>Shapefile</b></code> Abstract Class, e.g.: `Shapefile::OPTION_SUPPRESS_Z`.
 
@@ -2234,7 +2221,7 @@ Well, after more than 15 years working with GIS related technologies, I have yet
 
 
 ## History
-*22 May 2020* - [Version 3.3.0](/posts/php-shapefile-3.3.0/)
+*23 May 2020* - [Version 3.3.0](/posts/php-shapefile-3.3.0/)
 *9 April 2020* - [Version 3.2.0](/posts/php-shapefile-3.2.0/)
 *2 February 2020* - [Version 3.1.3](/posts/php-shapefile-3.1.3/)
 *15 January 2020* - [Version 3.1.2](/posts/php-shapefile-3.1.2/)
