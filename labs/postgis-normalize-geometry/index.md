@@ -31,7 +31,7 @@ But I felt that wasn't enough for a generic purpose normalizing function. It pro
 I wrote a brand-new algorithm integrating the angle checks with area and points distance ones, building a production-ready function that can be safely used in automated queries.
 
 ### What it does
-The function decomposes all `POLYGON`s, `MULTIPOLYGON`s and `MULTILINESTRING`s into single `LINESTRING`s, then it iterates over all the points taking into account 3 at a time. When conditions are met depending on the input parameters, the point which produces the unwanted condition is removed.
+The function decomposes any `POLYGON`, `MULTIPOLYGON` and `MULTILINESTRING` into single `LINESTRING`, then it iterates over all the points taking into account 3 at a time. When conditions are met depending on the input parameters, the point which produces the unwanted condition is removed.
 This effectively **removes spikes and points lying on the same straight line**, producing normalized geometries.
 
 
@@ -114,7 +114,7 @@ It is implicit that every polygon or polygon inner ring whose area is smaller th
 ## Return value
 The output of the function is a normalized **`geometry`** *(what else did you expect?)*. In case a geometry is entirely removed *(less than 3 points are left for a polygon, less than 2 points are left for a linestring, a polygon area is smaller than `PAR_null_area`)* `NULL` will be returned.
 
-By default, the output is wrapped by PostGIS function [ST_Union()](http://postgis.net/docs/ST_Union.html) which is used to recollect the single parts of `MULTI*` geometries given in input *(remember that input geometries are decomposed into single `LINESTRING`s to perform the normalization)*.
+By default, the output is wrapped by PostGIS function [ST_Union()](http://postgis.net/docs/ST_Union.html) which is used to recollect the single parts of `MULTI*` geometries given in input *(remember that input geometries are decomposed into single `LINESTRING` to perform the normalization)*.
 While this should usually be convenient, there might be other cases where one would like to treat the single parts of multigeometries separately *(e.g.: not necessarly dissolving multipolygon's boundaries, etc.)*. Then just set `PAR_union` to `false` and [ST_Collect()](http://postgis.net/docs/ST_Collect.html) will be used instead of `ST_Union()`. A `ST_Dump` will then provide all the single parts. See [Example 2](#example-2---filter-single-parts-of-multigeometries).
 
 
