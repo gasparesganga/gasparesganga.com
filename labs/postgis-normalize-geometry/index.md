@@ -2,7 +2,7 @@
 layout      : lab
 title       : PostGIS normalize_geometry
 description : PL/pgSQL function to remove spikes and simplify geometries with PostGIS
-updated     : 2018-07-18
+updated     : 2020-05-28
 getit       :
   github        : gasparesganga/postgis-normalize-geometry
   download      : true
@@ -31,21 +31,21 @@ But I felt that wasn't enough for a generic purpose normalizing function. It pro
 I wrote a brand-new algorithm integrating the angle checks with area and points distance ones, building a production-ready function that can be safely used in automated queries.
 
 ### What it does
-The function decomposes all `POLYGON`, `MULTIPOLYGON` and `MULTILINESTRING` into single `LINESTRING`, then it iterates over all the points considering 3 at a time. When conditions depending on the input parameters are met, the point which produces the unwanted condition is removed.
-This effectively removes **spikes** and **points lying on the same straight line**, producing normalized geometries.
+The function decomposes all `POLYGON`s, `MULTIPOLYGON`s and `MULTILINESTRING`s into single `LINESTRING`s, then it iterates over all the points taking into account 3 at a time. When conditions are met depending on the input parameters, the point which produces the unwanted condition is removed.
+This effectively **removes spikes and points lying on the same straight line**, producing normalized geometries.
 
 
 ## Synopsis
 
 ```sql
 geometry normalize_geometry(
-    PAR_geom                        geometry,
-    PAR_area_threshold              double precision,
-    PAR_angle_threshold             double precision,
-    PAR_point_distance_threshold    double precision,
-    PAR_null_area                   double precision,
-    PAR_union                       boolean DEFAULT true
-);
+      PAR_geom                      geometry
+    , PAR_area_threshold            double precision
+    , PAR_angle_threshold           double precision
+    , PAR_point_distance_threshold  double precision
+    , PAR_null_area                 double precision
+    , PAR_union                     boolean DEFAULT true
+) geometry;
 ```
 
 
@@ -53,7 +53,7 @@ geometry normalize_geometry(
 ## Input parameters
 
 ##### `PAR_geom`
-That's the input geometry. It can be any PostGIS geometry type, but the function will actually do something only on `POLYGON`, `MULTIPOLYGON`, `LINESTRING` and `MULTILINESTRING` types.
+The input geometry. It can be any PostGIS geometry type, but the function will actually do something only on `POLYGON`, `MULTIPOLYGON`, `LINESTRING` and `MULTILINESTRING` types, while passing through unchanged anything else.
 
 ##### `PAR_area_threshold`
 Expressed in square `units`, depending on the geometry *SRID*. For example, if the geometry *SRID* is an *UTM* one, this value is assumed to be expressed in square meters.
@@ -73,7 +73,7 @@ Set this parameter to `false` if you whish to recollect single parts of multigeo
 
 #### What about the other geometry types?
 `POINT` and `MULTIPOINT` are returned unchanged: a `POINT` is as simple as it gets, while a `MULTIPOINT` cannot have a *spike* by definition and if it has more than one point with the same coordinates then it isn't a *valid* geometry, thus you need to make it valid, not normalize it.
-`GEOMETRYCOLLECTION` are also returned unchanged: this is because I never use `GEOMETRYCOLLECTION` and I didn't bother about treating them. Actually, to me it doesn't sound like a brilliant idea to work and normalize directly a `GEOMETRYCOLLECTION`, as too many *unexpected results* may appear. Maybe I will spend some time thinking about it in the future.
+`GEOMETRYCOLLECTION` are also returned unchanged: this is because I never use `GEOMETRYCOLLECTION` and I didn't bother about treating them. Actually, to me it doesn't sound like a brilliant idea to work and normalize directly a `GEOMETRYCOLLECTION`, as too many *unexpected results* may arise. Maybe I will spend some time thinking about it in the future.
 
 
 
@@ -93,29 +93,29 @@ Considering 3 adjacent points <code>P<sub>n-1</sub></code>, <code>P<sub>n</sub><
 #### Case 1 - Removing *spikes*
 ***Both*** the following conditions must be met:
 
-* The area obtained connecting those points *(ie. the area of the triangle formed by <code>P<sub>n-1</sub></code>, <code>P<sub>n</sub></code> and <code>P<sub>n+1</sub></code> points)* is equal or smaller than `PAR_area_threshold`.
-* The angle in <code>P<sub>n</sub></code> is equal or smaller than `PAR_angle_threshold` 
+1. The area obtained connecting those points *(i.e.: the area of the triangle formed by <code>P<sub>n-1</sub></code>, <code>P<sub>n</sub></code> and <code>P<sub>n+1</sub></code> points)* is equal or smaller than `PAR_area_threshold`.
+2. The angle in <code>P<sub>n</sub></code> is equal or smaller than `PAR_angle_threshold` 
   **OR**
   the distance between <code>P<sub>n-1</sub></code> and <code>P<sub>n</sub></code> is equal or smaller than `PAR_point_distance_threshold` and the angle in <code>P<sub>n+1</sub></code> is equal or smaller than `PAR_angle_threshold`
   **OR**
   the distance between <code>P<sub>n</sub></code> and <code>P<sub>n+1</sub></code> is equal or smaller than `PAR_point_distance_threshold` and the angle in <code>P<sub>n-1</sub></code> is equal or smaller than `PAR_angle_threshold`.
 
 #### Case 2 - Removing point lying *almost* on the same straight line
-The area obtained connecting those points *(ie. the area of the triangle formed by <code>P<sub>n-1</sub></code>, <code>P<sub>n</sub></code> and <code>P<sub>n+1</sub></code> points)* is equal or smaller than `PAR_null_area`.
+The area obtained connecting those points *(i.e.: the area of the triangle formed by <code>P<sub>n-1</sub></code>, <code>P<sub>n</sub></code> and <code>P<sub>n+1</sub></code> points)* is equal or smaller than `PAR_null_area`.
 
 ### Some considerations and uses of `PAR_null_area` parameter
 Leaving the parameters `PAR_area_threshold`, `PAR_angle_threshold` and `PAR_point_distance_threshold` set to `0` and using only the last parameter `PAR_null_area`, some interesting results can be obtained: the specific value `0` for `PAR_null_area` will remove all the useless points lying *exactly* on the same straight line, while providing any value greater than `0` for `PAR_null_area` the function can effectively be used to *simplify* your geometries. See [Example 3](#example-3---use-the-function-to-simplify-geometries).
-If *(for any undisclosed reason)* you don't even want to remove the points lying on the same straight line, use a value **smaller** than `0` for `PAR_null_area` (ie. `-1`) and this feature will be disabled.
+If *(for any undisclosed reason)* you don't even want to remove the points lying on the same straight line, use a value **smaller** than `0` for `PAR_null_area` (e.g.: `-1`) and this feature will be disabled.
 
-It is implicit that every polygon or inner ring of polygons whose area is smaller than `PAR_null_area` will be entirely removed.
+It is implicit that every polygon or polygon inner ring whose area is smaller than `PAR_null_area` will be entirely removed.
 
 
 
 ## Return value
-The output of the function is a normalized **`geometry`** *(what else did you expect?)*. In case a geometry is entirely removed *(less than 3 points are left for a polygon, less than 2 points are left for a linestring, a polygon's area is smaller than `PAR_null_area`)* `NULL` will be returned.
+The output of the function is a normalized **`geometry`** *(what else did you expect?)*. In case a geometry is entirely removed *(less than 3 points are left for a polygon, less than 2 points are left for a linestring, a polygon area is smaller than `PAR_null_area`)* `NULL` will be returned.
 
-By default, the output is wrapped by PostGIS function [ST_Union()](http://postgis.net/docs/ST_Union.html) which is used to recollect the single parts of `MULTI*` geometries given in input *(remember that input geometries are decomposed into single `LINESTRING` to perform the normalization)*.
-While this should usually be convenient, there might be other cases where one would like to treat the single parts of multigeometries separately *(ie. not necessarly dissolving multipolygon's boundaries, etc.)*. Then just set `PAR_union` to `false` and [ST_Collect()](http://postgis.net/docs/ST_Collect.html) will be used instead of `ST_Union()`. A `ST_Dump` will then provide all the single parts. See [Example 2](#example-2---filter-single-parts-of-multigeometries).
+By default, the output is wrapped by PostGIS function [ST_Union()](http://postgis.net/docs/ST_Union.html) which is used to recollect the single parts of `MULTI*` geometries given in input *(remember that input geometries are decomposed into single `LINESTRING`s to perform the normalization)*.
+While this should usually be convenient, there might be other cases where one would like to treat the single parts of multigeometries separately *(e.g.: not necessarly dissolving multipolygon's boundaries, etc.)*. Then just set `PAR_union` to `false` and [ST_Collect()](http://postgis.net/docs/ST_Collect.html) will be used instead of `ST_Union()`. A `ST_Dump` will then provide all the single parts. See [Example 2](#example-2---filter-single-parts-of-multigeometries).
 
 
     
@@ -128,7 +128,7 @@ Those parameters are the ones I use most of the times:
 SELECT normalize_geometry(t.geom, 0.5, 0.5, 0.005, 0.0001) FROM my_table;
 ```
 
-Those will successfully normalize geometries like:
+They will successfully normalize geometries like:
 
 ```sql
 LINESTRING(0 0, 2 2, 0 4, -5 4, 0 4.001, 2 6)
@@ -155,9 +155,9 @@ SELECT (ST_Dump(normalize_geometry(geom, 0.5, 0.5, 0.005, 0.0001, false))).geom 
 If you are on PostgreSQL **9.3+**, here is what your average query would look like, taking advantage of `LATERAL` and including some filtering condition:
 
 ```sql
-SELECT l.geom [, other-fields] 
-FROM my_table AS t, 
-LATERAL (SELECT (ST_Dump(normalize_geometry(t.geom, 0.5, 0.5, 0.005, 0.0001, false))).geom) AS l 
+SELECT n.geom [, other-fields]
+FROM my_table AS t
+CROSS JOIN LATERAL (SELECT (ST_Dump(normalize_geometry(t.geom, 0.5, 0.5, 0.005, 0.0001, false))).geom) AS n
 WHERE [some-condition];
 ```
 
@@ -173,8 +173,8 @@ WHERE [some-condition];
 
 
 ### Example 3 - Use the function to simplify geometries
-Both [ST_Simplify()](http://postgis.net/docs/ST_Simplify.html) and [ST_SimplifyPreserveTopology()](http://postgis.net/docs/ST_SimplifyPreserveTopology.html) use the *Douglas-Peucker algorithm*. Who does really (I mean, *FOR REAL!*) know how the `tolerance` parameter works and is able use it in a predictable way? Personally, I've had some disastrous results with them.
-Using `normalize_geometry` with all *threshold* parameters set to `0` and focusing on `PAR_null_area`, we have a pretty powerful geometry-simplifying function, try it!
+Both [ST_Simplify()](http://postgis.net/docs/ST_Simplify.html) and [ST_SimplifyPreserveTopology()](http://postgis.net/docs/ST_SimplifyPreserveTopology.html) use the *Douglas-Peucker algorithm*. Who does really (I mean, *FOR REAL!*) know how their `tolerance` parameter works and is able use it in a predictable way? Personally, I've had some disastrous results with them.
+Using `normalize_geometry` with all *threshold* parameters set to `0` and focusing just on `PAR_null_area`, we have a pretty powerful geometry-simplifying function, try it!
 
 ```sql
 -- Remove only points lying on the same straight line
@@ -182,11 +182,11 @@ SELECT geometry normalize_geometry(geom, 0, 0, 0, 0) FROM my_table;
 
 -- A higher PAR_null_area value will simplify the geometry removing more points
 SELECT 
-    normalize_geometry(geom, 0, 0, 0, 0)    AS geom_A,  
-    normalize_geometry(geom, 0, 0, 0, 0.2)  AS geom_B,  
-    normalize_geometry(geom, 0, 0, 0, 0.5)  AS geom_C,  
-    normalize_geometry(geom, 0, 0, 0, 1)    AS geom_D,  
-    normalize_geometry(geom, 0, 0, 0, 3)    AS geom_E  
+      normalize_geometry(geom, 0, 0, 0, 0)   AS geom_A
+    , normalize_geometry(geom, 0, 0, 0, 0.2) AS geom_B
+    , normalize_geometry(geom, 0, 0, 0, 0.5) AS geom_C
+    , normalize_geometry(geom, 0, 0, 0, 1)   AS geom_D
+    , normalize_geometry(geom, 0, 0, 0, 3)   AS geom_E
 FROM (
     SELECT ST_Buffer('POINT(0 0)', 10, 12) AS geom
 ) AS s;
@@ -196,6 +196,7 @@ FROM (
 
 
 ## History
+*28 May 2020* - [Version 1.2.1](/posts/postgis-normalize-geometry-1.2.1/)
 *18 July 2018* - [Version 1.2.0](/posts/postgis-normalize-geometry-1.2.0/)
 *6 Dicember 2016* - [Version 1.1.0](/posts/postgis-normalize-geometry-1.1.0/)
 *2 June 2016* - [Version 1.0](/posts/postgis-normalize-geometry-release/)
