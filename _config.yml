@@ -38,6 +38,7 @@ exclude :
 plugins :
   - jekyll-assets
   - jekyll-paginate
+  - kramdown-parser-gfm
   - autoprefixer-rails
   - uglifier
 
