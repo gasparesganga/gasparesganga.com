@@ -3,6 +3,7 @@ group :jekyll_plugins do
   gem "jekyll", "~> 3"
   gem "jekyll-assets"
   gem "jekyll-paginate"
+  gem "kramdown-parser-gfm"
   gem "autoprefixer-rails"
   gem "uglifier"
 end
