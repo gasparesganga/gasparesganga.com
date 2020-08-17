@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP Shapefile
 description : PHP library to read and write ESRI Shapefiles, compatible with WKT and GeoJSON
-updated     : 2020-08-13
+updated     : 2020-08-17
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -2221,6 +2221,7 @@ Well, after more than 15 years working with GIS related technologies, I have yet
 
 
 ## History
+*17 Aug 2020* - [Version 3.3.2](/posts/php-shapefile-3.3.2/)
 *13 Aug 2020* - [Version 3.3.1](/posts/php-shapefile-3.3.1/)
 *23 May 2020* - [Version 3.3.0](/posts/php-shapefile-3.3.0/)
 *9 April 2020* - [Version 3.2.0](/posts/php-shapefile-3.2.0/)
