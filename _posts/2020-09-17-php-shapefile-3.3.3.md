@@ -12,7 +12,7 @@ Also, I took the chance to add a new [example](/labs/php-shapefile/#example-4---
 
 
 ### What has been fixed in Version 3.3.3
-- Fixed a bug in ShapefileWriter::packPoint() method affecting *Z* and *M* geometries.
+- Fixed a bug in `ShapefileWriter::packPoint()` method affecting *Z* and *M* geometries.
 
 
 This release has no impact on existing code.
