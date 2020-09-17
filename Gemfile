@@ -4,6 +4,6 @@ group :jekyll_plugins do
   gem "jekyll-assets"
   gem "jekyll-paginate"
   gem "kramdown-parser-gfm"
-  gem "autoprefixer-rails"
+  gem "autoprefixer-rails", "~> 9"
   gem "uglifier"
 end
