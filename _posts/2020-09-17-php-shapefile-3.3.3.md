@@ -6,7 +6,7 @@ tags        : [Releases, PHP, ESRI, Shapefile, GIS]
 ---
 
 
-Another bugfix release, this time addressing a bug in ShapefileWriter::packPoint() method affecting *Z* and *M* geometries.
+Another bugfix release, this time addressing a bug in `ShapefileWriter::packPoint()` method affecting *Z* and *M* geometries.
 
 Also, I took the chance to add a new [example](/labs/php-shapefile/#example-4---deal-with-record-level-errors-individually) in the documentation, useful for the ones who want to deal with record-level errors individually.
 
