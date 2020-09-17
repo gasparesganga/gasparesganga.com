@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP Shapefile
 description : PHP library to read and write ESRI Shapefiles, compatible with WKT and GeoJSON
-updated     : 2020-08-17
+updated     : 2020-09-17
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -2178,7 +2178,7 @@ try {
     $Shapefile = new ShapefileReader('example.shp');
     foreach ($Shapefile as $i => $Geometry) {
         /*
-            Do something with $Geometry here....
+            Do something with $Geometry here...
             $i contains the record number.
         */
     }
@@ -2214,6 +2214,69 @@ $Polygon->addRing($Linestring2);
 ```
 
 
+### Example 4 - Deal with record-level errors individually
+```php?start_inline=1
+// Register autoloader
+require_once('php-shapefile/src/Shapefile/ShapefileAutoloader.php');
+Shapefile\ShapefileAutoloader::register();
+
+// Import classes
+use Shapefile\Shapefile;
+use Shapefile\ShapefileException;
+use Shapefile\ShapefileReader;
+
+try {
+    // Open Shapefile
+    $Shapefile = new ShapefileReader('example.shp');
+    // Read all records
+    $tot = $Shapefile->getTotRecords();
+    for ($i = 1; $i <= $tot; ++$i) {
+        try {
+            // Manually set current record. Don't forget this!
+            $Shapefile->setCurrentRecord($i);
+            // Fetch a Geometry
+            $Geometry = $Shapefile->fetchRecord();
+            // Skip deleted records
+            if ($Geometry->isDeleted()) {
+                continue;
+            }
+            /*
+                Do something with $Geometry here...
+            */
+        } catch (ShapefileException $e) {
+            // Handle some specific errors types or fallback to default
+            switch ($e->getErrorType()) {
+                // We're crazy and we don't care about those invalid geometries... Let's skip them!
+                case Shapefile::ERR_GEOM_RING_AREA_TOO_SMALL:
+                case Shapefile::ERR_GEOM_RING_NOT_ENOUGH_VERTICES:
+                    // The following "continue" statement is just syntactic sugar in this case
+                    continue;
+                    break;
+                    
+                // Let's handle this case differently... :)
+                case Shapefile::ERR_GEOM_POLYGON_WRONG_ORIENTATION:
+                    exit("Do you want the Earth to change its rotation direction?!?");
+                    break;
+                    
+                // A fallback is always a nice idea
+                default:
+                    exit(
+                        "Error Type: "  . $e->getErrorType()
+                        . "\nMessage: " . $e->getMessage()
+                        . "\nDetails: " . $e->getDetails()
+                    );
+                    break;
+            }
+        }
+    }
+} catch (ShapefileException $e) {
+    /*
+        Something went wrong during Shapefile opening!
+    */
+}
+```
+
+
 
 
 ## Wait, what about *MultiPatch* shape types?
@@ -2221,8 +2284,9 @@ Well, after more than 15 years working with GIS related technologies, I have yet
 
 
 ## History
-*17 Aug 2020* - [Version 3.3.2](/posts/php-shapefile-3.3.2/)
-*13 Aug 2020* - [Version 3.3.1](/posts/php-shapefile-3.3.1/)
+*17 September 2020* - [Version 3.3.3](/posts/php-shapefile-3.3.3/)
+*17 August 2020* - [Version 3.3.2](/posts/php-shapefile-3.3.2/)
+*13 August 2020* - [Version 3.3.1](/posts/php-shapefile-3.3.1/)
 *23 May 2020* - [Version 3.3.0](/posts/php-shapefile-3.3.0/)
 *9 April 2020* - [Version 3.2.0](/posts/php-shapefile-3.2.0/)
 *2 February 2020* - [Version 3.1.3](/posts/php-shapefile-3.1.3/)
