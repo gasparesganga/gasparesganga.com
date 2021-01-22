@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP Shapefile
 description : PHP library to read and write ESRI Shapefiles, compatible with WKT and GeoJSON
-updated     : 2020-09-17
+updated     : 2021-01-22
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -10,10 +10,10 @@ getit       :
 ---
 
 {% capture current_date %}{{'now' | date: '%s'}}{% endcapture %}
-{% capture expire_date %}{{'2020-06-30' | date: '%s'}}{% endcapture %}
+{% capture expire_date %}{{'2021-02-28' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>23 May 2020 :</b> Version 3.3.0 released: see the <a href="/posts/php-shapefile-3.3.0/">release notes</a>.
+    <b>22 January 2021 :</b> Version 3.4.0 released: see the <a href="/posts/php-shapefile-3.4.0/">release notes</a>.
 </div>
 {% endif %}
 
@@ -224,6 +224,7 @@ Here are all possible error types:
 | `Shapefile::ERR_GEOM_POLYGON_OPEN_RING`           | Polygons cannot contain open rings |
 | `Shapefile::ERR_GEOM_POLYGON_WRONG_ORIENTATION`   | Polygon orientation not compliant with Shapefile specifications |
 | `Shapefile::ERR_GEOM_RING_AREA_TOO_SMALL`         | Ring area too small. Cannot determine ring orientation |
+| `Shapefile::ERR_INPUT_RANDOM_ACCESS_UNAVAILABLE`  | Shapefile has been loaded ignoring SHX file, only sequential read is possible |
 | `Shapefile::ERR_INPUT_RECORD_NOT_FOUND`           | Record index not found (check the total number of records in the SHP file) |
 | `Shapefile::ERR_INPUT_FIELD_NOT_FOUND`            | Field not found |
 | `Shapefile::ERR_INPUT_GEOMETRY_TYPE_NOT_VALID`    | Geometry type not valid. Must be of specified type |
@@ -470,6 +471,7 @@ public Shapefile::getTotRecords( void ) : int
 ```
 
 Returns the number of records present in the Shapefile.
+Special value `Shapefile::UNKNOWN` will be returned when `Shapefile::OPTION_IGNORE_FILE_SHX` constructor option is to `true`.
 
 
 
@@ -481,6 +483,8 @@ The Shapefile reading Class that exposes all the public methods of the [Shapefil
 - [getCurrentRecord](#shapefilereadergetcurrentrecord)
 - [setCurrentRecord](#shapefilereadersetcurrentrecord)
 - [fetchRecord](#shapefilereaderfetchrecord)
+
+This class also implements the [Iterator](https://php.net/manual/en/class.iterator.php) interface. See [Example 2](#example-2---read-a-shapefile-using-a-foreach-iterator) for details.
 
 #### [▲ Back to Namespaces and Classes](#namespaces-and-classes)
 
@@ -516,6 +520,8 @@ Here are the supported options and their default values:
 | `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES`             | `true`                                    | Returns a `null` value for invalid dates when reading *.dbf* files |
 | `Shapefile::OPTION_DBF_RETURN_DATES_AS_OBJECTS`           | `false`                                   | Returns dates as `DateTime` objects instead of ISO strings (`YYYY-MM-DD`) |
 | `Shapefile::OPTION_FORCE_MULTIPART_GEOMETRIES`            | `false`                                   | Reads Polyline and Polygon Geometries as Multi (ESRI specs do not distinguish between Linestring/MultiLinestring and Polygon/MultiPolygon) |
+| `Shapefile::OPTION_IGNORE_FILE_DBF`                       | `false`                                   | Ignores *DBF* file (useful to recover corrupted Shapefiles). Data will not be available for geometries |
+| `Shapefile::OPTION_IGNORE_FILE_SHX`                       | `false`                                   | Ignores *SHX* file (useful to recover corrupted Shapefiles). This might not always work and random access to specific records will not be possible |
 | `Shapefile::OPTION_IGNORE_GEOMETRIES_BBOXES`              | `false`                                   | Ignores geometries bounding boxes read from shapefile and computes some real ones instead |
 | `Shapefile::OPTION_IGNORE_SHAPEFILE_BBOX`                 | `false`                                   | Ignores bounding box read from shapefile and computes a real one instead |
 | `Shapefile::OPTION_POLYGON_CLOSED_RINGS_ACTION`           | `Shapefile::ACTION_CHECK`                 | Defines action to perform on Polygons rings. They should be closed but some software don't enforce that, creating uncompliant Shapefiles. Possible values are `Shapefile::ACTION_IGNORE`, `Shapefile::ACTION_CHECK` and `Shapefile::ACTION_FORCE`. See Polygon [__construct](#polygon__construct) option `$closed_rings` for details |
@@ -541,6 +547,7 @@ public ShapefileReader::setCurrentRecord( int $index ) : self
 ```
 
 Sets the index of the current record. If an invalid index is provided, this method will throw a `ShapefileException`.
+Classing this method will raise a `Shapefile::ERR_INPUT_RANDOM_ACCESS_UNAVAILABLE` ShapefileException when `Shapefile::OPTION_IGNORE_FILE_SHX` constructor option is to `true`.
 Returns self instance to provide a *fluent interface*.
 
 #### `$index`
@@ -555,6 +562,7 @@ public Shapefile::fetchRecord( void ) : Geometry
 
 Reads the current record returning a `Geometry` object and moves the cursor forward to the next one.
 When the last record is reached, the cursor will be set to the special value `Shapefile::EOF` and this method will return *Boolean* value **`false`**.
+If you prefer using the [Iterator](https://php.net/manual/en/class.iterator.php) interface, see [Example 2](#example-2---read-a-shapefile-using-a-foreach-iterator) for details.
 
 
 
@@ -2092,6 +2100,8 @@ Depending on the state of `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES` and `Sha
 
 ### Logical values are converted to the right type
 Logical values are parsed, converted and returned as `boolean`. Beware that `null` values are allowed for `Shapefile::DBF_TYPE_LOGICAL` fields (internally stored as `"?"`), thus possible return values are `true`, `false` and `null`.
+When **reading** a Shapefile, characters `"T"`, `"t"`, `"Y"`, `"y"` and `"1"` are recognized as `true`, while `"F"`, `"f"`, `"N"`, `"n"` and `"0"` are recognized as `false`. Anything else will be considered as `null`.
+When **writing** a Shapefile, the above values are accepted as well as `true`, `false`, `null` and other data types: numbers are loosely casted to *bool* before conversion, truthy and falsy string values are stricly checked against allowed ones using the first non-trimmable char and anything else is considered as `null` (or, in *DBF* terms, *not initialized*).
 
 ### Strings charset conversion
 When **reading** a Shapefile, if `Shapefile::OPTION_DBF_CONVERT_TO_UTF8` is enabled, all strings will be converted to **UTF-8** from the charset specified in the *CPG* file or with [setCharset](#shapefilereadersetcharset) method. It is important to perform the conversion directly into the library because strings are whitespace-padded into *DBF* files and *trimming* them to remove useless padding before converting to *UTF-8* might mess up the actual encoding (*DBF* specs assume strings are stored as `ISO-8859-1`, where each character is always a single byte).
@@ -2284,6 +2294,7 @@ Well, after more than 15 years working with GIS related technologies, I have yet
 
 
 ## History
+*22 January 2021* - [Version 3.4.0](/posts/php-shapefile-3.4.0/)
 *17 September 2020* - [Version 3.3.3](/posts/php-shapefile-3.3.3/)
 *17 August 2020* - [Version 3.3.2](/posts/php-shapefile-3.3.2/)
 *13 August 2020* - [Version 3.3.1](/posts/php-shapefile-3.3.1/)
