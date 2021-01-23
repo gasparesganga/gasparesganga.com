@@ -2,7 +2,7 @@
 layout      : lab
 title       : PHP Shapefile
 description : PHP library to read and write ESRI Shapefiles, compatible with WKT and GeoJSON
-updated     : 2021-01-22
+updated     : 2021-01-23
 getit       :
   github        : gasparesganga/php-shapefile
   download      : true
@@ -13,7 +13,7 @@ getit       :
 {% capture expire_date %}{{'2021-02-28' | date: '%s'}}{% endcapture %}
 {% if current_date < expire_date %}
 <div class="alert">
-    <b>22 January 2021 :</b> Version 3.4.0 released: see the <a href="/posts/php-shapefile-3.4.0/">release notes</a>.
+    <b>23 January 2021 :</b> Version 3.4.0 released: see the <a href="/posts/php-shapefile-3.4.0/">release notes</a>.
 </div>
 {% endif %}
 
@@ -547,7 +547,7 @@ public ShapefileReader::setCurrentRecord( int $index ) : self
 ```
 
 Sets the index of the current record. If an invalid index is provided, this method will throw a `ShapefileException`.
-Classing this method will raise a `Shapefile::ERR_INPUT_RANDOM_ACCESS_UNAVAILABLE` ShapefileException when `Shapefile::OPTION_IGNORE_FILE_SHX` constructor option is to `true`.
+Calling this method will raise a `Shapefile::ERR_INPUT_RANDOM_ACCESS_UNAVAILABLE` ShapefileException when `Shapefile::OPTION_IGNORE_FILE_SHX` constructor option is set to `true`.
 Returns self instance to provide a *fluent interface*.
 
 #### `$index`
@@ -2101,7 +2101,7 @@ Depending on the state of `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES` and `Sha
 ### Logical values are converted to the right type
 Logical values are parsed, converted and returned as `boolean`. Beware that `null` values are allowed for `Shapefile::DBF_TYPE_LOGICAL` fields (internally stored as `"?"`), thus possible return values are `true`, `false` and `null`.
 When **reading** a Shapefile, characters `"T"`, `"t"`, `"Y"`, `"y"` and `"1"` are recognized as `true`, while `"F"`, `"f"`, `"N"`, `"n"` and `"0"` are recognized as `false`. Anything else will be considered as `null`.
-When **writing** a Shapefile, the above values are accepted as well as `true`, `false`, `null` and other data types: numbers are loosely casted to *bool* before conversion, truthy and falsy string values are stricly checked against allowed ones using the first non-trimmable char and anything else is considered as `null` (or, in *DBF* terms, *not initialized*).
+When **writing** a Shapefile, the above values are accepted as well as `true`, `false`, `null` and other data types: numbers are loosely casted to *bool* before conversion, truthy and falsy string values are stricly checked against allowed ones using the first non-trimmable char *(e.g.: string `"No way"` becomes `"N"` hence `false`)* and anything else is considered as `null` (or, in *DBF* terms, *not initialized*).
 
 ### Strings charset conversion
 When **reading** a Shapefile, if `Shapefile::OPTION_DBF_CONVERT_TO_UTF8` is enabled, all strings will be converted to **UTF-8** from the charset specified in the *CPG* file or with [setCharset](#shapefilereadersetcharset) method. It is important to perform the conversion directly into the library because strings are whitespace-padded into *DBF* files and *trimming* them to remove useless padding before converting to *UTF-8* might mess up the actual encoding (*DBF* specs assume strings are stored as `ISO-8859-1`, where each character is always a single byte).
@@ -2294,7 +2294,7 @@ Well, after more than 15 years working with GIS related technologies, I have yet
 
 
 ## History
-*22 January 2021* - [Version 3.4.0](/posts/php-shapefile-3.4.0/)
+*23 January 2021* - [Version 3.4.0](/posts/php-shapefile-3.4.0/)
 *17 September 2020* - [Version 3.3.3](/posts/php-shapefile-3.3.3/)
 *17 August 2020* - [Version 3.3.2](/posts/php-shapefile-3.3.2/)
 *13 August 2020* - [Version 3.3.1](/posts/php-shapefile-3.3.1/)
