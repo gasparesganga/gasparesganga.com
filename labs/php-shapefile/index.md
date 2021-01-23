@@ -205,16 +205,16 @@ Here are all possible error types:
 | `Shapefile::ERR_SHP_MISMATCHED_BBOX`              | Bounding box must have the same dimensions as the Shapefile (2D, 3D or 4D) |
 | `Shapefile::ERR_SHP_FILE_ALREADY_INITIALIZED`     | Cannot change Shapefile definition after it has been initialized with data |
 | `Shapefile::ERR_SHP_WRONG_RECORD_TYPE`            | Wrong record shape type |
-| `Shapefile::ERR_DBF_FILE_NOT_VALID`               | DBF file doesn't seem to be a valid dBase III or dBase IV format |
-| `Shapefile::ERR_DBF_MISMATCHED_FILE`              | Mismatched DBF file. Number of records not corresponding to the SHP file |
-| `Shapefile::ERR_DBF_EOF_REACHED`                  | End of DBF file reached. Number of records not corresponding to the SHP file |
-| `Shapefile::ERR_DBF_MAX_FIELD_COUNT_REACHED`      | Cannot add other fields, maximum number of fields in a DBF file reached |
+| `Shapefile::ERR_DBF_FILE_NOT_VALID`               | *.dbf* file doesn't seem to be a valid dBase III or dBase IV format |
+| `Shapefile::ERR_DBF_MISMATCHED_FILE`              | Mismatched *.dbf* file. Number of records not corresponding to the *.shp* file |
+| `Shapefile::ERR_DBF_EOF_REACHED`                  | End of *.dbf* file reached. Number of records not corresponding to the *.shp* file |
+| `Shapefile::ERR_DBF_MAX_FIELD_COUNT_REACHED`      | Cannot add other fields, maximum number of fields in a *.dbf* file reached |
 | `Shapefile::ERR_DBF_FIELD_NAME_NOT_VALID`         | Too many field names conflicting |
 | `Shapefile::ERR_DBF_FIELD_TYPE_NOT_VALID`         | Field type must be CHAR, DATE, LOGICAL, MEMO or NUMERIC |
 | `Shapefile::ERR_DBF_FIELD_SIZE_NOT_VALID`         | Field size incorrect according to its type |
 | `Shapefile::ERR_DBF_FIELD_DECIMALS_NOT_VALID`     | Field decimals incorrect according to its type |
-| `Shapefile::ERR_DBF_CHARSET_CONVERSION`           | Error during conversion from provided DBF input charset to *UTF-8* |
-| `Shapefile::ERR_DBT_EOF_REACHED`                  | End of DBT file reached. File might be corrupted |
+| `Shapefile::ERR_DBF_CHARSET_CONVERSION`           | Error during conversion from provided *.dbf* file input charset to *UTF-8* |
+| `Shapefile::ERR_DBT_EOF_REACHED`                  | End of *.dbt* file reached. File might be corrupted |
 | `Shapefile::ERR_GEOM_NOT_EMPTY`                   | Cannot reinitialize non-empty Geometry |
 | `Shapefile::ERR_GEOM_COORD_VALUE_NOT_VALID`       | Invalid coordinate value |
 | `Shapefile::ERR_GEOM_MISMATCHED_DIMENSIONS`       | All geometries in a collection must have the same dimensions (2D, 3D or 4D) |
@@ -224,8 +224,8 @@ Here are all possible error types:
 | `Shapefile::ERR_GEOM_POLYGON_OPEN_RING`           | Polygons cannot contain open rings |
 | `Shapefile::ERR_GEOM_POLYGON_WRONG_ORIENTATION`   | Polygon orientation not compliant with Shapefile specifications |
 | `Shapefile::ERR_GEOM_RING_AREA_TOO_SMALL`         | Ring area too small. Cannot determine ring orientation |
-| `Shapefile::ERR_INPUT_RANDOM_ACCESS_UNAVAILABLE`  | Shapefile has been loaded ignoring SHX file, only sequential read is possible |
-| `Shapefile::ERR_INPUT_RECORD_NOT_FOUND`           | Record index not found (check the total number of records in the SHP file) |
+| `Shapefile::ERR_INPUT_RANDOM_ACCESS_UNAVAILABLE`  | Shapefile has been loaded ignoring *.shx* file, only sequential read is possible |
+| `Shapefile::ERR_INPUT_RECORD_NOT_FOUND`           | Record index not found (check the total number of records in the *.shp* file) |
 | `Shapefile::ERR_INPUT_FIELD_NOT_FOUND`            | Field not found |
 | `Shapefile::ERR_INPUT_GEOMETRY_TYPE_NOT_VALID`    | Geometry type not valid. Must be of specified type |
 | `Shapefile::ERR_INPUT_GEOMETRY_INDEX_NOT_VALID`   | Geometry index not valid (check the total number of geometries in the collection) |
@@ -520,8 +520,8 @@ Here are the supported options and their default values:
 | `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES`             | `true`                                    | Returns a `null` value for invalid dates when reading *.dbf* files |
 | `Shapefile::OPTION_DBF_RETURN_DATES_AS_OBJECTS`           | `false`                                   | Returns dates as `DateTime` objects instead of ISO strings (`YYYY-MM-DD`) |
 | `Shapefile::OPTION_FORCE_MULTIPART_GEOMETRIES`            | `false`                                   | Reads Polyline and Polygon Geometries as Multi (ESRI specs do not distinguish between Linestring/MultiLinestring and Polygon/MultiPolygon) |
-| `Shapefile::OPTION_IGNORE_FILE_DBF`                       | `false`                                   | Ignores *DBF* file (useful to recover corrupted Shapefiles). Data will not be available for geometries |
-| `Shapefile::OPTION_IGNORE_FILE_SHX`                       | `false`                                   | Ignores *SHX* file (useful to recover corrupted Shapefiles). This might not always work and random access to specific records will not be possible |
+| `Shapefile::OPTION_IGNORE_FILE_DBF`                       | `false`                                   | Ignores *.dbf* file (useful to recover corrupted Shapefiles). Data will not be available for geometries |
+| `Shapefile::OPTION_IGNORE_FILE_SHX`                       | `false`                                   | Ignores *.shx* file (useful to recover corrupted Shapefiles). This might not always work and random access to specific records will not be possible |
 | `Shapefile::OPTION_IGNORE_GEOMETRIES_BBOXES`              | `false`                                   | Ignores geometries bounding boxes read from shapefile and computes some real ones instead |
 | `Shapefile::OPTION_IGNORE_SHAPEFILE_BBOX`                 | `false`                                   | Ignores bounding box read from shapefile and computes a real one instead |
 | `Shapefile::OPTION_POLYGON_CLOSED_RINGS_ACTION`           | `Shapefile::ACTION_CHECK`                 | Defines action to perform on Polygons rings. They should be closed but some software don't enforce that, creating uncompliant Shapefiles. Possible values are `Shapefile::ACTION_IGNORE`, `Shapefile::ACTION_CHECK` and `Shapefile::ACTION_FORCE`. See Polygon [__construct](#polygon__construct) option `$closed_rings` for details |
@@ -612,7 +612,7 @@ Here are the supported options and their default values:
 | Option                                                | Default value                 | Description |
 | ----------------------------------------------------- | ----------------------------- | ----------- |
 | `Shapefile::OPTION_BUFFERED_RECORDS`                  | `10`                          | Number of records to keep into memory buffer before writing them. Use a value equal or less than `0` to keep all records into a buffer and write them at once |
-| `Shapefile::OPTION_CPG_ENABLE_FOR_DEFAULT_CHARSET`    | `false`                       | Writes a *.cpg* file (if there is one open) also when DBF data charset is the default one |
+| `Shapefile::OPTION_CPG_ENABLE_FOR_DEFAULT_CHARSET`    | `false`                       | Writes a *.cpg* file (if there is one open) also when *.dbf* file data charset is the default one |
 | `Shapefile::OPTION_DBF_ALLOW_FIELD_SIZE_255`          | `false`                       | Allows a maximum field size of 255 bytes instead of 254 bytes in the *.dbf* file |
 | `Shapefile::OPTION_DBF_FORCE_ALL_CAPS`                | `false`                       | Forces all column names in upper case in the *.dbf* file |
 | `Shapefile::OPTION_DBF_NULL_PADDING_CHAR`             | `null`                        | Defines a null padding character to use in the *.dbf* file to represent `null` values |
@@ -682,11 +682,11 @@ Returns self instance to provide a *fluent interface*.
 public ShapefileWriter::setPRJ( string $prj ) : self
 ```
 
-Sets PRJ well-known-text that will be written into the *.prj* file.
+Sets *PRJ* well-known-text that will be written into the *.prj* file.
 Returns self instance to provide a *fluent interface*.
 
 #### `$prj`
-PRJ well-known-text. Pass a falsy value (e.g.: `false` or empty string `""`) to delete it.
+*PRJ* well-known-text. Pass a falsy value (e.g.: `false` or empty string `""`) to delete it.
 
 
 
@@ -812,7 +812,7 @@ Number of decimal digits for numeric types.
 public ShapefileWriter::writeRecord( Geometry $Geometry ) : self
 ```
 
-Writes a record to the Shapefile (actually, to all open files: *SHP*, *SHX*, *DBF* and optional *DBT*).
+Writes a record to the Shapefile (actually, to all open files: *.shp*, *.shx*, *.dbf* and optional *.dbt*).
 Returns self instance to provide a *fluent interface*.
 
 #### `$Geometry`
@@ -1755,7 +1755,7 @@ Supported file types are:
 - `Shapefile::FILE_DBF` : Required. Attributes file.
 - `Shapefile::FILE_DBT` : Optional. Extended *Memo* attributes file.
 - `Shapefile::FILE_PRJ` : Optional. WKT projection file.
-- `Shapefile::FILE_CPG` : Optional. *DBF* charset file. 
+- `Shapefile::FILE_CPG` : Optional. *.dbf* charset file. 
 
 
 ### Closing files / Releasing the handles
@@ -2084,15 +2084,15 @@ The structure of [getArray](#geometrygetarray), [getWKT](#geometrygetwkt) and [g
 
 
 ## DBF data input/output
-Despite some misleading information that can be found on the internet, *DBF* files that come with ESRI Shapefiles must follow dBase III PLUS specifications and not dBase IV ones.
+Despite some misleading information that can be found on the internet, *.dbf* files that come with ESRI Shapefiles must follow dBase III PLUS specifications and not dBase IV ones.
 It is true dBase III PLUS and dBase IV are quite similar, but the differences between them are enough to prevent a perfectly compliant ESRI Shapefile parser from opening/reading a file using the wrong version specs.
 More specifically, the full original version required by ESRI Shapefile standard is ***dBase III PLUS without memo files***, which stores all the data as `ISO-8859-1`-encoded text.
-However, I took some *licences* and included custom charsets (*CPG* files) and memo fields (*DBT* files) support in this library, because a lot of modern software is using those features and they have become a *de facto* standard for Shapefiles.
+However, I took some *licences* and included custom charsets (*.cpg* files) and memo fields (*.dbt* files) support in this library, because a lot of modern software is using those features and they have become a *de facto* standard for Shapefiles.
 
 Having clarified that, there are a couple of implications and things to keep in mind when using the library:
 
-### Numbers are stored as text in *DBF* files
-When **reading** a Shapefile, this library ***will not*** try to convert integer and floating point numbers to such. Instead, they will be returned as text, leaving complete freedom about data conversion and/or interpretation to the programmer. ShapefileReader [getFieldDecimals](#shapefilereadergetfielddecimals) method comes in handy for accurate conversion, but keep in mind that there is a lot of software out there creating *not really compliant or accurate* Shapefiles and the value returned by this method is often just *descriptive* or even plainly wrong in relation to the actual data stored in the *DBF* file (that's the reason why this library does not attempt an automatic conversion in the first place).
+### Numbers are stored as text in *.dbf* files
+When **reading** a Shapefile, this library ***will not*** try to convert integer and floating point numbers to such. Instead, they will be returned as text, leaving complete freedom about data conversion and/or interpretation to the programmer. ShapefileReader [getFieldDecimals](#shapefilereadergetfielddecimals) method comes in handy for accurate conversion, but keep in mind that there is a lot of software out there creating *not really compliant or accurate* Shapefiles and the value returned by this method is often just *descriptive* or even plainly wrong in relation to the actual data stored in the *.dbf* file (that's the reason why this library does not attempt an automatic conversion in the first place).
 When **writing** a Shapefile, the library will take care of formal compliance to field *size* and *decimals* values, truncating eventual exceeding decimal parts, e.g.: the value `123.123456` in a field of *size* 10 with 5 *decimals* will be formatted as `123.1234`. If the lenght of the formatted value exceeds field *size*, a `Shapefile::ERR_INPUT_NUMERIC_VALUE_OVERFLOW` ShapefileException will be thrown (e.g.: trying to store the value `123456.99` in a field of of *size* 10 with 5 *decimals* would produce `123456.9900` and raise the exception).
 
 ### Dates are returned as text in ISO format or as `DateTime` objects
@@ -2101,14 +2101,14 @@ Depending on the state of `Shapefile::OPTION_DBF_NULLIFY_INVALID_DATES` and `Sha
 ### Logical values are converted to the right type
 Logical values are parsed, converted and returned as `boolean`. Beware that `null` values are allowed for `Shapefile::DBF_TYPE_LOGICAL` fields (internally stored as `"?"`), thus possible return values are `true`, `false` and `null`.
 When **reading** a Shapefile, characters `"T"`, `"t"`, `"Y"`, `"y"` and `"1"` are recognized as `true`, while `"F"`, `"f"`, `"N"`, `"n"` and `"0"` are recognized as `false`. Anything else will be considered as `null`.
-When **writing** a Shapefile, the above values are accepted as well as `true`, `false`, `null` and other data types: numbers are loosely casted to *bool* before conversion, truthy and falsy string values are stricly checked against allowed ones using the first non-trimmable char *(e.g.: string `"No way"` becomes `"N"` hence `false`)* and anything else is considered as `null` (or, in *DBF* terms, *not initialized*).
+When **writing** a Shapefile, the above values are accepted as well as `true`, `false`, `null` and other data types: numbers are loosely casted to *bool* before conversion, truthy and falsy string values are stricly checked against allowed ones using the first non-trimmable char *(e.g.: string `"No way"` becomes `"N"` hence `false`)* and anything else is considered as `null` (or, in dBase terms, *not initialized*).
 
 ### Strings charset conversion
-When **reading** a Shapefile, if `Shapefile::OPTION_DBF_CONVERT_TO_UTF8` is enabled, all strings will be converted to **UTF-8** from the charset specified in the *CPG* file or with [setCharset](#shapefilereadersetcharset) method. It is important to perform the conversion directly into the library because strings are whitespace-padded into *DBF* files and *trimming* them to remove useless padding before converting to *UTF-8* might mess up the actual encoding (*DBF* specs assume strings are stored as `ISO-8859-1`, where each character is always a single byte).
+When **reading** a Shapefile, if `Shapefile::OPTION_DBF_CONVERT_TO_UTF8` is enabled, all strings will be converted to **UTF-8** from the charset specified in the *.cpg* file or with [setCharset](#shapefilereadersetcharset) method. It is important to perform the conversion directly into the library because strings are whitespace-padded into *.dbf* files and *trimming* them to remove useless padding before converting to *UTF-8* might mess up the actual encoding (dBase specs assume strings are stored as `ISO-8859-1`, where each character is always a single byte).
 When **writing** a Shapefile, it is up to you to provide input strings encoded in the same charset specified with [setCharset](#shapefilewritersetcharset) method. Keep in mind that dBase specifications only allow `ISO-8859-1` encoding where each character occupy one single byte. Using a different charset encoding will likely reduce the effective maximun size of 254 characters allowed for a field (e.g.: for `UTF-8` strings, more than one byte per character might be used). Longer strings will be truncated according to the specified field size, of course.
 
 ### Memo fields
-Memo fields do not have a size limitation by design (even though original specs did not allow *DBT* files larger than 2GB). They store text in 512bytes consecutive blocks of *plain text* and their content is treated the same way as character fields (see above for charset conversion implications).
+Memo fields do not have a size limitation by design (even though original specs did not allow *.dbt* files larger than 2GB). They store text in 512bytes consecutive blocks of *plain text* and their content is treated the same way as character fields (see above for charset conversion implications).
 
 
 
